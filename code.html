@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en" class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Designer &amp; Developer Portfolio</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="./blob-cursor.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#FF4D21", // Vibrant Orange/Red accent from image 2
+              "background-light": "#F9FAFB",
+              "background-dark": "#0A0A0A", // Deep dark mode from images
+              "card-dark": "#141414",
+              "border-dark": "#262626",
+            },
+            fontFamily: {
+              display: ["Playfair Display", "serif"],
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+              mono: ["Inter", "monospace"],
+            },
+            borderRadius: {
+              DEFAULT: "0.75rem",
+              '2xl': '1.5rem',
+              '3xl': '2.5rem',
+            },
+          },
+        },
+      };
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .text-display { font-family: 'Playfair Display', serif; }
+        .gradient-blur {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 77, 33, 0.15) 0%, rgba(10, 10, 10, 0) 70%);
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 10, 0.8);
+        }
+        .tech-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #262626, transparent);
+        }
+        @keyframes blobFloat {
+            0%, 100% {
+                transform: rotate(0deg) translateY(0px);
+            }
+            50% {
+                transform: rotate(180deg) translateY(-8px);
+            }
+        }
+        .animate-blob {
+            animation: blobFloat 8s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white">
+<nav class="fixed top-0 w-full z-50 border-b border-gray-200 dark:border-border-dark glass-nav">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 bg-primary rounded-full"></div>
+<span class="font-semibold text-sm tracking-widest">LUCIA MIRANDA</span>
+</div>
+<div class="flex items-center gap-6">
+<button id="navToggle" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+<span class="material-icons text-sm">menu</span>
+</button>
+<button class="px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/10 transition-colors" id="langToggle">
+    <span id="toggleText">ES</span>
+</button>
+</div>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden fixed top-20 left-0 right-0 bg-background-dark/95 backdrop-blur border-b border-border-dark">
+<div class="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6">
+<a class="text-sm hover:text-primary transition-colors" href="#services"><span class="lang-en">Services</span><span class="lang-es hidden">Servicios</span></a>
+<a class="text-sm hover:text-primary transition-colors" href="#work"><span class="lang-en">Work</span><span class="lang-es hidden">Trabajos</span></a>
+<a class="text-sm hover:text-primary transition-colors" href="#about"><span class="lang-en">About</span><span class="lang-es hidden">Acerca de</span></a>
+<a class="text-sm hover:text-primary transition-colors" href="#education"><span class="lang-en">Education</span><span class="lang-es hidden">Educación</span></a>
+<a class="text-sm hover:text-primary transition-colors" href="#contact"><span class="lang-en">Contact</span><span class="lang-es hidden">Contacto</span></a>
+</div>
+</div>
+
+<!-- Desktop Menu (hidden on mobile) -->
+<div class="hidden items-center gap-8 absolute left-1/2 transform -translate-x-1/2 text-xs font-medium tracking-wide">
+<a class="hover:text-primary transition-colors" href="#services"><span class="lang-en">Services</span><span class="lang-es hidden">Servicios</span></a>
+<a class="hover:text-primary transition-colors" href="#work"><span class="lang-en">Work</span><span class="lang-es hidden">Trabajos</span></a>
+<a class="hover:text-primary transition-colors" href="#about"><span class="lang-en">About</span><span class="lang-es hidden">Acerca de</span></a>
+<a class="hover:text-primary transition-colors" href="#education"><span class="lang-en">Education</span><span class="lang-es hidden">Educación</span></a>
+<a class="hover:text-primary transition-colors" href="#contact"><span class="lang-en">Contact</span><span class="lang-es hidden">Contacto</span></a>
+</div>
+</nav>
+<section class="relative min-h-screen pt-32 pb-20 overflow-hidden">
+<div class="absolute inset-0 gradient-blur -z-10"></div>
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col items-center text-center">
+<div class="relative group mb-12">
+<div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-50 group-hover:opacity-75 transition duration-1000"></div>
+<div class="relative w-64 h-80 rounded-3xl shadow-2xl border border-primary/30 overflow-hidden">
+<img alt="Creative Director Portrait BW" class="absolute inset-0 w-full h-full object-cover rounded-3xl brightness-75 contrast-90" src="images/byn.jpg"/>
+<img alt="Creative Director Portrait Color" class="absolute inset-0 w-full h-full object-cover rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 brightness-75 contrast-90" src="images/image.jpeg"/>
+</div>
+</div>
+<div class="max-w-4xl">
+<p class="text-primary font-mono text-xs uppercase tracking-widest mb-3">
+    <span class="lang-en">Available for Freelance</span>
+    <span class="lang-es hidden">Disponible para Freelance</span>
+</p>
+<h1 class="text-3xl md:text-5xl font-medium mb-6 leading-[1.1]">
+                        <span class="hero-title-left">Creative <span class="text-display italic font-normal"><span class="lang-en">Designer</span>
+                        <span class="lang-es hidden">Diseñadora</span></span></span> <br/>
+                        <span class="hero-title-and">&amp;</span> <span class="hero-title-right"><span class="lang-en">Front End Developer</span>
+                        <span class="lang-es hidden">Desarrolladora Front End</span></span>
+                    </h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs md:text-sm max-w-2xl mx-auto leading-relaxed">
+                        <span class="lang-en">Crafting high-end digital experiences that merge sophisticated aesthetics with technical excellence. Focused on building clean, intuitive interfaces.</span>
+                        <span class="lang-es hidden">Creando experiencias digitales de alta calidad que fusionan estética sofisticada con excelencia técnica. Enfocada en construir interfaces limpias e intuitivas.</span>
+                    </p>
+</div>
+<div id="services" class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 mt-20 text-left border-t border-gray-200 dark:border-border-dark pt-12 w-full scroll-mt-32">
+<div class="service-card">
+<span class="block text-primary text-xs font-mono mb-2">01/</span>
+<h4 class="font-semibold text-lg"><span class="lang-en">UX Strategy</span><span class="lang-es hidden">Estrategia UX</span></h4>
+<p class="text-sm text-slate-500 mt-1"><span class="lang-en">Deep research and user flows.</span><span class="lang-es hidden">Investigación profunda y flujos de usuario.</span></p>
+</div>
+<div class="service-card">
+<span class="block text-primary text-xs font-mono mb-2">02/</span>
+<h4 class="font-semibold text-lg"><span class="lang-en">UI Design</span><span class="lang-es hidden">Diseño UI</span></h4>
+<p class="text-sm text-slate-500 mt-1"><span class="lang-en">Visual identities &amp; interfaces.</span><span class="lang-es hidden">Identidades visuales e interfaces.</span></p>
+</div>
+<div class="service-card">
+<span class="block text-primary text-xs font-mono mb-2">03/</span>
+<h4 class="font-semibold text-lg"><span class="lang-en">Web Dev</span><span class="lang-es hidden">Desarrollo Web</span></h4>
+<p class="text-sm text-slate-500 mt-1"><span class="lang-en">Robust, scalable coding.</span><span class="lang-es hidden">Código robusto y escalable.</span></p>
+</div>
+<div class="service-card">
+<span class="block text-primary text-xs font-mono mb-2">04/</span>
+<h4 class="font-semibold text-lg"><span class="lang-en">Motion</span><span class="lang-es hidden">Animación</span></h4>
+<p class="text-sm text-slate-500 mt-1"><span class="lang-en">Interactive experiences.</span><span class="lang-es hidden">Experiencias interactivas.</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-12 bg-gray-50 dark:bg-card-dark/50 border-y border-gray-200 dark:border-border-dark">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-12">
+<h2 class="text-4xl md:text-5xl font-medium mb-2">
+<span class="lang-en">Skills & Technologies</span><span class="lang-es hidden">Habilidades y Tecnologías</span>
+</h2>
+<div className="h-1 w-20 bg-primary rounded-full"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="p-6 rounded-2xl bg-white dark:bg-background-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all skill-card">
+<div class="flex flex-col items-center text-center">
+<span class="material-icons text-primary text-4xl mb-4">code</span>
+<h3 class="font-semibold text-sm mb-3">React</h3>
+<div class="w-full h-1 bg-gray-200 dark:bg-border-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 95%"></div>
+</div>
+<p class="text-xs text-slate-500 mt-2">95%</p>
+</div>
+</div>
+
+<div class="p-6 rounded-2xl bg-white dark:bg-background-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all skill-card">
+<div class="flex flex-col items-center text-center">
+<span class="material-icons text-primary text-4xl mb-4">style</span>
+<h3 class="font-semibold text-sm mb-3">TailwindCSS</h3>
+<div class="w-full h-1 bg-gray-200 dark:bg-border-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 95%"></div>
+</div>
+<p class="text-xs text-slate-500 mt-2">95%</p>
+</div>
+</div>
+
+<div class="p-6 rounded-2xl bg-white dark:bg-background-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all skill-card">
+<div class="flex flex-col items-center text-center">
+<span class="material-icons text-primary text-4xl mb-4">build</span>
+<h3 class="font-semibold text-sm mb-3">TypeScript</h3>
+<div class="w-full h-1 bg-gray-200 dark:bg-border-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 90%"></div>
+</div>
+<p class="text-xs text-slate-500 mt-2">90%</p>
+</div>
+</div>
+
+<div class="p-6 rounded-2xl bg-white dark:bg-background-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all skill-card">
+<div class="flex flex-col items-center text-center">
+<span class="material-icons text-primary text-4xl mb-4">palette</span>
+<h3 class="font-semibold text-sm mb-3">Figma</h3>
+<div class="w-full h-1 bg-gray-200 dark:bg-border-dark rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 98%"></div>
+</div>
+<p class="text-xs text-slate-500 mt-2">98%</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="work" class="py-32 scroll-mt-32">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-4xl md:text-5xl font-medium mb-4"><span class="lang-en">Selected Work</span><span class="lang-es hidden">Trabajos Seleccionados</span></h2>
+<p class="text-slate-500 dark:text-slate-400 max-w-md"><span class="lang-en">A curated collection of projects where design meets functionality.</span><span class="lang-es hidden">Una colección curada de proyectos donde el diseño se une a la funcionalidad.</span></p>
+</div>
+<a class="group flex items-center gap-2 text-sm font-semibold tracking-wide uppercase" href="#">
+                    <span class="lang-en">View All Projects</span> 
+                    <span class="lang-es hidden">Ver Todos los Proyectos</span>
+                    <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="group cursor-pointer work-card" 
+     onclick="openProjectModal(this)"
+     data-project="wineguide"
+     data-title="WineGuide"
+     data-tags="Figma • Research • Prototipado"
+     data-description="App de turismo en Mendoza que centraliza vuelos, alojamiento y rutas del vino en una sola experiencia. El problema era la planificación fragmentada en múltiples plataformas. Diseñé una arquitectura clara y flujos simplificados para mejorar la organización y la toma de decisiones."
+     data-media="videos/wineguide.mp4"
+     data-media-type="video"
+     data-link="#">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+<video autoplay muted loop playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+<source src="videos/wineguide.mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">WineGuide</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • Research • Prototipado</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">App de turismo enológico</span></p>
+</div>
+</div>
+
+<div class="group cursor-pointer work-card"
+     onclick="openProjectModal(this)"
+     data-project="lithium"
+     data-title="Lithium"
+     data-tags="Figma • UX Research • Design System"
+     data-description="Plataforma Web3 basada en blockchain. El desafío era traducir conceptos técnicos complejos en una experiencia clara y confiable. Diseñé una interfaz intuitiva que reduce fricción y mejora la comprensión para usuarios no técnicos."
+     data-media="videos/lithium.mp4"
+     data-media-type="video"
+     data-link="https://famous-trifle-7a5c4f.netlify.app/">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+<video autoplay muted loop playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+<source src="videos/lithium.mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Lithium</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • UX Research • Design System</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">Plataforma fintech / crypto</span></p>
+</div>
+</div>
+
+<div class="group cursor-pointer work-card"
+     onclick="openProjectModal(this)"
+     data-project="sunne"
+     data-title="SUNNÉ"
+     data-tags="Figma • UX Writing • Research"
+     data-description="E-commerce de autobronceantes enfocado en confianza y conversión. El problema era la inseguridad del usuario y el abandono de carrito. Optimicé la arquitectura, el UX Writing y el flujo de compra incluyendo manejo de errores para mejorar la experiencia y la conversión."
+     data-media="videos/sunne.mp4"
+     data-media-type="video"
+     data-link="#">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+<video autoplay muted loop playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+<source src="videos/sunne.mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Sunne</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • UX Writing • Research</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">E-commerce de autobronceantes</span></p>
+</div>
+</div>
+
+<div class="group cursor-pointer work-card"
+     onclick="openProjectModal(this)"
+     data-project="move"
+     data-title="Move"
+     data-tags="Figma • Wireframes • Prototipado"
+     data-description="E-commerce de indumentaria deportiva. El desafío era diferenciarse en un mercado competitivo y mejorar la experiencia de compra. Diseñé navegación clara, fichas de producto optimizadas y un checkout ágil para aumentar conversión."
+     data-media="videos/move.mp4"
+     data-media-type="video"
+     data-link="https://kaleidoscopic-pika-577f64.netlify.app/">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+<video autoplay muted loop playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+<source src="videos/move.mp4" type="video/mp4">
+</video>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Move</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • Wireframes • Prototipado</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">E-commerce de indumentaria</span></p>
+</div>
+</div>
+
+<div class="group cursor-pointer work-card"
+     onclick="openProjectModal(this)"
+     data-project="codea"
+     data-title="CODEA"
+     data-tags="Figma • HTML • CSS • JavaScript"
+     data-description="Mi pequeña startup de desarrollo de software, donde combino diseño y programación para crear soluciones digitales a medida. Detecté que muchas empresas necesitaban productos más humanos y centrados en el usuario, por lo que implemento procesos end-to-end alineando negocio, experiencia y tecnología."
+     data-media="videos/codea.gif"
+     data-media-type="image"
+     data-link="https://codeadesarrollos.com/">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+<img src="videos/codea.gif" alt="Codea" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Codea</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • HTML • CSS • JavaScript</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">Empresa de desarrollo de software</span></p>
+</div>
+</div>
+
+<div class="group cursor-pointer work-card"
+     onclick="openProjectModal(this)"
+     data-project="ucobot"
+     data-title="UCoBot"
+     data-tags="Figma • UX Research • Diseño de dashboards"
+     data-description="Software de automatización y CRM para negocios. El problema era la gestión manual de clientes y la pérdida de oportunidades comerciales. Diseñé una experiencia que centraliza contactos, automatiza seguimientos y optimiza el proceso de ventas."
+     data-media="videos/ucobot.gif"
+     data-media-type="image"
+     data-link="https://chatbot-sass-eight.vercel.app/">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+<img src="videos/ucobot.gif" alt="UCoBot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">UCoBot</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • UX Research • Dashboards</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">Software de automatización y CRM para negocios</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="about" class="py-32 bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-border-dark overflow-hidden scroll-mt-32">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<div class="lg:col-span-5">
+<h2 class="text-5xl font-medium leading-tight mb-8">
+                        <span class="lang-en">Data-Driven</span>
+                        <span class="lang-es hidden">Impulsado por</span> <br/><span class="lang-en">Design Systems</span>
+                        <span class="lang-es hidden">Sistemas de Diseño</span>
+                    </h2>
+<p class="text-slate-500 dark:text-slate-400 mb-12 text-lg">
+                        <span class="lang-en">I bridge the gap between creative expression and technical precision, ensuring every pixel serves a purpose and every interaction is optimized for performance.</span>
+                        <span class="lang-es hidden">Cierro la brecha entre la expresión creativa y la precisión técnica, asegurando que cada píxel sirva un propósito y cada interacción esté optimizada para el rendimiento.</span>
+                    </p>
+<div class="relative w-full h-64 border border-gray-200 dark:border-border-dark rounded-2xl p-8 flex items-center justify-center">
+<div class="absolute inset-0 opacity-10 animate-blob">
+<svg class="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<path d="M44.7,-76.4C58.1,-69.2,69.2,-58.1,76.4,-44.7C83.5,-31.3,86.7,-15.7,85.2,-0.9C83.7,14,77.5,27.9,68.9,40.1C60.3,52.3,49.2,62.8,36.3,70.5C23.3,78.2,8.6,83.1,-5.9,81.4C-20.4,79.7,-34.7,71.4,-47.5,61.4C-60.3,51.4,-71.7,39.7,-78.6,25.8C-85.5,12,-87.9,-4.1,-84.4,-18.8C-80.9,-33.5,-71.4,-46.8,-59.4,-54.6C-47.4,-62.4,-32.9,-64.7,-19.5,-71.9C-6.1,-79.1,6.1,-91.1,19.5,-91.1C32.9,-91.1,44.7,-76.4,44.7,-76.4Z" fill="currentColor" transform="translate(100 100)"></path>
+</svg>
+</div>
+<div class="text-center">
+<span class="block text-6xl font-bold text-primary mb-2">99.9%</span>
+<span class="text-xs font-mono uppercase tracking-widest text-slate-500"><span class="lang-en">Uptime & Performance Efficiency</span><span class="lang-es hidden">Disponibilidad y Eficiencia de Rendimiento</span></span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 dark:bg-border-dark border border-gray-200 dark:border-border-dark rounded-3xl overflow-hidden">
+<div class="bg-background-light dark:bg-background-dark p-12">
+<span class="block text-4xl font-bold mb-4">4+</span>
+<h4 class="font-semibold mb-4 text-slate-500 uppercase text-xs tracking-widest font-mono"><span class="lang-en">Years Experience</span><span class="lang-es hidden">Años de Experiencia</span></h4>
+<div class="tech-line mb-6"></div>
+<p class="text-sm text-slate-500 leading-relaxed"><span class="lang-en">Designing and developing award-winning digital experiences since day one.</span><span class="lang-es hidden">Diseñando y desarrollando experiencias digitales premiadas desde el primer día.</span></p>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-12">
+<span class="block text-4xl font-bold mb-4">2.4s</span>
+<h4 class="font-semibold mb-4 text-slate-500 uppercase text-xs tracking-widest font-mono"><span class="lang-en">Avg. Load Time</span><span class="lang-es hidden">Tiempo Prom. de Carga</span></h4>
+<div class="tech-line mb-6"></div>
+<p class="text-sm text-slate-500 leading-relaxed"><span class="lang-en">Optimized assets and cutting-edge frontend architecture for blazing speeds.</span><span class="lang-es hidden">Activos optimizados y arquitectura frontend de vanguardia para velocidades relámpago.</span></p>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-12">
+<span class="block text-4xl font-bold mb-4">15%</span>
+<h4 class="font-semibold mb-4 text-slate-500 uppercase text-xs tracking-widest font-mono"><span class="lang-en">Conversion Lift</span><span class="lang-es hidden">Aumento de Conversión</span></h4>
+<div class="tech-line mb-6"></div>
+<p class="text-sm text-slate-500 leading-relaxed"><span class="lang-en">Average increase in user engagement through UX psychological triggers.</span><span class="lang-es hidden">Aumento promedio en la participación del usuario a través de disparadores psicológicos UX.</span></p>
+</div>
+<div class="bg-background-light dark:bg-background-dark p-12">
+<span class="block text-4xl font-bold mb-4">35%</span>
+<h4 class="font-semibold mb-4 text-slate-500 uppercase text-xs tracking-widest font-mono"><span class="lang-en">Scalability Factor</span><span class="lang-es hidden">Factor de Escalabilidad</span></h4>
+<div class="tech-line mb-6"></div>
+<p class="text-sm text-slate-500 leading-relaxed"><span class="lang-en">Designed for growth with modular atomic components and design systems.</span><span class="lang-es hidden">Diseñado para crecimiento con componentes atómicos modulares y sistemas de diseño.</span></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-gray-50 dark:bg-card-dark/30">
+<div class="max-w-7xl mx-auto px-6">
+<div class="max-w-2xl mb-20">
+<span class="text-primary font-mono text-sm uppercase tracking-[0.2em] mb-4 block"><span class="lang-en">Our Expertise</span><span class="lang-es hidden">Nuestra Experiencia</span></span>
+<h2 class="text-5xl font-medium"><span class="lang-en">Shaping Experiences That Make Life Simpler</span><span class="lang-es hidden">Creando Experiencias que Simplifican la Vida</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark group hover:border-primary/50 transition-all expertise-card">
+<span class="material-icons text-primary text-4xl mb-8">assignment_ind</span>
+<h3 class="text-2xl font-semibold mb-4"><span class="lang-en">Product Manager</span><span class="lang-es hidden">Gerente de Producto</span></h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed"><span class="lang-en">Strategic product vision and roadmap planning that aligns user needs with business goals to drive meaningful growth.</span><span class="lang-es hidden">Visión estratégica de producto y planificación de roadmap que alinea las necesidades del usuario con objetivos comerciales.</span></p>
+</div>
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark group hover:border-primary/50 transition-all expertise-card">
+<span class="material-icons text-primary text-4xl mb-8">devices</span>
+<h3 class="text-2xl font-semibold mb-4"><span class="lang-en">UI/UX Design</span><span class="lang-es hidden">Diseño UI/UX</span></h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed"><span class="lang-en">Focusing on intuitive user journeys and aesthetically pleasing interfaces that convert users into loyal customers.</span><span class="lang-es hidden">Enfoque en recorridos de usuario intuitivos e interfaces estéticamente agradables que conviertan usuarios en clientes leales.</span></p>
+</div>
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark group hover:border-primary/50 transition-all expertise-card">
+<span class="material-icons text-primary text-4xl mb-8">code</span>
+<h3 class="text-2xl font-semibold mb-4"><span class="lang-en">Development</span><span class="lang-es hidden">Desarrollo</span></h3>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed"><span class="lang-en">Transforming designs into functional, high-performance web applications using the latest tech stacks and frameworks.</span><span class="lang-es hidden">Transformando diseños en aplicaciones web funcionales y de alto rendimiento usando los últimos stacks tecnológicos y frameworks.</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="education" class="py-32 bg-background-light dark:bg-background-dark scroll-mt-32">
+<div class="max-w-7xl mx-auto px-6">
+<div class="max-w-2xl mb-20">
+<h2 class="text-5xl font-medium mb-6 pb-6 border-b-2 border-primary">
+<span class="lang-en">Education</span><span class="lang-es hidden">Educación</span>
+</h2>
+</div>
+<div class="grid grid-cols-1 gap-6 max-w-3xl">
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all education-item">
+<div class="flex gap-6 justify-between">
+<div class="flex gap-6 flex-1">
+<div class="flex-shrink-0">
+<div class="w-14 h-14 rounded-xl bg-primary/20 dark:bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">school</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-xl font-semibold mb-1">
+<span class="lang-en">Diplomatura in UX/UI Design</span><span class="lang-es hidden">Diplomatura en Diseño UX/UI</span>
+</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Global Academy + UAI</p>
+<div class="flex items-center gap-2 text-slate-500 text-sm">
+<span class="material-icons text-sm">calendar_today</span>
+<span>29 de Enero - 29 de Junio, 2025</span>
+</div>
+</div>
+</div>
+<button class="cert-btn ml-4 px-4 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg font-semibold text-sm transition-colors whitespace-nowrap" data-certificate="certifictes/diplomatura uxui.pdf">
+<span class="lang-en">View</span><span class="lang-es hidden">Ver</span>
+</button>
+</div>
+</div>
+
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all education-item">
+<div class="flex gap-6 justify-between">
+<div class="flex gap-6 flex-1">
+<div class="flex-shrink-0">
+<div class="w-14 h-14 rounded-xl bg-primary/20 dark:bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">data_usage</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-xl font-semibold mb-1">
+<span class="lang-en">Data Science</span><span class="lang-es hidden">Ciencia de Datos</span>
+</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-3">UTN.BA - Centro de e-Learning</p>
+<div class="flex items-center gap-2 text-slate-500 text-sm">
+<span class="material-icons text-sm">calendar_today</span>
+<span>15 de Octubre, 2025</span>
+</div>
+</div>
+</div>
+<button class="cert-btn ml-4 px-4 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg font-semibold text-sm transition-colors whitespace-nowrap" data-certificate="certifictes/Curso_de_Data_Science.pdf">
+<span class="lang-en">View</span><span class="lang-es hidden">Ver</span>
+</button>
+</div>
+</div>
+
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all education-item">
+<div class="flex gap-6 justify-between">
+<div class="flex gap-6 flex-1">
+<div class="flex-shrink-0">
+<div class="w-14 h-14 rounded-xl bg-primary/20 dark:bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">assignment</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-xl font-semibold mb-1">
+<span class="lang-en">UX Writing</span><span class="lang-es hidden">UX Writing</span>
+</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Coderhouse</p>
+<div class="flex items-center gap-2 text-slate-500 text-sm">
+<span class="material-icons text-sm">calendar_today</span>
+<span>28 de Febrero, 2025</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all education-item">
+<div class="flex gap-6 justify-between">
+<div class="flex gap-6 flex-1">
+<div class="flex-shrink-0">
+<div class="w-14 h-14 rounded-xl bg-primary/20 dark:bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">trending_up</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-xl font-semibold mb-1">
+<span class="lang-en">Product Manager</span><span class="lang-es hidden">Gerente de Producto</span>
+</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Coderhouse</p>
+<div class="flex items-center gap-2 text-slate-500 text-sm">
+<span class="material-icons text-sm">calendar_today</span>
+<span>Abril, 2024</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all education-item">
+<div class="flex gap-6 justify-between">
+<div class="flex gap-6 flex-1">
+<div class="flex-shrink-0">
+<div class="w-14 h-14 rounded-xl bg-primary/20 dark:bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">design_services</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-xl font-semibold mb-1">
+<span class="lang-en">UI: User Interface</span><span class="lang-es hidden">UI: Interfaz de Usuario</span>
+</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-3">EducaciónIT</p>
+<div class="flex items-center gap-2 text-slate-500 text-sm">
+<span class="material-icons text-sm">calendar_today</span>
+<span>22 de Octubre, 2024</span>
+</div>
+</div>
+</div>
+<button class="cert-btn ml-4 px-4 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg font-semibold text-sm transition-colors whitespace-nowrap" data-certificate="certifictes/ui interfaz.pdf">
+<span class="lang-en">View</span><span class="lang-es hidden">Ver</span>
+</button>
+</div>
+</div>
+
+<div class="p-10 rounded-3xl bg-white dark:bg-card-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all education-item">
+<div class="flex gap-6 justify-between">
+<div class="flex gap-6 flex-1">
+<div class="flex-shrink-0">
+<div class="w-14 h-14 rounded-xl bg-primary/20 dark:bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">code</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-xl font-semibold mb-1">
+<span class="lang-en">Web Development with HTML</span><span class="lang-es hidden">Desarrollo Web con HTML</span>
+</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm mb-3">EducaciónIT</p>
+<div class="flex items-center gap-2 text-slate-500 text-sm">
+<span class="material-icons text-sm">calendar_today</span>
+<span>12 de Junio, 2024</span>
+</div>
+</div>
+</div>
+<button class="cert-btn ml-4 px-4 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg font-semibold text-sm transition-colors whitespace-nowrap" data-certificate="certifictes/desarrollo web con html.pdf">
+<span class="lang-en">View</span><span class="lang-es hidden">Ver</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="contact" class="py-32 overflow-hidden relative scroll-mt-32">
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="bg-background-light dark:bg-card-dark border border-gray-200 dark:border-border-dark p-12 md:p-24 rounded-3xl text-center relative cta-section">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-icons text-9xl">alternate_email</span>
+</div>
+<h2 class="text-5xl md:text-7xl font-medium mb-8"><span class="lang-en">Have a vision?</span><span class="lang-es hidden">¿Tienes una visión?</span> <br/> <span class="text-primary italic text-display"><span class="lang-en">Let's build it.</span><span class="lang-es hidden">Construyámosla.</span></span></h2>
+<p class="text-slate-500 dark:text-slate-400 text-lg mb-12 max-w-xl mx-auto"><span class="lang-en">Currently accepting new projects for Q3 2024. Reach out for a free consultation.</span><span class="lang-es hidden">Actualmente aceptando nuevos proyectos para Q3 2024. Comunícate para una consulta gratuita.</span></p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<a class="bg-primary hover:bg-orange-600 text-white px-10 py-5 rounded-full text-lg font-bold transition-all w-full sm:w-auto" href="mailto:luciacmiranda9@gmail.com">
+                        luciacmiranda9@gmail.com
+                    </a>
+<a class="border border-gray-300 dark:border-border-dark hover:bg-gray-100 dark:hover:bg-border-dark px-10 py-5 rounded-full text-lg font-bold transition-all w-full sm:w-auto" href="certifictes/cv.pdf" target="_blank">
+                        <span class="lang-en">View Resume</span><span class="lang-es hidden">Ver CV</span>
+                    </a>
+</div>
+</div>
+</div>
+</section>
+<footer class="py-12 border-t border-gray-200 dark:border-border-dark">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary rounded-full"></div>
+<span class="font-bold tracking-tighter">LUCIA MIRANDA</span>
+</div>
+<div class="flex gap-8 text-sm font-medium text-slate-500">
+<a class="hover:text-primary transition-colors" href="https://www.linkedin.com/in/lucia-miranda-6569841b9" target="_blank">LinkedIn</a>
+</div>
+<p class="text-sm text-slate-500">© 2024 <span class="lang-en">Lucia Miranda Design & Dev.</span><span class="lang-es hidden">Lucia Miranda Diseño y Desarrollo.</span> <span class="lang-en">All Rights Reserved.</span><span class="lang-es hidden">Todos los Derechos Reservados.</span></p>
+</div>
+</div>
+</footer>
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-white dark:bg-card-dark rounded-full shadow-2xl flex items-center justify-center border border-gray-200 dark:border-border-dark z-50 hover:scale-110 transition-transform" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons dark:hidden">dark_mode</span>
+<span class="material-icons hidden dark:block text-primary">light_mode</span>
+</button>
+<script>
+        // Mobile Menu Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        navToggle?.addEventListener('click', () => {
+            mobileMenu?.classList.toggle('hidden');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu?.classList.add('hidden');
+            });
+        });
+
+        // Language Translation Toggle - FIXED
+        const langToggle = document.getElementById('langToggle');
+        const toggleText = document.getElementById('toggleText');
+        let currentLang = localStorage.getItem('language') || 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            
+            // Get all elements with lang-en and lang-es classes
+            const enElements = document.querySelectorAll('.lang-en');
+            const esElements = document.querySelectorAll('.lang-es');
+            
+            // Show English, hide Spanish
+            if (lang === 'en') {
+                enElements.forEach(el => el.classList.remove('hidden'));
+                esElements.forEach(el => el.classList.add('hidden'));
+                toggleText.textContent = 'ES'; // Mostrar opción a español
+            } 
+            // Hide English, show Spanish
+            else if (lang === 'es') {
+                enElements.forEach(el => el.classList.add('hidden'));
+                esElements.forEach(el => el.classList.remove('hidden'));
+                toggleText.textContent = 'EN'; // Mostrar opción a inglés
+            }
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize language on page load
+        setLanguage(currentLang);
+
+        // Toggle language on button click
+        langToggle.addEventListener('click', () => {
+            const newLang = currentLang === 'en' ? 'es' : 'en';
+            setLanguage(newLang);
+        });
+
+        // GSAP ScrollTrigger animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate hero title parts - separate animations with ScrollTrigger
+        const heroH1 = document.querySelector('h1');
+        
+        // Left part - enters from left
+        gsap.fromTo('.hero-title-left',
+            { opacity: 0, x: -200 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 1.5,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: heroH1,
+                    start: "top 70%",
+                    end: "top 20%",
+                    scrub: 2,
+                    markers: false
+                }
+            }
+        );
+
+        // Ampersand - falls from top
+        gsap.fromTo('.hero-title-and',
+            { opacity: 0, y: -150 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: "back.out(1.2)",
+                scrollTrigger: {
+                    trigger: heroH1,
+                    start: "top 65%",
+                    end: "top 15%",
+                    scrub: 2,
+                    markers: false
+                }
+            }
+        );
+
+        // Right part - enters from right
+        gsap.fromTo('.hero-title-right',
+            { opacity: 0, x: 200 },
+            {
+                opacity: 1,
+                x: 0,
+                duration: 1.5,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: heroH1,
+                    start: "top 60%",
+                    end: "top 10%",
+                    scrub: 2,
+                    markers: false
+                }
+            }
+        );
+
+        // Animate service cards - enter from sides
+        gsap.utils.toArray('.service-card').forEach((card, index) => {
+            gsap.fromTo(card, 
+                { opacity: 0, x: index % 2 === 0 ? -200 : 200 },
+                { 
+                    opacity: 1, 
+                    x: 0, 
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        end: "top 40%",
+                        scrub: 2,
+                        markers: false
+                    }
+                }
+            );
+        });
+
+        // Animate skill cards - alternating from sides
+        gsap.utils.toArray('.skill-card').forEach((card, index) => {
+            gsap.fromTo(card,
+                { opacity: 0, x: index % 2 === 0 ? -200 : 200 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 95%",
+                        end: "top 60%",
+                        scrub: 1.5,
+                        markers: false
+                    }
+                }
+            );
+        });
+
+        // Animate education entries - alternating sides
+        gsap.utils.toArray('.education-item').forEach((item, index) => {
+            gsap.fromTo(item,
+                { opacity: 0, x: index % 2 === 0 ? -200 : 200 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 85%",
+                        end: "top 40%",
+                        scrub: 2,
+                        markers: false
+                    }
+                }
+            );
+        });
+
+        // Animate work cards - enter from sides
+        gsap.utils.toArray('.work-card').forEach((card, index) => {
+            gsap.fromTo(card,
+                { opacity: 0, x: index % 2 === 0 ? -250 : 250 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.4,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        end: "top 35%",
+                        scrub: 2.5,
+                        markers: false
+                    }
+                }
+            );
+        });
+
+        // Animate expertise cards - stagger from bottom
+        gsap.utils.toArray('.expertise-card').forEach((card, index) => {
+            gsap.fromTo(card,
+                { opacity: 0, y: 140 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.1,
+                    delay: index * 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%",
+                        end: "top 50%",
+                        scrub: 1.8,
+                        markers: false
+                    }
+                }
+            );
+        });
+
+        // Animate section titles - from left
+        gsap.utils.toArray('h2, h3').forEach((title) => {
+            gsap.fromTo(title,
+                { opacity: 0, x: -120 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: title,
+                        start: "top 88%",
+                        end: "top 50%",
+                        scrub: 1.5,
+                        markers: false
+                    }
+                }
+            );
+        });
+
+        // Animate CTA section
+        gsap.fromTo('.cta-section',
+            { opacity: 0, y: 150 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.3,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.cta-section',
+                    start: "top 85%",
+                    end: "top 40%",
+                    scrub: 2,
+                    markers: false
+                }
+            }
+        );
+        
+        // Certificate Modal
+        document.addEventListener('DOMContentLoaded', () => {
+            const certificateModal = document.getElementById('certificate-modal');
+            const modalClose = document.getElementById('modal-close');
+            const modalContent = document.getElementById('modal-content');
+            
+            if (certificateModal && modalClose && modalContent) {
+                document.querySelectorAll('.cert-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const certFile = btn.getAttribute('data-certificate');
+                        modalContent.innerHTML = `<iframe src="${certFile}" class="w-full h-full rounded-lg" frameborder="0"></iframe>`;
+                        certificateModal.classList.remove('hidden');
+                        certificateModal.classList.add('flex');
+                    });
+                });
+                
+                modalClose.addEventListener('click', () => {
+                    certificateModal.classList.add('hidden');
+                    certificateModal.classList.remove('flex');
+                });
+                
+                certificateModal.addEventListener('click', (e) => {
+                    if (e.target === certificateModal) {
+                        certificateModal.classList.add('hidden');
+                        certificateModal.classList.remove('flex');
+                    }
+                });
+            }
+        });
+        
+        // Global function for project modal
+        // Ensure dark mode by default
+        document.documentElement.classList.add('dark');
+    </script>
+
+    <script>
+        // Project Modal Logic - Isolated
+        function openProjectModal(card) {
+            try {
+                const projectModal = document.getElementById('project-modal');
+                const projectTitle = document.getElementById('project-title');
+                const projectTags = document.getElementById('project-tags');
+                const projectImage = document.getElementById('project-image');
+                const projectDescription = document.getElementById('project-description');
+                const projectLink = document.getElementById('project-link');
+
+                if (!projectModal || !card) return;
+
+                const title = card.getAttribute('data-title') || '';
+                const tags = card.getAttribute('data-tags') || '';
+                const description = card.getAttribute('data-description') || '';
+                const media = card.getAttribute('data-media');
+                const mediaType = card.getAttribute('data-media-type');
+                const link = card.getAttribute('data-link') || '#';
+                
+                if(projectTitle) projectTitle.textContent = title;
+                if(projectDescription) projectDescription.textContent = description;
+                if(projectLink) projectLink.href = link;
+                if(projectTags) projectTags.textContent = tags;
+                
+                // Add media
+                if(projectImage) {
+                    projectImage.innerHTML = '';
+                    if (media && mediaType === 'video') {
+                        projectImage.innerHTML = `
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+                                <source src="${media}" type="video/mp4">
+                            </video>
+                        `;
+                    } else if (media) {
+                        projectImage.innerHTML = `
+                            <img src="${media}" alt="${title}" class="w-full h-full object-cover"/>
+                        `;
+                    }
+                }
+                
+                projectModal.classList.remove('hidden');
+                projectModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            } catch(e) {
+                console.error("Modal error:", e);
+            }
+        }
+        
+        // Expose to window explicitly
+        window.openProjectModal = openProjectModal;
+
+        // Close logic
+        const setupModalEvents = () => {
+            const projectModal = document.getElementById('project-modal');
+            const projectModalClose = document.getElementById('project-modal-close');
+            
+            if (projectModalClose) {
+                projectModalClose.addEventListener('click', () => {
+                    projectModal.classList.add('hidden');
+                    projectModal.classList.remove('flex');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            if (projectModal) {
+                projectModal.addEventListener('click', (e) => {
+                    if (e.target === projectModal) {
+                        projectModal.classList.add('hidden');
+                        projectModal.classList.remove('flex');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupModalEvents);
+        } else {
+            setupModalEvents();
+        }
+    </script>
+    <script src="./blob-cursor.js"></script>
+
+    <!-- Certificate Modal -->
+    <div id="certificate-modal" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-card-dark rounded-2xl w-full max-w-4xl h-[80vh] relative shadow-2xl">
+            <button id="modal-close" class="absolute top-4 right-4 bg-primary hover:bg-primary/80 text-white rounded-full p-2 z-10">
+                <span class="material-icons">close</span>
+            </button>
+            <div id="modal-content" class="w-full h-full"></div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="project-modal" style="z-index: 9999;" class="hidden fixed inset-0 bg-black/90 backdrop-blur-md z-[9999] items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-[#0A0A0A] rounded-2xl w-full max-w-2xl relative shadow-2xl border border-white/10 my-8 transform transition-all" onclick="event.stopPropagation()">
+            <!-- Crucecita de cerrar más visible -->
+            <button id="project-modal-close" class="absolute top-3 right-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-full p-2 z-20 transition-colors border border-white/20 shadow-lg">
+                <span class="material-icons text-xl">close</span>
+            </button>
+            
+            <div class="p-6 md:p-8 flex flex-col items-center text-center">
+                <h2 id="project-title" class="text-2xl md:text-3xl font-semibold mb-2 tracking-tight text-white"></h2>
+                
+                <div id="project-tags" class="text-slate-400 text-xs md:text-sm mb-6 font-medium"></div>
+                
+                <div id="project-image" class="w-full aspect-video rounded-xl overflow-hidden mb-6 border border-white/10 shadow-lg bg-[#111]"></div>
+                
+                <div class="flex flex-col gap-6 w-full text-left">
+                    <p id="project-description" class="text-slate-300 text-sm md:text-base leading-relaxed"></p>
+                    
+                    <a id="project-link" href="#" target="_blank" class="inline-flex items-center justify-center w-full gap-2 px-6 py-3 bg-white text-black hover:bg-slate-200 rounded-xl font-bold transition-all transform hover:-translate-y-1 text-sm">
+                        <span class="lang-en">View Project</span>
+                        <span class="lang-es hidden">Ver Proyecto</span>
+                        <span class="material-icons text-base">arrow_outward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body></html>
