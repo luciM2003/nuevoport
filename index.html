@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/>
 <link href="./blob-cursor.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -57,6 +58,9 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, #262626, transparent);
         }
+        body {
+            overflow-x: hidden;
+        }
         @keyframes blobFloat {
             0%, 100% {
                 transform: rotate(0deg) translateY(0px);
@@ -78,7 +82,7 @@
 <span class="font-semibold text-sm tracking-widest">LUCIA MIRANDA</span>
 </div>
 <div class="flex items-center gap-6">
-<button id="navToggle" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+<button id="navToggle" class="p-2 md:hidden hover:bg-white/10 rounded-lg transition-colors" aria-label="Toggle navigation menu">
 <span class="material-icons text-sm">menu</span>
 </button>
 <button class="px-3 py-2 rounded-lg text-xs font-medium hover:bg-white/10 transition-colors" id="langToggle">
@@ -99,7 +103,7 @@
 </div>
 
 <!-- Desktop Menu (hidden on mobile) -->
-<div class="hidden items-center gap-8 absolute left-1/2 transform -translate-x-1/2 text-xs font-medium tracking-wide">
+<div class="hidden md:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2 text-xs font-medium tracking-wide">
 <a class="hover:text-primary transition-colors" href="#services"><span class="lang-en">Services</span><span class="lang-es hidden">Servicios</span></a>
 <a class="hover:text-primary transition-colors" href="#work"><span class="lang-en">Work</span><span class="lang-es hidden">Trabajos</span></a>
 <a class="hover:text-primary transition-colors" href="#about"><span class="lang-en">About</span><span class="lang-es hidden">Acerca de</span></a>
@@ -158,14 +162,14 @@
 </div>
 </div>
 </div>
-</section>
+
 <section class="py-12 bg-gray-50 dark:bg-card-dark/50 border-y border-gray-200 dark:border-border-dark">
 <div class="max-w-7xl mx-auto px-6">
 <div class="mb-12">
 <h2 class="text-4xl md:text-5xl font-medium mb-2">
 <span class="lang-en">Skills & Technologies</span><span class="lang-es hidden">Habilidades y Tecnologías</span>
 </h2>
-<div className="h-1 w-20 bg-primary rounded-full"></div>
+<div class="h-1 w-20 bg-primary rounded-full"></div>
 </div>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
 <div class="p-6 rounded-2xl bg-white dark:bg-background-dark border border-gray-100 dark:border-border-dark hover:border-primary/50 transition-all skill-card">
@@ -221,7 +225,7 @@
 <h2 class="text-4xl md:text-5xl font-medium mb-4"><span class="lang-en">Selected Work</span><span class="lang-es hidden">Trabajos Seleccionados</span></h2>
 <p class="text-slate-500 dark:text-slate-400 max-w-md"><span class="lang-en">A curated collection of projects where design meets functionality.</span><span class="lang-es hidden">Una colección curada de proyectos donde el diseño se une a la funcionalidad.</span></p>
 </div>
-<a class="group flex items-center gap-2 text-sm font-semibold tracking-wide uppercase" href="#">
+<a class="group flex items-center gap-2 text-sm font-semibold tracking-wide uppercase" href="#work">
                     <span class="lang-en">View All Projects</span> 
                     <span class="lang-es hidden">Ver Todos los Proyectos</span>
                     <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -229,26 +233,24 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <div class="group cursor-pointer work-card" 
-     onclick="openProjectModal(this)"
-     data-project="wineguide"
-     data-title="WineGuide"
-     data-tags="Figma • Research • Prototipado"
-     data-description="App de turismo en Mendoza que centraliza vuelos, alojamiento y rutas del vino en una sola experiencia. El problema era la planificación fragmentada en múltiples plataformas. Diseñé una arquitectura clara y flujos simplificados para mejorar la organización y la toma de decisiones."
-     data-media="videos/wineguide.mp4"
-     data-media-type="video"
-     data-link="#">
+    onclick="openProjectModal(this)"
+    data-project="creative-studio"
+    data-title="Creative Studio — Hero"
+    data-tags="Branding • Hero • UI"
+    data-description="Hero section y sistema visual para Creative Studio: identidad de marca, dirección de campaña y bloques hero diseñados para impacto y conversión." 
+    data-media="https://www.codeadesarrollos.com/proyectos/creative-studio/work-1.png"
+    data-media-type="image"
+    data-link="https://www.codeadesarrollos.com/proyectos/creative-studio/hero-section.html">
 <div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
-<video autoplay muted loop playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-<source src="videos/wineguide.mp4" type="video/mp4">
-</video>
+<img src="https://www.codeadesarrollos.com/proyectos/creative-studio/work-1.png" alt="Creative Studio — Hero" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='imagen-portfolio.jpg'"/>
 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
 <span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
 </div>
 </div>
 <div>
-<h3 class="text-lg font-semibold mb-1"><span class="lang-en">WineGuide</span></h3>
-<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • Research • Prototipado</p>
-<p class="text-slate-500 text-xs"><span class="lang-es">App de turismo enológico</span></p>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Creative Studio</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Branding • Hero • UI</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">Hero section y sistema visual para estudio creativo</span></p>
 </div>
 </div>
 
@@ -262,7 +264,7 @@
      data-media-type="video"
      data-link="https://famous-trifle-7a5c4f.netlify.app/">
 <div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
-<video autoplay muted loop playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+<video autoplay muted loop playsinline preload="none" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
 <source src="videos/lithium.mp4" type="video/mp4">
 </video>
 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -277,26 +279,26 @@
 </div>
 
 <div class="group cursor-pointer work-card"
-     onclick="openProjectModal(this)"
-     data-project="sunne"
-     data-title="SUNNÉ"
-     data-tags="Figma • UX Writing • Research"
-     data-description="E-commerce de autobronceantes enfocado en confianza y conversión. El problema era la inseguridad del usuario y el abandono de carrito. Optimicé la arquitectura, el UX Writing y el flujo de compra incluyendo manejo de errores para mejorar la experiencia y la conversión."
-     data-media="videos/sunne.mp4"
-     data-media-type="video"
-     data-link="#">
+    onclick="openProjectModal(this)"
+    data-project="stretch"
+    data-title="Stretch"
+    data-tags="Branding • E‑commerce • UI"
+    data-description="Belleza ética: sistema de tienda, fichas de producto y experiencia de marca enfocada en sostenibilidad y lujo accesible. Implementación de layout responsive y sistema de productos." 
+    data-media="videos/sunne.mp4"
+    data-media-type="video"
+    data-link="https://www.codeadesarrollos.com/proyectos/stretch/index.html">
 <div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
-<video autoplay muted loop playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-<source src="videos/sunne.mp4" type="video/mp4">
+<video autoplay muted loop playsinline preload="none" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+    <source src="videos/sunne.mp4" type="video/mp4">
 </video>
 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
 <span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
 </div>
 </div>
 <div>
-<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Sunne</span></h3>
-<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • UX Writing • Research</p>
-<p class="text-slate-500 text-xs"><span class="lang-es">E-commerce de autobronceantes</span></p>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Stretch</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Branding • E‑commerce • UI</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">Belleza ética y tienda online con enfoque sostenible</span></p>
 </div>
 </div>
 
@@ -310,7 +312,7 @@
      data-media-type="video"
      data-link="https://kaleidoscopic-pika-577f64.netlify.app/">
 <div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
-<video autoplay muted loop playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+<video autoplay muted loop playsinline preload="none" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
 <source src="videos/move.mp4" type="video/mp4">
 </video>
 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -334,7 +336,7 @@
      data-media-type="image"
      data-link="https://codeadesarrollos.com/">
 <div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
-<img src="videos/codea.gif" alt="Codea" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+<img src="videos/codea.gif" alt="Codea" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async"/>
 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
 <span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
 </div>
@@ -356,7 +358,7 @@
      data-media-type="image"
      data-link="https://chatbot-sass-eight.vercel.app/">
 <div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
-<img src="videos/ucobot.gif" alt="UCoBot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+<img src="videos/ucobot.gif" alt="UCoBot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async"/>
 <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
 <span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
 </div>
@@ -365,6 +367,74 @@
 <h3 class="text-lg font-semibold mb-1"><span class="lang-en">UCoBot</span></h3>
 <p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Figma • UX Research • Dashboards</p>
 <p class="text-slate-500 text-xs"><span class="lang-es">Software de automatización y CRM para negocios</span></p>
+</div>
+</div>
+
+<!-- AgusLanding: nuevo proyecto añadido -->
+<div class="group cursor-pointer work-card"
+    onclick="openProjectModal(this)"
+    data-project="aguslanding"
+    data-title="AgusLanding"
+    data-tags="Next.js • Landing Page • Responsive"
+    data-description="Trabajo para una abogada: problema — ausencia de presencia online profesional y dificultad para comunicar servicios y captar clientes. Solución — diseño y desarrollo de una landing responsive y profesional con secciones claras de servicios, contacto rápido y formulario funcional; optimicé la estructura para mejorar la conversión y la visibilidad online."
+    data-media="images/abogada.jpeg"
+    data-media-type="image"
+    data-link="https://github.com/Alvaro-gonzalez05/aguslanding">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+<img src="images/foto_aggv.jpg" srcset="images/foto_aggv.jpg 1x" sizes="(max-width: 768px) 100vw, 420px" alt="AgusLanding" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">AgusLanding</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Next.js • Landing Page • Responsive</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">Landing profesional para abogada</span></p>
+</div>
+</div>
+
+<!-- LuigiPizzas: tarjeta añadida -->
+<div class="group cursor-pointer work-card"
+    onclick="openProjectModal(this)"
+    data-project="luigipizzas"
+    data-title="Las Luigi Pizzas"
+    data-tags="Next.js • Supabase • Landing & Admin"
+    data-description="Sitio para pizzerías: problema — ausencia de una landing moderna y panel para gestionar menú y sucursales. Solución — landing responsiva con menú dinámico, reels y secciones de sucursales, más un panel admin protegido (Supabase) para editar contenido sin tocar código, facilitando gestión y actualización en tiempo real."
+    data-media="images/pizza.jpg"
+    data-media-type="image"
+    data-link="https://github.com/luigipizzas/PaginaWeb-LasLuigiPizzas">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+    <img src="images/pizza.jpg" alt="Las Luigi Pizzas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Las Luigi Pizzas</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Next.js • Supabase • Landing & Admin</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">Landing y panel admin para pizzerías</span></p>
+</div>
+</div>
+
+<div class="group cursor-pointer work-card"
+    onclick="openProjectModal(this)"
+    data-project="bakery"
+    data-title="Bakery"
+    data-tags="Branding • E‑commerce • UI"
+    data-description="Panadería artesanal: identidad visual, fichas de productos y diseño de tienda online enfocado en experiencia y conversión."
+    data-media="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200&fit=crop&auto=format"
+    data-media-type="image"
+    data-link="https://www.codeadesarrollos.com/proyectos/bakery/index.html">
+<div class="aspect-[16/12] overflow-hidden rounded-2xl bg-gray-100 dark:bg-card-dark border border-gray-200 dark:border-border-dark relative mb-4">
+    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200&fit=crop&auto=format" alt="Bakery — Hero" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='imagen-portfolio.jpg'"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm"><span class="lang-en">View Case</span><span class="lang-es hidden">Ver Caso</span></span>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-1"><span class="lang-en">Bakery</span></h3>
+<p class="text-primary text-[10px] uppercase tracking-wider mb-2 font-medium">Branding • E‑commerce • UI</p>
+<p class="text-slate-500 text-xs"><span class="lang-es">Panadería artesanal y tienda online</span></p>
 </div>
 </div>
 </div>
@@ -615,7 +685,7 @@
 <a class="bg-primary hover:bg-orange-600 text-white px-10 py-5 rounded-full text-lg font-bold transition-all w-full sm:w-auto" href="mailto:luciacmiranda9@gmail.com">
                         luciacmiranda9@gmail.com
                     </a>
-<a class="border border-gray-300 dark:border-border-dark hover:bg-gray-100 dark:hover:bg-border-dark px-10 py-5 rounded-full text-lg font-bold transition-all w-full sm:w-auto" href="certifictes/cv.pdf" target="_blank">
+<a class="border border-gray-300 dark:border-border-dark hover:bg-gray-100 dark:hover:bg-border-dark px-10 py-5 rounded-full text-lg font-bold transition-all w-full sm:w-auto" href="certifictes/cv.pdf" target="_blank" rel="noopener noreferrer">
                         <span class="lang-en">View Resume</span><span class="lang-es hidden">Ver CV</span>
                     </a>
 </div>
@@ -630,7 +700,7 @@
 <span class="font-bold tracking-tighter">LUCIA MIRANDA</span>
 </div>
 <div class="flex gap-8 text-sm font-medium text-slate-500">
-<a class="hover:text-primary transition-colors" href="https://www.linkedin.com/in/lucia-miranda-6569841b9" target="_blank">LinkedIn</a>
+<a class="hover:text-primary transition-colors" href="https://www.linkedin.com/in/lucia-miranda-6569841b9" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 </div>
 <p class="text-sm text-slate-500">© 2024 <span class="lang-en">Lucia Miranda Design & Dev.</span><span class="lang-es hidden">Lucia Miranda Diseño y Desarrollo.</span> <span class="lang-en">All Rights Reserved.</span><span class="lang-es hidden">Todos los Derechos Reservados.</span></p>
 </div>
@@ -697,6 +767,7 @@
 
         // GSAP ScrollTrigger animations
         gsap.registerPlugin(ScrollTrigger);
+        gsap.defaults({ immediateRender: false });
 
         // Animate hero title parts - separate animations with ScrollTrigger
         const heroH1 = document.querySelector('h1');
@@ -904,7 +975,7 @@
                 document.querySelectorAll('.cert-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
                         const certFile = btn.getAttribute('data-certificate');
-                        modalContent.innerHTML = `<iframe src="${certFile}" class="w-full h-full rounded-lg" frameborder="0"></iframe>`;
+                        modalContent.innerHTML = `<iframe src="${encodeURI(certFile)}" class="w-full h-full rounded-lg" frameborder="0"></iframe>`;
                         certificateModal.classList.remove('hidden');
                         certificateModal.classList.add('flex');
                     });
@@ -917,6 +988,12 @@
                 
                 certificateModal.addEventListener('click', (e) => {
                     if (e.target === certificateModal) {
+                        certificateModal.classList.add('hidden');
+                        certificateModal.classList.remove('flex');
+                    }
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
                         certificateModal.classList.add('hidden');
                         certificateModal.classList.remove('flex');
                     }
@@ -1041,7 +1118,7 @@
                 <div class="flex flex-col gap-6 w-full text-left">
                     <p id="project-description" class="text-slate-300 text-sm md:text-base leading-relaxed"></p>
                     
-                    <a id="project-link" href="#" target="_blank" class="inline-flex items-center justify-center w-full gap-2 px-6 py-3 bg-white text-black hover:bg-slate-200 rounded-xl font-bold transition-all transform hover:-translate-y-1 text-sm">
+                    <a id="project-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Open project case" class="inline-flex items-center justify-center w-full gap-2 px-6 py-3 bg-white text-black hover:bg-slate-200 rounded-xl font-bold transition-all transform hover:-translate-y-1 text-sm">
                         <span class="lang-en">View Project</span>
                         <span class="lang-es hidden">Ver Proyecto</span>
                         <span class="material-icons text-base">arrow_outward</span>
