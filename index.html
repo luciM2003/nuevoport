@@ -765,201 +765,129 @@
         // GSAP ScrollTrigger animations
         gsap.registerPlugin(ScrollTrigger);
         gsap.defaults({ immediateRender: false });
+        ScrollTrigger.config({ limitCallbacks: true });
 
-        // Animate hero title parts - separate animations with ScrollTrigger
+        const isMobile = window.matchMedia('(max-width: 720px)').matches;
+
+        function reveal(target, fromVars, toVars, trigger, start, end, scrub = 1.5) {
+            const scrollTrigger = {
+                trigger,
+                start,
+                markers: false,
+                once: isMobile,
+                toggleActions: 'play none none none'
+            };
+
+            if (!isMobile) {
+                scrollTrigger.end = end;
+                scrollTrigger.scrub = scrub;
+            }
+
+            return gsap.fromTo(target, fromVars, { ...toVars, scrollTrigger });
+        }
+
         const heroH1 = document.querySelector('h1');
-        
-        // Left part - enters from left
-        gsap.fromTo('.hero-title-left',
+
+        reveal('.hero-title-left',
             { opacity: 0, x: -200 },
-            {
-                opacity: 1,
-                x: 0,
-                duration: 1.5,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: heroH1,
-                    start: "top 70%",
-                    end: "top 20%",
-                    scrub: 2,
-                    markers: false
-                }
-            }
+            { opacity: 1, x: 0, duration: isMobile ? 1.1 : 1.5, ease: 'power2.out' },
+            heroH1,
+            isMobile ? 'top 95%' : 'top 70%',
+            'top 20%',
+            2
         );
 
-        // Ampersand - falls from top
-        gsap.fromTo('.hero-title-and',
+        reveal('.hero-title-and',
             { opacity: 0, y: -150 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1.5,
-                ease: "back.out(1.2)",
-                scrollTrigger: {
-                    trigger: heroH1,
-                    start: "top 65%",
-                    end: "top 15%",
-                    scrub: 2,
-                    markers: false
-                }
-            }
+            { opacity: 1, y: 0, duration: isMobile ? 1 : 1.5, ease: 'back.out(1.2)' },
+            heroH1,
+            isMobile ? 'top 92%' : 'top 65%',
+            'top 15%',
+            2
         );
 
-        // Right part - enters from right
-        gsap.fromTo('.hero-title-right',
+        reveal('.hero-title-right',
             { opacity: 0, x: 200 },
-            {
-                opacity: 1,
-                x: 0,
-                duration: 1.5,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: heroH1,
-                    start: "top 60%",
-                    end: "top 10%",
-                    scrub: 2,
-                    markers: false
-                }
-            }
+            { opacity: 1, x: 0, duration: isMobile ? 1.1 : 1.5, ease: 'power2.out' },
+            heroH1,
+            isMobile ? 'top 90%' : 'top 60%',
+            'top 10%',
+            2
         );
 
-        // Animate service cards - enter from sides
         gsap.utils.toArray('.service-card').forEach((card, index) => {
-            gsap.fromTo(card, 
-                { opacity: 0, x: index % 2 === 0 ? -200 : 200 },
-                { 
-                    opacity: 1, 
-                    x: 0, 
-                    duration: 1.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        end: "top 40%",
-                        scrub: 2,
-                        markers: false
-                    }
-                }
+            reveal(card,
+                { opacity: 0, x: index % 2 === 0 ? -180 : 180 },
+                { opacity: 1, x: 0, duration: isMobile ? 0.9 : 1.2, ease: 'power3.out' },
+                card,
+                isMobile ? 'top 95%' : 'top 85%',
+                'top 40%',
+                1.8
             );
         });
 
-        // Animate skill cards - alternating from sides
         gsap.utils.toArray('.skill-card').forEach((card, index) => {
-            gsap.fromTo(card,
-                { opacity: 0, x: index % 2 === 0 ? -200 : 200 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 95%",
-                        end: "top 60%",
-                        scrub: 1.5,
-                        markers: false
-                    }
-                }
+            reveal(card,
+                { opacity: 0, x: index % 2 === 0 ? -180 : 180 },
+                { opacity: 1, x: 0, duration: isMobile ? 0.9 : 1.2, ease: 'power2.out' },
+                card,
+                isMobile ? 'top 97%' : 'top 95%',
+                'top 60%',
+                1.5
             );
         });
 
-        // Animate education entries - alternating sides
         gsap.utils.toArray('.education-item').forEach((item, index) => {
-            gsap.fromTo(item,
-                { opacity: 0, x: index % 2 === 0 ? -200 : 200 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top 85%",
-                        end: "top 40%",
-                        scrub: 2,
-                        markers: false
-                    }
-                }
+            reveal(item,
+                { opacity: 0, x: index % 2 === 0 ? -180 : 180 },
+                { opacity: 1, x: 0, duration: isMobile ? 0.9 : 1.2, ease: 'power3.out' },
+                item,
+                isMobile ? 'top 95%' : 'top 85%',
+                'top 40%',
+                1.8
             );
         });
 
-        // Animate work cards - enter from sides
         gsap.utils.toArray('.work-card').forEach((card, index) => {
-            gsap.fromTo(card,
-                { opacity: 0, x: index % 2 === 0 ? -250 : 250 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1.4,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        end: "top 35%",
-                        scrub: 2.5,
-                        markers: false
-                    }
-                }
+            reveal(card,
+                { opacity: 0, x: index % 2 === 0 ? -220 : 220 },
+                { opacity: 1, x: 0, duration: isMobile ? 1 : 1.4, ease: 'power3.out' },
+                card,
+                isMobile ? 'top 97%' : 'top 85%',
+                'top 35%',
+                2
             );
         });
 
-        // Animate expertise cards - stagger from bottom
         gsap.utils.toArray('.expertise-card').forEach((card, index) => {
-            gsap.fromTo(card,
+            reveal(card,
                 { opacity: 0, y: 140 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.1,
-                    delay: index * 0.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 90%",
-                        end: "top 50%",
-                        scrub: 1.8,
-                        markers: false
-                    }
-                }
+                { opacity: 1, y: 0, duration: isMobile ? 0.9 : 1.1, delay: index * 0.15, ease: 'power2.out' },
+                card,
+                isMobile ? 'top 97%' : 'top 90%',
+                'top 50%',
+                1.8
             );
         });
 
-        // Animate section titles - from left
         gsap.utils.toArray('h2, h3').forEach((title) => {
-            gsap.fromTo(title,
+            reveal(title,
                 { opacity: 0, x: -120 },
-                {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: title,
-                        start: "top 88%",
-                        end: "top 50%",
-                        scrub: 1.5,
-                        markers: false
-                    }
-                }
+                { opacity: 1, x: 0, duration: isMobile ? 0.8 : 1, ease: 'power3.out' },
+                title,
+                isMobile ? 'top 95%' : 'top 88%',
+                'top 50%',
+                1.5
             );
         });
 
-        // Animate CTA section
-        gsap.fromTo('.cta-section',
+        reveal('.cta-section',
             { opacity: 0, y: 150 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1.3,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: '.cta-section',
-                    start: "top 85%",
-                    end: "top 40%",
-                    scrub: 2,
-                    markers: false
-                }
-            }
+            { opacity: 1, y: 0, duration: isMobile ? 0.9 : 1.3, ease: 'power2.out' },
+            '.cta-section',
+            isMobile ? 'top 97%' : 'top 85%',
+            'top 40%',
+            1.8
         );
         
         // Certificate Modal
