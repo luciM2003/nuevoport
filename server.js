@@ -9,7 +9,9 @@ const __dirname = path.dirname(__filename);
 const PORT = 3000;
 
 const server = http.createServer((req, res) => {
-  let filePath = path.join(__dirname, req.url === '/' ? 'index.html' : req.url);
+  // Sólo la ruta: sin esto, "/?lang=en" se busca como archivo y da 404.
+  const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
   
   const extname = path.extname(filePath).toLowerCase();
   let contentType = 'text/html';
