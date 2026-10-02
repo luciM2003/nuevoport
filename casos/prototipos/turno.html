@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Turno · Prototipo navegable</title>
+<meta name="title-es" content="Turno · Prototipo navegable"/>
+<meta name="title-en" content="Turno · Interactive prototype"/>
+<meta name="description" content="Prototipo navegable de Turno: reservá, reprogramá y cancelá turnos médicos, y hacé check-in."/>
+<meta name="theme-color" content="#0d0e10"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="proto.css"/>
+<style>
+  :root { --brand: #1d6ae5; --brand-ink: #1558c0; --brand-soft: #e6efff; }
+  .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tile { background: #fff; border-radius: 18px; padding: 14px; display: grid; gap: 10px; min-height: 112px; align-content: space-between; box-shadow: 0 10px 22px -18px rgba(13, 14, 16, .4); }
+  .tile b { font-size: 16px; display: block; }
+  .tile small { font-size: 13px; color: var(--muted); }
+  .doc { width: 100%; text-align: left; }
+  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+  .cal .h { font-size: 12px; color: var(--soft); padding: 4px 0; }
+  .cal button { aspect-ratio: 1; border-radius: 12px; font-weight: 600; font-size: 15px; display: grid; place-items: center; }
+  .cal button:disabled { color: #c3c6c9; cursor: default; }
+  .cal button[aria-pressed="true"] { background: var(--brand); color: #fff; }
+  .cal button.hoy:not([aria-pressed="true"]) { box-shadow: inset 0 0 0 1.5px var(--brand); }
+  .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .slot { min-height: 48px; border-radius: 14px; background: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 3px 10px -6px rgba(13, 14, 16, .3); }
+  .slot[aria-pressed="true"] { background: var(--brand); color: #fff; }
+  .slot:disabled { background: #efefec; color: #b2b5b9; text-decoration: line-through; box-shadow: none; cursor: not-allowed; }
+  .slot.actual:disabled { background: var(--brand-soft); color: var(--brand-ink); text-decoration: none; line-height: 1.1; }
+  .slot small { display: block; font-size: 10px; font-weight: 600; }
+  .opt { width: 100%; text-align: left; background: #fff; border-radius: 18px; padding: 16px; box-shadow: 0 10px 22px -18px rgba(13, 14, 16, .4); }
+  .codigo { font-family: var(--display); font-size: 34px; font-weight: 800; letter-spacing: .12em; text-align: center; padding: 18px; border-radius: 18px; background: var(--brand-soft); color: var(--brand-ink); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <aside class="side">
+    <a class="back" href="../turno.html#ui" data-href-lang="../turno.html#ui">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span data-lang="es">Volver al caso</span><span data-lang="en">Back to the case</span>
+    </a>
+    <span class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-set-lang="es" aria-pressed="true">ES</button><button type="button" data-set-lang="en" aria-pressed="false">EN</button></span>
+    <span class="eyebrow"><span data-lang="es">Prototipo navegable</span><span data-lang="en">Interactive prototype</span></span>
+    <h1>Turno.</h1>
+    <p><span data-lang="es">Funciona de verdad: los turnos que reserves quedan guardados en este navegador. La interfaz de la app está en español.</span><span data-lang="en">It really works: the appointments you book are saved in this browser. The app interface is in Spanish.</span></p>
+    <h2><span data-lang="es">Probá estas tareas</span><span data-lang="en">Try these tasks</span></h2>
+    <ol>
+      <li><span data-lang="es">Sacá un turno de clínica médica.</span><span data-lang="en">Book a GP appointment.</span></li>
+      <li><span data-lang="es">Pasalo a otro día desde "Turnos".</span><span data-lang="en">Move it to another day from "Turnos".</span></li>
+      <li><span data-lang="es">Reservá un turno para Ana, la mamá.</span><span data-lang="en">Book an appointment for Ana, the mother.</span></li>
+      <li><span data-lang="es">Hacé check-in del turno de hoy.</span><span data-lang="en">Check in for today's appointment.</span></li>
+      <li><span data-lang="es">Activá el texto grande en "Perfil".</span><span data-lang="en">Turn on large text in "Perfil".</span></li>
+    </ol>
+    <button type="button" class="reset" data-reset><span data-lang="es">Reiniciar la demo</span><span data-lang="en">Reset the demo</span></button>
+  </aside>
+
+  <div class="device">
+    <div class="app" id="app">
+      <div class="mbar"><a href="../turno.html#ui"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Caso de estudio</a><span>Prototipo · Turno</span></div>
+      <div class="status"></div>
+      <div id="screen" style="display:contents"></div>
+      <div class="toast" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+
+<script src="../caso.js"></script>
+<script src="proto.js"></script>
+<script>
+(() => {
+  const { esc, toast, sheet, cerrarSheet, ymd, desdeYmd, sumarDias, hoy, fmt, hash, I } = P;
+
+  // ---------------------------------------------------------------- datos de ejemplo
+  const PROFESIONALES = [
+    { id: 'rios', nombre: 'Dra. Paula Ríos', esp: 'Clínica médica', ini: 'PR', color: '#c9dcff', tinta: '#1558c0', rating: '4,9', lugar: 'Consultorio 4', dias: [1, 2, 3, 4, 5], horas: ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30'] },
+    { id: 'sosa', nombre: 'Dr. Martín Sosa', esp: 'Clínica médica', ini: 'MS', color: '#bfeee4', tinta: '#0b7a6b', rating: '4,7', lugar: 'Consultorio 2', dias: [1, 3, 5, 6], horas: ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00'] },
+    { id: 'gil', nombre: 'Dra. Laura Gil', esp: 'Clínica médica', ini: 'LG', color: '#e8e6fb', tinta: '#4a3fc0', rating: '4,8', lugar: 'Consultorio 7', dias: [2, 4], horas: ['14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00'] },
+    { id: 'pereyra', nombre: 'Dr. Tomás Pereyra', esp: 'Pediatría', ini: 'TP', color: '#fde7c7', tinta: '#8a5a10', rating: '4,9', lugar: 'Consultorio 1', dias: [1, 2, 3, 4, 5], horas: ['09:00', '09:20', '09:40', '10:00', '10:20', '10:40', '11:00'] },
+    { id: 'molina', nombre: 'Dra. Sofía Molina', esp: 'Dermatología', ini: 'SM', color: '#f8e0e6', tinta: '#8a1c3a', rating: '4,6', lugar: 'Consultorio 9', dias: [2, 3, 4], horas: ['15:00', '15:30', '16:00', '16:30', '17:00', '17:30'] },
+    { id: 'ibarra', nombre: 'Dr. Javier Ibarra', esp: 'Cardiología', ini: 'JI', color: '#dbe9d2', tinta: '#4f6b2f', rating: '4,8', lugar: 'Consultorio 5', dias: [1, 4], horas: ['10:00', '10:40', '11:20', '12:00'] },
+    { id: 'quiroga', nombre: 'Dra. Carla Quiroga', esp: 'Ginecología', ini: 'CQ', color: '#ece2f7', tinta: '#6b3fa0', rating: '4,9', lugar: 'Consultorio 3', dias: [1, 3, 5], horas: ['08:30', '09:00', '09:30', '10:00', '10:30', '11:00'] }
+  ];
+  const ESPECIALIDADES = ['Todas', ...new Set(PROFESIONALES.map((p) => p.esp))];
+  const PERSONAS = { yo: 'Martina González', ana: 'Ana González (mamá)' };
+  const doc = (id) => PROFESIONALES.find((p) => p.id === id);
+
+  // Turno de hoy, en la próxima media hora, para que el check-in se pueda probar a cualquier hora.
+  const horaDemo = (() => { const n = new Date(); const m = Math.min(Math.ceil((n.getHours() * 60 + n.getMinutes() + 15) / 30) * 30, 23 * 60 + 30); return `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`; })();
+  const INICIAL = {
+    turnos: [{ id: 't1', docId: 'rios', fecha: ymd(hoy()), hora: horaDemo, para: 'yo', recordatorio: true, checkin: false }],
+    grande: false
+  };
+  const guardado = P.store('proto-turno', INICIAL);
+  let S = guardado.get();
+  const guardar = () => guardado.set(S);
+
+  // Un horario está ocupado por otros pacientes (fijo, a partir de un hash) o por un turno propio.
+  const ocupado = (d, fecha, hora, ignorar) =>
+    hash(d.id + fecha + hora) % 3 === 0 || S.turnos.some((t) => t.id !== ignorar && t.docId === d.id && t.fecha === fecha && t.hora === hora);
+  const ahoraHM = () => { const n = new Date(); return String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0'); };
+  const libres = (d, fecha, ignorar) => {
+    if (!d.dias.includes(desdeYmd(fecha).getDay())) return [];
+    return d.horas.filter((h) => !ocupado(d, fecha, h, ignorar) && !(fecha === ymd(hoy()) && h <= ahoraHM()));
+  };
+  function proximoLibre(d) {
+    for (let i = 0; i < 21; i++) {
+      const f = ymd(sumarDias(hoy(), i));
+      const l = libres(d, f);
+      if (l.length) return { fecha: f, hora: l[0] };
+    }
+    return null;
+  }
+  const aMin = (h) => { const [a, b] = h.split(':').map(Number); return a * 60 + b; };
+  const aHM = (m) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+  // Check-in: desde 60 min antes hasta 30 min después del horario del turno.
+  const ventanaCheckin = (t) => {
+    if (t.fecha !== ymd(hoy())) return 'otro-dia';
+    const ahora = aMin(ahoraHM());
+    return ahora < aMin(t.hora) - 60 ? 'temprano' : ahora > aMin(t.hora) + 30 ? 'tarde' : 'abierta';
+  };
+  // Un mismo paciente no puede tener dos turnos a la misma hora, aunque sean con profesionales distintos.
+  const choca = (para, fecha, hora, ignorar) => S.turnos.some((t) => t.id !== ignorar && t.para === para && t.fecha === fecha && t.hora === hora);
+  const fechaCorta = (f) => (f === ymd(hoy()) ? 'Hoy' : f === ymd(sumarDias(hoy(), 1)) ? 'Mañana' : fmt(f, { weekday: 'short', day: 'numeric', month: 'short' }));
+  const fechaLarga = (f) => { const t = fmt(f, { weekday: 'long', day: 'numeric', month: 'long' }); return t[0].toUpperCase() + t.slice(1); };
+  // Los turnos de hoy se siguen mostrando todo el día, para poder hacer check-in.
+  const proximos = () => S.turnos.filter((t) => t.fecha >= ymd(hoy())).sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
+
+  // ---------------------------------------------------------------- navegación
+  let pantalla = 'inicio';
+  let pila = [];
+  let B = null; // borrador de la reserva en curso
+  let filtro = { esp: 'Todas', q: '' };
+  const go = (p) => { pila.push(pantalla); pantalla = p; render(); };
+  const back = () => { pantalla = pila.pop() || 'inicio'; render(); };
+  const raiz = (p) => { pila = []; pantalla = p; render(); };
+
+  const head = (titulo, paso) => `
+    <div class="head"><button class="icon-btn" data-back aria-label="Volver">${I.back}</button><div class="grow">${paso ? `<span class="step">${paso}</span>` : ''}</div></div>
+    ${titulo ? `<h1 class="t1">${titulo}</h1>` : ''}`;
+  const prog = (p) => `<div class="prog" aria-hidden="true"><i style="width:${p}%"></i></div>`;
+  const tabbar = () => `
+    <nav class="tabbar${S.grande ? ' grande' : ''}" aria-label="Secciones">
+      ${[['inicio', 'Inicio', I.home], ['turnos', 'Turnos', I.cal], ['recetas', 'Recetas', I.file], ['perfil', 'Perfil', I.user]].map(([id, n, ic]) =>
+        `<button class="tab" data-tab="${id}" ${pantalla === id ? 'aria-current="page"' : ''}>${ic}${n}</button>`).join('')}
+    </nav>`;
+
+  // ---------------------------------------------------------------- pantallas
+  const V = {};
+
+  V.inicio = () => {
+    const p = proximos()[0];
+    let tarjeta;
+    if (!p) {
+      tarjeta = `<div class="card soft"><b style="font-size:16px">No tenés turnos próximos</b><p class="small" style="color:var(--brand-ink);margin:6px 0 0">Reservá uno en menos de un minuto.</p></div>`;
+    } else {
+      const d = doc(p.docId);
+      const ventana = ventanaCheckin(p);
+      const accion = p.checkin
+        ? `<span class="pill white">${I.check.replace('<svg', '<svg width="14" height="14"')} Check-in hecho</span>`
+        : ventana === 'abierta' ? `<button class="pill white" data-checkin="${p.id}" style="min-height:36px;padding:0 14px">Hacer check-in</button>`
+        : ventana === 'temprano' ? `<span class="pill">Check-in desde las ${aHM(aMin(p.hora) - 60)}</span>`
+        : ventana === 'tarde' ? '<span class="pill">Check-in cerrado</span>' : '';
+      tarjeta = `
+        <div class="card brand">
+          <span class="k">Próximo turno${p.para !== 'yo' ? ' · ' + esc(PERSONAS[p.para].split(' ')[0]) : ''}</span>
+          <div style="font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.03em;margin-top:6px">${esc(d.nombre)}</div>
+          <small class="muted" style="display:block">${esc(d.esp)} · ${esc(d.lugar)}</small>
+          <div class="row" style="margin-top:14px;flex-wrap:wrap;gap:8px"><span class="pill">${fechaCorta(p.fecha)} · ${p.hora}</span><span class="spacer"></span>${accion}</div>
+          ${p.checkin ? '<small class="muted" style="display:block;margin-top:10px">Ya avisamos en recepción. Te llaman por nombre.</small>' : ''}
+        </div>`;
+    }
+    return `
+      <div class="head"><div class="grow"><span class="muted">Hola,</span><h1 class="t1">Martina</h1></div><span style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#9cc6ff,#1d6ae5)" aria-hidden="true"></span></div>
+      ${tarjeta}
+      <h2 class="t2">¿Qué necesitás?</h2>
+      <div class="tiles">
+        <button class="tile" data-act="reservar"><span class="ico">${I.plus}</span><span><b>Reservar</b><small>Nuevo turno</small></span></button>
+        <button class="tile" data-tab="turnos"><span class="ico" style="background:#0b7a6b">${I.cal}</span><span><b>Mis turnos</b><small>${proximos().length} ${proximos().length === 1 ? 'próximo' : 'próximos'}</small></span></button>
+        <button class="tile" data-tab="recetas"><span class="ico" style="background:#5b4fd8">${I.file}</span><span><b>Recetas</b><small>2 activas</small></span></button>
+        <button class="tile" data-act="cobertura"><span class="ico" style="background:#f5a524;color:#0d0e10">${I.heart}</span><span><b>Cobertura</b><small>OSEP · Plan 2</small></span></button>
+      </div>`;
+  };
+
+  V.para = () => `
+    ${head('¿Para quién es el turno?', 'Antes de empezar')}
+    <div style="display:grid;gap:10px">
+      ${Object.entries(PERSONAS).map(([id, n]) => `
+        <button class="opt row" data-para="${id}"><span class="ico round" style="background:${id === 'yo' ? 'var(--brand)' : '#2a2d31'}">${n[0]}</span><span class="grow"><b>${esc(n)}</b><small>${id === 'yo' ? 'Vos' : 'Familiar a cargo'} · OSEP</small></span>${I.back.replace('<svg', '<svg style="transform:rotate(180deg);width:18px;color:var(--soft)"')}</button>`).join('')}
+    </div>`;
+
+  const listaDocs = () => {
+    const q = filtro.q.trim().toLowerCase();
+    const ds = PROFESIONALES.filter((d) => (filtro.esp === 'Todas' || d.esp === filtro.esp) && (!q || (d.nombre + ' ' + d.esp).toLowerCase().includes(q)));
+    if (!ds.length) return `<div class="empty">${I.search}<span>No encontramos profesionales con "${esc(filtro.q)}".</span><button class="link" data-act="limpiar">Ver todos</button></div>`;
+    return ds.map((d) => {
+      const pl = proximoLibre(d);
+      return `
+        <button class="card doc" data-doc="${d.id}">
+          <div class="row"><span class="ico round" style="background:${d.color};color:${d.tinta}">${d.ini}</span><span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)} · ${d.rating} ★</small></span></div>
+          <div class="row" style="margin-top:12px;gap:8px;flex-wrap:wrap">${pl ? `<span class="pill soft">Próximo: ${fechaCorta(pl.fecha)} · ${pl.hora}</span>` : '<span class="pill bad">Sin turnos por 3 semanas</span>'}<span class="spacer"></span><span class="pill ok">Acepta OSEP</span></div>
+        </button>`;
+    }).join('');
+  };
+  V.quien = () => `
+    ${head('¿Con quién?', 'Paso 1 de 3')}
+    ${prog(33)}
+    <label class="search">${I.search}<input type="search" id="q" placeholder="Especialidad o profesional" value="${esc(filtro.q)}" autocomplete="off" aria-label="Buscar especialidad o profesional"/></label>
+    <div class="chips" role="group" aria-label="Especialidades">${ESPECIALIDADES.map((e) => `<button class="chip" data-esp="${esc(e)}" aria-pressed="${filtro.esp === e}">${esc(e)}</button>`).join('')}</div>
+    <div id="lista" style="display:grid;gap:12px">${listaDocs()}</div>`;
+
+  V.cuando = () => {
+    const d = doc(B.docId);
+    const inicio = sumarDias(hoy(), -((hoy().getDay() + 6) % 7)); // lunes de esta semana
+    const dias = Array.from({ length: 14 }, (_, i) => sumarDias(inicio, i));
+    let hayChoque = false;
+    const slots = B.fecha ? d.horas.map((h) => {
+      if (B.orig && B.orig.fecha === B.fecha && B.orig.hora === h) return `<button class="slot actual" disabled aria-label="${h}, tu horario actual">${h}<small>Actual</small></button>`;
+      if (choca(B.para, B.fecha, h, B.reprograma)) { hayChoque = true; return `<button class="slot actual" disabled aria-label="${h}, ya tenés otro turno">${h}<small>Otro turno</small></button>`; }
+      const tomado = ocupado(d, B.fecha, h, B.reprograma) || (B.fecha === ymd(hoy()) && h <= ahoraHM());
+      return `<button class="slot" data-hora="${h}" aria-pressed="${B.hora === h}" ${tomado ? 'disabled aria-label="' + h + ', ocupado"' : ''}>${h}</button>`;
+    }).join('') : '';
+    return `
+      ${head(B.reprograma ? 'Elegí el nuevo horario' : 'Elegí día y horario', B.reprograma ? 'Reprogramar' : 'Paso 2 de 3')}
+      ${prog(B.reprograma ? 50 : 66)}
+      <div class="row"><span class="ico round" style="background:${d.color};color:${d.tinta}">${d.ini}</span><span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)} · atiende ${d.dias.map((x) => ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'][x]).join(', ')}</small></span></div>
+      ${B.orig ? `<div class="card soft"><span class="k">Tu turno actual</span><b style="display:block;font-size:15px;margin-top:4px">${fechaLarga(B.orig.fecha)} · ${B.orig.hora}</b><small style="color:var(--brand-ink)">Si no confirmás el cambio, se mantiene.</small></div>` : ''}
+      <div class="card">
+        <div class="row" style="margin-bottom:8px"><b class="grow">${(m => m[0].toUpperCase() + m.slice(1))(fmt(B.fecha || hoy(), { month: 'long', year: 'numeric' }))}</b></div>
+        <div class="cal">
+          ${['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((x) => `<span class="h">${x}</span>`).join('')}
+          ${dias.map((x) => {
+            const f = ymd(x);
+            const ok = x >= hoy() && libres(d, f, B.reprograma).length > 0;
+            return `<button data-fecha="${f}" class="${f === ymd(hoy()) ? 'hoy' : ''}" aria-pressed="${B.fecha === f}" ${ok ? '' : 'disabled'} aria-label="${fechaLarga(f)}${ok ? '' : ', sin turnos'}">${x.getDate()}</button>`;
+          }).join('')}
+        </div>
+        <p class="small" style="margin:10px 0 0">Los días en gris no tienen turnos libres.</p>
+      </div>
+      ${B.fecha ? `<h2 class="t2">${fechaLarga(B.fecha)}</h2><div class="slots">${slots}</div>${hayChoque ? '<p class="small" style="margin:0">Los horarios marcados como "Otro turno" ya los tenés ocupados.</p>' : ''}` : '<p class="muted" style="margin:0">Tocá un día para ver los horarios.</p>'}
+      <div class="spacer"></div>
+      <button class="btn" data-act="continuar" ${B.hora ? '' : 'disabled'}>Continuar</button>`;
+  };
+
+  V.confirmar = () => {
+    const d = doc(B.docId);
+    return `
+      ${head('Revisá y confirmá', B.reprograma ? 'Reprogramar' : 'Paso 3 de 3')}
+      ${prog(100)}
+      <div class="card"><dl class="dl" style="margin:0">
+        <div><dt>Paciente</dt><dd>${esc(PERSONAS[B.para])}</dd></div>
+        <div><dt>Profesional</dt><dd>${esc(d.nombre)}</dd></div>
+        <div><dt>Especialidad</dt><dd>${esc(d.esp)}</dd></div>
+        <div><dt>Fecha</dt><dd>${fechaLarga(B.fecha)} · ${B.hora}</dd></div>
+        <div><dt>Lugar</dt><dd>${esc(d.lugar)} · Av. San Martín 1200</dd></div>
+        <div><dt>Cobertura</dt><dd>OSEP · Plan 2</dd></div>
+      </dl></div>
+      <div class="card soft"><div class="row"><span class="grow"><b>Recordatorio por WhatsApp</b><small style="color:var(--brand-ink)">24 h antes del turno</small></span><button class="toggle" role="switch" aria-checked="${B.recordatorio}" aria-label="Recordatorio por WhatsApp" data-act="recordatorio"></button></div></div>
+      <div class="spacer"></div>
+      <button class="btn brand" data-act="confirmar">${B.reprograma ? 'Confirmar cambio' : 'Confirmar turno'}</button>
+      <p class="small" style="text-align:center;margin:0">Podés cancelar sin costo hasta 12 h antes.</p>`;
+  };
+
+  V.listo = () => {
+    const t = S.turnos.find((x) => x.id === B.id);
+    const d = doc(t.docId);
+    return `
+      <div class="spacer"></div>
+      <div class="center">
+        <span class="check">${I.check}</span>
+        <h1 class="t1" style="margin-top:8px">${B.reprograma ? '¡Turno cambiado!' : t.para === 'yo' ? '¡Listo, Martina!' : '¡Listo!'}</h1>
+        <p class="muted" style="margin:0">${B.reprograma ? 'Te esperamos en el nuevo horario.' : t.para === 'yo' ? 'Tu turno quedó reservado.' : 'El turno de Ana quedó reservado.'}</p>
+      </div>
+      <div class="card"><div class="row"><span class="ico">${I.cal}</span><span class="grow"><b>${fechaLarga(t.fecha)}, ${t.hora}</b><small>${esc(d.nombre)} · ${esc(d.lugar)}</small></span></div></div>
+      <div class="card soft"><b style="font-size:15px">El día del turno</b><p class="small" style="color:var(--brand-ink);margin:4px 0 0">Cuando llegues, hacé check-in desde el inicio. Sin fila en recepción.${t.recordatorio ? ' Te escribimos por WhatsApp 24 h antes.' : ''}</p></div>
+      <div class="spacer"></div>
+      <button class="btn ghost" data-act="ics">${I.cal} Agregar al calendario</button>
+      <button class="btn" data-act="fin">Volver al inicio</button>`;
+  };
+
+  V.turnos = () => {
+    const ts = proximos();
+    return `
+      <div class="head"><h1 class="t1 grow">Mis turnos</h1><button class="icon-btn" data-act="reservar" aria-label="Reservar turno">${I.plus}</button></div>
+      ${ts.length ? ts.map((t) => {
+        const d = doc(t.docId);
+        return `
+          <div class="card">
+            <div class="row"><span class="ico round" style="background:${d.color};color:${d.tinta}">${d.ini}</span><span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)}${t.para !== 'yo' ? ' · para Ana' : ''}</small></span></div>
+            <div class="row" style="margin:12px 0 14px;gap:8px;flex-wrap:wrap"><span class="pill soft">${fechaCorta(t.fecha)} · ${t.hora}</span>${t.checkin ? '<span class="pill ok">Check-in hecho</span>' : ''}${t.recordatorio ? '<span class="pill ok">Recordatorio activo</span>' : ''}</div>
+            ${t.checkin ? '' : `<div class="row" style="gap:8px"><button class="btn ghost" style="min-height:46px;font-size:15px" data-reprog="${t.id}">Reprogramar</button><button class="btn ghost" style="min-height:46px;font-size:15px;color:var(--bad)" data-cancel="${t.id}">Cancelar</button></div>`}
+          </div>`;
+      }).join('') : `<div class="empty">${I.cal}<span>No tenés turnos próximos.</span><button class="btn brand" data-act="reservar" style="width:auto">Reservar un turno</button></div>`}`;
+  };
+
+  V.recetas = () => `
+    <h1 class="t1">Recetas</h1>
+    <p class="muted" style="margin:0">Mostrá el código en la farmacia. No hace falta imprimir.</p>
+    ${[['Amoxicilina 500 mg', 'Dra. Paula Ríos', 18, 'RX-4821'], ['Ibuprofeno 400 mg', 'Dr. Martín Sosa', 9, 'RX-3307']].map(([m, d, v, c]) => `
+      <div class="card"><div class="row"><span class="ico" style="background:#5b4fd8">${I.file}</span><span class="grow"><b>${m}</b><small>${d} · vence en ${v} días</small></span></div>
+      <button class="btn ghost" style="margin-top:12px;min-height:46px" data-codigo="${c}">Mostrar en la farmacia</button></div>`).join('')}`;
+
+  V.perfil = () => `
+    <h1 class="t1">Perfil</h1>
+    <div class="card"><div class="row"><span class="ico round">M</span><span class="grow"><b>Martina González</b><small>DNI 38.512.904 · OSEP Plan 2</small></span></div></div>
+    <h2 class="t2">Familiares a cargo</h2>
+    <div class="card"><div class="row"><span class="ico round" style="background:#2a2d31">A</span><span class="grow"><b>Ana González</b><small>Mamá · OSEP</small></span></div></div>
+    <h2 class="t2">Accesibilidad</h2>
+    <div class="card"><div class="row"><span class="grow"><b>Texto más grande</b><small>Agranda textos y botones en toda la app</small></span><button class="toggle" role="switch" aria-checked="${S.grande}" aria-label="Texto más grande" data-act="grande"></button></div></div>
+    <button class="btn ghost" data-reset>Reiniciar la demo</button>`;
+
+  // ---------------------------------------------------------------- render y eventos
+  const conTab = ['inicio', 'turnos', 'recetas', 'perfil'];
+  const scr = document.getElementById('screen');
+  function render() {
+    cerrarSheet();
+    scr.innerHTML = `<main class="view screen-in${S.grande ? ' grande' : ''}">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`;
+    const q = document.getElementById('q');
+    if (q) q.addEventListener('input', () => { filtro.q = q.value; document.getElementById('lista').innerHTML = listaDocs(); });
+  }
+
+  function empezar(para) {
+    B = { para, docId: null, fecha: null, hora: null, recordatorio: true };
+    filtro = { esp: 'Todas', q: '' };
+  }
+
+  function ics(t) {
+    const d = doc(t.docId);
+    const [a, m, dd] = t.fecha.split('-');
+    const [h, mi] = t.hora.split(':');
+    const txt = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Turno//Prototipo//ES', 'BEGIN:VEVENT', `UID:${t.id}@turno-prototipo`,
+      `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').slice(0, 15)}Z`, `DTSTART:${a}${m}${dd}T${h}${mi}00`, 'DURATION:PT30M',
+      `SUMMARY:Turno con ${d.nombre}`, `LOCATION:${d.lugar} · Av. San Martín 1200`, 'BEGIN:VALARM', 'TRIGGER:-PT24H', 'ACTION:DISPLAY', 'DESCRIPTION:Turno médico mañana', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    const url = URL.createObjectURL(new Blob([txt], { type: 'text/calendar' }));
+    const el = Object.assign(document.createElement('a'), { href: url, download: 'turno.ics' });
+    document.body.appendChild(el); el.click(); el.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast('Descargamos el turno para tu calendario');
+  }
+
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('button, [data-tab]');
+    if (!el) return;
+    const ds = el.dataset;
+    if ('reset' in ds) { P.store('proto-turno', INICIAL).clear(); S = JSON.parse(JSON.stringify(INICIAL)); raiz('inicio'); toast('Demo reiniciada'); return; }
+    if (!el.closest('.app')) return;
+    if ('back' in ds) return back();
+    if (ds.tab) return raiz(ds.tab);
+    if (ds.para) { B.para = ds.para; return go('quien'); }
+    if (ds.esp) { filtro.esp = ds.esp; return render(); }
+    if (ds.doc) { B.docId = ds.doc; const pl = proximoLibre(doc(ds.doc)); B.fecha = pl ? pl.fecha : null; B.hora = null; return go('cuando'); }
+    if (ds.fecha) { B.fecha = ds.fecha; B.hora = null; return render(); }
+    if (ds.hora) { B.hora = ds.hora; return render(); }
+    if (ds.checkin) {
+      sheet(`<h3>¿Llegaste al consultorio?</h3><p>Avisamos en recepción que estás. No hace falta hacer fila.</p><button class="btn brand" data-ok-checkin="${ds.checkin}">Sí, ya llegué</button><button class="btn ghost" data-cerrar>Todavía no</button>`);
+      return;
+    }
+    if (ds.okCheckin) { S.turnos.find((t) => t.id === ds.okCheckin).checkin = true; guardar(); render(); return toast('Check-in hecho. Te llaman por nombre.'); }
+    if ('cerrar' in ds) return cerrarSheet();
+    if (ds.reprog) {
+      const t = S.turnos.find((x) => x.id === ds.reprog);
+      B = { ...t, reprograma: t.id, hora: null, orig: { fecha: t.fecha, hora: t.hora } };
+      return go('cuando');
+    }
+    if (ds.cancel) {
+      const t = S.turnos.find((x) => x.id === ds.cancel);
+      sheet(`<h3>¿Cancelar el turno?</h3><p>${esc(doc(t.docId).nombre)}, ${fechaCorta(t.fecha).toLowerCase()} a las ${t.hora}. Liberamos el horario para otra persona.</p><button class="btn danger" data-ok-cancel="${t.id}">Sí, cancelar</button><button class="btn ghost" data-cerrar>No, mantenerlo</button>`);
+      return;
+    }
+    if (ds.okCancel) { S.turnos = S.turnos.filter((t) => t.id !== ds.okCancel); guardar(); render(); return toast('Turno cancelado'); }
+    if (ds.codigo) { sheet(`<h3>Código de receta</h3><p>Mostralo en el mostrador de cualquier farmacia adherida.</p><div class="codigo">${ds.codigo}</div><button class="btn" data-cerrar>Listo</button>`); return; }
+
+    switch (ds.act) {
+      case 'reservar': empezar('yo'); return go('para');
+      case 'cobertura': sheet(`<h3>OSEP · Plan 2</h3><p>Afiliada 38512904/00. Consultas sin copago con los profesionales de la cartilla. Estudios con orden médica.</p><button class="btn" data-cerrar>Entendido</button>`); return;
+      case 'limpiar': filtro = { esp: 'Todas', q: '' }; return render();
+      case 'continuar': return go('confirmar');
+      case 'recordatorio': B.recordatorio = !B.recordatorio; el.setAttribute('aria-checked', String(B.recordatorio)); return;
+      case 'grande': S.grande = !S.grande; guardar(); return render();
+      case 'confirmar': {
+        if (B.reprograma) {
+          const t = S.turnos.find((x) => x.id === B.reprograma);
+          Object.assign(t, { fecha: B.fecha, hora: B.hora, recordatorio: B.recordatorio });
+          B.id = t.id;
+        } else {
+          const t = { id: 't' + Date.now(), docId: B.docId, fecha: B.fecha, hora: B.hora, para: B.para, recordatorio: B.recordatorio, checkin: false };
+          S.turnos.push(t);
+          B.id = t.id;
+        }
+        guardar();
+        pila = [];
+        pantalla = 'listo';
+        return render();
+      }
+      case 'ics': return ics(S.turnos.find((x) => x.id === B.id));
+      case 'fin': return raiz('inicio');
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Alcancía · Caso de estudio UX/UI · Lucía Miranda</title>
+<meta name="title-es" content="Alcancía · Caso de estudio UX/UI · Lucía Miranda"/>
+<meta name="title-en" content="Alcancía · UX/UI case study · Lucía Miranda"/>
+<meta name="description" content="Caso de estudio completo de Alcancía, app conceptual de finanzas personales: investigación, definición, arquitectura, wireframes, sistema de diseño y UI final."/>
+<meta name="theme-color" content="#f3f4f1"/>
+<meta property="og:title" content="Alcancía · Caso de estudio UX/UI"/>
+<meta property="og:image" content="https://lucim2003.github.io/nuevoport/images/concepto-alcancia.jpg"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="caso.css"/>
+<style>
+  :root {
+    --brand: #5b4fd8; --brand-ink: #4a3fc0; --brand-soft: #ecebfd; --brand-on-dark: #b9b3ff;
+    --mesh: radial-gradient(40% 55% at 20% 30%, #c9c2ff 0, transparent 70%), radial-gradient(45% 60% at 80% 20%, #e2dcff 0, transparent 70%), radial-gradient(40% 50% at 70% 85%, #c9efdf 0, transparent 70%), #eeebfb;
+    --next-mesh: radial-gradient(40% 55% at 20% 30%, #9cc6ff 0, transparent 70%), radial-gradient(45% 60% at 80% 20%, #c9dcff 0, transparent 70%), radial-gradient(40% 50% at 70% 85%, #bfeee4 0, transparent 70%), #e8f0fb;
+  }
+  .neg { color: #c8362b; }
+  .pos { color: #0c7a50; }
+  .u-bar.warn i { background: #f5a524; }
+  .u-bar.ok i { background: #12a06a; }
+  .u-bar.bad i { background: #c8362b; }
+  .u-ring.lg { width: 104px; height: 104px; }
+  .u-ring.lg::before { width: 80px; height: 80px; font-size: 20px; }
+  .amount { font-family: var(--display); font-weight: 800; font-size: 34px; letter-spacing: -0.05em; text-align: center; line-height: 1; }
+  .bars { display: flex; align-items: flex-end; gap: 8px; height: 74px; padding: 0 4px; }
+  .bars i { flex: 1; border-radius: 6px 6px 3px 3px; background: #dcd8fb; }
+  .bars i.on { background: var(--brand); }
+  .bars-l { display: flex; gap: 8px; padding: 4px 4px 0; font-size: 9px; color: #8b9096; }
+  .bars-l span { flex: 1; text-align: center; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="back" href="../index.html#work" data-href-lang="../index.html#work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span>Portfolio</span>
+    </a>
+    <span class="top-title">Alcancía · <span data-lang="es">Caso de estudio</span><span data-lang="en">Case study</span></span>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+<!-- ============================================================ hero -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span data-lang="es">Caso de estudio UX/UI · Concepto</span><span data-lang="en">UX/UI case study · Concept</span></span>
+    <h1>Alcan<em>cía</em></h1>
+    <p class="hero-sub"><span data-lang="es">Una app de finanzas personales para gente joven: cuánto queda disponible en el mes, presupuesto por categoría y metas de ahorro, sin planillas ni culpa.</span><span data-lang="en">A personal finance app for young people: what's left for the month, category budgets and savings goals, with no spreadsheets and no guilt.</span></p>
+    <ul class="tags"><li>Mobile app</li><li>Fintech</li><li>UX Research</li><li>UI Design</li><li>Figma</li></ul>
+    <div class="cta-row"><a class="btn-c" href="prototipos/alcancia.html"><span data-lang="es">Probar el prototipo</span><span data-lang="en">Try the prototype</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a><a class="btn-c ghost" href="#contexto"><span data-lang="es">Leer el caso</span><span data-lang="en">Read the case</span></a></div>
+    <figure class="cover"><img src="../images/concepto-alcancia.jpg" alt="Dos pantallas de Alcancía: disponible del mes con una meta de ahorro y presupuesto por categoría" width="1600" height="1200" fetchpriority="high"/></figure>
+    <div class="facts">
+      <div><span data-lang="es">Rol</span><span data-lang="en">Role</span><b><span data-lang="es">Investigación, UX, UI y prototipo</span><span data-lang="en">Research, UX, UI and prototype</span></b></div>
+      <div><span data-lang="es">Duración</span><span data-lang="en">Timeline</span><b><span data-lang="es">4 semanas</span><span data-lang="en">4 weeks</span></b></div>
+      <div><span data-lang="es">Herramientas</span><span data-lang="en">Tools</span><b>Figma · FigJam</b></div>
+      <div><span data-lang="es">Plataforma</span><span data-lang="en">Platform</span><b>iOS · Android</b></div>
+    </div>
+    <p class="disclaimer"><span data-lang="es">Proyecto conceptual propio, sin cliente. La investigación es secundaria (benchmark, proto-persona, journey map y principios de economía del comportamiento); montos y metas son ficticios. El prototipo se validó con una evaluación heurística; el test con usuarios está planificado.</span><span data-lang="en">Self-initiated concept project with no client. Research is secondary (benchmark, proto-persona, journey map and behavioral economics principles); amounts and targets are fictional. The prototype was validated with a heuristic evaluation; user testing is planned.</span></p>
+    <nav class="toc" aria-label="Índice del caso">
+      <a href="#contexto"><span class="n">01</span><span data-lang="es">Contexto</span><span data-lang="en">Context</span></a>
+      <a href="#investigacion"><span class="n">02</span><span data-lang="es">Investigación</span><span data-lang="en">Research</span></a>
+      <a href="#definicion"><span class="n">03</span><span data-lang="es">Definición</span><span data-lang="en">Definition</span></a>
+      <a href="#arquitectura"><span class="n">04</span><span data-lang="es">Arquitectura</span><span data-lang="en">Architecture</span></a>
+      <a href="#wireframes"><span class="n">05</span>Wireframes</a>
+      <a href="#decisiones"><span class="n">06</span><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></a>
+      <a href="#sistema"><span class="n">07</span><span data-lang="es">Sistema de diseño</span><span data-lang="en">Design system</span></a>
+      <a href="#ui"><span class="n">08</span><span data-lang="es">UI final</span><span data-lang="en">Final UI</span></a>
+      <a href="#validacion"><span class="n">09</span><span data-lang="es">Validación</span><span data-lang="en">Validation</span></a>
+      <a href="#aprendizajes"><span class="n">10</span><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></a>
+    </nav>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ============================================================ 01 contexto -->
+<section class="sec" id="contexto">
+  <div class="sec-head rv">
+    <div class="sec-num">01<b><span data-lang="es">Contexto</span><span data-lang="en">Context</span></b></div>
+    <div>
+      <h2><span data-lang="es">La plata se va y nadie sabe bien en qué.</span><span data-lang="en">The money goes, and nobody's quite sure where.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Mucha gente joven lleva sus gastos en planillas o directamente no los registra. Las apps bancarias muestran movimientos, pero no ayudan a entender en qué se va la plata ni a ahorrar para una meta.</span><span data-lang="en">Many young people track expenses in spreadsheets or not at all. Banking apps list transactions, but they don't help people understand where the money goes or save towards a goal.</span></p>
+    </div>
+  </div>
+  <div class="grid g3 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Para la persona</span><span data-lang="en">For the person</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Saber cuánto puede gastar hoy</span><span data-lang="en">Know how much they can spend today</span></li>
+        <li><span data-lang="es">Ahorrar para algo concreto</span><span data-lang="en">Save for something specific</span></li>
+        <li><span data-lang="es">No sentirse juzgada por sus gastos</span><span data-lang="en">Not feel judged for their spending</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Para el producto</span><span data-lang="en">For the product</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Uso frecuente, no una vez por mes</span><span data-lang="en">Frequent use, not once a month</span></li>
+        <li><span data-lang="es">Retención más allá del primer mes</span><span data-lang="en">Retention beyond the first month</span></li>
+        <li><span data-lang="es">Confianza para manejar datos sensibles</span><span data-lang="en">Trust to handle sensitive data</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Restricciones</span><span data-lang="en">Constraints</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Sin conexión con bancos en la v1: la carga es manual</span><span data-lang="en">No bank connection in v1: entry is manual</span></li>
+        <li><span data-lang="es">Inflación: los montos cambian de un mes a otro</span><span data-lang="en">Inflation: amounts change month to month</span></li>
+        <li><span data-lang="es">Ingresos que a veces no son fijos</span><span data-lang="en">Income that isn't always fixed</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 investigación -->
+<section class="sec" id="investigacion">
+  <div class="sec-head rv">
+    <div class="sec-num">02<b><span data-lang="es">Investigación</span><span data-lang="en">Research</span></b></div>
+    <div>
+      <h2><span data-lang="es">Por qué las planillas se abandonan.</span><span data-lang="en">Why spreadsheets get abandoned.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Comparé las herramientas que la gente ya usa y sumé principios de economía del comportamiento para entender por qué cuesta sostener el hábito.</span><span data-lang="en">I compared the tools people already use and added behavioral economics principles to understand why the habit is hard to keep.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g3">
+      <div class="card rv"><span class="big">5</span><h4><span data-lang="es">Herramientas comparadas</span><span data-lang="en">Tools compared</span></h4><p><span data-lang="es">Planilla, app del banco, billetera virtual, app de presupuesto y la propuesta.</span><span data-lang="en">Spreadsheet, bank app, digital wallet, budgeting app and the proposal.</span></p></div>
+      <div class="card rv"><span class="big">1</span><h4><span data-lang="es">Proto-persona</span><span data-lang="en">Proto-persona</span></h4><p><span data-lang="es">Primer trabajo, ahorra para un viaje y no sabe dónde se le va la plata.</span><span data-lang="en">First job, saving for a trip, unsure where the money goes.</span></p></div>
+      <div class="card rv"><span class="big">4</span><h4><span data-lang="es">Principios de comportamiento</span><span data-lang="en">Behavioral principles</span></h4><p><span data-lang="es">Aplicados para motivar sin culpa.</span><span data-lang="en">Applied to motivate without guilt.</span></p></div>
+    </div>
+
+    <h3 class="sub rv">Benchmark</h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr>
+          <th scope="col"><span data-lang="es">Función</span><span data-lang="en">Feature</span></th>
+          <th scope="col"><span data-lang="es">Planilla</span><span data-lang="en">Spreadsheet</span></th>
+          <th scope="col"><span data-lang="es">App del banco</span><span data-lang="en">Bank app</span></th>
+          <th scope="col"><span data-lang="es">Billetera virtual</span><span data-lang="en">Digital wallet</span></th>
+          <th scope="col"><span data-lang="es">App de presupuesto</span><span data-lang="en">Budgeting app</span></th>
+          <th scope="col" class="me">Alcancía</th>
+        </tr></thead>
+        <tbody>
+          <tr><th scope="row"><span data-lang="es">Cuánto queda disponible</span><span data-lang="en">What's left to spend</span></th><td><span class="mid"><span data-lang="es">Con fórmulas</span><span data-lang="en">With formulas</span></span></td><td><span class="no"><span data-lang="es">Sólo saldo</span><span data-lang="en">Balance only</span></span></td><td><span class="no"><span data-lang="es">Sólo saldo</span><span data-lang="en">Balance only</span></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Presupuesto por categoría</span><span data-lang="en">Category budgets</span></th><td><span class="mid"><span data-lang="es">Manual</span><span data-lang="en">Manual</span></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Metas de ahorro</span><span data-lang="en">Savings goals</span></th><td><span class="mid"><span data-lang="es">Manual</span><span data-lang="en">Manual</span></span></td><td><span class="mid"><span data-lang="es">Plazo fijo</span><span data-lang="en">Term deposit</span></span></td><td><span class="yes"></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Cargar un gasto en segundos</span><span data-lang="en">Log an expense in seconds</span></th><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Automático</span><span data-lang="en">Automatic</span></span></td><td><span class="mid"><span data-lang="es">Automático</span><span data-lang="en">Automatic</span></span></td><td><span class="no"><span data-lang="es">Muchos campos</span><span data-lang="en">Many fields</span></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Consejos personalizados</span><span data-lang="en">Personalized tips</span></th><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Genéricos</span><span data-lang="en">Generic</span></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Pensada para inflación</span><span data-lang="en">Built for inflation</span></th><td><span class="mid"><span data-lang="es">Si la armás</span><span data-lang="en">If you build it</span></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td class="me"><span class="yes"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint"><span data-lang="es">Deslizá la tabla para ver todas las columnas →</span><span data-lang="en">Swipe the table to see every column →</span></p>
+    <p class="body rv" style="margin-top:18px"><span data-lang="es"><b>Lectura:</b> las apps de presupuesto tienen las funciones, pero piden demasiado esfuerzo para cargar y están pensadas para economías estables. Las billeteras registran solas, pero no ayudan a planificar.</span><span data-lang="en"><b>Takeaway:</b> budgeting apps have the features, but logging takes too much effort and they're designed for stable economies. Wallets track automatically but don't help people plan.</span></p>
+
+    <h3 class="sub rv">Proto-persona</h3>
+    <article class="card persona rv">
+      <div class="p-head"><span class="avatar">LR</span><div><h4>Lucas, 24</h4><small><span data-lang="es">Primer trabajo en relación de dependencia · ahorra para viajar a Bariloche</span><span data-lang="en">First salaried job · saving for a trip to Bariloche</span></small></div></div>
+      <p class="quote"><span data-lang="es">"Cobro, y a mitad de mes ya no sé dónde se fue la plata. Ahorro lo que sobra, que nunca es nada."</span><span data-lang="en">"I get paid, and by mid-month I've no idea where the money went. I save whatever's left, which is never anything."</span></p>
+      <div class="p-cols c3">
+        <div><h5><span data-lang="es">Objetivos</span><span data-lang="en">Goals</span></h5><ul class="list"><li><span data-lang="es">Juntar $ 1.000.000 para el viaje</span><span data-lang="en">Save $1,000,000 for the trip</span></li><li><span data-lang="es">Saber cuánto puede gastar en salidas</span><span data-lang="en">Know how much he can spend going out</span></li></ul></div>
+        <div><h5><span data-lang="es">Frustraciones</span><span data-lang="en">Frustrations</span></h5><ul class="list x"><li><span data-lang="es">Abandonó tres planillas</span><span data-lang="en">Has abandoned three spreadsheets</span></li><li><span data-lang="es">Las apps lo hacen sentir culpable</span><span data-lang="en">Apps make him feel guilty</span></li></ul></div>
+        <div><h5><span data-lang="es">Hábitos</span><span data-lang="en">Habits</span></h5><ul class="list"><li><span data-lang="es">Paga casi todo con billetera virtual</span><span data-lang="en">Pays almost everything with a digital wallet</span></li><li><span data-lang="es">Mira el saldo varias veces por semana</span><span data-lang="en">Checks his balance several times a week</span></li></ul></div>
+      </div>
+    </article>
+
+    <h3 class="sub rv"><span data-lang="es">Journey map · un mes de Lucas</span><span data-lang="en">Journey map · a month in Lucas's life</span></h3>
+    <div class="scroll-x rv">
+      <svg class="j-curve" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true">
+        <polyline fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" points="100,12 300,24 500,48 700,60 900,50"/>
+      </svg>
+      <div class="journey">
+        <div class="j-col"><div class="j-stage"><small><span data-lang="es">Día 1</span><span data-lang="en">Day 1</span></small><span data-lang="es">Cobra</span><span data-lang="en">Payday</span></div><p><span data-lang="es">Se siente con plata y paga las cuentas fijas.</span><span data-lang="en">Feels flush and pays fixed bills.</span></p><div class="emo" data-n="5"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Tranquilo</span><span data-lang="en">Relaxed</span></div><div class="opp"><span data-lang="es">Separar el ahorro apenas cobra</span><span data-lang="en">Set savings aside on payday</span></div></div>
+        <div class="j-col"><div class="j-stage"><small><span data-lang="es">Días 2–10</span><span data-lang="en">Days 2–10</span></small><span data-lang="es">Gastos chicos</span><span data-lang="en">Small spends</span></div><p><span data-lang="es">Cafés, delivery y transporte, sin registrarlos.</span><span data-lang="en">Coffees, delivery and transport, untracked.</span></p><div class="emo" data-n="4"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Despreocupado</span><span data-lang="en">Carefree</span></div><div class="pain"><span data-lang="es">Cargar cada gasto da fiaca</span><span data-lang="en">Logging each spend is a chore</span></div></div>
+        <div class="j-col"><div class="j-stage"><small><span data-lang="es">Día 15</span><span data-lang="en">Day 15</span></small><span data-lang="es">Mitad de mes</span><span data-lang="en">Mid-month</span></div><p><span data-lang="es">Mira el saldo y no entiende cómo bajó tanto.</span><span data-lang="en">Checks his balance and can't see how it dropped so much.</span></p><div class="emo" data-n="2"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Confundido</span><span data-lang="en">Confused</span></div><div class="opp"><span data-lang="es">Un aviso a tiempo, con qué hacer</span><span data-lang="en">A timely nudge with a next step</span></div></div>
+        <div class="j-col"><div class="j-stage"><small><span data-lang="es">Día 25</span><span data-lang="en">Day 25</span></small><span data-lang="es">Fin de mes</span><span data-lang="en">Month end</span></div><p><span data-lang="es">Recorta salidas y usa la tarjeta para llegar.</span><span data-lang="en">Cuts back on going out and leans on the credit card.</span></p><div class="emo" data-n="1"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Estresado</span><span data-lang="en">Stressed</span></div><div class="pain"><span data-lang="es">Se entera cuando ya es tarde</span><span data-lang="en">Finds out when it's too late</span></div></div>
+        <div class="j-col"><div class="j-stage"><small><span data-lang="es">Día 30</span><span data-lang="en">Day 30</span></small><span data-lang="es">Ahorro</span><span data-lang="en">Saving</span></div><p><span data-lang="es">Quería guardar algo para el viaje: no quedó nada.</span><span data-lang="en">Wanted to put something aside for the trip: nothing's left.</span></p><div class="emo" data-n="2"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Desanimado</span><span data-lang="en">Discouraged</span></div><div class="opp"><span data-lang="es">Ver el avance de la meta, aunque sea poco</span><span data-lang="en">See goal progress, however small</span></div></div>
+      </div>
+    </div>
+    <p class="scroll-hint"><span data-lang="es">Deslizá para recorrer las cinco etapas →</span><span data-lang="en">Swipe to see all five stages →</span></p>
+
+    <h3 class="sub rv"><span data-lang="es">Economía del comportamiento aplicada</span><span data-lang="en">Behavioral economics, applied</span></h3>
+    <div class="grid g2">
+      <div class="card rv"><span class="k"><span data-lang="es">Contabilidad mental</span><span data-lang="en">Mental accounting</span></span><h4><span data-lang="es">La plata con nombre se cuida más</span><span data-lang="en">Named money is protected</span></h4><p><span data-lang="es">Las metas tienen nombre y destino ("Viaje a Bariloche"), no son un "ahorro" genérico.</span><span data-lang="en">Goals have a name and purpose ("Trip to Bariloche"), not generic "savings".</span></p></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Sesgo del presente</span><span data-lang="en">Present bias</span></span><h4><span data-lang="es">Ahorrar primero, no al final</span><span data-lang="en">Save first, not last</span></h4><p><span data-lang="es">El aporte a la meta se propone el día de cobro, cuando cuesta menos.</span><span data-lang="en">The goal contribution is suggested on payday, when it hurts least.</span></p></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Encuadre</span><span data-lang="en">Framing</span></span><h4><span data-lang="es">"Disponible" en lugar de "gastado"</span><span data-lang="en">"Available" instead of "spent"</span></h4><p><span data-lang="es">Mostrar lo que queda orienta la decisión de hoy; lo gastado sólo genera culpa.</span><span data-lang="en">Showing what's left guides today's decision; what's spent only creates guilt.</span></p></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Avisos con salida</span><span data-lang="en">Nudges with a way out</span></span><h4><span data-lang="es">Un consejo, no un reto</span><span data-lang="en">Advice, not a scolding</span></h4><p><span data-lang="es">Cada alerta trae una acción concreta y su efecto en la meta.</span><span data-lang="en">Every alert comes with a concrete action and its effect on the goal.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 definición -->
+<section class="sec" id="definicion">
+  <div class="sec-head rv">
+    <div class="sec-num">03<b><span data-lang="es">Definición</span><span data-lang="en">Definition</span></b></div>
+    <div><h2><span data-lang="es">Un número claro por vez.</span><span data-lang="en">One clear number at a time.</span></h2></div>
+  </div>
+  <div class="indent">
+    <p class="hmw rv"><small><span data-lang="es">¿Cómo podríamos…?</span><span data-lang="en">How might we…?</span></small><span data-lang="es">¿Cómo podríamos ayudar a gente joven a <em>entender en qué se va la plata</em> y ahorrar para una meta <em>sin sentirse culpable</em>?</span><span data-lang="en">How might we help young people <em>understand where their money goes</em> and save towards a goal <em>without feeling guilty</em>?</span></p>
+
+    <h3 class="sub rv"><span data-lang="es">Principios de diseño</span><span data-lang="en">Design principles</span></h3>
+    <div class="grid g3">
+      <div class="card rv"><span class="k">01</span><h4><span data-lang="es">Un número por pantalla</span><span data-lang="en">One number per screen</span></h4><p><span data-lang="es">Cada pantalla responde una sola pregunta, con un dato protagonista.</span><span data-lang="en">Each screen answers one question, with one hero figure.</span></p></div>
+      <div class="card rv"><span class="k">02</span><h4><span data-lang="es">Cargar en dos toques</span><span data-lang="en">Log in two taps</span></h4><p><span data-lang="es">Monto y listo: la categoría se sugiere sola.</span><span data-lang="en">Amount and done: the category is suggested.</span></p></div>
+      <div class="card rv"><span class="k">03</span><h4><span data-lang="es">Avisar sin retar</span><span data-lang="en">Nudge, don't scold</span></h4><p><span data-lang="es">Lenguaje amable y siempre un próximo paso.</span><span data-lang="en">Friendly language and always a next step.</span></p></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Priorización MoSCoW del MVP</span><span data-lang="en">MVP MoSCoW prioritization</span></h3>
+    <div class="grid g4 moscow">
+      <div class="card rv"><span class="k must">Must</span><ul class="list"><li><span data-lang="es">Disponible del mes</span><span data-lang="en">Monthly available</span></li><li><span data-lang="es">Carga rápida</span><span data-lang="en">Quick entry</span></li><li><span data-lang="es">Presupuesto por categoría</span><span data-lang="en">Category budgets</span></li><li><span data-lang="es">Una meta</span><span data-lang="en">One goal</span></li></ul></div>
+      <div class="card rv"><span class="k should">Should</span><ul class="list"><li><span data-lang="es">Consejos</span><span data-lang="en">Tips</span></li><li><span data-lang="es">Resumen mensual</span><span data-lang="en">Monthly summary</span></li><li><span data-lang="es">Recordatorio el día de cobro</span><span data-lang="en">Payday reminder</span></li></ul></div>
+      <div class="card rv"><span class="k could">Could</span><ul class="list"><li><span data-lang="es">Varias metas</span><span data-lang="en">Multiple goals</span></li><li><span data-lang="es">Metas compartidas</span><span data-lang="en">Shared goals</span></li></ul></div>
+      <div class="card rv"><span class="k wont">Won't (v1)</span><ul class="list"><li><span data-lang="es">Conexión con bancos</span><span data-lang="en">Bank connections</span></li><li><span data-lang="es">Inversiones</span><span data-lang="en">Investing</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 arquitectura -->
+<section class="sec" id="arquitectura">
+  <div class="sec-head rv">
+    <div class="sec-num">04<b><span data-lang="es">Arquitectura</span><span data-lang="en">Architecture</span></b></div>
+    <div>
+      <h2><span data-lang="es">Cargar está siempre a un toque.</span><span data-lang="en">Logging is always one tap away.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Si cargar cuesta, el hábito se corta. Por eso el botón "+" vive en el centro de la barra inferior, en todas las pantallas.</span><span data-lang="en">If logging is hard, the habit breaks. That's why the "+" button lives in the middle of the bottom bar, on every screen.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g2">
+      <div class="card rv">
+        <h4 style="margin-bottom:14px"><span data-lang="es">Mapa del sitio</span><span data-lang="en">Sitemap</span></h4>
+        <ul class="tree">
+          <li><span class="node">Alcancía</span>
+            <ul>
+              <li><span class="node"><span data-lang="es">Inicio</span><span data-lang="en">Home</span> <small><span data-lang="es">disponible · meta · movimientos</span><span data-lang="en">available · goal · transactions</span></small></span></li>
+              <li><span class="node key"><span data-lang="es">+ Cargar</span><span data-lang="en">+ Log</span> <small><span data-lang="es">gasto · ingreso</span><span data-lang="en">expense · income</span></small></span></li>
+              <li><span class="node"><span data-lang="es">Presupuesto</span><span data-lang="en">Budget</span> <small><span data-lang="es">categorías · resumen del mes</span><span data-lang="en">categories · monthly summary</span></small></span></li>
+              <li><span class="node"><span data-lang="es">Metas</span><span data-lang="en">Goals</span></span>
+                <ul>
+                  <li><span class="node"><span data-lang="es">Detalle y aportes</span><span data-lang="en">Detail and contributions</span></span></li>
+                  <li><span class="node"><span data-lang="es">Nueva meta</span><span data-lang="en">New goal</span></span></li>
+                </ul></li>
+              <li><span class="node"><span data-lang="es">Perfil</span><span data-lang="en">Profile</span> <small><span data-lang="es">ingresos · categorías · avisos</span><span data-lang="en">income · categories · alerts</span></small></span></li>
+            </ul></li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <h4 style="margin-bottom:14px"><span data-lang="es">Flujo principal: cargar un gasto</span><span data-lang="en">Main flow: logging an expense</span></h4>
+        <div class="flow">
+          <div class="f-step start"><small><span data-lang="es">Inicio</span><span data-lang="en">Start</span></small><b><span data-lang="es">Toca "+"</span><span data-lang="en">Taps "+"</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small><span data-lang="es">Pantalla</span><span data-lang="en">Screen</span></small><b><span data-lang="es">Escribe el monto</span><span data-lang="en">Types the amount</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step dec"><small><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></small><b><span data-lang="es">¿La categoría sugerida es correcta? Si no, elige otra</span><span data-lang="en">Is the suggested category right? If not, picks another</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small><span data-lang="es">Pantalla</span><span data-lang="en">Screen</span></small><b><span data-lang="es">Guarda: el disponible se actualiza</span><span data-lang="en">Saves: available updates</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step end"><small><span data-lang="es">Fin</span><span data-lang="en">End</span></small><b><span data-lang="es">Si se pasó de una categoría, ve un consejo</span><span data-lang="en">If a category is over, sees a tip</span></b></div>
+        </div>
+        <div class="legend"><span><i class="e"></i><span data-lang="es">Inicio / fin</span><span data-lang="en">Start / end</span></span><span><i class="d"></i><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><span><i></i><span data-lang="es">Pantalla</span><span data-lang="en">Screen</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 wireframes -->
+<section class="sec" id="wireframes">
+  <div class="sec-head rv">
+    <div class="sec-num">05<b>Wireframes</b></div>
+    <div>
+      <h2><span data-lang="es">Jerarquía antes que color.</span><span data-lang="en">Hierarchy before color.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Wireframes de baja fidelidad para decidir qué dato manda en cada pantalla. Los números marcan las decisiones.</span><span data-lang="en">Low-fidelity wireframes to decide which figure leads each screen. The numbers mark the decisions.</span></p>
+    </div>
+  </div>
+  <p class="swipe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg><span data-lang="es">Deslizá para ver las pantallas</span><span data-lang="en">Swipe to see the screens</span></p>
+  <div class="screens">
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe del inicio"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:40%"></div>
+        <div class="w-l xl" style="width:70%;height:26px"></div>
+        <div class="w-pill" style="width:90px;height:16px"></div>
+        <div class="w-b"><div class="w-row"><div class="w-c" style="width:54px;height:54px"></div><div class="grow"><div class="w-l" style="width:30%"></div><div class="w-l d" style="width:80%"></div><div class="w-l" style="width:60%"></div></div></div></div>
+        <div class="w-l d" style="width:40%"></div>
+        <div class="w-b" style="gap:10px"><div class="w-row"><div class="w-sq"></div><div class="grow"><div class="w-l d" style="width:50%"></div><div class="w-l" style="width:30%"></div></div><div class="w-l d" style="width:40px"></div></div><div class="w-row"><div class="w-sq"></div><div class="grow"><div class="w-l d" style="width:44%"></div><div class="w-l" style="width:26%"></div></div><div class="w-l d" style="width:44px"></div></div><div class="w-row"><div class="w-sq"></div><div class="grow"><div class="w-l d" style="width:56%"></div><div class="w-l" style="width:30%"></div></div><div class="w-l d" style="width:40px"></div></div></div>
+        <div class="w-tab"><i></i><i></i><i style="width:34px;height:34px;border-radius:50%;background:#9aa0a6"></i><i></i><i></i></div>
+        <span class="pin" style="top:70px;right:8px">1</span>
+        <span class="pin" style="top:140px;right:8px">2</span>
+        <span class="pin" style="bottom:46px;left:50%;margin-left:16px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Inicio</span><span data-lang="en">Home</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">Un solo número protagonista: el disponible.</span><span data-lang="en">One hero figure: what's available.</span></li>
+          <li><span data-lang="es">La meta, visible desde el primer día.</span><span data-lang="en">The goal, visible from day one.</span></li>
+          <li><span data-lang="es">"+" central para cargar desde cualquier pantalla.</span><span data-lang="en">Central "+" to log from any screen.</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe de carga de gasto"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l d" style="width:40%;align-self:center"></div>
+        <div class="w-l xl" style="width:60%;height:30px;align-self:center;margin-top:8px"></div>
+        <div class="w-row" style="justify-content:center;margin-top:6px"><div class="w-pill on" style="width:70px"></div><div class="w-pill" style="width:60px"></div><div class="w-pill" style="width:50px"></div></div>
+        <div class="spacer"></div>
+        <div class="w-g3"><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div><div class="w-pill" style="height:32px;border-radius:10px"></div></div>
+        <div class="w-btn">Guardar</div>
+        <span class="pin" style="top:92px;right:30px">1</span>
+        <span class="pin" style="top:130px;right:8px">2</span>
+        <span class="pin" style="bottom:200px;right:8px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Cargar gasto</span><span data-lang="en">Log expense</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">El monto, grande y al centro.</span><span data-lang="en">The amount, large and centered.</span></li>
+          <li><span data-lang="es">Categoría sugerida ya marcada.</span><span data-lang="en">Suggested category already selected.</span></li>
+          <li><span data-lang="es">Teclado propio, sin abrir el del sistema.</span><span data-lang="en">Built-in keypad, no system keyboard.</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe del presupuesto"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l xl" style="width:55%"></div>
+        <div class="w-l" style="width:50%"></div>
+        <div class="w-b dark" style="height:86px"><div class="w-l" style="width:30%;background:#c4c8cd"></div><div class="w-l xl" style="width:60%;background:#b0b4ba"></div><div class="w-l" style="width:100%;height:6px;background:#c4c8cd"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-l d" style="width:35%"></div><div class="spacer"></div><div class="w-l" style="width:35%"></div></div><div class="w-l" style="width:100%;height:6px"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-l d" style="width:40%"></div><div class="spacer"></div><div class="w-l" style="width:35%"></div></div><div class="w-l" style="width:100%;height:6px"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-l d" style="width:30%"></div><div class="spacer"></div><div class="w-l" style="width:35%"></div></div><div class="w-l" style="width:100%;height:6px"></div></div>
+        <div class="w-b" style="border-style:dashed"><div class="w-l" style="width:90%"></div><div class="w-l" style="width:60%"></div></div>
+        <span class="pin" style="top:116px;right:8px">1</span>
+        <span class="pin" style="top:212px;right:8px">2</span>
+        <span class="pin" style="top:376px;right:8px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Presupuesto</span><span data-lang="en">Budget</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">Total del mes con días restantes.</span><span data-lang="en">Monthly total with days remaining.</span></li>
+          <li><span data-lang="es">Una barra por categoría, gastado sobre límite.</span><span data-lang="en">One bar per category, spent over limit.</span></li>
+          <li><span data-lang="es">Espacio para el consejo del momento.</span><span data-lang="en">Space for the tip of the moment.</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe del detalle de meta"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:30%"></div>
+        <div class="w-l xl" style="width:65%"></div>
+        <div class="w-c" style="width:110px;height:110px;align-self:center;margin:8px 0;background:none;border:12px solid #d7dade"></div>
+        <div class="w-l d" style="width:60%;align-self:center"></div>
+        <div class="w-b"><div class="w-l d" style="width:80%"></div><div class="w-l" style="width:55%"></div></div>
+        <div class="w-b" style="gap:10px"><div class="w-row"><div class="w-l" style="width:40%"></div><div class="spacer"></div><div class="w-l d" style="width:30%"></div></div><div class="w-row"><div class="w-l" style="width:34%"></div><div class="spacer"></div><div class="w-l d" style="width:30%"></div></div></div>
+        <div class="spacer"></div>
+        <div class="w-btn">Aportar</div>
+        <span class="pin" style="top:120px;right:50px">1</span>
+        <span class="pin" style="top:262px;right:8px">2</span>
+        <span class="pin" style="bottom:60px;right:8px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Meta</span><span data-lang="en">Goal</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">Progreso circular: se entiende sin leer.</span><span data-lang="en">Circular progress: readable at a glance.</span></li>
+          <li><span data-lang="es">Proyección: cuándo se llega a este ritmo.</span><span data-lang="en">Projection: when you'll get there at this pace.</span></li>
+          <li><span data-lang="es">Aportar como acción principal.</span><span data-lang="en">Contribute as the main action.</span></li>
+        </ol></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ 06 decisiones -->
+<section class="sec" id="decisiones">
+  <div class="sec-head rv">
+    <div class="sec-num">06<b><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></b></div>
+    <div>
+      <h2><span data-lang="es">Menos datos, mejores decisiones.</span><span data-lang="en">Less data, better decisions.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Las primeras versiones mostraban todo. Revisándolas con la proto-persona y los principios de comportamiento, recorté.</span><span data-lang="en">The first versions showed everything. Reviewing them against the proto-persona and behavioral principles, I cut back.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Torta de gastos en el inicio</span><span data-lang="en">Spending pie chart on home</span></h4><p><span data-lang="es">Muchos colores, porcentajes y ninguna respuesta a "¿puedo gastar hoy?".</span><span data-lang="en">Lots of colors and percentages, and no answer to "can I spend today?".</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Un número: disponible este mes</span><span data-lang="en">One number: available this month</span></h4><p><span data-lang="es">Con su variación contra el mes anterior en porcentaje, que con inflación dice más que el monto.</span><span data-lang="en">With its change vs. last month as a percentage, which says more than the amount under inflation.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">"Te pasaste del presupuesto"</span><span data-lang="en">"You're over budget"</span></h4><p><span data-lang="es">Una alerta roja que retaba y no decía qué hacer.</span><span data-lang="en">A red alert that scolded and didn't say what to do.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Barra roja + consejo con salida</span><span data-lang="en">Red bar + a tip with a way out</span></h4><p><span data-lang="es">"Bajando salidas un 15 % llegás a tu meta en enero." El color avisa; el texto propone.</span><span data-lang="en">"Cut going out by 15% and you'll reach your goal in January." Color warns; text suggests.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Formulario de cinco campos</span><span data-lang="en">Five-field form</span></h4><p><span data-lang="es">Monto, categoría, fecha, medio de pago y nota. Nadie lo completaría en la fila del café.</span><span data-lang="en">Amount, category, date, payment method and note. Nobody would fill it in while queuing for coffee.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Monto y categoría sugerida</span><span data-lang="en">Amount and suggested category</span></h4><p><span data-lang="es">Fecha de hoy por defecto; nota y medio de pago, opcionales y plegados.</span><span data-lang="en">Today's date by default; note and payment method optional and collapsed.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 07 sistema -->
+<section class="sec" id="sistema">
+  <div class="sec-head rv">
+    <div class="sec-num">07<b><span data-lang="es">Sistema de diseño</span><span data-lang="en">Design system</span></b></div>
+    <div>
+      <h2><span data-lang="es">Amable, pero serio con los números.</span><span data-lang="en">Friendly, but serious about numbers.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Un violeta fuera de lo bancario tradicional, colores de estado sólo para avisar y números tabulares para que los montos se lean alineados.</span><span data-lang="en">A violet that breaks from traditional banking, status colors used only to signal, and tabular figures so amounts line up.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <h3 class="sub rv">Color</h3>
+    <div class="swatches rv">
+      <div class="sw"><i style="background:#5b4fd8"></i><div><b><span data-lang="es">Violeta</span><span data-lang="en">Violet</span></b><code>#5B4FD8</code><span class="aa"><span data-lang="es">Blanco 5,91:1 · AA</span><span data-lang="en">White 5.91:1 · AA</span></span></div></div>
+      <div class="sw"><i style="background:#4a3fc0"></i><div><b><span data-lang="es">Violeta profundo</span><span data-lang="en">Deep violet</span></b><code>#4A3FC0</code><span class="aa"><span data-lang="es">Texto 7,02:1 · AAA</span><span data-lang="en">Text 7.02:1 · AAA</span></span></div></div>
+      <div class="sw"><i style="background:#0c7a50"></i><div><b><span data-lang="es">Verde ingreso</span><span data-lang="en">Income green</span></b><code>#0C7A50</code><span class="aa"><span data-lang="es">Blanco 5,36:1 · AA</span><span data-lang="en">White 5.36:1 · AA</span></span></div></div>
+      <div class="sw"><i style="background:#c8362b"></i><div><b><span data-lang="es">Rojo alerta</span><span data-lang="en">Alert red</span></b><code>#C8362B</code><span class="aa"><span data-lang="es">Blanco 5,23:1 · AA</span><span data-lang="en">White 5.23:1 · AA</span></span></div></div>
+      <div class="sw"><i style="background:#f5a524"></i><div><b><span data-lang="es">Ámbar</span><span data-lang="en">Amber</span></b><code>#F5A524</code><span class="aa"><span data-lang="es">Con tinta 9,46:1</span><span data-lang="en">With ink 9.46:1</span></span></div></div>
+      <div class="sw"><i style="background:#ecebfd"></i><div><b>Lavanda</b><code>#ECEBFD</code><span class="aa"><span data-lang="es">Violeta prof. 6,47:1</span><span data-lang="en">Deep violet 6.47:1</span></span></div></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Tipografía</span><span data-lang="en">Typography</span></h3>
+    <div class="rv">
+      <div class="type-row"><small><span data-lang="es">Monto</span><span data-lang="en">Amount</span> · Inter Tight 800 · 40 · tabular</small><span class="s" style="font-family:var(--display);font-weight:800;font-size:40px;letter-spacing:-0.05em;line-height:1;font-variant-numeric:tabular-nums">$ 312.480</span></div>
+      <div class="type-row"><small><span data-lang="es">Título</span><span data-lang="en">Title</span> · Inter Tight 700 · 20</small><span class="s" style="font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.02em">Viaje a Bariloche</span></div>
+      <div class="type-row"><small><span data-lang="es">Cuerpo</span><span data-lang="en">Body</span> · Inter 400 · 16</small><span class="s" style="font-size:16px">Te quedan 16 días del mes</span></div>
+      <div class="type-row"><small><span data-lang="es">Variación</span><span data-lang="en">Change</span> · Inter 700 · 13</small><span class="s"><span class="u-pill ok" style="font-size:13px;padding:5px 10px">▲ 12 % vs. octubre</span></span></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Componentes</span><span data-lang="en">Components</span></h3>
+    <div class="comp rv">
+      <span class="u-btn brand">Aportar a la meta</span>
+      <span class="u-btn">Guardar</span>
+      <span class="u-chip on">Café</span>
+      <span class="u-chip">Comida</span>
+      <span class="u-chip">Transporte</span>
+      <div class="u-card"><div class="u-row"><b class="t" style="font-size:14px">Salidas</b><b class="neg" style="font-size:13px">$ 71.000 / 60.000</b></div><div class="u-bar bad"><i style="width:100%"></i></div></div>
+      <div class="u-card tip"><span style="font-size:13px"><b style="color:#8a5a10">Tip:</b> bajando salidas un 15 % llegás a tu meta en enero.</span></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Accesibilidad</span><span data-lang="en">Accessibility</span></h3>
+    <div class="grid g2">
+      <div class="card rv"><ul class="list">
+        <li><span data-lang="es">Los estados no dependen sólo del color: el monto excedido también se muestra en texto</span><span data-lang="en">States don't rely on color alone: exceeded amounts are also stated in text</span></li>
+        <li><span data-lang="es">Signo + y − explícito en cada movimiento</span><span data-lang="en">Explicit + and − sign on every transaction</span></li>
+        <li><span data-lang="es">Contraste AA en textos sobre violeta</span><span data-lang="en">AA contrast for text on violet</span></li>
+      </ul></div>
+      <div class="card rv"><ul class="list">
+        <li><span data-lang="es">Montos leídos completos por lectores de pantalla ("trescientos doce mil pesos")</span><span data-lang="en">Amounts read in full by screen readers ("three hundred twelve thousand pesos")</span></li>
+        <li><span data-lang="es">Opción para ocultar montos en lugares públicos</span><span data-lang="en">Option to hide amounts in public places</span></li>
+        <li><span data-lang="es">Teclado numérico con teclas de 48 px</span><span data-lang="en">Numeric keypad with 48 px keys</span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 08 UI -->
+<section class="sec" id="ui">
+  <div class="sec-head rv">
+    <div class="sec-num">08<b><span data-lang="es">UI final</span><span data-lang="en">Final UI</span></b></div>
+    <div>
+      <h2><span data-lang="es">Tus números, de un vistazo.</span><span data-lang="en">Your numbers, at a glance.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Las cinco pantallas clave en alta fidelidad.</span><span data-lang="en">The five key screens in high fidelity.</span></p>
+    </div>
+  </div>
+  <p class="swipe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg><span data-lang="es">Deslizá para ver las pantallas</span><span data-lang="en">Swipe to see the screens</span></p>
+  <div class="screens">
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Inicio con el disponible del mes, la meta y los movimientos"><div class="screen">
+        <div class="sb">9:41</div>
+        <span class="u-hi">Disponible este mes</span>
+        <span class="u-big" style="font-size:32px">$ 312.480</span>
+        <span class="u-pill ok" style="align-self:flex-start">▲ 12 % vs. octubre</span>
+        <div class="u-card"><div class="u-row"><span class="u-ring" style="--p:68" data-v="68%"></span><div class="t"><span class="u-k" style="color:#6b7079">Meta</span><b style="font-family:var(--display);font-size:13px;letter-spacing:-0.02em">Viaje a Bariloche</b><small>$ 680.000 de $ 1.000.000</small></div></div></div>
+        <div class="u-row"><b class="t" style="font-size:12px">Movimientos</b><span class="u-sm">Ver todo</span></div>
+        <div class="u-card" style="padding:4px 11px">
+          <div class="u-list">
+            <div class="u-row"><span class="u-ico" style="background:#f5a524;color:#0d0e10">☕</span><div class="t"><b>Café</b><small>Hoy</small></div><b class="neg" style="font-size:11px">− $ 3.200</b></div>
+            <div class="u-row"><span class="u-ico" style="background:#0c7a50">$</span><div class="t"><b>Sueldo</b><small>Ayer</small></div><b class="pos" style="font-size:11px">+ $ 850.000</b></div>
+            <div class="u-row"><span class="u-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.5 11h11L21 7H7"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg></span><div class="t"><b>Supermercado</b><small>Lun</small></div><b class="neg" style="font-size:11px">− $ 41.900</b></div>
+          </div>
+        </div>
+        <div class="u-tab">
+          <span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Inicio</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Presupuesto</span>
+          <span style="color:#fff"><span style="width:38px;height:38px;border-radius:50%;background:var(--brand);display:grid;place-items:center;margin-top:-14px;box-shadow:0 8px 16px -6px rgba(91,79,216,.6)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Metas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Perfil</span>
+        </div>
+      </div></div>
+      <figcaption><b><span data-lang="es">Inicio</span><span data-lang="en">Home</span></b><span><span data-lang="es">Lo disponible manda; la meta acompaña.</span><span data-lang="en">What's available leads; the goal comes along.</span></span></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Carga de un gasto con teclado numérico y categoría sugerida"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="u-row"><span class="u-sm">Cancelar</span><b class="t" style="text-align:center;font-size:12px">Nuevo gasto</b><span class="u-sm" style="visibility:hidden">Cancelar</span></div>
+        <div class="u-center" style="margin-top:14px"><span class="amount">$ 3.200</span><span class="u-sm">Hoy · Billetera virtual</span></div>
+        <div class="u-chips" style="justify-content:center;flex-wrap:wrap;margin-top:6px"><span class="u-chip on">☕ Café</span><span class="u-chip">Comida</span><span class="u-chip">Salidas</span></div>
+        <span class="u-sm" style="text-align:center;color:var(--brand-ink)">Categoría sugerida por tus gastos anteriores</span>
+        <div class="spacer"></div>
+        <div class="u-keys"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>,</span><span>0</span><span>⌫</span></div>
+        <span class="u-btn brand">Guardar</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Cargar gasto</span><span data-lang="en">Log expense</span></b><span><span data-lang="es">Monto y guardar: dos toques.</span><span data-lang="en">Amount and save: two taps.</span></span></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Presupuesto del mes por categoría con un consejo"><div class="screen">
+        <div class="sb">9:41</div>
+        <p class="u-h1">Presupuesto</p>
+        <span class="u-hi">Noviembre · quedan 16 días</span>
+        <div class="u-card brand" style="padding:13px"><span class="u-k">Gastaste</span><span class="u-big" style="display:block;margin-top:4px">$ 287.500</span><div class="u-bar"><i style="width:58%"></i></div><small class="u-sm" style="display:block;margin-top:5px">58 % de $ 500.000</small></div>
+        <div class="u-card"><div class="u-row"><b class="t" style="font-size:11.5px">Comida</b><span class="u-sm">$ 96.000 / 120.000</span></div><div class="u-bar warn"><i style="width:80%"></i></div></div>
+        <div class="u-card"><div class="u-row"><b class="t" style="font-size:11.5px">Transporte</b><span class="u-sm">$ 38.000 / 60.000</span></div><div class="u-bar ok"><i style="width:63%"></i></div></div>
+        <div class="u-card"><div class="u-row"><b class="t" style="font-size:11.5px">Salidas</b><b class="neg" style="font-size:10px">$ 71.000 / 60.000</b></div><div class="u-bar bad"><i style="width:100%"></i></div><small class="neg" style="display:block;font-size:9.5px;margin-top:4px;font-weight:600">Te pasaste $ 11.000</small></div>
+        <div class="u-card tip" style="padding:9px 11px"><span style="font-size:10.5px"><b style="color:#8a5a10">Tip:</b> bajando salidas un 15 % llegás a tu meta en enero.</span></div>
+      </div></div>
+      <figcaption><b><span data-lang="es">Presupuesto</span><span data-lang="en">Budget</span></b><span><span data-lang="es">El color avisa, el texto propone.</span><span data-lang="en">Color warns, text suggests.</span></span></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Detalle de la meta de ahorro con progreso y proyección"><div class="screen">
+        <div class="sb">9:41</div>
+        <span class="u-hi">Meta</span>
+        <p class="u-h1">Viaje a Bariloche</p>
+        <div class="u-center" style="margin:8px 0 2px"><span class="u-ring lg" style="--p:68" data-v="68%"></span><b style="font-size:13px;margin-top:4px">$ 680.000 de $ 1.000.000</b><span class="u-sm">Te faltan $ 320.000</span></div>
+        <div class="u-card soft"><b style="font-size:11px">A este ritmo llegás en febrero</b><span class="u-sm" style="color:var(--brand-ink)">Con $ 40.000 más por mes, llegás en enero.</span></div>
+        <div class="u-card" style="padding:4px 11px">
+          <div class="u-list">
+            <div class="u-row"><div class="t"><b>Aporte de noviembre</b><small>1 nov · día de cobro</small></div><b class="pos" style="font-size:11px">+ $ 120.000</b></div>
+            <div class="u-row"><div class="t"><b>Aporte de octubre</b><small>1 oct · día de cobro</small></div><b class="pos" style="font-size:11px">+ $ 110.000</b></div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <span class="u-btn brand">Aportar a la meta</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Meta</span><span data-lang="en">Goal</span></b><span><span data-lang="es">Progreso, proyección y un empujón concreto.</span><span data-lang="en">Progress, projection and a concrete nudge.</span></span></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Resumen del mes con gasto por semana y principales categorías"><div class="screen">
+        <div class="sb">9:41</div>
+        <span class="u-hi">Resumen</span>
+        <p class="u-h1">Octubre, en corto</p>
+        <div class="u-card">
+          <span class="u-sm">Gasto por semana</span>
+          <div class="bars" style="margin-top:8px"><i style="height:70%"></i><i style="height:52%"></i><i class="on" style="height:94%"></i><i style="height:40%"></i></div>
+          <div class="bars-l"><span>S1</span><span>S2</span><span>S3</span><span>S4</span></div>
+        </div>
+        <div class="u-card soft"><b style="font-size:11px">La semana 3 gastaste el doble</b><span class="u-sm" style="color:var(--brand-ink)">Coincide con dos salidas y un delivery grande.</span></div>
+        <div class="u-card" style="padding:4px 11px">
+          <div class="u-list">
+            <div class="u-row"><div class="t"><b>Comida</b></div><span class="u-sm">32 %</span></div>
+            <div class="u-row"><div class="t"><b>Salidas</b></div><span class="u-sm">24 %</span></div>
+            <div class="u-row"><div class="t"><b>Transporte</b></div><span class="u-sm">13 %</span></div>
+          </div>
+        </div>
+        <span class="u-pill ok" style="align-self:flex-start;font-size:10px">Ahorraste $ 110.000 · 13 % del sueldo</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Resumen del mes</span><span data-lang="en">Monthly summary</span></b><span><span data-lang="es">Explica el porqué, no sólo el cuánto.</span><span data-lang="en">Explains the why, not just the how much.</span></span></figcaption>
+    </figure>
+  </div>
+  <div class="cta-row center rv"><a class="btn-c brand" href="prototipos/alcancia.html"><span data-lang="es">Probar el prototipo navegable</span><span data-lang="en">Try the interactive prototype</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+</section>
+
+<!-- ============================================================ 09 validación -->
+<section class="sec" id="validacion">
+  <div class="sec-head rv">
+    <div class="sec-num">09<b><span data-lang="es">Validación</span><span data-lang="en">Validation</span></b></div>
+    <div>
+      <h2><span data-lang="es">Evaluación heurística del prototipo.</span><span data-lang="en">Heuristic evaluation of the prototype.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Antes de llevarlo a usuarios, evalué el prototipo navegable con las 10 heurísticas de Nielsen y recorrí paso a paso las tareas principales: </span><span data-lang="en">Before taking it to users, I evaluated the interactive prototype against Nielsen's 10 heuristics and walked through the main tasks step by step: </span><span data-lang="es">cargar un gasto, pasarse de una categoría, borrar un movimiento, aportar a la meta y ocultar montos</span><span data-lang="en">logging an expense, going over a category, deleting a transaction, contributing to the goal and hiding amounts</span>. <span data-lang="es">Cada problema lleva su severidad y corregí en el prototipo los más graves.</span><span data-lang="en">Each issue has a severity rating, and I fixed the most serious ones in the prototype.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g4 metrics">
+      <div class="card metric rv"><b>5</b><span><span data-lang="es">problemas encontrados</span><span data-lang="en">issues found</span></span></div>
+      <div class="card metric rv"><b>3</b><span><span data-lang="es">corregidos en el prototipo</span><span data-lang="en">fixed in the prototype</span></span></div>
+      <div class="card metric rv"><b>1</b><span><span data-lang="es">de severidad alta (3)</span><span data-lang="en">high severity (3)</span></span></div>
+      <div class="card metric rv"><b>10</b><span><span data-lang="es">heurísticas revisadas</span><span data-lang="en">heuristics reviewed</span></span></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Hallazgos</span><span data-lang="en">Findings</span></h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr><th scope="col">#</th><th scope="col"><span data-lang="es">Problema y solución</span><span data-lang="en">Issue and fix</span></th><th scope="col"><span data-lang="es">Heurística</span><span data-lang="en">Heuristic</span></th><th scope="col">Sev.</th><th scope="col"><span data-lang="es">Estado</span><span data-lang="en">Status</span></th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span data-lang="es">La categoría sugerida podía quedar fuera de la pantalla: no se veía qué categoría se iba a guardar.</span><span data-lang="en">The suggested category could end up off-screen: you couldn't see which category would be saved.</span><small><span data-lang="es">La fila se desplaza sola hasta la categoría elegida y el texto la nombra ("Sugerimos Transporte").</span><span data-lang="en">The row scrolls to the selected category and the text names it ("Sugerimos Transporte").</span></small></td><td>H1 · <span data-lang="es">Visibilidad del estado del sistema</span><span data-lang="en">Visibility of system status</span></td><td><span class="sev s3">3</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>2</td><td><span data-lang="es">Borrar un movimiento no se podía deshacer.</span><span data-lang="en">Deleting a transaction couldn't be undone.</span><small><span data-lang="es">El aviso de "Movimiento borrado" trae "Deshacer".</span><span data-lang="en">The "Deleted" notice now has "Undo".</span></small></td><td>H3 · <span data-lang="es">Control y libertad</span><span data-lang="en">User control and freedom</span></td><td><span class="sev s2">2</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>3</td><td><span data-lang="es">Al aportar a la meta sólo había montos fijos.</span><span data-lang="en">Goal contributions only offered fixed amounts.</span><small><span data-lang="es">Se suma un campo para escribir cualquier monto, con validación.</span><span data-lang="en">A field for any amount was added, with validation.</span></small></td><td>H7 · <span data-lang="es">Flexibilidad y eficiencia</span><span data-lang="en">Flexibility and efficiency</span></td><td><span class="sev s2">2</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>4</td><td><span data-lang="es">Los límites del presupuesto no se pueden editar.</span><span data-lang="en">Budget limits can't be edited.</span><small><span data-lang="es">Pendiente para la próxima iteración.</span><span data-lang="en">Pending for the next iteration.</span></small></td><td>H3 · <span data-lang="es">Control y libertad</span><span data-lang="en">User control and freedom</span></td><td><span class="sev s2">2</span></td><td><span class="estado pend"><span data-lang="es">Pendiente</span><span data-lang="en">Pending</span></span></td></tr>
+          <tr><td>5</td><td><span data-lang="es">Con "Ocultar montos" activo, las barras siguen mostrando proporciones.</span><span data-lang="en">With "Hide amounts" on, the bars still show proportions.</span><small><span data-lang="es">Pendiente: validar con usuarios si eso les preocupa.</span><span data-lang="en">Pending: check with users whether this matters to them.</span></small></td><td>H5 · <span data-lang="es">Prevención de errores</span><span data-lang="en">Error prevention</span></td><td><span class="sev s1">1</span></td><td><span class="estado pend"><span data-lang="es">Pendiente</span><span data-lang="en">Pending</span></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint"><span data-lang="es">Deslizá la tabla para ver todas las columnas →</span><span data-lang="en">Swipe the table to see every column →</span></p>
+    <p class="nota"><span data-lang="es">Severidad según la escala de Nielsen: 1 cosmético, 2 menor, 3 mayor, 4 catastrófico. No encontré problemas de severidad 4.</span><span data-lang="en">Severity on Nielsen's scale: 1 cosmetic, 2 minor, 3 major, 4 catastrophic. I found no severity-4 issues.</span></p>
+    <h3 class="sub rv"><span data-lang="es">Antes y después</span><span data-lang="en">Before and after</span></h3>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><p><span data-lang="es">La categoría sugerida podía quedar fuera de la pantalla: no se veía qué categoría se iba a guardar.</span><span data-lang="en">The suggested category could end up off-screen: you couldn't see which category would be saved.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><p><span data-lang="es">La fila se desplaza sola hasta la categoría elegida y el texto la nombra ("Sugerimos Transporte").</span><span data-lang="en">The row scrolls to the selected category and the text names it ("Sugerimos Transporte").</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><p><span data-lang="es">Al aportar a la meta sólo había montos fijos.</span><span data-lang="en">Goal contributions only offered fixed amounts.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><p><span data-lang="es">Se suma un campo para escribir cualquier monto, con validación.</span><span data-lang="en">A field for any amount was added, with validation.</span></p></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Próximo paso: test con usuarios</span><span data-lang="en">Next step: user testing</span></h3>
+    <p class="body rv"><span data-lang="es">Una evaluación experta encuentra problemas de usabilidad conocidos, pero no mide cómo se comportan las personas reales. El siguiente paso es un test moderado con el prototipo ya corregido, con estas metas y tareas:</span><span data-lang="en">An expert review finds known usability issues, but it doesn't measure how real people behave. The next step is a moderated test with the fixed prototype, using these targets and tasks:</span></p>
+    <div class="grid g4 metrics">
+      <div class="card metric rv"><b>&lt; 10 s</b><span><span data-lang="es">para cargar un gasto</span><span data-lang="en">to log an expense</span></span></div>
+      <div class="card metric rv"><b>≥ 60 %</b><span><span data-lang="es">crea una meta en la primera semana</span><span data-lang="en">create a goal in week one</span></span></div>
+      <div class="card metric rv"><b>≥ 40 %</b><span><span data-lang="es">sigue cargando gastos a los 30 días</span><span data-lang="en">still logging after 30 days</span></span></div>
+      <div class="card metric rv"><b>SUS ≥ 80</b><span><span data-lang="es">en la escala de usabilidad del sistema</span><span data-lang="en">on the System Usability Scale</span></span></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Tareas del test con usuarios</span><span data-lang="en">User test tasks</span></h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr><th scope="col">#</th><th scope="col"><span data-lang="es">Tarea</span><span data-lang="en">Task</span></th><th scope="col"><span data-lang="es">Éxito si…</span><span data-lang="en">Success if…</span></th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span data-lang="es">Te compraste un café de $ 3.200: cargalo.</span><span data-lang="en">You bought a $3,200 coffee: log it.</span></td><td><span data-lang="es">Lo guarda en menos de 10 s con la categoría correcta.</span><span data-lang="en">Saves it in under 10 s with the right category.</span></td></tr>
+          <tr><td>2</td><td><span data-lang="es">¿Cuánto te queda para salidas este mes?</span><span data-lang="en">How much is left for going out this month?</span></td><td><span data-lang="es">Encuentra el dato en Presupuesto y entiende que se pasó.</span><span data-lang="en">Finds it in Budget and understands it's exceeded.</span></td></tr>
+          <tr><td>3</td><td><span data-lang="es">Creá una meta para cambiar el celular.</span><span data-lang="en">Create a goal to replace your phone.</span></td><td><span data-lang="es">Completa nombre, monto y fecha sin ayuda.</span><span data-lang="en">Fills in name, amount and date unaided.</span></td></tr>
+          <tr><td>4</td><td><span data-lang="es">¿Cuándo llegás al viaje si seguís así?</span><span data-lang="en">When will you reach the trip at this pace?</span></td><td><span data-lang="es">Lee la proyección en el detalle de la meta.</span><span data-lang="en">Reads the projection in the goal detail.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="body rv" style="margin-top:18px"><span data-lang="es"><b>Participantes:</b> 5 personas de 20 a 30 años, con ingresos propios, que hayan intentado registrar sus gastos alguna vez.</span><span data-lang="en"><b>Participants:</b> 5 people aged 20–30, with their own income, who have tried tracking expenses before.</span></p>
+  </div>
+</section>
+
+<!-- ============================================================ 10 aprendizajes -->
+<section class="sec" id="aprendizajes">
+  <div class="sec-head rv">
+    <div class="sec-num">10<b><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></b></div>
+    <div><h2><span data-lang="es">Lo que me llevo.</span><span data-lang="en">What I'm taking away.</span></h2></div>
+  </div>
+  <div class="indent grid g2">
+    <div class="card rv"><span class="k"><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></span>
+      <ul class="list">
+        <li><span data-lang="es">En finanzas, el tono es parte del diseño: la misma alerta motiva o expulsa según cómo se escribe.</span><span data-lang="en">In finance, tone is part of the design: the same alert motivates or drives people away depending on wording.</span></li>
+        <li><span data-lang="es">Diseñar para un contexto inflacionario cambia qué se compara y cómo.</span><span data-lang="en">Designing for an inflationary context changes what gets compared and how.</span></li>
+        <li><span data-lang="es">Quitar información fue la decisión que más mejoró la claridad.</span><span data-lang="en">Removing information was the decision that most improved clarity.</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Próximos pasos</span><span data-lang="en">Next steps</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Test de usabilidad y estudio de diario de cuatro semanas.</span><span data-lang="en">Usability test and a four-week diary study.</span></li>
+        <li><span data-lang="es">Importar movimientos de billeteras virtuales para reducir la carga manual.</span><span data-lang="en">Import digital wallet transactions to reduce manual entry.</span></li>
+        <li><span data-lang="es">Metas compartidas para parejas o amigos que viajan juntos.</span><span data-lang="en">Shared goals for couples or friends travelling together.</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<a class="next rv" href="turno.html">
+  <div class="next-bg" aria-hidden="true"></div>
+  <span class="eyebrow"><span data-lang="es">Siguiente caso</span><span data-lang="en">Next case</span></span>
+  <h2>Turno <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></h2>
+  <p><span data-lang="es">Turnos médicos en tres toques, sin llamadas ni esperas.</span><span data-lang="en">Medical appointments in three taps, no calls or waiting.</span></p>
+</a>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Lucía Miranda · <span data-lang="es">Diseño y desarrollo</span><span data-lang="en">Design &amp; development</span></span>
+    <a href="../index.html#contact" data-href-lang="../index.html#contact"><span data-lang="es">Contacto →</span><span data-lang="en">Contact →</span></a>
+  </div>
+</footer>
+
+<script src="caso.js"></script>
+</body>
+</html>

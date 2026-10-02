@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ruta del Vino · Caso de estudio UX/UI · Lucía Miranda</title>
+<meta name="title-es" content="Ruta del Vino · Caso de estudio UX/UI · Lucía Miranda"/>
+<meta name="title-en" content="Ruta del Vino · UX/UI case study · Lucía Miranda"/>
+<meta name="description" content="Caso de estudio completo de Ruta del Vino, app conceptual para visitar bodegas de Mendoza: investigación, definición, arquitectura, wireframes, sistema de diseño y UI final."/>
+<meta name="theme-color" content="#f3f4f1"/>
+<meta property="og:title" content="Ruta del Vino · Caso de estudio UX/UI"/>
+<meta property="og:image" content="https://lucim2003.github.io/nuevoport/images/concepto-vino.jpg"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="caso.css"/>
+<style>
+  :root {
+    --brand: #8a1c3a; --brand-ink: #8a1c3a; --brand-soft: #f8e6ea; --brand-on-dark: #f2a7b8;
+    --mesh: radial-gradient(40% 55% at 20% 30%, #f2b8c4 0, transparent 70%), radial-gradient(45% 60% at 80% 20%, #f7d9c4 0, transparent 70%), radial-gradient(40% 50% at 70% 85%, #f6dcc0 0, transparent 70%), #f6e8e6;
+    --next-mesh: radial-gradient(40% 55% at 20% 30%, #c9c2ff 0, transparent 70%), radial-gradient(45% 60% at 80% 25%, #e2dcff 0, transparent 70%), radial-gradient(40% 50% at 70% 85%, #c9efdf 0, transparent 70%), #eeebfb;
+  }
+  /* Foto de viñedo dibujada: cielo de atardecer y hileras de vides. */
+  .vine { background: linear-gradient(180deg, #f6c79f 0, #f2a98a 34%, transparent 34%), repeating-linear-gradient(100deg, #5f7d36 0 7px, #4b6627 7px 15px); }
+  .vine.b { background: linear-gradient(180deg, #e9b3a4 0, #d98c86 30%, transparent 30%), repeating-linear-gradient(80deg, #6b8740 0 6px, #546f2f 6px 13px); }
+  .vine.c { background: linear-gradient(180deg, #f3d3a7 0, #eab27c 38%, transparent 38%), repeating-linear-gradient(95deg, #586f31 0 8px, #465a26 8px 16px); }
+  .u-img .rate { position: absolute; top: 8px; left: 8px; background: #fff; border-radius: 999px; padding: 3px 8px; font-size: 9.5px; font-weight: 700; }
+  .qr { width: 120px; height: 120px; padding: 8px; background: #fff; border-radius: 12px; box-shadow: 0 6px 18px -10px rgba(13, 14, 16, 0.3); }
+  .empathy { position: relative; }
+  .empathy .card .k { color: var(--brand-ink); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="back" href="../index.html#work" data-href-lang="../index.html#work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span>Portfolio</span>
+    </a>
+    <span class="top-title">Ruta del Vino · <span data-lang="es">Caso de estudio</span><span data-lang="en">Case study</span></span>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+<!-- ============================================================ hero -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span data-lang="es">Caso de estudio UX/UI · Concepto</span><span data-lang="en">UX/UI case study · Concept</span></span>
+    <h1>Ruta del <em>Vino</em></h1>
+    <p class="hero-sub"><span data-lang="es">Una app para descubrir bodegas de Mendoza, reservar experiencias y armar el recorrido del día con traslado incluido, en minutos y no en horas.</span><span data-lang="en">An app to discover Mendoza wineries, book experiences and plan the day's route with transport included, in minutes instead of hours.</span></p>
+    <ul class="tags"><li>Mobile app</li><li><span data-lang="es">Turismo</span><span data-lang="en">Tourism</span></li><li>UX Research</li><li>UI Design</li><li>Figma</li></ul>
+    <div class="cta-row"><a class="btn-c" href="prototipos/ruta-del-vino.html"><span data-lang="es">Probar el prototipo</span><span data-lang="en">Try the prototype</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a><a class="btn-c ghost" href="#contexto"><span data-lang="es">Leer el caso</span><span data-lang="en">Read the case</span></a></div>
+    <figure class="cover"><img src="../images/concepto-vino.jpg" alt="Dos pantallas de Ruta del Vino: descubrir bodegas y el recorrido del día" width="1600" height="1200" fetchpriority="high"/></figure>
+    <div class="facts">
+      <div><span data-lang="es">Rol</span><span data-lang="en">Role</span><b><span data-lang="es">Investigación, UX, UI y prototipo</span><span data-lang="en">Research, UX, UI and prototype</span></b></div>
+      <div><span data-lang="es">Duración</span><span data-lang="en">Timeline</span><b><span data-lang="es">3 semanas</span><span data-lang="en">3 weeks</span></b></div>
+      <div><span data-lang="es">Herramientas</span><span data-lang="en">Tools</span><b>Figma · FigJam</b></div>
+      <div><span data-lang="es">Plataforma</span><span data-lang="en">Platform</span><b>iOS · Android · ES/EN</b></div>
+    </div>
+    <p class="disclaimer"><span data-lang="es">Proyecto conceptual propio, sin cliente. La investigación es secundaria (análisis de canales, proto-personas y mapa de empatía); bodegas, precios y cifras son ficticios y las metas son objetivos de diseño. El prototipo se validó con una evaluación heurística; el test con usuarios está planificado.</span><span data-lang="en">Self-initiated concept project with no client. Research is secondary (channel analysis, proto-personas and empathy map); wineries, prices and figures are fictional and targets are design goals. The prototype was validated with a heuristic evaluation; user testing is planned.</span></p>
+    <nav class="toc" aria-label="Índice del caso">
+      <a href="#contexto"><span class="n">01</span><span data-lang="es">Contexto</span><span data-lang="en">Context</span></a>
+      <a href="#investigacion"><span class="n">02</span><span data-lang="es">Investigación</span><span data-lang="en">Research</span></a>
+      <a href="#definicion"><span class="n">03</span><span data-lang="es">Definición</span><span data-lang="en">Definition</span></a>
+      <a href="#arquitectura"><span class="n">04</span><span data-lang="es">Arquitectura</span><span data-lang="en">Architecture</span></a>
+      <a href="#wireframes"><span class="n">05</span>Wireframes</a>
+      <a href="#decisiones"><span class="n">06</span><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></a>
+      <a href="#sistema"><span class="n">07</span><span data-lang="es">Sistema de diseño</span><span data-lang="en">Design system</span></a>
+      <a href="#ui"><span class="n">08</span><span data-lang="es">UI final</span><span data-lang="en">Final UI</span></a>
+      <a href="#validacion"><span class="n">09</span><span data-lang="es">Validación</span><span data-lang="en">Validation</span></a>
+      <a href="#aprendizajes"><span class="n">10</span><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></a>
+    </nav>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ============================================================ 01 contexto -->
+<section class="sec" id="contexto">
+  <div class="sec-head rv">
+    <div class="sec-num">01<b><span data-lang="es">Contexto</span><span data-lang="en">Context</span></b></div>
+    <div>
+      <h2><span data-lang="es">Planificar un día de bodegas lleva horas.</span><span data-lang="en">Planning a winery day takes hours.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Quien visita Mendoza busca bodegas en varias webs, escribe por WhatsApp a cada una para reservar y coordina el traslado por su cuenta. Muchas experiencias se agotan sin aviso y el día se arma a último momento.</span><span data-lang="en">Visitors to Mendoza search wineries across several websites, message each one on WhatsApp to book and arrange transport on their own. Many experiences sell out without notice and the day comes together at the last minute.</span></p>
+    </div>
+  </div>
+  <div class="grid g3 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Para el turista</span><span data-lang="en">For tourists</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Comparar experiencias y precios en un solo lugar</span><span data-lang="en">Compare experiences and prices in one place</span></li>
+        <li><span data-lang="es">Reservar con confirmación inmediata</span><span data-lang="en">Book with instant confirmation</span></li>
+        <li><span data-lang="es">No tener que manejar después de degustar</span><span data-lang="en">Not having to drive after a tasting</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Para las bodegas</span><span data-lang="en">For wineries</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Menos consultas repetidas por WhatsApp</span><span data-lang="en">Fewer repeat questions on WhatsApp</span></li>
+        <li><span data-lang="es">Llenar los horarios de menor demanda</span><span data-lang="en">Fill off-peak time slots</span></li>
+        <li><span data-lang="es">Llegar al turismo extranjero</span><span data-lang="en">Reach international tourists</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Restricciones</span><span data-lang="en">Constraints</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Poca señal en zonas rurales</span><span data-lang="en">Poor signal in rural areas</span></li>
+        <li><span data-lang="es">Distancias largas entre bodegas</span><span data-lang="en">Long distances between wineries</span></li>
+        <li><span data-lang="es">Turistas que no hablan español</span><span data-lang="en">Tourists who don't speak Spanish</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 investigación -->
+<section class="sec" id="investigacion">
+  <div class="sec-head rv">
+    <div class="sec-num">02<b><span data-lang="es">Investigación</span><span data-lang="en">Research</span></b></div>
+    <div>
+      <h2><span data-lang="es">Cómo se arma hoy una salida.</span><span data-lang="en">How a day out is planned today.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Analicé los canales por los que hoy se reservan experiencias y me puse en el lugar de dos tipos de turista con necesidades muy distintas.</span><span data-lang="en">I analyzed the channels used to book experiences today and put myself in the shoes of two kinds of tourist with very different needs.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g3">
+      <div class="card rv"><span class="big">4</span><h4><span data-lang="es">Canales analizados</span><span data-lang="en">Channels analyzed</span></h4><p><span data-lang="es">Webs de bodegas, agencias, redes con WhatsApp y buscadores de mapas.</span><span data-lang="en">Winery sites, agencies, social media with WhatsApp and map search.</span></p></div>
+      <div class="card rv"><span class="big">2</span><h4><span data-lang="es">Proto-personas</span><span data-lang="en">Proto-personas</span></h4><p><span data-lang="es">Una turista nacional de fin de semana largo y un turista extranjero.</span><span data-lang="en">A domestic long-weekend tourist and an international visitor.</span></p></div>
+      <div class="card rv"><span class="big">1</span><h4><span data-lang="es">Mapa de empatía</span><span data-lang="en">Empathy map</span></h4><p><span data-lang="es">Para entender qué genera dudas justo antes de reservar.</span><span data-lang="en">To understand what causes doubt right before booking.</span></p></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Benchmark de canales</span><span data-lang="en">Channel benchmark</span></h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr>
+          <th scope="col"><span data-lang="es">Función</span><span data-lang="en">Feature</span></th>
+          <th scope="col"><span data-lang="es">Web de bodega</span><span data-lang="en">Winery site</span></th>
+          <th scope="col"><span data-lang="es">Agencia</span><span data-lang="en">Agency</span></th>
+          <th scope="col"><span data-lang="es">Redes y WhatsApp</span><span data-lang="en">Social & WhatsApp</span></th>
+          <th scope="col"><span data-lang="es">Mapas</span><span data-lang="en">Maps</span></th>
+          <th scope="col" class="me">Ruta del Vino</th>
+        </tr></thead>
+        <tbody>
+          <tr><th scope="row"><span data-lang="es">Varias bodegas juntas</span><span data-lang="en">Several wineries together</span></th><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Paquetes cerrados</span><span data-lang="en">Fixed packages</span></span></td><td><span class="no"></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Precio visible</span><span data-lang="en">Visible price</span></th><td><span class="mid"><span data-lang="es">A veces</span><span data-lang="en">Sometimes</span></span></td><td><span class="yes"></span></td><td><span class="no"><span data-lang="es">"Consultar"</span><span data-lang="en">"Ask us"</span></span></td><td><span class="no"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Disponibilidad real</span><span data-lang="en">Live availability</span></th><td><span class="mid"><span data-lang="es">Algunas</span><span data-lang="en">Some</span></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Confirmación inmediata</span><span data-lang="en">Instant confirmation</span></th><td><span class="mid"><span data-lang="es">Algunas</span><span data-lang="en">Some</span></span></td><td><span class="mid"><span data-lang="es">En horario</span><span data-lang="en">Office hours</span></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Recorrido del día</span><span data-lang="en">Day itinerary</span></th><td><span class="no"></span></td><td><span class="yes"></span></td><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Sólo distancias</span><span data-lang="en">Distances only</span></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Traslado integrado</span><span data-lang="en">Built-in transport</span></th><td><span class="no"></span></td><td><span class="yes"></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">En inglés</span><span data-lang="en">In English</span></th><td><span class="mid"><span data-lang="es">Algunas</span><span data-lang="en">Some</span></span></td><td><span class="yes"></span></td><td><span class="no"></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint"><span data-lang="es">Deslizá la tabla para ver todas las columnas →</span><span data-lang="en">Swipe the table to see every column →</span></p>
+    <p class="body rv" style="margin-top:18px"><span data-lang="es"><b>Lectura:</b> las agencias resuelven la logística pero con paquetes cerrados; las bodegas tienen la información pero cada una por separado. Nadie deja combinar libremente y reservar todo junto.</span><span data-lang="en"><b>Takeaway:</b> agencies handle logistics but with fixed packages; wineries have the information but each one separately. Nobody lets you mix freely and book everything at once.</span></p>
+
+    <h3 class="sub rv">Proto-personas</h3>
+    <div class="grid g2">
+      <article class="card persona rv">
+        <div class="p-head"><span class="avatar">SL</span><div><h4>Sofía, 29</h4><small><span data-lang="es">Diseñadora · viene de Buenos Aires un fin de semana largo</span><span data-lang="en">Designer · visiting from Buenos Aires for a long weekend</span></small></div></div>
+        <p class="quote"><span data-lang="es">"Quiero visitar tres bodegas el sábado, pero no sé cuáles quedan cerca ni cómo moverme entre una y otra."</span><span data-lang="en">"I want to visit three wineries on Saturday, but I don't know which ones are close or how to get between them."</span></p>
+        <div class="p-cols">
+          <div><h5><span data-lang="es">Objetivos</span><span data-lang="en">Goals</span></h5><ul class="list"><li><span data-lang="es">Aprovechar al máximo un solo día</span><span data-lang="en">Make the most of a single day</span></li><li><span data-lang="es">Saber el costo total de antemano</span><span data-lang="en">Know the total cost upfront</span></li></ul></div>
+          <div><h5><span data-lang="es">Frustraciones</span><span data-lang="en">Frustrations</span></h5><ul class="list x"><li><span data-lang="es">Esperar respuestas por WhatsApp</span><span data-lang="en">Waiting for WhatsApp replies</span></li><li><span data-lang="es">No poder manejar si toma vino</span><span data-lang="en">Can't drive after tasting</span></li></ul></div>
+        </div>
+      </article>
+      <article class="card persona rv">
+        <div class="p-head"><span class="avatar alt">JM</span><div><h4>James, 41</h4><small><span data-lang="es">Ingeniero · turista de Canadá, no habla español</span><span data-lang="en">Engineer · tourist from Canada, doesn't speak Spanish</span></small></div></div>
+        <p class="quote"><span data-lang="es">"Cada bodega me contesta en español y nunca sé si la reserva quedó confirmada."</span><span data-lang="en">"Every winery replies in Spanish and I never know if the booking is confirmed."</span></p>
+        <div class="p-cols">
+          <div><h5><span data-lang="es">Objetivos</span><span data-lang="en">Goals</span></h5><ul class="list"><li><span data-lang="es">Reservar todo en inglés</span><span data-lang="en">Book everything in English</span></li><li><span data-lang="es">Un comprobante que funcione sin señal</span><span data-lang="en">A voucher that works offline</span></li></ul></div>
+          <div><h5><span data-lang="es">Frustraciones</span><span data-lang="en">Frustrations</span></h5><ul class="list x"><li><span data-lang="es">Precios "a consultar"</span><span data-lang="en">"Ask for price" listings</span></li><li><span data-lang="es">Pagar sin saber en qué moneda</span><span data-lang="en">Paying without knowing the currency</span></li></ul></div>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Mapa de empatía · antes de reservar</span><span data-lang="en">Empathy map · before booking</span></h3>
+    <div class="grid g2 empathy">
+      <div class="card rv"><span class="k"><span data-lang="es">Piensa y siente</span><span data-lang="en">Thinks & feels</span></span><p><span data-lang="es">"¿Me alcanza el tiempo para tres?" · Miedo a perder el día en traslados · Ganas de una experiencia especial, no de un tour masivo.</span><span data-lang="en">"Do I have time for three?" · Afraid of wasting the day on transfers · Wants a special experience, not a mass tour.</span></p></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Ve</span><span data-lang="en">Sees</span></span><p><span data-lang="es">Fotos lindas en redes sin precio ni horario · Webs con formularios de contacto · Reseñas que mencionan experiencias agotadas.</span><span data-lang="en">Beautiful social posts without price or schedule · Sites with contact forms · Reviews mentioning sold-out experiences.</span></p></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Dice y hace</span><span data-lang="en">Says & does</span></span><p><span data-lang="es">Pregunta a amigos qué bodegas recomiendan · Abre diez pestañas · Escribe a varias bodegas a la vez y espera.</span><span data-lang="en">Asks friends for recommendations · Opens ten tabs · Messages several wineries at once and waits.</span></p></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Escucha</span><span data-lang="en">Hears</span></span><p><span data-lang="es">"Reservá con anticipación, se llena" · "No vayas manejando" · "Valle de Uco queda lejos, andá temprano".</span><span data-lang="en">"Book ahead, it fills up" · "Don't drive yourself" · "Valle de Uco is far, leave early".</span></p></div>
+      <div class="card rv" style="background:#fbeceb;border-color:transparent"><span class="k" style="color:#8f2a22"><span data-lang="es">Dolores</span><span data-lang="en">Pains</span></span><p><span data-lang="es">Incertidumbre sobre precio y disponibilidad · Logística · Idioma.</span><span data-lang="en">Uncertainty about price and availability · Logistics · Language.</span></p></div>
+      <div class="card rv" style="background:var(--brand-soft);border-color:transparent"><span class="k"><span data-lang="es">Ganancias</span><span data-lang="en">Gains</span></span><p><span data-lang="es">Un día armado y confirmado · Saber cuánto va a gastar · Disfrutar sin preocuparse por manejar.</span><span data-lang="en">A planned, confirmed day · Knowing what it'll cost · Enjoying it without worrying about driving.</span></p></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Hallazgos clave</span><span data-lang="en">Key insights</span></h3>
+    <div class="grid g2">
+      <div class="card insight rv"><i>1</i><div><h4><span data-lang="es">El precio oculto frena la reserva</span><span data-lang="en">Hidden prices stall bookings</span></h4><p><span data-lang="es">"Consultar precio" obliga a escribir y esperar; muchas personas abandonan en ese punto.</span><span data-lang="en">"Ask for price" forces people to message and wait; many drop off right there.</span></p></div></div>
+      <div class="card insight rv"><i>2</i><div><h4><span data-lang="es">La logística pesa más que la bodega</span><span data-lang="en">Logistics outweigh the winery</span></h4><p><span data-lang="es">La pregunta no es sólo "¿qué bodega?", sino "¿cómo llego y cómo vuelvo?".</span><span data-lang="en">The question isn't just "which winery?" but "how do I get there and back?".</span></p></div></div>
+      <div class="card insight rv"><i>3</i><div><h4><span data-lang="es">Se elige por zona</span><span data-lang="en">People choose by area</span></h4><p><span data-lang="es">Primero se decide la zona (Luján, Uco, Maipú) y después las bodegas que quedan cerca entre sí.</span><span data-lang="en">People pick an area first (Luján, Uco, Maipú), then wineries that are close to each other.</span></p></div></div>
+      <div class="card insight rv"><i>4</i><div><h4><span data-lang="es">La unidad es el día</span><span data-lang="en">The day is the unit</span></h4><p><span data-lang="es">Nadie planea una bodega suelta: se planea un día con horarios que tienen que encajar.</span><span data-lang="en">Nobody plans a single winery: they plan a day where times need to fit together.</span></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 definición -->
+<section class="sec" id="definicion">
+  <div class="sec-head rv">
+    <div class="sec-num">03<b><span data-lang="es">Definición</span><span data-lang="en">Definition</span></b></div>
+    <div><h2><span data-lang="es">Del caos de pestañas a un plan.</span><span data-lang="en">From tab chaos to a plan.</span></h2></div>
+  </div>
+  <div class="indent">
+    <p class="hmw rv"><small><span data-lang="es">¿Cómo podríamos…?</span><span data-lang="en">How might we…?</span></small><span data-lang="es">¿Cómo podríamos ayudar a quien visita Mendoza a armar un día de bodegas <em>en minutos</em>, con reservas confirmadas y <em>sin preocuparse por cómo moverse</em>?</span><span data-lang="en">How might we help visitors to Mendoza plan a winery day <em>in minutes</em>, with confirmed bookings and <em>no worries about getting around</em>?</span></p>
+
+    <h3 class="sub rv"><span data-lang="es">Principios de diseño</span><span data-lang="en">Design principles</span></h3>
+    <div class="grid g3">
+      <div class="card rv"><span class="k">01</span><h4><span data-lang="es">Precio y horario primero</span><span data-lang="en">Price and time first</span></h4><p><span data-lang="es">Se ven en la tarjeta, antes de entrar al detalle.</span><span data-lang="en">Shown on the card, before opening the detail.</span></p></div>
+      <div class="card rv"><span class="k">02</span><h4><span data-lang="es">El día como unidad</span><span data-lang="en">The day as the unit</span></h4><p><span data-lang="es">Se reserva un recorrido, no bodegas sueltas.</span><span data-lang="en">You book a route, not separate wineries.</span></p></div>
+      <div class="card rv"><span class="k">03</span><h4><span data-lang="es">Confianza antes de pagar</span><span data-lang="en">Trust before paying</span></h4><p><span data-lang="es">Confirmación inmediata, moneda clara y política de cancelación visible.</span><span data-lang="en">Instant confirmation, clear currency and a visible cancellation policy.</span></p></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Priorización MoSCoW del MVP</span><span data-lang="en">MVP MoSCoW prioritization</span></h3>
+    <div class="grid g4 moscow">
+      <div class="card rv"><span class="k must">Must</span><ul class="list"><li><span data-lang="es">Explorar por zona</span><span data-lang="en">Browse by area</span></li><li><span data-lang="es">Precio y horarios</span><span data-lang="en">Prices and slots</span></li><li><span data-lang="es">Recorrido del día</span><span data-lang="en">Day route</span></li><li><span data-lang="es">Reserva inmediata</span><span data-lang="en">Instant booking</span></li></ul></div>
+      <div class="card rv"><span class="k should">Should</span><ul class="list"><li><span data-lang="es">Traslado</span><span data-lang="en">Transport</span></li><li><span data-lang="es">Español e inglés</span><span data-lang="en">Spanish and English</span></li><li><span data-lang="es">Voucher sin conexión</span><span data-lang="en">Offline voucher</span></li></ul></div>
+      <div class="card rv"><span class="k could">Could</span><ul class="list"><li><span data-lang="es">Restaurantes en la ruta</span><span data-lang="en">Restaurants on the route</span></li><li><span data-lang="es">Reseñas con fotos</span><span data-lang="en">Photo reviews</span></li></ul></div>
+      <div class="card rv"><span class="k wont">Won't (v1)</span><ul class="list"><li><span data-lang="es">Venta de vinos</span><span data-lang="en">Wine sales</span></li><li><span data-lang="es">Alojamiento</span><span data-lang="en">Accommodation</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 arquitectura -->
+<section class="sec" id="arquitectura">
+  <div class="sec-head rv">
+    <div class="sec-num">04<b><span data-lang="es">Arquitectura</span><span data-lang="en">Architecture</span></b></div>
+    <div>
+      <h2><span data-lang="es">Explorar, sumar, salir.</span><span data-lang="en">Explore, add, go.</span></h2>
+      <p class="sec-lead"><span data-lang="es">El recorrido funciona como un carrito: se suman experiencias mientras se explora y se reserva todo junto al final.</span><span data-lang="en">The route works like a cart: you add experiences while exploring and book everything together at the end.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g2">
+      <div class="card rv">
+        <h4 style="margin-bottom:14px"><span data-lang="es">Mapa del sitio</span><span data-lang="en">Sitemap</span></h4>
+        <ul class="tree">
+          <li><span class="node">Ruta del Vino</span>
+            <ul>
+              <li><span class="node key"><span data-lang="es">Explorar</span><span data-lang="en">Explore</span> <small><span data-lang="es">zonas · filtros</span><span data-lang="en">areas · filters</span></small></span>
+                <ul>
+                  <li><span class="node"><span data-lang="es">Bodega</span><span data-lang="en">Winery</span> <small><span data-lang="es">experiencias · horarios</span><span data-lang="en">experiences · slots</span></small></span></li>
+                  <li><span class="node"><span data-lang="es">Mapa de la zona</span><span data-lang="en">Area map</span></span></li>
+                </ul></li>
+              <li><span class="node key"><span data-lang="es">Mi recorrido</span><span data-lang="en">My route</span> <small><span data-lang="es">línea de tiempo · traslado</span><span data-lang="en">timeline · transport</span></small></span>
+                <ul><li><span class="node"><span data-lang="es">Pago</span><span data-lang="en">Payment</span></span></li></ul></li>
+              <li><span class="node"><span data-lang="es">Reservas</span><span data-lang="en">Bookings</span> <small><span data-lang="es">vouchers sin conexión</span><span data-lang="en">offline vouchers</span></small></span></li>
+              <li><span class="node"><span data-lang="es">Perfil</span><span data-lang="en">Profile</span> <small><span data-lang="es">idioma · moneda · pagos</span><span data-lang="en">language · currency · payments</span></small></span></li>
+            </ul></li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <h4 style="margin-bottom:14px"><span data-lang="es">Flujo principal: armar el día</span><span data-lang="en">Main flow: planning the day</span></h4>
+        <div class="flow">
+          <div class="f-step start"><small><span data-lang="es">Inicio</span><span data-lang="en">Start</span></small><b><span data-lang="es">Elige una zona</span><span data-lang="en">Picks an area</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small><span data-lang="es">Pantalla</span><span data-lang="en">Screen</span></small><b><span data-lang="es">Bodega: experiencia y horario</span><span data-lang="en">Winery: experience and slot</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step dec"><small><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></small><b><span data-lang="es">¿Suma otra bodega? Si sí, vuelve a explorar</span><span data-lang="en">Add another winery? If so, back to explore</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small><span data-lang="es">Pantalla</span><span data-lang="en">Screen</span></small><b><span data-lang="es">Revisa el recorrido y el traslado</span><span data-lang="en">Reviews the route and transport</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small><span data-lang="es">Pantalla</span><span data-lang="en">Screen</span></small><b><span data-lang="es">Paga todo junto</span><span data-lang="en">Pays for everything at once</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step end"><small><span data-lang="es">Fin</span><span data-lang="en">End</span></small><b><span data-lang="es">Voucher disponible sin conexión</span><span data-lang="en">Voucher available offline</span></b></div>
+        </div>
+        <div class="legend"><span><i class="e"></i><span data-lang="es">Inicio / fin</span><span data-lang="en">Start / end</span></span><span><i class="d"></i><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><span><i></i><span data-lang="es">Pantalla</span><span data-lang="en">Screen</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 wireframes -->
+<section class="sec" id="wireframes">
+  <div class="sec-head rv">
+    <div class="sec-num">05<b>Wireframes</b></div>
+    <div>
+      <h2><span data-lang="es">Primero, la estructura.</span><span data-lang="en">Structure first.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Baja fidelidad para ordenar la información de cada pantalla. Los números marcan las decisiones.</span><span data-lang="en">Low fidelity to organize the information on each screen. The numbers mark the decisions.</span></p>
+    </div>
+  </div>
+  <p class="swipe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg><span data-lang="es">Deslizá para ver las pantallas</span><span data-lang="en">Swipe to see the screens</span></p>
+  <div class="screens">
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe de explorar bodegas"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:36%"></div>
+        <div class="w-l xl" style="width:72%"></div>
+        <div class="w-pill" style="height:34px;border-radius:12px"></div>
+        <div class="w-row"><div class="w-pill on" style="width:74px"></div><div class="w-pill" style="width:66px"></div><div class="w-pill" style="width:50px"></div></div>
+        <div class="w-b" style="padding:0;overflow:hidden"><div class="w-x" style="height:110px;border:0;border-radius:0"></div><div style="padding:10px;display:grid;gap:6px"><div class="w-l d" style="width:60%"></div><div class="w-l" style="width:75%"></div><div class="w-row"><div class="w-l d" style="width:30%"></div><div class="spacer"></div><div class="w-pill" style="width:50px;height:16px"></div></div></div></div>
+        <div class="w-b" style="height:60px"></div>
+        <div class="w-tab"><i></i><i></i><i></i><i></i></div>
+        <span class="pin" style="top:122px;right:8px">1</span>
+        <span class="pin" style="top:162px;right:8px">2</span>
+        <span class="pin" style="top:300px;right:8px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Explorar</span><span data-lang="en">Explore</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">Buscador por bodega o tipo de experiencia.</span><span data-lang="en">Search by winery or experience type.</span></li>
+          <li><span data-lang="es">La zona como primer filtro.</span><span data-lang="en">Area as the first filter.</span></li>
+          <li><span data-lang="es">Precio y próximo horario en la tarjeta.</span><span data-lang="en">Price and next slot on the card.</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe del detalle de bodega"><div class="screen" style="padding-top:0">
+        <div class="w-x" style="height:150px;margin:0 -14px;border-radius:0;border:0"></div>
+        <div class="w-l xl" style="width:65%"></div>
+        <div class="w-l" style="width:45%"></div>
+        <div class="w-b"><div class="w-row"><div class="grow"><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div><div class="w-l d" style="width:44px"></div></div></div>
+        <div class="w-b"><div class="w-row"><div class="grow"><div class="w-l d" style="width:60%"></div><div class="w-l" style="width:45%"></div></div><div class="w-l d" style="width:44px"></div></div></div>
+        <div class="w-g3"><div class="w-pill" style="height:28px"></div><div class="w-pill on" style="height:28px"></div><div class="w-pill" style="height:28px;opacity:.4"></div></div>
+        <div class="spacer"></div>
+        <div class="w-btn">Sumar al recorrido</div>
+        <span class="pin" style="top:206px;right:8px">1</span>
+        <span class="pin" style="top:318px;right:8px">2</span>
+        <span class="pin" style="bottom:60px;right:8px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Bodega</span><span data-lang="en">Winery</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">Experiencias como lista comparable, con precio a la derecha.</span><span data-lang="en">Experiences as a comparable list, price on the right.</span></li>
+          <li><span data-lang="es">Horarios del día elegido, sin salir de la pantalla.</span><span data-lang="en">Slots for the chosen day, without leaving the screen.</span></li>
+          <li><span data-lang="es">"Sumar al recorrido" en lugar de "Reservar".</span><span data-lang="en">"Add to route" instead of "Book".</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe del recorrido del día"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l xl" style="width:55%"></div>
+        <div class="w-l" style="width:65%"></div>
+        <div style="display:grid;gap:8px;padding-left:18px;border-left:1.5px dashed #c4c8cd;margin-left:6px">
+          <div class="w-b"><div class="w-l" style="width:25%"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+          <div class="w-l" style="width:40%;height:5px"></div>
+          <div class="w-b"><div class="w-l" style="width:25%"></div><div class="w-l d" style="width:62%"></div><div class="w-l" style="width:44%"></div></div>
+          <div class="w-l" style="width:40%;height:5px"></div>
+          <div class="w-b"><div class="w-l" style="width:25%"></div><div class="w-l d" style="width:66%"></div><div class="w-l" style="width:48%"></div></div>
+        </div>
+        <div class="w-b"><div class="w-row"><div class="grow"><div class="w-l d" style="width:60%"></div></div><div class="w-pill on" style="width:30px;height:18px"></div></div></div>
+        <div class="w-btn">Reservar recorrido</div>
+        <span class="pin" style="top:116px;right:8px">1</span>
+        <span class="pin" style="top:166px;left:4px">2</span>
+        <span class="pin" style="top:370px;right:8px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Mi recorrido</span><span data-lang="en">My route</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">El día como línea de tiempo.</span><span data-lang="en">The day as a timeline.</span></li>
+          <li><span data-lang="es">Tiempo de viaje entre paradas.</span><span data-lang="en">Travel time between stops.</span></li>
+          <li><span data-lang="es">Traslado como interruptor, no como otra pantalla.</span><span data-lang="en">Transport as a toggle, not another screen.</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe del voucher"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l xl" style="width:50%"></div>
+        <div class="w-l" style="width:40%"></div>
+        <div class="w-b" style="align-items:center;padding:16px"><div class="w-x" style="width:110px;height:110px"></div><div class="w-l d" style="width:60%"></div><div class="w-l" style="width:40%"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-sq"></div><div class="grow"><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div></div><div class="w-row"><div class="w-sq"></div><div class="grow"><div class="w-l d" style="width:64%"></div><div class="w-l" style="width:46%"></div></div></div></div>
+        <div class="w-pill" style="height:26px;width:70%;align-self:center"></div>
+        <div class="w-tab"><i></i><i></i><i></i><i></i></div>
+        <span class="pin" style="top:120px;right:8px">1</span>
+        <span class="pin" style="top:270px;right:8px">2</span>
+        <span class="pin" style="top:378px;right:28px">3</span>
+      </div></div>
+      <figcaption><b>Voucher</b>
+        <ol class="notes">
+          <li><span data-lang="es">Un código para todo el día, no uno por bodega.</span><span data-lang="en">One code for the whole day, not one per winery.</span></li>
+          <li><span data-lang="es">Paradas con dirección y hora.</span><span data-lang="en">Stops with address and time.</span></li>
+          <li><span data-lang="es">Indicador de "disponible sin conexión".</span><span data-lang="en">"Available offline" indicator.</span></li>
+        </ol></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ 06 decisiones -->
+<section class="sec" id="decisiones">
+  <div class="sec-head rv">
+    <div class="sec-num">06<b><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></b></div>
+    <div>
+      <h2><span data-lang="es">Lo que cambió en el camino.</span><span data-lang="en">What changed along the way.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Al recorrer los wireframes con las proto-personas aparecieron tres problemas que resolví antes de pasar a la UI.</span><span data-lang="en">Walking the wireframes through the proto-personas surfaced three issues that I solved before moving to UI.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">El mapa como pantalla principal</span><span data-lang="en">The map as the main screen</span></h4><p><span data-lang="es">Lindo, pero en el celular los pines tapaban lo importante: precio y horario.</span><span data-lang="en">Pretty, but on a phone the pins hid what matters: price and time.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Lista por zona, mapa opcional</span><span data-lang="en">List by area, map on demand</span></h4><p><span data-lang="es">Las tarjetas muestran precio y próximo horario. El mapa queda a un toque para quien lo necesite.</span><span data-lang="en">Cards show price and next slot. The map is one tap away for whoever needs it.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Reservar bodega por bodega</span><span data-lang="en">Booking winery by winery</span></h4><p><span data-lang="es">Tres pagos separados y ninguna garantía de que los horarios encajaran.</span><span data-lang="en">Three separate payments and no guarantee the times would fit.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Recorrido con chequeo de horarios</span><span data-lang="en">A route with time checks</span></h4><p><span data-lang="es">Se suman experiencias y la app avisa si la distancia no permite llegar a horario. Un solo pago.</span><span data-lang="en">You add experiences and the app warns if the distance makes a slot unreachable. One single payment.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Traslado al final, en otra pantalla</span><span data-lang="en">Transport at the end, on another screen</span></h4><p><span data-lang="es">Aparecía después de pagar, cuando ya era tarde para pensarlo.</span><span data-lang="en">It showed up after paying, when it was too late to consider it.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Un interruptor dentro del recorrido</span><span data-lang="en">A toggle inside the route</span></h4><p><span data-lang="es">Se activa con un toque y el total se actualiza en el momento.</span><span data-lang="en">Turned on with one tap, with the total updated instantly.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 07 sistema -->
+<section class="sec" id="sistema">
+  <div class="sec-head rv">
+    <div class="sec-num">07<b><span data-lang="es">Sistema de diseño</span><span data-lang="en">Design system</span></b></div>
+    <div>
+      <h2><span data-lang="es">Cálido, local y legible al sol.</span><span data-lang="en">Warm, local and readable in the sun.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Una paleta tomada del malbec y de los atardeceres en los viñedos, con contraste alto porque la app se usa al aire libre.</span><span data-lang="en">A palette drawn from Malbec and vineyard sunsets, with high contrast because the app is used outdoors.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <h3 class="sub rv">Color</h3>
+    <div class="swatches rv">
+      <div class="sw"><i style="background:#8a1c3a"></i><div><b>Malbec</b><code>#8A1C3A</code><span class="aa"><span data-lang="es">Blanco 9,10:1 · AAA</span><span data-lang="en">White 9.10:1 · AAA</span></span></div></div>
+      <div class="sw"><i style="background:#b0466a"></i><div><b><span data-lang="es">Rosado</span><span data-lang="en">Rosé</span></b><code>#B0466A</code><span class="aa"><span data-lang="es">Blanco 5,34:1 · AA</span><span data-lang="en">White 5.34:1 · AA</span></span></div></div>
+      <div class="sw"><i style="background:#4f6b2f"></i><div><b><span data-lang="es">Viñedo</span><span data-lang="en">Vineyard</span></b><code>#4F6B2F</code><span class="aa"><span data-lang="es">Blanco 6,04:1 · AA</span><span data-lang="en">White 6.04:1 · AA</span></span></div></div>
+      <div class="sw"><i style="background:#c9785a"></i><div><b><span data-lang="es">Terracota</span><span data-lang="en">Terracotta</span></b><code>#C9785A</code><span class="aa"><span data-lang="es">Decorativo</span><span data-lang="en">Decorative</span></span></div></div>
+      <div class="sw"><i style="background:#f8e6ea"></i><div><b><span data-lang="es">Rosa claro</span><span data-lang="en">Blush</span></b><code>#F8E6EA</code><span class="aa"><span data-lang="es">Malbec encima 7,58:1</span><span data-lang="en">Malbec on top 7.58:1</span></span></div></div>
+      <div class="sw"><i style="background:#0d0e10"></i><div><b><span data-lang="es">Tinta</span><span data-lang="en">Ink</span></b><code>#0D0E10</code></div></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Tipografía</span><span data-lang="en">Typography</span></h3>
+    <div class="rv">
+      <div class="type-row"><small>Display · Inter Tight 800 · 32</small><span class="s" style="font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-0.04em;line-height:1.1">Descubrí bodegas <i style="font-weight:600">cerca tuyo</i></span></div>
+      <div class="type-row"><small><span data-lang="es">Título</span><span data-lang="en">Title</span> · Inter Tight 700 · 20</small><span class="s" style="font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.02em">Bodega Los Álamos</span></div>
+      <div class="type-row"><small><span data-lang="es">Cuerpo</span><span data-lang="en">Body</span> · Inter 400 · 16</small><span class="s" style="font-size:16px">Degustación + almuerzo · 3 h</span></div>
+      <div class="type-row"><small><span data-lang="es">Precio</span><span data-lang="en">Price</span> · Inter 700 · 18 · tabular</small><span class="s" style="font-size:18px;font-weight:700;font-variant-numeric:tabular-nums">$ 45.000 ARS</span></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Componentes</span><span data-lang="en">Components</span></h3>
+    <div class="comp rv">
+      <span class="u-btn brand">Reservar recorrido</span>
+      <span class="u-btn ghost">Ver en el mapa</span>
+      <span class="u-chip on">Luján de Cuyo</span>
+      <span class="u-chip">Valle de Uco</span>
+      <span class="u-chip">Maipú</span>
+      <span class="u-slot on">12:00</span>
+      <span class="u-slot">15:00</span>
+      <span class="u-slot off">17:30</span>
+      <div class="u-card soft"><div class="u-row"><div class="t"><b style="font-size:14px">Traslado incluido</b><small style="color:var(--brand-ink);font-size:12px">Ida y vuelta desde tu hotel</small></div><span class="u-toggle"></span></div></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Accesibilidad y contexto de uso</span><span data-lang="en">Accessibility and context of use</span></h3>
+    <div class="grid g2">
+      <div class="card rv"><ul class="list">
+        <li><span data-lang="es">Contraste alto pensado para leer bajo el sol</span><span data-lang="en">High contrast designed for reading in sunlight</span></li>
+        <li><span data-lang="es">Voucher guardado en el teléfono para zonas sin señal</span><span data-lang="en">Voucher stored on the phone for areas with no signal</span></li>
+        <li><span data-lang="es">Áreas táctiles de 48 px como mínimo</span><span data-lang="en">Touch targets of at least 48 px</span></li>
+      </ul></div>
+      <div class="card rv"><ul class="list">
+        <li><span data-lang="es">Español e inglés, con moneda y formato de hora según el idioma</span><span data-lang="en">Spanish and English, with currency and time format per language</span></li>
+        <li><span data-lang="es">Horarios agotados tachados, no sólo en gris</span><span data-lang="en">Sold-out slots struck through, not just greyed out</span></li>
+        <li><span data-lang="es">Textos alternativos en todas las fotos de bodegas</span><span data-lang="en">Alt text on every winery photo</span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 08 UI -->
+<section class="sec" id="ui">
+  <div class="sec-head rv">
+    <div class="sec-num">08<b><span data-lang="es">UI final</span><span data-lang="en">Final UI</span></b></div>
+    <div>
+      <h2><span data-lang="es">Un sábado armado en minutos.</span><span data-lang="en">A Saturday planned in minutes.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Del descubrimiento al voucher, en alta fidelidad.</span><span data-lang="en">From discovery to voucher, in high fidelity.</span></p>
+    </div>
+  </div>
+  <p class="swipe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg><span data-lang="es">Deslizá para ver las pantallas</span><span data-lang="en">Swipe to see the screens</span></p>
+  <div class="screens">
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Pantalla para descubrir bodegas por zona"><div class="screen">
+        <div class="sb">9:41</div>
+        <span class="u-hi">Mendoza, Argentina</span>
+        <p class="u-h1">Descubrí bodegas cerca tuyo</p>
+        <div class="u-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Bodega o experiencia</div>
+        <div class="u-chips"><span class="u-chip on">Luján de Cuyo</span><span class="u-chip">Valle de Uco</span><span class="u-chip">Maipú</span></div>
+        <div class="u-card" style="padding:0;overflow:hidden">
+          <div class="u-img vine" style="height:104px;border-radius:0"><span class="rate">★ 4,8</span></div>
+          <div style="padding:10px 11px">
+            <b style="font-family:var(--display);font-size:13px;letter-spacing:-0.02em">Bodega Los Álamos</b>
+            <span class="u-sm">Degustación + almuerzo · 3 h</span>
+            <div class="u-row" style="margin-top:6px"><b class="t" style="font-size:13px">$ 45.000</b><span class="u-pill soft">Hoy 12:00</span></div>
+          </div>
+        </div>
+        <div class="u-card" style="padding:8px"><div class="u-row"><div class="u-img vine b" style="width:44px;height:44px;border-radius:9px"></div><div class="t"><b>Finca Sur</b><small>Menú de pasos · 2 h</small></div><span class="u-pill soft">13:00</span></div></div>
+        <div class="u-tab">
+          <span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Explorar</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Recorrido</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M12 6v12" stroke-dasharray="2 2"/></svg>Reservas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Perfil</span>
+        </div>
+      </div></div>
+      <figcaption><b><span data-lang="es">Explorar</span><span data-lang="en">Explore</span></b><span><span data-lang="es">Precio y horario sin abrir la bodega.</span><span data-lang="en">Price and time without opening the winery.</span></span></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Detalle de bodega con experiencias y horarios"><div class="screen" style="padding-top:0">
+        <div class="u-img vine" style="height:140px;margin:0 -14px;border-radius:0"><span class="rate" style="top:44px">★ 4,8 · 320 reseñas</span></div>
+        <div><p class="u-h1" style="font-size:19px">Bodega Los Álamos</p><span class="u-sm">Luján de Cuyo · a 25 min</span></div>
+        <div class="u-card">
+          <div class="u-list">
+            <div class="u-row"><div class="t"><b>Degustación premium</b><small>5 vinos · 1 h 30</small></div><b style="font-size:11.5px">$ 28.000</b></div>
+            <div class="u-row"><div class="t"><b>Degustación + almuerzo</b><small>Menú de 3 pasos · 3 h</small></div><b style="font-size:11.5px">$ 45.000</b></div>
+          </div>
+        </div>
+        <p class="u-h2">Sábado 14 nov</p>
+        <div class="u-g3"><span class="u-slot">10:00</span><span class="u-slot on">12:00</span><span class="u-slot off">15:00</span></div>
+        <div class="spacer"></div>
+        <span class="u-btn brand">Sumar al recorrido · $ 45.000</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Bodega</span><span data-lang="en">Winery</span></b><span><span data-lang="es">Experiencias comparables y horarios del día.</span><span data-lang="en">Comparable experiences and slots for the day.</span></span></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Recorrido del día en una línea de tiempo con traslado"><div class="screen">
+        <div class="sb">9:41</div>
+        <p class="u-h1">Tu recorrido</p>
+        <span class="u-hi">Sábado 14 · 3 bodegas · 42 km</span>
+        <div class="u-tl">
+          <div class="u-card done" style="padding:9px"><span class="u-sm">10:00</span><b style="font-size:11.5px">Bodega Los Álamos</b><span class="u-sm">Degustación premium</span></div>
+          <span class="u-sm" style="padding-left:2px">↓ 18 min de viaje</span>
+          <div class="u-card" style="padding:9px"><span class="u-sm">13:00</span><b style="font-size:11.5px">Almuerzo en Finca Sur</b><span class="u-sm">Menú de pasos</span></div>
+          <span class="u-sm" style="padding-left:2px">↓ 25 min de viaje</span>
+          <div class="u-card" style="padding:9px"><span class="u-sm">16:30</span><b style="font-size:11.5px">Viñedos del Este</b><span class="u-sm">Recorrido + atardecer</span></div>
+        </div>
+        <div class="u-card soft" style="padding:9px 11px"><div class="u-row"><div class="t"><b>Traslado incluido</b><small style="color:var(--brand-ink)">Desde tu hotel · + $ 30.000</small></div><span class="u-toggle"></span></div></div>
+        <div class="spacer"></div>
+        <span class="u-btn brand">Reservar · $ 133.000</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Mi recorrido</span><span data-lang="en">My route</span></b><span><span data-lang="es">Horarios, distancias y traslado en una sola vista.</span><span data-lang="en">Times, distances and transport in one view.</span></span></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Pago del recorrido con resumen y moneda"><div class="screen">
+        <div class="sb">9:41</div>
+        <p class="u-h1">Confirmá y pagá</p>
+        <span class="u-hi">Todo el día en un solo pago</span>
+        <div class="u-card">
+          <dl class="u-dl">
+            <div><dt>Los Álamos · 10:00</dt><dd>$ 28.000</dd></div>
+            <div><dt>Finca Sur · 13:00</dt><dd>$ 45.000</dd></div>
+            <div><dt>Viñedos del Este · 16:30</dt><dd>$ 30.000</dd></div>
+            <div><dt>Traslado</dt><dd>$ 30.000</dd></div>
+            <div><dt><b style="color:#111;font-size:11px">Total</b></dt><dd style="font-size:12px">$ 133.000 ARS</dd></div>
+          </dl>
+        </div>
+        <div class="u-card"><div class="u-row"><span class="u-ico" style="background:#111"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span><div class="t"><b>Visa ···· 4821</b><small>Cambiar medio de pago</small></div></div></div>
+        <div class="u-card tip" style="padding:9px 11px"><span class="u-sm" style="color:#5b4310">Cancelación sin cargo hasta 48 h antes. Confirmación inmediata.</span></div>
+        <div class="spacer"></div>
+        <span class="u-btn brand">Pagar $ 133.000</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Pago</span><span data-lang="en">Payment</span></b><span><span data-lang="es">Desglose claro, moneda visible y política a la vista.</span><span data-lang="en">Clear breakdown, visible currency and policy in view.</span></span></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Voucher del día con código QR disponible sin conexión"><div class="screen">
+        <div class="sb">9:41</div>
+        <p class="u-h1">¡Tu sábado está listo!</p>
+        <span class="u-pill ok" style="align-self:flex-start">● Disponible sin conexión</span>
+        <div class="u-center" style="padding:6px 0">
+          <svg class="qr" viewBox="0 0 21 21" shape-rendering="crispEdges" aria-hidden="true"><path fill="#111" d="M0 0h7v7H0zM14 0h7v7h-7zM0 14h7v7H0z"/><path fill="#fff" d="M1 1h5v5H1zM15 1h5v5h-5zM1 15h5v5H1z"/><path fill="#111" d="M2 2h3v3H2zM16 2h3v3h-3zM2 16h3v3H2zM8 0h1v2H8zM10 1h2v1h-2zM9 3h3v1H9zM8 5h1v3H8zM11 5h2v2h-2zM0 8h2v1H0zM3 8h3v1H3zM9 9h3v3H9zM14 8h2v2h-2zM18 8h3v1h-3zM1 10h2v2H1zM5 10h2v1H5zM13 11h3v1h-3zM17 10h2v3h-2zM8 13h2v2H8zM11 13h1v3h-1zM14 14h2v2h-2zM18 14h3v1h-3zM8 17h3v1H8zM13 17h1v4h-1zM15 17h3v2h-3zM19 17h2v4h-2zM9 19h3v2H9zM16 20h2v1h-2z"/></svg>
+          <span class="u-sm">Mostralo en cada bodega · Código RV-1124</span>
+        </div>
+        <div class="u-card">
+          <div class="u-list">
+            <div class="u-row"><span class="u-ico" style="font-size:10px">10</span><div class="t"><b>Bodega Los Álamos</b><small>Ruta 15 km 23 · Luján</small></div></div>
+            <div class="u-row"><span class="u-ico" style="font-size:10px">13</span><div class="t"><b>Finca Sur</b><small>Calle Cobos 4400 · Luján</small></div></div>
+          </div>
+        </div>
+        <div class="u-tab">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Explorar</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Recorrido</span>
+          <span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M12 6v12" stroke-dasharray="2 2"/></svg>Reservas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Perfil</span>
+        </div>
+      </div></div>
+      <figcaption><b>Voucher</b><span><span data-lang="es">Un solo código para todo el día, aun sin señal.</span><span data-lang="en">One code for the whole day, even with no signal.</span></span></figcaption>
+    </figure>
+  </div>
+  <div class="cta-row center rv"><a class="btn-c brand" href="prototipos/ruta-del-vino.html"><span data-lang="es">Probar el prototipo navegable</span><span data-lang="en">Try the interactive prototype</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+</section>
+
+<!-- ============================================================ 09 validación -->
+<section class="sec" id="validacion">
+  <div class="sec-head rv">
+    <div class="sec-num">09<b><span data-lang="es">Validación</span><span data-lang="en">Validation</span></b></div>
+    <div>
+      <h2><span data-lang="es">Evaluación heurística del prototipo.</span><span data-lang="en">Heuristic evaluation of the prototype.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Antes de llevarlo a usuarios, evalué el prototipo navegable con las 10 heurísticas de Nielsen y recorrí paso a paso las tareas principales: </span><span data-lang="en">Before taking it to users, I evaluated the interactive prototype against Nielsen's 10 heuristics and walked through the main tasks step by step: </span><span data-lang="es">armar un día con varias bodegas, sumar una de otra zona, activar el traslado, pagar y abrir el voucher</span><span data-lang="en">planning a day with several wineries, adding one from another area, turning on transport, paying and opening the voucher</span>. <span data-lang="es">Cada problema lleva su severidad y corregí en el prototipo los más graves.</span><span data-lang="en">Each issue has a severity rating, and I fixed the most serious ones in the prototype.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g4 metrics">
+      <div class="card metric rv"><b>5</b><span><span data-lang="es">problemas encontrados</span><span data-lang="en">issues found</span></span></div>
+      <div class="card metric rv"><b>4</b><span><span data-lang="es">corregidos en el prototipo</span><span data-lang="en">fixed in the prototype</span></span></div>
+      <div class="card metric rv"><b>1</b><span><span data-lang="es">de severidad alta (3)</span><span data-lang="en">high severity (3)</span></span></div>
+      <div class="card metric rv"><b>10</b><span><span data-lang="es">heurísticas revisadas</span><span data-lang="en">heuristics reviewed</span></span></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Hallazgos</span><span data-lang="en">Findings</span></h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr><th scope="col">#</th><th scope="col"><span data-lang="es">Problema y solución</span><span data-lang="en">Issue and fix</span></th><th scope="col"><span data-lang="es">Heurística</span><span data-lang="en">Heuristic</span></th><th scope="col">Sev.</th><th scope="col"><span data-lang="es">Estado</span><span data-lang="en">Status</span></th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span data-lang="es">Se podía elegir un horario al que no se llega por la distancia; el aviso aparecía recién en "Recorrido".</span><span data-lang="en">You could pick a time you can't reach because of the distance; the warning only showed up in "Recorrido".</span><small><span data-lang="es">En la bodega, esos horarios aparecen como "No llegás" antes de elegirlos, con la explicación.</span><span data-lang="en">In the winery screen those slots now show "No llegás" before you pick them, with an explanation.</span></small></td><td>H5 · <span data-lang="es">Prevención de errores</span><span data-lang="en">Error prevention</span></td><td><span class="sev s3">3</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>2</td><td><span data-lang="es">Quitar una parada del recorrido no se podía deshacer.</span><span data-lang="en">Removing a stop couldn't be undone.</span><small><span data-lang="es">El aviso de "Quitamos…" trae un botón "Deshacer".</span><span data-lang="en">The "Removed…" notice now has an "Undo" button.</span></small></td><td>H3 · <span data-lang="es">Control y libertad</span><span data-lang="en">User control and freedom</span></td><td><span class="sev s2">2</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>3</td><td><span data-lang="es">Buscar por zona (por ejemplo "Uco") no devolvía resultados, aunque la gente piensa por zona.</span><span data-lang="en">Searching by area (e.g. "Uco") returned nothing, even though people think in areas.</span><small><span data-lang="es">El buscador también busca por zona.</span><span data-lang="en">Search now matches areas too.</span></small></td><td>H2 · <span data-lang="es">Relación con el mundo real</span><span data-lang="en">Match with the real world</span></td><td><span class="sev s2">2</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>4</td><td><span data-lang="es">"Próximo 12:00" no decía de qué día era el horario.</span><span data-lang="en">"Next 12:00" didn't say which day the slot was on.</span><small><span data-lang="es">La etiqueta muestra el día: "Sáb 12:00".</span><span data-lang="en">The label now shows the day: "Sáb 12:00".</span></small></td><td>H1 · <span data-lang="es">Visibilidad del estado del sistema</span><span data-lang="en">Visibility of system status</span></td><td><span class="sev s1">1</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>5</td><td><span data-lang="es">Desde el detalle de una bodega no hay acceso directo al recorrido.</span><span data-lang="en">There's no direct way to the route from a winery's detail.</span><small><span data-lang="es">Pendiente: hoy se llega con "Volver" o desde el aviso al sumar una bodega.</span><span data-lang="en">Pending: today you get there via "Back" or from the notice after adding a winery.</span></small></td><td>H7 · <span data-lang="es">Flexibilidad y eficiencia</span><span data-lang="en">Flexibility and efficiency</span></td><td><span class="sev s1">1</span></td><td><span class="estado pend"><span data-lang="es">Pendiente</span><span data-lang="en">Pending</span></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint"><span data-lang="es">Deslizá la tabla para ver todas las columnas →</span><span data-lang="en">Swipe the table to see every column →</span></p>
+    <p class="nota"><span data-lang="es">Severidad según la escala de Nielsen: 1 cosmético, 2 menor, 3 mayor, 4 catastrófico. No encontré problemas de severidad 4.</span><span data-lang="en">Severity on Nielsen's scale: 1 cosmetic, 2 minor, 3 major, 4 catastrophic. I found no severity-4 issues.</span></p>
+    <h3 class="sub rv"><span data-lang="es">Antes y después</span><span data-lang="en">Before and after</span></h3>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><p><span data-lang="es">Se podía elegir un horario al que no se llega por la distancia; el aviso aparecía recién en "Recorrido".</span><span data-lang="en">You could pick a time you can't reach because of the distance; the warning only showed up in "Recorrido".</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><p><span data-lang="es">En la bodega, esos horarios aparecen como "No llegás" antes de elegirlos, con la explicación.</span><span data-lang="en">In the winery screen those slots now show "No llegás" before you pick them, with an explanation.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><p><span data-lang="es">Buscar por zona (por ejemplo "Uco") no devolvía resultados, aunque la gente piensa por zona.</span><span data-lang="en">Searching by area (e.g. "Uco") returned nothing, even though people think in areas.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><p><span data-lang="es">El buscador también busca por zona.</span><span data-lang="en">Search now matches areas too.</span></p></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Próximo paso: test con usuarios</span><span data-lang="en">Next step: user testing</span></h3>
+    <p class="body rv"><span data-lang="es">Una evaluación experta encuentra problemas de usabilidad conocidos, pero no mide cómo se comportan las personas reales. El siguiente paso es un test moderado con el prototipo ya corregido, con estas metas y tareas:</span><span data-lang="en">An expert review finds known usability issues, but it doesn't measure how real people behave. The next step is a moderated test with the fixed prototype, using these targets and tasks:</span></p>
+    <div class="grid g4 metrics">
+      <div class="card metric rv"><b>&lt; 5 min</b><span><span data-lang="es">para armar un día con tres bodegas</span><span data-lang="en">to plan a day with three wineries</span></span></div>
+      <div class="card metric rv"><b>≥ 2,5</b><span><span data-lang="es">bodegas por recorrido</span><span data-lang="en">wineries per route</span></span></div>
+      <div class="card metric rv"><b>≥ 25 %</b><span><span data-lang="es">de conversión de búsqueda a reserva</span><span data-lang="en">search-to-booking conversion</span></span></div>
+      <div class="card metric rv"><b>SUS ≥ 80</b><span><span data-lang="es">en ambos idiomas</span><span data-lang="en">in both languages</span></span></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Tareas del test con usuarios</span><span data-lang="en">User test tasks</span></h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr><th scope="col">#</th><th scope="col"><span data-lang="es">Tarea</span><span data-lang="en">Task</span></th><th scope="col"><span data-lang="es">Éxito si…</span><span data-lang="en">Success if…</span></th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span data-lang="es">Armá el sábado con tres bodegas en Luján de Cuyo.</span><span data-lang="en">Plan Saturday with three wineries in Luján de Cuyo.</span></td><td><span data-lang="es">Llega al recorrido con tres paradas sin conflictos de horario.</span><span data-lang="en">Reaches the route with three stops and no time conflicts.</span></td></tr>
+          <tr><td>2</td><td><span data-lang="es">No querés manejar: resolvé cómo moverte.</span><span data-lang="en">You don't want to drive: sort out transport.</span></td><td><span data-lang="es">Activa el traslado y entiende el nuevo total.</span><span data-lang="en">Turns on transport and understands the new total.</span></td></tr>
+          <tr><td>3</td><td><span data-lang="es">Estás en la bodega sin señal: mostrá tu reserva.</span><span data-lang="en">You're at the winery with no signal: show your booking.</span></td><td><span data-lang="es">Abre el voucher desde Reservas en modo avión.</span><span data-lang="en">Opens the voucher from Bookings in airplane mode.</span></td></tr>
+          <tr><td>4</td><td><span data-lang="es">Cambiá el almuerzo por otra bodega.</span><span data-lang="en">Swap the lunch for another winery.</span></td><td><span data-lang="es">Reemplaza la parada sin rehacer todo el recorrido.</span><span data-lang="en">Replaces the stop without redoing the whole route.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="body rv" style="margin-top:18px"><span data-lang="es"><b>Participantes:</b> 6 personas que hayan viajado por turismo en el último año: 3 que hablen español y 3 que no.</span><span data-lang="en"><b>Participants:</b> 6 people who travelled for leisure in the past year: 3 Spanish speakers and 3 non-Spanish speakers.</span></p>
+  </div>
+</section>
+
+<!-- ============================================================ 10 aprendizajes -->
+<section class="sec" id="aprendizajes">
+  <div class="sec-head rv">
+    <div class="sec-num">10<b><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></b></div>
+    <div><h2><span data-lang="es">Lo que me llevo.</span><span data-lang="en">What I'm taking away.</span></h2></div>
+  </div>
+  <div class="indent grid g2">
+    <div class="card rv"><span class="k"><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Cambiar la unidad de "bodega" a "día" reordenó toda la arquitectura.</span><span data-lang="en">Shifting the unit from "winery" to "day" reshaped the whole architecture.</span></li>
+        <li><span data-lang="es">Bilingüe no es sólo traducir: también cambian moneda, formato de hora y expectativas.</span><span data-lang="en">Bilingual isn't just translation: currency, time format and expectations change too.</span></li>
+        <li><span data-lang="es">El contexto de uso (sol, sin señal) define decisiones visuales concretas.</span><span data-lang="en">Context of use (sunlight, no signal) drives concrete visual decisions.</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Próximos pasos</span><span data-lang="en">Next steps</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Test con turistas reales en Mendoza, en temporada alta.</span><span data-lang="en">Test with real tourists in Mendoza during high season.</span></li>
+        <li><span data-lang="es">Panel para que las bodegas carguen cupos y precios.</span><span data-lang="en">A panel for wineries to manage capacity and prices.</span></li>
+        <li><span data-lang="es">Recomendaciones según el tipo de vino que le gusta a cada persona.</span><span data-lang="en">Recommendations based on each person's wine preferences.</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<a class="next rv" href="alcancia.html">
+  <div class="next-bg" aria-hidden="true"></div>
+  <span class="eyebrow"><span data-lang="es">Siguiente caso</span><span data-lang="en">Next case</span></span>
+  <h2>Alcancía <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></h2>
+  <p><span data-lang="es">Finanzas personales sin planillas: metas de ahorro y presupuesto que se entienden de un vistazo.</span><span data-lang="en">Personal finance without spreadsheets: savings goals and budgets you understand at a glance.</span></p>
+</a>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Lucía Miranda · <span data-lang="es">Diseño y desarrollo</span><span data-lang="en">Design &amp; development</span></span>
+    <a href="../index.html#contact" data-href-lang="../index.html#contact"><span data-lang="es">Contacto →</span><span data-lang="en">Contact →</span></a>
+  </div>
+</footer>
+
+<script src="caso.js"></script>
+</body>
+</html>

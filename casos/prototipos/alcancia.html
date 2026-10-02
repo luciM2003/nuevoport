@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Alcancía · Prototipo navegable</title>
+<meta name="title-es" content="Alcancía · Prototipo navegable"/>
+<meta name="title-en" content="Alcancía · Interactive prototype"/>
+<meta name="description" content="Prototipo navegable de Alcancía: cargá gastos, seguí el presupuesto y aportá a una meta de ahorro."/>
+<meta name="theme-color" content="#0d0e10"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="proto.css"/>
+<style>
+  :root { --brand: #5b4fd8; --brand-ink: #4a3fc0; --brand-soft: #ecebfd; }
+  .neg { color: var(--bad); }
+  .pos { color: var(--ok); }
+  .ring { --p: 0; width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; flex: none; background: conic-gradient(var(--brand) calc(var(--p) * 1%), #e8e6fb 0); transition: --p .6s; }
+  .ring::before { content: attr(data-v); width: 58px; height: 58px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 16px; }
+  .ring.lg { width: 168px; height: 168px; }
+  .ring.lg::before { width: 132px; height: 132px; font-size: 34px; }
+  .amount { font-family: var(--display); font-weight: 800; font-size: 52px; letter-spacing: -.05em; text-align: center; line-height: 1; font-variant-numeric: tabular-nums; }
+  .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; flex: none; }
+  .keys button { min-height: 54px; border-radius: 16px; background: #fff; font-family: var(--display); font-weight: 700; font-size: 22px; display: grid; place-items: center; box-shadow: 0 3px 10px -8px rgba(13, 14, 16, .3); }
+  .keys button:active { background: var(--brand-soft); }
+  .keys svg { width: 24px; height: 24px; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; padding: 4px; border-radius: 14px; background: #e9e9e5; flex: none; }
+  .seg button { min-height: 40px; border-radius: 11px; font-weight: 600; font-size: 14px; color: var(--muted); text-align: center; }
+  .seg button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 2px 6px rgba(0, 0, 0, .08); }
+  .bar.warn i { background: var(--warn); }
+  .bar.ok i { background: #12a06a; }
+  .bar.bad i { background: var(--bad); }
+  .mov { width: 100%; text-align: left; }
+  .quick { display: flex; gap: 8px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <aside class="side">
+    <a class="back" href="../alcancia.html#ui" data-href-lang="../alcancia.html#ui">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span data-lang="es">Volver al caso</span><span data-lang="en">Back to the case</span>
+    </a>
+    <span class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-set-lang="es" aria-pressed="true">ES</button><button type="button" data-set-lang="en" aria-pressed="false">EN</button></span>
+    <span class="eyebrow"><span data-lang="es">Prototipo navegable</span><span data-lang="en">Interactive prototype</span></span>
+    <h1>Alcancía</h1>
+    <p><span data-lang="es">Funciona de verdad: los números se recalculan con cada gasto y quedan guardados en este navegador. Los montos de ejemplo son ficticios.</span><span data-lang="en">It really works: figures recalculate with every expense and are saved in this browser. Sample amounts are fictional.</span></p>
+    <h2><span data-lang="es">Probá estas tareas</span><span data-lang="en">Try these tasks</span></h2>
+    <ol>
+      <li><span data-lang="es">Cargá un café de $ 3.200 con el botón "+".</span><span data-lang="en">Log a $3,200 coffee with the "+" button.</span></li>
+      <li><span data-lang="es">Cargá $ 15.000 en salidas y mirá el aviso.</span><span data-lang="en">Log $15,000 for going out and see the nudge.</span></li>
+      <li><span data-lang="es">Aportá a la meta y mirá cómo cambia la fecha estimada.</span><span data-lang="en">Contribute to the goal and watch the estimate change.</span></li>
+      <li><span data-lang="es">Ocultá los montos desde "Perfil".</span><span data-lang="en">Hide amounts from "Perfil".</span></li>
+    </ol>
+    <button type="button" class="reset" data-reset><span data-lang="es">Reiniciar la demo</span><span data-lang="en">Reset the demo</span></button>
+  </aside>
+
+  <div class="device">
+    <div class="app" id="app">
+      <div class="mbar"><a href="../alcancia.html#ui"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Caso de estudio</a><span>Prototipo · Alcancía</span></div>
+      <div class="status"></div>
+      <div id="screen" style="display:contents"></div>
+      <div class="toast" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+
+<script src="../caso.js"></script>
+<script src="proto.js"></script>
+<script>
+(() => {
+  const { esc, toast, sheet, cerrarSheet, ymd, sumarDias, hoy, fmt, I } = P;
+
+  // ---------------------------------------------------------------- datos de ejemplo
+  const CATS = {
+    cafe: { n: 'Café', c: '#f5a524', t: '#0d0e10', ic: '☕' },
+    comida: { n: 'Comida', c: '#e8743b', t: '#fff', ic: '🍝' },
+    super: { n: 'Supermercado', c: '#5b4fd8', t: '#fff', ic: '🛒' },
+    transporte: { n: 'Transporte', c: '#0c7a50', t: '#fff', ic: '🚌' },
+    salidas: { n: 'Salidas', c: '#c8362b', t: '#fff', ic: '🎉' },
+    servicios: { n: 'Servicios', c: '#2a2d31', t: '#fff', ic: '💡' }
+  };
+  const mesAct = () => ymd(hoy()).slice(0, 7);
+  // Fechas de ejemplo dentro del mes actual, sin pasarse del día de hoy.
+  const diaMes = (d) => ymd(new Date(hoy().getFullYear(), hoy().getMonth(), Math.min(d, hoy().getDate())));
+  const mesPrevio = () => { const d = new Date(hoy().getFullYear(), hoy().getMonth() - 1, 1); return ymd(d).slice(0, 7); };
+  const INICIAL = {
+    ingreso: 850000,
+    presupuestos: { cafe: 25000, comida: 120000, super: 150000, transporte: 60000, salidas: 60000, servicios: 80000 },
+    movs: [
+      { id: 'm1', tipo: 'ingreso', monto: 850000, cat: null, nota: 'Sueldo', fecha: diaMes(1) },
+      { id: 'm2', tipo: 'aporte', monto: 120000, cat: null, nota: 'Aporte a Viaje a Bariloche', fecha: diaMes(1) },
+      { id: 'm3', tipo: 'gasto', monto: 78000, cat: 'servicios', nota: 'Luz, gas e internet', fecha: diaMes(3) },
+      { id: 'm4', tipo: 'gasto', monto: 41900, cat: 'super', nota: 'Supermercado', fecha: diaMes(4) },
+      { id: 'm5', tipo: 'gasto', monto: 52000, cat: 'salidas', nota: 'Cumple de Juli', fecha: diaMes(6) },
+      { id: 'm6', tipo: 'gasto', monto: 18500, cat: 'transporte', nota: 'Carga SUBE', fecha: diaMes(7) },
+      { id: 'm7', tipo: 'gasto', monto: 3200, cat: 'cafe', nota: 'Café', fecha: diaMes(8) },
+      { id: 'm8', tipo: 'gasto', monto: 26800, cat: 'comida', nota: 'Delivery', fecha: diaMes(9) },
+      { id: 'm9', tipo: 'gasto', monto: 2900, cat: 'cafe', nota: 'Café', fecha: diaMes(10) }
+    ],
+    meta: { nombre: 'Viaje a Bariloche', objetivo: 1000000, previo: 560000, aportesPrevios: [110000, 100000] },
+    oculto: false
+  };
+  // El mes anterior, a esta altura, tenía un 12 % menos disponible.
+  INICIAL.disponiblePrevio = Math.round(INICIAL.movs.reduce((s, m) => s + (m.tipo === 'ingreso' ? m.monto : -m.monto), 0) / 1.12);
+  const guardado = P.store('proto-alcancia', INICIAL);
+  let S = guardado.get();
+  const guardar = () => guardado.set(S);
+
+  // ---------------------------------------------------------------- cálculos
+  const delMes = () => S.movs.filter((m) => m.fecha.slice(0, 7) === mesAct());
+  const suma = (arr) => arr.reduce((s, m) => s + m.monto, 0);
+  const ingresos = () => suma(delMes().filter((m) => m.tipo === 'ingreso'));
+  const gastos = () => suma(delMes().filter((m) => m.tipo === 'gasto'));
+  const aportesMes = () => suma(delMes().filter((m) => m.tipo === 'aporte'));
+  const disponible = () => ingresos() - gastos() - aportesMes();
+  const gastoCat = (c) => suma(delMes().filter((m) => m.tipo === 'gasto' && m.cat === c));
+  const presupuestoTotal = () => Object.values(S.presupuestos).reduce((a, b) => a + b, 0);
+  const ahorrado = () => S.meta.previo + suma(S.movs.filter((m) => m.tipo === 'aporte'));
+  const pct = (a, b) => Math.max(0, Math.min(100, Math.round((a / b) * 100)));
+  const diasRestantes = () => { const h = hoy(); return new Date(h.getFullYear(), h.getMonth() + 1, 0).getDate() - h.getDate(); };
+  const mesNombre = (m) => m == null ? 'más adelante' : fmt(new Date(hoy().getFullYear(), hoy().getMonth() + m, 1), { month: 'long', year: m > 9 ? 'numeric' : undefined });
+  // Proyección: con el aporte mensual promedio, cuántos meses faltan para la meta.
+  function proyeccion(extra = 0) {
+    const falta = S.meta.objetivo - ahorrado();
+    if (falta <= 0) return 0;
+    const lista = [...S.meta.aportesPrevios, aportesMes()].filter((x) => x > 0);
+    const prom = (lista.reduce((a, b) => a + b, 0) / (lista.length || 1)) + extra;
+    return prom > 0 ? Math.ceil(falta / prom) : null;
+  }
+  const $ = (n) => (S.oculto ? '$ •••••' : P.plata(n));
+  const variacion = () => Math.round(((disponible() - S.disponiblePrevio) / S.disponiblePrevio) * 100);
+
+  // Sugerencia de categoría: la más usada en gastos de monto parecido; si no hay, Comida.
+  function sugerir(monto) {
+    const parecidos = S.movs.filter((m) => m.tipo === 'gasto' && m.monto >= monto * 0.5 && m.monto <= monto * 1.6);
+    const cuenta = {};
+    parecidos.forEach((m) => { cuenta[m.cat] = (cuenta[m.cat] || 0) + 1; });
+    return Object.keys(cuenta).sort((a, b) => cuenta[b] - cuenta[a])[0] || 'comida';
+  }
+
+  // ---------------------------------------------------------------- navegación
+  let pantalla = 'inicio', pila = [];
+  let C = null; // carga en curso
+  const go = (p) => { pila.push(pantalla); pantalla = p; render(); };
+  const back = () => { pantalla = pila.pop() || 'inicio'; render(); };
+  const raiz = (p) => { pila = []; pantalla = p; render(); };
+  const tabbar = () => `
+    <nav class="tabbar" aria-label="Secciones">
+      <button class="tab" data-tab="inicio" ${pantalla === 'inicio' ? 'aria-current="page"' : ''}>${I.home}Inicio</button>
+      <button class="tab" data-tab="presupuesto" ${pantalla === 'presupuesto' ? 'aria-current="page"' : ''}>${I.chart}Presupuesto</button>
+      <button class="fab" data-act="cargar" aria-label="Cargar gasto">${I.plus}</button>
+      <button class="tab" data-tab="metas" ${pantalla === 'metas' ? 'aria-current="page"' : ''}>${I.target}Metas</button>
+      <button class="tab" data-tab="perfil" ${pantalla === 'perfil' ? 'aria-current="page"' : ''}>${I.user}Perfil</button>
+    </nav>`;
+
+  const icoMov = (m) => m.tipo === 'ingreso' ? `<span class="ico" style="background:var(--ok)">$</span>`
+    : m.tipo === 'aporte' ? `<span class="ico">${I.target}</span>`
+    : `<span class="ico" style="background:${CATS[m.cat].c};color:${CATS[m.cat].t}" aria-hidden="true">${CATS[m.cat].ic}</span>`;
+  const cuando = (f) => f === ymd(hoy()) ? 'Hoy' : f === ymd(sumarDias(hoy(), -1)) ? 'Ayer' : fmt(f, { weekday: 'short', day: 'numeric' });
+  const filaMov = (m) => `
+    <button class="row mov" data-mov="${m.id}">${icoMov(m)}<span class="grow"><b>${esc(m.nota || CATS[m.cat].n)}</b><small>${cuando(m.fecha)}${m.cat ? ' · ' + CATS[m.cat].n : ''}</small></span>
+    <b class="${m.tipo === 'ingreso' ? 'pos' : 'neg'}" style="font-size:15px;white-space:nowrap">${m.tipo === 'ingreso' ? '+ ' : '− '}${S.oculto ? '$ •••••' : P.plata(m.monto)}</b></button>`;
+  const ordenMovs = () => delMes().slice().sort((a, b) => b.fecha.localeCompare(a.fecha) || b.id.localeCompare(a.id));
+
+  // ---------------------------------------------------------------- pantallas
+  const V = {};
+
+  V.inicio = () => {
+    const v = variacion();
+    const p = pct(ahorrado(), S.meta.objetivo);
+    return `
+      <span class="muted" style="margin-top:6px">Disponible este mes</span>
+      <span class="big" style="font-size:48px">${$(disponible())}</span>
+      <span class="pill ${v >= 0 ? 'ok' : 'bad'}" style="align-self:flex-start">${v >= 0 ? '▲' : '▼'} ${Math.abs(v)} % vs. ${fmt(new Date(hoy().getFullYear(), hoy().getMonth() - 1, 1), { month: 'long' })}</span>
+      <button class="card row" data-tab="metas" style="width:100%;text-align:left"><span class="ring" style="--p:${p}" data-v="${p}%"></span><span class="grow"><span class="k" style="color:var(--muted)">Meta</span><b style="font-family:var(--display);font-size:18px;letter-spacing:-.02em">${esc(S.meta.nombre)}</b><small>${$(ahorrado())} de ${$(S.meta.objetivo)}</small></span></button>
+      <div class="row"><h2 class="t2 grow" style="margin:0">Movimientos</h2><button class="link" data-go="movs">Ver todo</button></div>
+      <div class="card" style="padding:4px 16px"><div class="list">${ordenMovs().slice(0, 4).map(filaMov).join('')}</div></div>`;
+  };
+
+  V.movs = () => `
+    <div class="head"><button class="icon-btn" data-back aria-label="Volver">${I.back}</button></div>
+    <h1 class="t1">Movimientos</h1>
+    <span class="muted">${fmt(hoy(), { month: 'long', year: 'numeric' })} · tocá uno para ver el detalle o borrarlo</span>
+    <div class="card" style="padding:4px 16px"><div class="list">${ordenMovs().map(filaMov).join('')}</div></div>`;
+
+  V.cargar = () => {
+    const monto = Number(C.txt || 0);
+    return `
+      <div class="head"><button class="icon-btn" data-back aria-label="Cancelar">${I.close}</button><b class="grow" style="text-align:center;font-size:16px">${C.tipo === 'gasto' ? 'Nuevo gasto' : 'Nuevo ingreso'}</b><span style="width:44px"></span></div>
+      <div class="seg" role="group" aria-label="Tipo de movimiento"><button data-tipo="gasto" aria-pressed="${C.tipo === 'gasto'}">Gasto</button><button data-tipo="ingreso" aria-pressed="${C.tipo === 'ingreso'}">Ingreso</button></div>
+      <div class="center" style="margin-top:8px"><span class="amount" aria-live="polite">${P.plata(monto)}</span><span class="small">Hoy · Billetera virtual</span></div>
+      ${C.tipo === 'gasto' ? `
+        <div class="chips" role="group" aria-label="Categoría" style="justify-content:flex-start">${Object.entries(CATS).map(([k, c]) => `<button class="chip" data-cat="${k}" aria-pressed="${C.cat === k}">${c.ic} ${c.n}</button>`).join('')}</div>
+        ${monto && !C.elegida && C.cat ? `<span class="small" style="text-align:center;color:var(--brand-ink)">Sugerimos <b style="display:inline">${CATS[C.cat].n}</b> por tus gastos anteriores</span>` : ''}` : ''}
+      <input class="input" id="nota" placeholder="${C.tipo === 'gasto' ? 'Nota (opcional): ej. café con Lu' : 'Nota (opcional): ej. trabajo freelance'}" value="${esc(C.nota)}" maxlength="40" aria-label="Nota"/>
+      <div class="spacer"></div>
+      <div class="keys">${['1', '2', '3', '4', '5', '6', '7', '8', '9', '000', '0'].map((k) => `<button data-key="${k}">${k}</button>`).join('')}<button data-key="del" aria-label="Borrar">${I.del}</button></div>
+      <button class="btn brand" data-act="guardar" ${monto ? '' : 'disabled'}>Guardar</button>`;
+  };
+
+  V.presupuesto = () => {
+    const g = gastos(), t = presupuestoTotal();
+    const pasadas = Object.keys(CATS).filter((k) => gastoCat(k) > S.presupuestos[k]);
+    const peor = pasadas.sort((a, b) => (gastoCat(b) - S.presupuestos[b]) - (gastoCat(a) - S.presupuestos[a]))[0];
+    let tip;
+    if (peor) {
+      const recorte = Math.round(S.presupuestos[peor] * 0.15 / 1000) * 1000;
+      const ahora = proyeccion(), con = proyeccion(recorte);
+      tip = `<b style="color:#8a5a10">Tip:</b> bajando ${CATS[peor].n.toLowerCase()} un 15 % (${P.plata(recorte)} por mes) y sumándolo a tu meta, llegás en ${mesNombre(con)}${ahora && con < ahora ? ` en lugar de ${mesNombre(ahora)}` : ''}.`;
+    } else {
+      tip = `<b style="color:#8a5a10">Vas bien:</b> ninguna categoría está pasada. Si te sobra a fin de mes, sumalo a tu meta.`;
+    }
+    return `
+      <h1 class="t1">Presupuesto</h1>
+      <span class="muted">${(m => m[0].toUpperCase() + m.slice(1))(fmt(hoy(), { month: 'long' }))} · ${diasRestantes() === 1 ? 'queda 1 día' : `quedan ${diasRestantes()} días`}</span>
+      <div class="card brand"><span class="k">Gastaste</span><div class="big" style="margin-top:6px">${$(g)}</div><div class="bar"><i style="width:${pct(g, t)}%"></i></div><small style="display:block;margin-top:8px">${pct(g, t)} % de ${$(t)}</small></div>
+      ${Object.entries(CATS).map(([k, c]) => {
+        const gc = gastoCat(k), lim = S.presupuestos[k], pc = pct(gc, lim), pasada = gc > lim;
+        return `<div class="card"><div class="row"><span class="grow"><b>${c.ic} ${c.n}</b></span><span class="${pasada ? 'neg' : 'small'}" style="${pasada ? 'font-weight:700;font-size:14px' : ''}">${$(gc)} / ${S.oculto ? '•••' : P.plata(lim).replace('$ ', '')}</span></div>
+          <div class="bar ${pasada ? 'bad' : pc >= 75 ? 'warn' : 'ok'}"><i style="width:${pc}%"></i></div>
+          ${pasada ? `<small class="neg" style="display:block;margin-top:6px;font-weight:600">Te pasaste ${$(gc - lim)}</small>` : ''}</div>`;
+      }).join('')}
+      <div class="card tip"><span style="font-size:14px;line-height:1.5">${tip}</span></div>`;
+  };
+
+  V.metas = () => {
+    const a = ahorrado(), p = pct(a, S.meta.objetivo), falta = S.meta.objetivo - a;
+    const m = proyeccion(), m2 = proyeccion(40000);
+    return `
+      <span class="muted" style="margin-top:6px">Meta</span>
+      <h1 class="t1">${esc(S.meta.nombre)}</h1>
+      <div class="center" style="margin:10px 0"><span class="ring lg" style="--p:${p}" data-v="${p}%"></span><b style="font-size:18px;margin-top:6px">${$(a)} de ${$(S.meta.objetivo)}</b><span class="muted">${falta > 0 ? `Te faltan ${$(falta)}` : '¡Meta cumplida!'}</span></div>
+      ${falta > 0 ? `<div class="card soft"><b style="font-size:15px">A este ritmo llegás en ${mesNombre(m)}</b><p class="small" style="color:var(--brand-ink);margin:4px 0 0">${m2 < m ? `Con ${P.plata(40000)} más por mes, llegás en ${mesNombre(m2)}.` : 'Seguí así: vas muy bien.'}</p></div>` : `<div class="card soft"><b style="font-size:15px">¡Lo lograste! 🎉</b><p class="small" style="color:var(--brand-ink);margin:4px 0 0">Juntaste todo lo que necesitabas para el viaje.</p></div>`}
+      <h2 class="t2">Aportes</h2>
+      <div class="card" style="padding:4px 16px"><div class="list">
+        ${S.movs.filter((x) => x.tipo === 'aporte').sort((x, y) => y.fecha.localeCompare(x.fecha)).map((x) => `<div class="row"><span class="grow"><b>Aporte</b><small>${cuando(x.fecha)}</small></span><b class="pos">+ ${$(x.monto)}</b></div>`).join('')}
+        <div class="row"><span class="grow"><b>Meses anteriores</b><small>Antes de usar Alcancía</small></span><b class="pos">+ ${$(S.meta.previo)}</b></div>
+      </div></div>
+      <button class="btn brand" data-act="aportar" ${falta > 0 ? '' : 'disabled'}>Aportar a la meta</button>`;
+  };
+
+  V.perfil = () => `
+    <h1 class="t1">Perfil</h1>
+    <div class="card"><div class="row"><span class="ico round">L</span><span class="grow"><b>Lucas Romero</b><small>Ingreso mensual: ${$(S.ingreso)}</small></span></div></div>
+    <div class="card"><div class="row"><span class="grow"><b>Ocultar montos</b><small>Para mirar la app en el colectivo o en la oficina</small></span><button class="toggle" role="switch" aria-checked="${S.oculto}" aria-label="Ocultar montos" data-act="ocultar"></button></div></div>
+    <div class="card"><div class="row"><span class="grow"><b>Recordatorio el día de cobro</b><small>Te proponemos aportar a la meta apenas cobrás</small></span><button class="toggle" role="switch" aria-checked="true" aria-label="Recordatorio el día de cobro" data-act="noop"></button></div></div>
+    <button class="btn ghost" data-reset>Reiniciar la demo</button>`;
+
+  // ---------------------------------------------------------------- render y eventos
+  const conTab = ['inicio', 'presupuesto', 'metas', 'perfil'];
+  const scr = document.getElementById('screen');
+  function render() {
+    cerrarSheet();
+    scr.innerHTML = `<main class="view screen-in">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`;
+    const nota = document.getElementById('nota');
+    if (nota) nota.addEventListener('input', () => { C.nota = nota.value; });
+    // La categoría elegida o sugerida siempre queda a la vista, aunque esté al final de la fila.
+    const fila = document.querySelector('.view .chips');
+    const elegida = fila && fila.querySelector('[aria-pressed="true"]');
+    if (elegida) fila.scrollLeft += elegida.getBoundingClientRect().left - fila.getBoundingClientRect().left - 20;
+  }
+
+  function tecla(k) {
+    if (k === 'del') C.txt = C.txt.slice(0, -1);
+    else if ((C.txt + k).length <= 9) C.txt = (C.txt + k).replace(/^0+/, '');
+    if (C.tipo === 'gasto' && !C.elegida) C.cat = C.txt ? sugerir(Number(C.txt)) : null;
+    render();
+  }
+  // También se puede escribir el monto con el teclado de la computadora.
+  document.addEventListener('keydown', (e) => {
+    if (pantalla !== 'cargar' || document.activeElement?.id === 'nota' || document.querySelector('.sheet-wrap')) return;
+    if (/^[0-9]$/.test(e.key)) tecla(e.key);
+    else if (e.key === 'Backspace') tecla('del');
+    else if (e.key === 'Enter' && Number(C.txt)) document.querySelector('[data-act=guardar]').click();
+  });
+
+  function guardarMov() {
+    const monto = Number(C.txt);
+    const m = { id: 'm' + Date.now(), tipo: C.tipo, monto, cat: C.tipo === 'gasto' ? C.cat : null, nota: C.nota.trim() || (C.tipo === 'gasto' ? CATS[C.cat].n : 'Ingreso'), fecha: ymd(hoy()) };
+    S.movs.push(m); guardar();
+    raiz('inicio');
+    if (m.tipo === 'gasto' && gastoCat(m.cat) > S.presupuestos[m.cat]) {
+      const exceso = gastoCat(m.cat) - S.presupuestos[m.cat];
+      const recorte = Math.round(S.presupuestos[m.cat] * 0.15 / 1000) * 1000;
+      sheet(`<h3>Te pasaste en ${CATS[m.cat].n.toLowerCase()}</h3><p>Vas ${P.plata(exceso)} por encima de lo que planeaste. No pasa nada: si el mes que viene bajás ${CATS[m.cat].n.toLowerCase()} un 15 % (${P.plata(recorte)}), llegás a tu meta en ${mesNombre(proyeccion(recorte))}.</p><button class="btn brand" data-tab="presupuesto">Ver presupuesto</button><button class="btn ghost" data-cerrar>Entendido</button>`);
+    } else {
+      toast(`${m.tipo === 'gasto' ? 'Gasto guardado' : 'Ingreso guardado'} · disponible ${$(disponible())}`);
+    }
+  }
+
+  function aportar(v) {
+    const falta = S.meta.objetivo - ahorrado();
+    if (!v) return toast('Escribí un monto para aportar');
+    if (v > falta) return toast(`Para la meta te faltan ${P.plata(falta)}: no hace falta aportar más`);
+    if (v > disponible()) return toast('No te alcanza el disponible para ese aporte');
+    S.movs.push({ id: 'm' + Date.now(), tipo: 'aporte', monto: v, cat: null, nota: 'Aporte a ' + S.meta.nombre, fecha: ymd(hoy()) });
+    guardar(); render();
+    toast(ahorrado() >= S.meta.objetivo ? '¡Meta cumplida! 🎉' : `Sumaste ${P.plata(v)} · llegás en ${mesNombre(proyeccion())}`);
+  }
+
+  document.addEventListener('click', (ev) => {
+    const el = ev.target.closest('button');
+    if (!el) return;
+    const ds = el.dataset;
+    if ('reset' in ds) { guardado.clear(); S = JSON.parse(JSON.stringify(INICIAL)); raiz('inicio'); toast('Demo reiniciada'); return; }
+    if (!el.closest('.app')) return;
+    if ('back' in ds) return back();
+    if ('cerrar' in ds) return cerrarSheet();
+    if (ds.tab) return raiz(ds.tab);
+    if (ds.go) return go(ds.go);
+    if (ds.key) return tecla(ds.key);
+    if (ds.tipo) { C.tipo = ds.tipo; return render(); }
+    if (ds.cat) { C.cat = ds.cat; C.elegida = true; return render(); }
+    if (ds.mov) {
+      const m = S.movs.find((x) => x.id === ds.mov);
+      sheet(`<h3>${esc(m.nota)}</h3><dl class="dl" style="margin:0"><div><dt>Monto</dt><dd>${$(m.monto)}</dd></div><div><dt>Tipo</dt><dd>${{ gasto: 'Gasto', ingreso: 'Ingreso', aporte: 'Aporte a la meta' }[m.tipo]}</dd></div>${m.cat ? `<div><dt>Categoría</dt><dd>${CATS[m.cat].ic} ${CATS[m.cat].n}</dd></div>` : ''}<div><dt>Fecha</dt><dd>${fmt(m.fecha, { day: 'numeric', month: 'long' })}</dd></div></dl><button class="btn danger" data-borrar="${m.id}">${I.trash} Borrar movimiento</button><button class="btn ghost" data-cerrar>Cerrar</button>`);
+      return;
+    }
+    if (ds.borrar) {
+      const borrado = S.movs.find((x) => x.id === ds.borrar);
+      S.movs = S.movs.filter((x) => x !== borrado); guardar(); render();
+      return toast('Movimiento borrado', { label: 'Deshacer', fn: () => { S.movs.push(borrado); guardar(); render(); } });
+    }
+    if (ds.aporte) return aportar(Number(ds.aporte));
+    switch (ds.act) {
+      case 'cargar': C = { tipo: 'gasto', txt: '', cat: null, elegida: false, nota: '' }; return go('cargar');
+      case 'guardar': return guardarMov();
+      case 'ocultar': S.oculto = !S.oculto; guardar(); return render();
+      case 'noop': return toast('En este prototipo el recordatorio queda siempre activo');
+      case 'aportar': {
+        const falta = S.meta.objetivo - ahorrado();
+        const ops = [20000, 50000, 100000, falta].filter((x, i, a) => x > 0 && x <= falta && a.indexOf(x) === i);
+        sheet(`<h3>Aportar a ${esc(S.meta.nombre)}</h3><p>Disponible este mes: <b>${$(disponible())}</b>. Elegí cuánto separar.</p><div class="quick">${ops.map((x) => `<button class="chip" data-aporte="${x}">${x === falta ? 'Todo lo que falta · ' : ''}${P.plata(x)}</button>`).join('')}</div>
+          <label class="lbl">Otro monto<input class="input" id="aporteLibre" inputmode="numeric" placeholder="Ej.: 35000" autocomplete="off"/></label>
+          <button class="btn brand" data-act="aporteLibre">Aportar este monto</button><button class="btn ghost" data-cerrar>Ahora no</button>`);
+        return;
+      }
+      case 'aporteLibre': return aportar(Number((document.getElementById('aporteLibre').value || '').replace(/\D/g, '')));
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

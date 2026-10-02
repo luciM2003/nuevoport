@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Turno · Caso de estudio UX/UI · Lucía Miranda</title>
+<meta name="title-es" content="Turno · Caso de estudio UX/UI · Lucía Miranda"/>
+<meta name="title-en" content="Turno · UX/UI case study · Lucía Miranda"/>
+<meta name="description" content="Caso de estudio completo de Turno, app conceptual para sacar turnos médicos: investigación, definición, arquitectura, wireframes, sistema de diseño y UI final."/>
+<meta name="theme-color" content="#f3f4f1"/>
+<meta property="og:title" content="Turno · Caso de estudio UX/UI"/>
+<meta property="og:image" content="https://lucim2003.github.io/nuevoport/images/concepto-turno.jpg"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="caso.css"/>
+<style>
+  :root {
+    --brand: #1d6ae5; --brand-ink: #1558c0; --brand-soft: #e6efff; --brand-on-dark: #9fc2ff;
+    --mesh: radial-gradient(40% 55% at 20% 30%, #9cc6ff 0, transparent 70%), radial-gradient(45% 60% at 80% 20%, #c9dcff 0, transparent 70%), radial-gradient(40% 50% at 70% 85%, #bfeee4 0, transparent 70%), #e8f0fb;
+    --next-mesh: radial-gradient(40% 55% at 20% 30%, #f2b8c4 0, transparent 70%), radial-gradient(45% 60% at 80% 25%, #f7d9c4 0, transparent 70%), #f6e6e6;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="back" href="../index.html#work" data-href-lang="../index.html#work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span data-lang="es">Portfolio</span><span data-lang="en">Portfolio</span>
+    </a>
+    <span class="top-title">Turno · <span data-lang="es">Caso de estudio</span><span data-lang="en">Case study</span></span>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+<!-- ============================================================ hero -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span data-lang="es">Caso de estudio UX/UI · Concepto</span><span data-lang="en">UX/UI case study · Concept</span></span>
+    <h1>Turno<em>.</em></h1>
+    <p class="hero-sub"><span data-lang="es">Una app para sacar turnos médicos en tres toques, sin llamadas ni esperas, pensada para que la use cualquier persona, tenga 25 o 75 años.</span><span data-lang="en">An app to book medical appointments in three taps, with no phone calls or waiting, designed for anyone to use, whether they're 25 or 75.</span></p>
+    <ul class="tags"><li>Mobile app</li><li><span data-lang="es">Salud</span><span data-lang="en">Healthcare</span></li><li>UX Research</li><li>UI Design</li><li>Figma</li></ul>
+    <div class="cta-row"><a class="btn-c" href="prototipos/turno.html"><span data-lang="es">Probar el prototipo</span><span data-lang="en">Try the prototype</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a><a class="btn-c ghost" href="#contexto"><span data-lang="es">Leer el caso</span><span data-lang="en">Read the case</span></a></div>
+    <figure class="cover"><img src="../images/concepto-turno.jpg" alt="Dos pantallas de la app Turno: inicio con el próximo turno y selección de día y horario" width="1600" height="1200" fetchpriority="high"/></figure>
+    <div class="facts">
+      <div><span data-lang="es">Rol</span><span data-lang="en">Role</span><b><span data-lang="es">Investigación, UX, UI y prototipo</span><span data-lang="en">Research, UX, UI and prototype</span></b></div>
+      <div><span data-lang="es">Duración</span><span data-lang="en">Timeline</span><b><span data-lang="es">4 semanas</span><span data-lang="en">4 weeks</span></b></div>
+      <div><span data-lang="es">Herramientas</span><span data-lang="en">Tools</span><b>Figma · FigJam</b></div>
+      <div><span data-lang="es">Plataforma</span><span data-lang="en">Platform</span><b>iOS · Android</b></div>
+    </div>
+    <p class="disclaimer"><span data-lang="es">Proyecto conceptual propio, sin cliente. La investigación es secundaria (benchmark, proto-personas y journey map) y las cifras que aparecen son objetivos de diseño, no resultados medidos. El prototipo se validó con una evaluación heurística; el test con usuarios está planificado.</span><span data-lang="en">Self-initiated concept project with no client. Research is secondary (benchmark, proto-personas and journey map) and the figures shown are design targets, not measured results. The prototype was validated with a heuristic evaluation; user testing is planned.</span></p>
+    <nav class="toc" aria-label="Índice del caso">
+      <a href="#contexto"><span class="n">01</span><span data-lang="es">Contexto</span><span data-lang="en">Context</span></a>
+      <a href="#investigacion"><span class="n">02</span><span data-lang="es">Investigación</span><span data-lang="en">Research</span></a>
+      <a href="#definicion"><span class="n">03</span><span data-lang="es">Definición</span><span data-lang="en">Definition</span></a>
+      <a href="#arquitectura"><span class="n">04</span><span data-lang="es">Arquitectura</span><span data-lang="en">Architecture</span></a>
+      <a href="#wireframes"><span class="n">05</span>Wireframes</a>
+      <a href="#decisiones"><span class="n">06</span><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></a>
+      <a href="#sistema"><span class="n">07</span><span data-lang="es">Sistema de diseño</span><span data-lang="en">Design system</span></a>
+      <a href="#ui"><span class="n">08</span><span data-lang="es">UI final</span><span data-lang="en">Final UI</span></a>
+      <a href="#validacion"><span class="n">09</span><span data-lang="es">Validación</span><span data-lang="en">Validation</span></a>
+      <a href="#aprendizajes"><span class="n">10</span><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></a>
+    </nav>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ============================================================ 01 contexto -->
+<section class="sec" id="contexto">
+  <div class="sec-head rv">
+    <div class="sec-num">01<b><span data-lang="es">Contexto</span><span data-lang="en">Context</span></b></div>
+    <div>
+      <h2><span data-lang="es">Sacar un turno no debería ser un trámite.</span><span data-lang="en">Booking an appointment shouldn't feel like paperwork.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Hoy, sacar un turno médico implica llamar en horario de oficina, esperar en línea y anotar a mano el día y la hora. Muchas personas se olvidan del turno y el consultorio queda con huecos que nadie aprovecha.</span><span data-lang="en">Today, booking a medical appointment means calling during office hours, waiting on hold and writing the date and time down by hand. Many people forget their appointment and the practice is left with gaps nobody uses.</span></p>
+    </div>
+  </div>
+  <div class="grid g3 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Para el paciente</span><span data-lang="en">For patients</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Reservar fuera del horario de atención</span><span data-lang="en">Book outside office hours</span></li>
+        <li><span data-lang="es">Ver todos los horarios libres de un vistazo</span><span data-lang="en">See every free slot at a glance</span></li>
+        <li><span data-lang="es">No olvidarse del turno</span><span data-lang="en">Never forget an appointment</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Para el consultorio</span><span data-lang="en">For the practice</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Menos llamadas en recepción</span><span data-lang="en">Fewer calls at the front desk</span></li>
+        <li><span data-lang="es">Menos ausentismo</span><span data-lang="en">Fewer no-shows</span></li>
+        <li><span data-lang="es">Reasignar rápido los turnos cancelados</span><span data-lang="en">Quickly reassign cancelled slots</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Restricciones</span><span data-lang="en">Constraints</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Público de todas las edades, incluidos adultos mayores</span><span data-lang="en">Users of all ages, including older adults</span></li>
+        <li><span data-lang="es">Distintas obras sociales y prepagas</span><span data-lang="en">Several health insurance plans</span></li>
+        <li><span data-lang="es">Reserva para uno mismo o para un familiar</span><span data-lang="en">Booking for yourself or a family member</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 investigación -->
+<section class="sec" id="investigacion">
+  <div class="sec-head rv">
+    <div class="sec-num">02<b><span data-lang="es">Investigación</span><span data-lang="en">Research</span></b></div>
+    <div>
+      <h2><span data-lang="es">Entender cómo se saca un turno hoy.</span><span data-lang="en">Understanding how appointments are booked today.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Arranqué por los canales que la gente ya usa, para ver qué resuelven bien y dónde se traban.</span><span data-lang="en">I started with the channels people already use, to see what they do well and where they get stuck.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g3">
+      <div class="card rv"><span class="big">5</span><h4><span data-lang="es">Canales comparados</span><span data-lang="en">Channels compared</span></h4><p><span data-lang="es">Teléfono, WhatsApp, portal web, app de la prepaga y la propuesta.</span><span data-lang="en">Phone, WhatsApp, web portal, insurer app and the proposal.</span></p></div>
+      <div class="card rv"><span class="big">2</span><h4><span data-lang="es">Proto-personas</span><span data-lang="en">Proto-personas</span></h4><p><span data-lang="es">Una paciente con poco tiempo y un adulto mayor que gestiona los turnos de la familia.</span><span data-lang="en">A time-poor patient and an older adult who manages the family's appointments.</span></p></div>
+      <div class="card rv"><span class="big">5</span><h4><span data-lang="es">Etapas del journey</span><span data-lang="en">Journey stages</span></h4><p><span data-lang="es">Desde que aparece la necesidad hasta salir de la consulta.</span><span data-lang="en">From the moment the need appears to leaving the visit.</span></p></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Benchmark de canales</span><span data-lang="en">Channel benchmark</span></h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr>
+          <th scope="col"><span data-lang="es">Función</span><span data-lang="en">Feature</span></th>
+          <th scope="col"><span data-lang="es">Teléfono</span><span data-lang="en">Phone</span></th>
+          <th scope="col">WhatsApp</th>
+          <th scope="col"><span data-lang="es">Portal web</span><span data-lang="en">Web portal</span></th>
+          <th scope="col"><span data-lang="es">App prepaga</span><span data-lang="en">Insurer app</span></th>
+          <th scope="col" class="me">Turno</th>
+        </tr></thead>
+        <tbody>
+          <tr><th scope="row"><span data-lang="es">Reservar fuera de horario</span><span data-lang="en">Book after hours</span></th><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Responden después</span><span data-lang="en">Delayed reply</span></span></td><td><span class="yes"></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Ver horarios libres</span><span data-lang="en">See free slots</span></th><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Por día</span><span data-lang="en">Day by day</span></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Recordatorio automático</span><span data-lang="en">Automatic reminder</span></th><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Manual</span><span data-lang="en">Manual</span></span></td><td><span class="mid">Email</span></td><td><span class="yes"></span></td><td class="me"><span class="yes">WhatsApp</span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Reprogramar en un paso</span><span data-lang="en">Reschedule in one step</span></th><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Cancelar y volver a reservar</span><span data-lang="en">Cancel and rebook</span></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Filtrar por cobertura</span><span data-lang="en">Filter by coverage</span></th><td><span class="mid"><span data-lang="es">Preguntando</span><span data-lang="en">By asking</span></span></td><td><span class="mid"><span data-lang="es">Preguntando</span><span data-lang="en">By asking</span></span></td><td><span class="no"></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Turnos de familiares</span><span data-lang="en">Family appointments</span></th><td><span class="yes"></span></td><td><span class="yes"></span></td><td><span class="no"></span></td><td><span class="mid"><span data-lang="es">Sólo el grupo</span><span data-lang="en">Plan members only</span></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Fácil para adultos mayores</span><span data-lang="en">Easy for older adults</span></th><td><span class="yes"></span></td><td><span class="mid"><span data-lang="es">Depende</span><span data-lang="en">Varies</span></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td class="me"><span class="yes"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint"><span data-lang="es">Deslizá la tabla para ver todas las columnas →</span><span data-lang="en">Swipe the table to see every column →</span></p>
+    <p class="body rv" style="margin-top:18px"><span data-lang="es"><b>Lectura:</b> el teléfono sigue siendo lo más simple para adultos mayores, pero obliga a llamar en horario. Las apps resuelven la reserva, pero con muchas pantallas, letra chica y sin pensar en quien reserva para otro.</span><span data-lang="en"><b>Takeaway:</b> the phone is still the simplest option for older adults, but it forces you to call during office hours. Apps solve booking, but with many screens, small type and no thought for people booking on someone else's behalf.</span></p>
+
+    <h3 class="sub rv">Proto-personas</h3>
+    <div class="grid g2">
+      <article class="card persona rv">
+        <div class="p-head"><span class="avatar">MG</span><div><h4>Martina, 32</h4><small><span data-lang="es">Analista contable · trabaja de 9 a 18</span><span data-lang="en">Accountant · works 9 to 6</span></small></div></div>
+        <p class="quote"><span data-lang="es">"Para sacar turno tengo que llamar justo en el horario en que estoy trabajando."</span><span data-lang="en">"To book an appointment I have to call exactly when I'm at work."</span></p>
+        <div class="p-cols">
+          <div><h5><span data-lang="es">Objetivos</span><span data-lang="en">Goals</span></h5><ul class="list"><li><span data-lang="es">Reservar en un rato libre, desde el celular</span><span data-lang="en">Book in a spare moment, from her phone</span></li><li><span data-lang="es">Elegir un horario temprano</span><span data-lang="en">Pick an early slot</span></li></ul></div>
+          <div><h5><span data-lang="es">Frustraciones</span><span data-lang="en">Frustrations</span></h5><ul class="list x"><li><span data-lang="es">Llamadas en espera</span><span data-lang="en">Being kept on hold</span></li><li><span data-lang="es">Olvidarse del turno y pagarlo igual</span><span data-lang="en">Forgetting and still being charged</span></li></ul></div>
+        </div>
+      </article>
+      <article class="card persona rv">
+        <div class="p-head"><span class="avatar alt">RA</span><div><h4>Roberto, 68</h4><small><span data-lang="es">Jubilado · gestiona los turnos de su esposa</span><span data-lang="en">Retired · manages his wife's appointments</span></small></div></div>
+        <p class="quote"><span data-lang="es">"Las apps tienen letra chiquita y nunca sé si el turno quedó reservado."</span><span data-lang="en">"Apps have tiny text and I'm never sure the appointment went through."</span></p>
+        <div class="p-cols">
+          <div><h5><span data-lang="es">Objetivos</span><span data-lang="en">Goals</span></h5><ul class="list"><li><span data-lang="es">Sacar turnos para él y para su esposa</span><span data-lang="en">Book for himself and his wife</span></li><li><span data-lang="es">Confirmación clara y en palabras simples</span><span data-lang="en">A clear confirmation in plain words</span></li></ul></div>
+          <div><h5><span data-lang="es">Frustraciones</span><span data-lang="en">Frustrations</span></h5><ul class="list x"><li><span data-lang="es">Botones chicos y jerga</span><span data-lang="en">Small buttons and jargon</span></li><li><span data-lang="es">No saber en qué paso está</span><span data-lang="en">Not knowing which step he's on</span></li></ul></div>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Journey map actual · Martina</span><span data-lang="en">Current journey map · Martina</span></h3>
+    <div class="scroll-x rv">
+      <svg class="j-curve" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true">
+        <polyline fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" points="100,22 300,46 500,60 700,38 900,18"/>
+      </svg>
+      <div class="journey">
+        <div class="j-col"><div class="j-stage"><small>1</small><span data-lang="es">Necesidad</span><span data-lang="en">Need</span></div><p><span data-lang="es">Siente un malestar y decide ir a la clínica médica.</span><span data-lang="en">Feels unwell and decides to see a GP.</span></p><div class="emo" data-n="4"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Decidida</span><span data-lang="en">Decided</span></div><div class="opp"><span data-lang="es">Acceso directo a "Reservar" desde el inicio</span><span data-lang="en">"Book" shortcut on the home screen</span></div></div>
+        <div class="j-col"><div class="j-stage"><small>2</small><span data-lang="es">Búsqueda</span><span data-lang="en">Search</span></div><p><span data-lang="es">Busca qué médicos atienden con su obra social.</span><span data-lang="en">Looks for doctors who accept her insurance.</span></p><div class="emo" data-n="2"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Insegura</span><span data-lang="en">Unsure</span></div><div class="pain"><span data-lang="es">La cartilla es un PDF largo</span><span data-lang="en">The directory is a long PDF</span></div></div>
+        <div class="j-col"><div class="j-stage"><small>3</small><span data-lang="es">Reserva</span><span data-lang="en">Booking</span></div><p><span data-lang="es">Llama en su hora de almuerzo y espera en línea.</span><span data-lang="en">Calls on her lunch break and waits on hold.</span></p><div class="emo" data-n="1"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Frustrada</span><span data-lang="en">Frustrated</span></div><div class="pain"><span data-lang="es">Le ofrecen un único horario</span><span data-lang="en">She's offered a single time slot</span></div></div>
+        <div class="j-col"><div class="j-stage"><small>4</small><span data-lang="es">Espera</span><span data-lang="en">Waiting</span></div><p><span data-lang="es">Anota el turno en un papel o en el chat consigo misma.</span><span data-lang="en">Writes it down on paper or in a note-to-self chat.</span></p><div class="emo" data-n="3"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Distraída</span><span data-lang="en">Distracted</span></div><div class="pain"><span data-lang="es">Sin recordatorio, se olvida</span><span data-lang="en">No reminder, so she forgets</span></div></div>
+        <div class="j-col"><div class="j-stage"><small>5</small><span data-lang="es">Consulta</span><span data-lang="en">Visit</span></div><p><span data-lang="es">Llega, se anuncia en recepción y espera.</span><span data-lang="en">Arrives, checks in at the desk and waits.</span></p><div class="emo" data-n="4"><i><s></s><s></s><s></s><s></s><s></s></i><span data-lang="es">Aliviada</span><span data-lang="en">Relieved</span></div><div class="opp"><span data-lang="es">Check-in desde la app al llegar</span><span data-lang="en">In-app check-in on arrival</span></div></div>
+      </div>
+    </div>
+    <p class="scroll-hint"><span data-lang="es">Deslizá para recorrer las cinco etapas →</span><span data-lang="en">Swipe to see all five stages →</span></p>
+
+    <h3 class="sub rv"><span data-lang="es">Hallazgos clave</span><span data-lang="en">Key insights</span></h3>
+    <div class="grid g2">
+      <div class="card insight rv"><i>1</i><div><h4><span data-lang="es">El problema es el horario, no la reserva</span><span data-lang="en">The issue is timing, not booking</span></h4><p><span data-lang="es">Reservar es simple; lo difícil es poder hacerlo cuando la persona tiene tiempo.</span><span data-lang="en">Booking itself is simple; the hard part is doing it when the person actually has time.</span></p></div></div>
+      <div class="card insight rv"><i>2</i><div><h4><span data-lang="es">Elegir requiere ver opciones</span><span data-lang="en">Choosing requires seeing options</span></h4><p><span data-lang="es">Por teléfono se ofrece un horario por vez. Ver la semana completa cambia la decisión.</span><span data-lang="en">On the phone you get one slot at a time. Seeing the whole week changes the decision.</span></p></div></div>
+      <div class="card insight rv"><i>3</i><div><h4><span data-lang="es">La confirmación genera confianza</span><span data-lang="en">Confirmation builds trust</span></h4><p><span data-lang="es">Sin un mensaje claro de "quedó reservado", las personas mayores vuelven a llamar para chequear.</span><span data-lang="en">Without a clear "you're booked" message, older users call again to double-check.</span></p></div></div>
+      <div class="card insight rv"><i>4</i><div><h4><span data-lang="es">Muchos reservan para otros</span><span data-lang="en">Many book for others</span></h4><p><span data-lang="es">Hijos, padres o parejas gestionan turnos ajenos: el perfil familiar no es un extra.</span><span data-lang="en">Children, parents or partners manage other people's appointments: family profiles aren't an extra.</span></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 definición -->
+<section class="sec" id="definicion">
+  <div class="sec-head rv">
+    <div class="sec-num">03<b><span data-lang="es">Definición</span><span data-lang="en">Definition</span></b></div>
+    <div><h2><span data-lang="es">Un problema, bien planteado.</span><span data-lang="en">One problem, well framed.</span></h2></div>
+  </div>
+  <div class="indent">
+    <p class="hmw rv"><small><span data-lang="es">¿Cómo podríamos…?</span><span data-lang="en">How might we…?</span></small><span data-lang="es">¿Cómo podríamos lograr que cualquier persona saque un turno médico <em>en menos de un minuto</em>, sin llamar y <em>sin olvidarse de ir</em>?</span><span data-lang="en">How might we help anyone book a medical appointment <em>in under a minute</em>, without calling and <em>without forgetting to show up</em>?</span></p>
+
+    <h3 class="sub rv"><span data-lang="es">Principios de diseño</span><span data-lang="en">Design principles</span></h3>
+    <div class="grid g3">
+      <div class="card rv"><span class="k">01</span><h4><span data-lang="es">Una pantalla, una decisión</span><span data-lang="en">One screen, one decision</span></h4><p><span data-lang="es">Cada paso pide una sola cosa: con quién, cuándo, confirmar.</span><span data-lang="en">Each step asks for one thing: who, when, confirm.</span></p></div>
+      <div class="card rv"><span class="k">02</span><h4><span data-lang="es">Siempre sé dónde estoy</span><span data-lang="en">Always know where I am</span></h4><p><span data-lang="es">Barra de progreso y "Paso 2 de 3" en cada pantalla del flujo.</span><span data-lang="en">A progress bar and "Step 2 of 3" on every screen of the flow.</span></p></div>
+      <div class="card rv"><span class="k">03</span><h4><span data-lang="es">Legible para todos</span><span data-lang="en">Readable for everyone</span></h4><p><span data-lang="es">Texto de 16 px como mínimo, contraste AA y áreas táctiles de 48 px.</span><span data-lang="en">16 px minimum text, AA contrast and 48 px touch targets.</span></p></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Priorización MoSCoW del MVP</span><span data-lang="en">MVP MoSCoW prioritization</span></h3>
+    <div class="grid g4 moscow">
+      <div class="card rv"><span class="k must">Must</span><ul class="list"><li><span data-lang="es">Reserva en 3 pasos</span><span data-lang="en">3-step booking</span></li><li><span data-lang="es">Horarios libres</span><span data-lang="en">Free slots</span></li><li><span data-lang="es">Recordatorio</span><span data-lang="en">Reminder</span></li><li><span data-lang="es">Cancelar y reprogramar</span><span data-lang="en">Cancel and reschedule</span></li></ul></div>
+      <div class="card rv"><span class="k should">Should</span><ul class="list"><li><span data-lang="es">Filtro por cobertura</span><span data-lang="en">Coverage filter</span></li><li><span data-lang="es">Perfiles familiares</span><span data-lang="en">Family profiles</span></li><li>Check-in</li></ul></div>
+      <div class="card rv"><span class="k could">Could</span><ul class="list"><li><span data-lang="es">Recetas digitales</span><span data-lang="en">Digital prescriptions</span></li><li><span data-lang="es">Resultados de estudios</span><span data-lang="en">Test results</span></li></ul></div>
+      <div class="card rv"><span class="k wont">Won't (v1)</span><ul class="list"><li><span data-lang="es">Teleconsulta</span><span data-lang="en">Video visits</span></li><li><span data-lang="es">Pagos en la app</span><span data-lang="en">In-app payments</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 arquitectura -->
+<section class="sec" id="arquitectura">
+  <div class="sec-head rv">
+    <div class="sec-num">04<b><span data-lang="es">Arquitectura</span><span data-lang="en">Architecture</span></b></div>
+    <div>
+      <h2><span data-lang="es">Menos pantallas, caminos más cortos.</span><span data-lang="en">Fewer screens, shorter paths.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Cuatro secciones en la barra inferior y la reserva como acción principal, a un toque desde cualquier lugar.</span><span data-lang="en">Four sections in the bottom bar and booking as the main action, one tap away from anywhere.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g2">
+      <div class="card rv">
+        <h4 style="margin-bottom:14px"><span data-lang="es">Mapa del sitio</span><span data-lang="en">Sitemap</span></h4>
+        <ul class="tree">
+          <li><span class="node">Turno</span>
+            <ul>
+              <li><span class="node"><span data-lang="es">Inicio</span><span data-lang="en">Home</span> <small><span data-lang="es">próximo turno · accesos</span><span data-lang="en">next visit · shortcuts</span></small></span></li>
+              <li><span class="node key"><span data-lang="es">Reservar</span><span data-lang="en">Book</span></span>
+                <ul>
+                  <li><span class="node"><span data-lang="es">1 · Especialidad y profesional</span><span data-lang="en">1 · Specialty and doctor</span></span></li>
+                  <li><span class="node"><span data-lang="es">2 · Día y horario</span><span data-lang="en">2 · Day and time</span></span></li>
+                  <li><span class="node"><span data-lang="es">3 · Confirmación</span><span data-lang="en">3 · Confirmation</span></span></li>
+                </ul></li>
+              <li><span class="node"><span data-lang="es">Mis turnos</span><span data-lang="en">My appointments</span> <small><span data-lang="es">próximos · historial</span><span data-lang="en">upcoming · history</span></small></span></li>
+              <li><span class="node"><span data-lang="es">Recetas y estudios</span><span data-lang="en">Prescriptions & tests</span></span></li>
+              <li><span class="node"><span data-lang="es">Perfil</span><span data-lang="en">Profile</span> <small><span data-lang="es">cobertura · familiares · texto grande</span><span data-lang="en">coverage · family · large text</span></small></span></li>
+            </ul></li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <h4 style="margin-bottom:14px"><span data-lang="es">Flujo principal: reservar un turno</span><span data-lang="en">Main flow: booking an appointment</span></h4>
+        <div class="flow">
+          <div class="f-step start"><small><span data-lang="es">Inicio</span><span data-lang="en">Start</span></small><b><span data-lang="es">Toca "Reservar"</span><span data-lang="en">Taps "Book"</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step dec"><small><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></small><b><span data-lang="es">¿Para quién es?</span><span data-lang="en">Who is it for?</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small><span data-lang="es">Paso 1</span><span data-lang="en">Step 1</span></small><b><span data-lang="es">Especialidad o profesional</span><span data-lang="en">Specialty or doctor</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small><span data-lang="es">Paso 2</span><span data-lang="en">Step 2</span></small><b><span data-lang="es">Día y horario</span><span data-lang="en">Day and time</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small><span data-lang="es">Paso 3</span><span data-lang="en">Step 3</span></small><b><span data-lang="es">Revisa y confirma</span><span data-lang="en">Reviews and confirms</span></b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step end"><small><span data-lang="es">Fin</span><span data-lang="en">End</span></small><b><span data-lang="es">Recordatorio y check-in</span><span data-lang="en">Reminder and check-in</span></b></div>
+        </div>
+        <div class="legend"><span><i class="e"></i><span data-lang="es">Inicio / fin</span><span data-lang="en">Start / end</span></span><span><i class="d"></i><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><span><i></i><span data-lang="es">Pantalla</span><span data-lang="en">Screen</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 wireframes -->
+<section class="sec" id="wireframes">
+  <div class="sec-head rv">
+    <div class="sec-num">05<b>Wireframes</b></div>
+    <div>
+      <h2><span data-lang="es">Estructura antes que estilo.</span><span data-lang="en">Structure before style.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Wireframes en baja fidelidad para validar jerarquía y recorrido sin distraerse con colores. Los números marcan las decisiones de cada pantalla.</span><span data-lang="en">Low-fidelity wireframes to validate hierarchy and flow without being distracted by color. The numbers mark the decisions on each screen.</span></p>
+    </div>
+  </div>
+  <p class="swipe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg><span data-lang="es">Deslizá para ver las pantallas</span><span data-lang="en">Swipe to see the screens</span></p>
+  <div class="screens">
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe del inicio"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-row"><div class="grow"><div class="w-l" style="width:30%"></div><div class="w-l xl" style="width:60%"></div></div><div class="w-c" style="width:34px;height:34px"></div></div>
+        <div class="w-b dark" style="height:104px"><div class="w-txt" style="color:#7b8088">Próximo turno</div><div class="w-l d" style="width:70%;background:#b9bdc3"></div><div class="w-l" style="width:55%;background:#c4c8cd"></div><div class="spacer"></div><div class="w-row"><div class="w-pill" style="width:56px;background:#c4c8cd"></div><div class="w-pill" style="width:40px;background:#c4c8cd"></div></div></div>
+        <div class="w-l d" style="width:45%;margin-top:4px"></div>
+        <div class="w-g2">
+          <div class="w-b" style="height:78px"><div class="w-sq"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+          <div class="w-b" style="height:78px"><div class="w-sq"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+          <div class="w-b" style="height:78px"><div class="w-sq"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+          <div class="w-b" style="height:78px"><div class="w-sq"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+        </div>
+        <div class="w-tab"><i></i><i></i><i></i><i></i></div>
+        <span class="pin" style="top:96px;right:8px">1</span>
+        <span class="pin" style="top:236px;left:6px">2</span>
+        <span class="pin" style="bottom:46px;right:30px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Inicio</span><span data-lang="en">Home</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">El próximo turno arriba de todo: es lo que más se consulta.</span><span data-lang="en">The next appointment sits on top: it's what people check the most.</span></li>
+          <li><span data-lang="es">Cuatro accesos grandes en lugar de un menú.</span><span data-lang="en">Four large shortcuts instead of a menu.</span></li>
+          <li><span data-lang="es">Barra inferior con cuatro secciones, sin menú hamburguesa.</span><span data-lang="en">Bottom bar with four sections, no hamburger menu.</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe de búsqueda de profesional"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:28%"></div>
+        <div class="w-l xl" style="width:50%"></div>
+        <div class="w-pill on" style="height:6px;width:33%"></div>
+        <div class="w-pill" style="height:34px;border-radius:12px"></div>
+        <div class="w-row"><div class="w-pill on" style="width:70px"></div><div class="w-pill" style="width:56px"></div><div class="w-pill" style="width:64px"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-c"></div><div class="grow"><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div></div><div class="w-l" style="width:60%"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-c"></div><div class="grow"><div class="w-l d" style="width:62%"></div><div class="w-l" style="width:46%"></div></div></div><div class="w-l" style="width:55%"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-c"></div><div class="grow"><div class="w-l d" style="width:66%"></div><div class="w-l" style="width:40%"></div></div></div><div class="w-l" style="width:58%"></div></div>
+        <span class="pin" style="top:120px;right:8px">1</span>
+        <span class="pin" style="top:162px;right:8px">2</span>
+        <span class="pin" style="top:212px;left:6px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Paso 1 · ¿Con quién?</span><span data-lang="en">Step 1 · Who with?</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">Un solo buscador para especialidad o nombre.</span><span data-lang="en">One search box for specialty or name.</span></li>
+          <li><span data-lang="es">Especialidades frecuentes como chips.</span><span data-lang="en">Common specialties as chips.</span></li>
+          <li><span data-lang="es">Cada profesional muestra su próximo horario libre.</span><span data-lang="en">Each doctor shows their next free slot.</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe de selección de día y horario"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:28%"></div>
+        <div class="w-l xl" style="width:70%"></div>
+        <div class="w-pill on" style="height:6px;width:66%"></div>
+        <div class="w-b"><div class="w-l d" style="width:45%"></div><div class="w-g7"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="w-l d" style="width:50%"></div>
+        <div class="w-g3"><div class="w-pill" style="height:30px"></div><div class="w-pill" style="height:30px"></div><div class="w-pill" style="height:30px;opacity:.4"></div><div class="w-pill on" style="height:30px"></div><div class="w-pill" style="height:30px"></div><div class="w-pill" style="height:30px;opacity:.4"></div></div>
+        <div class="spacer"></div>
+        <div class="w-btn">Continuar</div>
+        <span class="pin" style="top:74px;right:8px">1</span>
+        <span class="pin" style="top:178px;right:8px">2</span>
+        <span class="pin" style="top:290px;right:8px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Paso 2 · Día y horario</span><span data-lang="en">Step 2 · Day and time</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">Progreso visible: paso 2 de 3.</span><span data-lang="en">Visible progress: step 2 of 3.</span></li>
+          <li><span data-lang="es">Calendario de dos semanas, sin abrir un selector.</span><span data-lang="en">Two-week calendar, no picker to open.</span></li>
+          <li><span data-lang="es">Horarios ocupados atenuados, no ocultos.</span><span data-lang="en">Taken slots dimmed, not hidden.</span></li>
+        </ol></figcaption>
+    </figure>
+
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe de confirmación"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:28%"></div>
+        <div class="w-l xl" style="width:62%"></div>
+        <div class="w-pill on" style="height:6px;width:100%"></div>
+        <div class="w-b" style="gap:10px"><div class="w-row"><div class="w-l" style="width:30%"></div><div class="spacer"></div><div class="w-l d" style="width:40%"></div></div><div class="w-row"><div class="w-l" style="width:22%"></div><div class="spacer"></div><div class="w-l d" style="width:46%"></div></div><div class="w-row"><div class="w-l" style="width:26%"></div><div class="spacer"></div><div class="w-l d" style="width:50%"></div></div><div class="w-row"><div class="w-l" style="width:30%"></div><div class="spacer"></div><div class="w-l d" style="width:36%"></div></div></div>
+        <div class="w-b"><div class="w-row"><div class="grow"><div class="w-l d" style="width:80%"></div><div class="w-l" style="width:55%"></div></div><div class="w-pill on" style="width:30px;height:18px"></div></div></div>
+        <div class="spacer"></div>
+        <div class="w-btn">Confirmar turno</div>
+        <div class="w-l" style="width:70%;align-self:center"></div>
+        <span class="pin" style="top:108px;right:8px">1</span>
+        <span class="pin" style="top:236px;right:8px">2</span>
+        <span class="pin" style="bottom:62px;right:8px">3</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Paso 3 · Confirmación</span><span data-lang="en">Step 3 · Confirmation</span></b>
+        <ol class="notes">
+          <li><span data-lang="es">Resumen con todos los datos antes de confirmar.</span><span data-lang="en">A full summary before confirming.</span></li>
+          <li><span data-lang="es">Recordatorio activado por defecto.</span><span data-lang="en">Reminder switched on by default.</span></li>
+          <li><span data-lang="es">Un único botón principal y la política de cancelación debajo.</span><span data-lang="en">A single primary button with the cancellation policy below.</span></li>
+        </ol></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ 06 decisiones -->
+<section class="sec" id="decisiones">
+  <div class="sec-head rv">
+    <div class="sec-num">06<b><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></b></div>
+    <div>
+      <h2><span data-lang="es">Del wireframe a la interfaz.</span><span data-lang="en">From wireframe to interface.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Al revisar el recorrido con las proto-personas y con heurísticas de usabilidad, cambié tres cosas.</span><span data-lang="en">Walking the flow through the proto-personas and usability heuristics, I changed three things.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Selector de fecha nativo</span><span data-lang="en">Native date picker</span></h4><p><span data-lang="es">Abría una rueda de fechas y recién después mostraba si había horarios. Muchos días aparecían vacíos.</span><span data-lang="en">It opened a date wheel and only then showed whether there were slots. Many days turned out empty.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Calendario de dos semanas a la vista</span><span data-lang="en">Two-week calendar in view</span></h4><p><span data-lang="es">Los días sin turnos se ven atenuados desde el principio. Se evita el ida y vuelta de "este día no hay".</span><span data-lang="en">Days with no slots are dimmed from the start, avoiding the back-and-forth of "nothing on this day".</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Confirmación con un toast</span><span data-lang="en">Confirmation via toast</span></h4><p><span data-lang="es">Un aviso de dos segundos decía "Turno reservado". Fácil de perder, sobre todo para Roberto.</span><span data-lang="en">A two-second notice said "Booked". Easy to miss, especially for Roberto.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Pantalla de éxito con el resumen</span><span data-lang="en">Success screen with the summary</span></h4><p><span data-lang="es">Una pantalla completa con el turno, la dirección y "Agregar al calendario". No queda duda de que se reservó.</span><span data-lang="en">A full screen with the appointment, the address and "Add to calendar". There's no doubt it went through.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Familiares dentro del perfil</span><span data-lang="en">Family hidden in the profile</span></h4><p><span data-lang="es">Para reservar para otra persona había que ir a Perfil, cambiar de usuario y volver.</span><span data-lang="en">To book for someone else you had to go to Profile, switch user and come back.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">"¿Para quién es?" al empezar</span><span data-lang="en">"Who is it for?" at the start</span></h4><p><span data-lang="es">Una pregunta al inicio del flujo, que se saltea si la cuenta no tiene familiares cargados.</span><span data-lang="en">One question at the start of the flow, skipped when the account has no family members.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 07 sistema de diseño -->
+<section class="sec" id="sistema">
+  <div class="sec-head rv">
+    <div class="sec-num">07<b><span data-lang="es">Sistema de diseño</span><span data-lang="en">Design system</span></b></div>
+    <div>
+      <h2><span data-lang="es">Calmo, claro y accesible.</span><span data-lang="en">Calm, clear and accessible.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Un azul confiable como color de acción, neutros cálidos para bajar la ansiedad y colores de apoyo sólo para categorías.</span><span data-lang="en">A trustworthy blue for actions, warm neutrals to lower anxiety and supporting colors only for categories.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <h3 class="sub rv"><span data-lang="es">Color</span><span data-lang="en">Color</span></h3>
+    <div class="swatches rv">
+      <div class="sw"><i style="background:#1d6ae5"></i><div><b><span data-lang="es">Azul Turno</span><span data-lang="en">Turno blue</span></b><code>#1D6AE5</code><span class="aa"><span data-lang="es">Blanco 4,95:1 · AA</span><span data-lang="en">White 4.95:1 · AA</span></span></div></div>
+      <div class="sw"><i style="background:#1558c0"></i><div><b><span data-lang="es">Azul profundo</span><span data-lang="en">Deep blue</span></b><code>#1558C0</code><span class="aa"><span data-lang="es">Texto 6,09:1 · AA</span><span data-lang="en">Text 6.09:1 · AA</span></span></div></div>
+      <div class="sw"><i style="background:#0b7a6b"></i><div><b><span data-lang="es">Verde salud</span><span data-lang="en">Health green</span></b><code>#0B7A6B</code><span class="aa"><span data-lang="es">Blanco 5,24:1 · AA</span><span data-lang="en">White 5.24:1 · AA</span></span></div></div>
+      <div class="sw"><i style="background:#f5a524"></i><div><b><span data-lang="es">Ámbar</span><span data-lang="en">Amber</span></b><code>#F5A524</code><span class="aa"><span data-lang="es">Con tinta 9,46:1</span><span data-lang="en">With ink 9.46:1</span></span></div></div>
+      <div class="sw"><i style="background:#0d0e10"></i><div><b><span data-lang="es">Tinta</span><span data-lang="en">Ink</span></b><code>#0D0E10</code></div></div>
+      <div class="sw"><i style="background:#f6f6f4"></i><div><b><span data-lang="es">Fondo</span><span data-lang="en">Background</span></b><code>#F6F6F4</code></div></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Tipografía</span><span data-lang="en">Typography</span></h3>
+    <div class="rv">
+      <div class="type-row"><small>Display · Inter Tight 800 · 32</small><span class="s" style="font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-0.04em;line-height:1.1">Elegí día y horario</span></div>
+      <div class="type-row"><small><span data-lang="es">Título</span><span data-lang="en">Title</span> · Inter Tight 700 · 20</small><span class="s" style="font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.02em">Dra. Paula Ríos</span></div>
+      <div class="type-row"><small><span data-lang="es">Cuerpo</span><span data-lang="en">Body</span> · Inter 400 · 16</small><span class="s" style="font-size:16px">Clínica médica · Consultorio 4</span></div>
+      <div class="type-row"><small><span data-lang="es">Etiqueta</span><span data-lang="en">Label</span> · Inter 600 · 13</small><span class="s" style="font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase">Próximo turno</span></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Componentes</span><span data-lang="en">Components</span></h3>
+    <div class="comp rv">
+      <span class="u-btn brand">Confirmar turno</span>
+      <span class="u-btn">Continuar</span>
+      <span class="u-btn ghost">Agregar al calendario</span>
+      <span class="u-chip on">Clínica médica</span>
+      <span class="u-chip">Pediatría</span>
+      <span class="u-slot on">10:30</span>
+      <span class="u-slot">11:00</span>
+      <span class="u-slot off">11:30</span>
+      <div class="u-card brand"><span class="u-k">Próximo turno</span><div style="font-weight:700;font-size:15px;margin-top:4px">Dra. Paula Ríos</div><small style="font-size:12px">Jue 12 nov · 10:30</small></div>
+    </div>
+
+    <h3 class="sub rv"><span data-lang="es">Accesibilidad</span><span data-lang="en">Accessibility</span></h3>
+    <div class="grid g2">
+      <div class="card rv"><ul class="list">
+        <li><span data-lang="es">Contraste AA en todos los textos y botones</span><span data-lang="en">AA contrast on every text and button</span></li>
+        <li><span data-lang="es">Áreas táctiles de 48 × 48 px como mínimo</span><span data-lang="en">Touch targets of at least 48 × 48 px</span></li>
+        <li><span data-lang="es">Soporte de texto grande del sistema</span><span data-lang="en">Supports the system's large text setting</span></li>
+      </ul></div>
+      <div class="card rv"><ul class="list">
+        <li><span data-lang="es">La información nunca depende sólo del color: los horarios ocupados también se tachan</span><span data-lang="en">Information never relies on color alone: taken slots are also struck through</span></li>
+        <li><span data-lang="es">Etiquetas claras para lectores de pantalla</span><span data-lang="en">Clear labels for screen readers</span></li>
+        <li><span data-lang="es">Lenguaje simple, sin jerga médica ni administrativa</span><span data-lang="en">Plain language, no medical or admin jargon</span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 08 UI -->
+<section class="sec" id="ui">
+  <div class="sec-head rv">
+    <div class="sec-num">08<b><span data-lang="es">UI final</span><span data-lang="en">Final UI</span></b></div>
+    <div>
+      <h2><span data-lang="es">Tres toques y listo.</span><span data-lang="en">Three taps and done.</span></h2>
+      <p class="sec-lead"><span data-lang="es">El recorrido completo en alta fidelidad: del inicio a la confirmación.</span><span data-lang="en">The full journey in high fidelity: from home to confirmation.</span></p>
+    </div>
+  </div>
+  <p class="swipe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg><span data-lang="es">Deslizá para ver las pantallas</span><span data-lang="en">Swipe to see the screens</span></p>
+  <div class="screens">
+    <!-- inicio -->
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Pantalla de inicio con el próximo turno y cuatro accesos"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="u-row"><div class="t"><span class="u-hi">Hola,</span><p class="u-h1">Martina</p></div><span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#9cc6ff,#1d6ae5)"></span></div>
+        <div class="u-card brand" style="padding:13px">
+          <span class="u-k">Próximo turno</span>
+          <div style="font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:-0.03em;margin-top:4px">Dra. Paula Ríos</div>
+          <small class="u-sm">Clínica médica · Consultorio 4</small>
+          <div class="u-row" style="margin-top:10px"><span class="u-pill">Jue 12 nov · 10:30</span><span class="spacer"></span><span class="u-pill" style="background:#fff;color:var(--brand)">Check-in</span></div>
+        </div>
+        <p class="u-h2" style="margin-top:4px">¿Qué necesitás?</p>
+        <div class="u-g2">
+          <div class="u-tile"><span class="u-ico">+</span><div><b>Reservar</b><span class="u-sm">Nuevo turno</span></div></div>
+          <div class="u-tile"><span class="u-ico" style="background:#0b7a6b">R</span><div><b>Recetas</b><span class="u-sm">2 activas</span></div></div>
+          <div class="u-tile"><span class="u-ico" style="background:#5b4fd8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7h10M7 12h10M7 17h6"/></svg></span><div><b>Estudios</b><span class="u-sm">Resultados</span></div></div>
+          <div class="u-tile"><span class="u-ico" style="background:#f5a524;color:#0d0e10">♥</span><div><b>Cobertura</b><span class="u-sm">OSEP · Plan 2</span></div></div>
+        </div>
+        <div class="u-tab">
+          <span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Inicio</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Turnos</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/></svg>Recetas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Perfil</span>
+        </div>
+      </div></div>
+      <figcaption><b><span data-lang="es">Inicio</span><span data-lang="en">Home</span></b><span><span data-lang="es">El próximo turno y el check-in, siempre a la vista.</span><span data-lang="en">Next appointment and check-in, always in view.</span></span></figcaption>
+    </figure>
+
+    <!-- paso 1 -->
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Paso 1: búsqueda de especialidad y profesionales"><div class="screen">
+        <div class="sb">9:41</div>
+        <span class="u-step">Paso 1 de 3</span>
+        <p class="u-h1">¿Con quién?</p>
+        <div class="u-prog"><i style="width:33%"></i></div>
+        <div class="u-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Especialidad o profesional</div>
+        <div class="u-chips"><span class="u-chip on">Clínica médica</span><span class="u-chip">Pediatría</span><span class="u-chip">Dermatología</span></div>
+        <div class="u-card"><div class="u-row"><span class="u-ico" style="border-radius:50%;background:#c9dcff;color:#1558c0">PR</span><div class="t"><b>Dra. Paula Ríos</b><small>Clínica médica · 4,9 ★</small></div></div><div class="u-row" style="margin-top:8px"><span class="u-pill soft">Próximo: jue 12 · 10:30</span><span class="spacer"></span><span class="u-pill ok">OSEP</span></div></div>
+        <div class="u-card"><div class="u-row"><span class="u-ico" style="border-radius:50%;background:#bfeee4;color:#0b7a6b">MS</span><div class="t"><b>Dr. Martín Sosa</b><small>Clínica médica · 4,7 ★</small></div></div><div class="u-row" style="margin-top:8px"><span class="u-pill soft">Próximo: vie 13 · 09:00</span><span class="spacer"></span><span class="u-pill ok">OSEP</span></div></div>
+        <div class="u-card"><div class="u-row"><span class="u-ico" style="border-radius:50%;background:#e8e6fb;color:#4a3fc0">LG</span><div class="t"><b>Dra. Laura Gil</b><small>Clínica médica · 4,8 ★</small></div></div><div class="u-row" style="margin-top:8px"><span class="u-pill soft">Próximo: lun 16 · 15:30</span></div></div>
+      </div></div>
+      <figcaption><b><span data-lang="es">Paso 1 · ¿Con quién?</span><span data-lang="en">Step 1 · Who with?</span></b><span><span data-lang="es">Próximo horario y cobertura sin entrar al detalle.</span><span data-lang="en">Next slot and coverage without opening the detail.</span></span></figcaption>
+    </figure>
+
+    <!-- paso 2 -->
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Paso 2: calendario de dos semanas y horarios disponibles"><div class="screen">
+        <div class="sb">9:41</div>
+        <span class="u-step">Paso 2 de 3</span>
+        <p class="u-h1">Elegí día y horario</p>
+        <div class="u-prog"><i style="width:66%"></i></div>
+        <div class="u-card">
+          <div class="u-row" style="margin-bottom:6px"><b class="t" style="font-size:12px">Noviembre 2026</b><span style="color:#8b9096">‹ ›</span></div>
+          <div class="u-cal">
+            <span class="h">L</span><span class="h">M</span><span class="h">M</span><span class="h">J</span><span class="h">V</span><span class="h">S</span><span class="h">D</span>
+            <span>9</span><span>10</span><span>11</span><span class="on">12</span><span>13</span><span class="off">14</span><span class="off">15</span>
+            <span>16</span><span>17</span><span class="off">18</span><span>19</span><span>20</span><span class="off">21</span><span class="off">22</span>
+          </div>
+        </div>
+        <p class="u-h2">Horarios disponibles</p>
+        <div class="u-g3"><span class="u-slot">09:00</span><span class="u-slot">09:30</span><span class="u-slot off">10:00</span><span class="u-slot on">10:30</span><span class="u-slot">11:00</span><span class="u-slot off">11:30</span></div>
+        <div class="spacer"></div>
+        <span class="u-btn">Continuar</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Paso 2 · Día y horario</span><span data-lang="en">Step 2 · Day and time</span></b><span><span data-lang="es">Días sin turnos y horarios ocupados, atenuados.</span><span data-lang="en">Days without slots and taken times, dimmed.</span></span></figcaption>
+    </figure>
+
+    <!-- paso 3 -->
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Paso 3: resumen del turno y recordatorio por WhatsApp"><div class="screen">
+        <div class="sb">9:41</div>
+        <span class="u-step">Paso 3 de 3</span>
+        <p class="u-h1">Revisá y confirmá</p>
+        <div class="u-prog"><i style="width:100%"></i></div>
+        <div class="u-card">
+          <dl class="u-dl">
+            <div><dt>Paciente</dt><dd>Martina González</dd></div>
+            <div><dt>Profesional</dt><dd>Dra. Paula Ríos</dd></div>
+            <div><dt>Fecha</dt><dd>Jue 12 nov · 10:30</dd></div>
+            <div><dt>Lugar</dt><dd>Consultorio 4</dd></div>
+            <div><dt>Cobertura</dt><dd>OSEP · Plan 2</dd></div>
+          </dl>
+        </div>
+        <div class="u-card soft"><div class="u-row"><div class="t"><b>Recordatorio por WhatsApp</b><small style="color:var(--brand-ink)">24 h antes del turno</small></div><span class="u-toggle"></span></div></div>
+        <div class="spacer"></div>
+        <span class="u-btn brand">Confirmar turno</span>
+        <span class="u-sm" style="text-align:center">Podés cancelar sin costo hasta 12 h antes</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Paso 3 · Confirmación</span><span data-lang="en">Step 3 · Confirmation</span></b><span><span data-lang="es">Todo el turno en un vistazo antes de confirmar.</span><span data-lang="en">The whole appointment at a glance before confirming.</span></span></figcaption>
+    </figure>
+
+    <!-- listo -->
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Pantalla de éxito: turno reservado"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="spacer"></div>
+        <div class="u-center">
+          <span class="u-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
+          <p class="u-h1" style="margin-top:6px">¡Listo, Martina!</p>
+          <span class="u-hi">Tu turno quedó reservado</span>
+        </div>
+        <div class="u-card" style="margin-top:6px"><div class="u-row"><span class="u-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div class="t"><b>Jueves 12 de noviembre, 10:30</b><small>Dra. Paula Ríos · Consultorio 4</small></div></div></div>
+        <div class="u-card soft"><b style="font-size:11px">El día del turno</b><span class="u-sm" style="color:var(--brand-ink)">Cuando llegues, hacé check-in desde el inicio. Sin fila en recepción.</span></div>
+        <div class="spacer"></div>
+        <span class="u-btn ghost">Agregar al calendario</span>
+        <span class="u-btn">Volver al inicio</span>
+      </div></div>
+      <figcaption><b><span data-lang="es">Turno reservado</span><span data-lang="en">Booked</span></b><span><span data-lang="es">Una confirmación imposible de pasar por alto.</span><span data-lang="en">A confirmation you can't miss.</span></span></figcaption>
+    </figure>
+  </div>
+  <div class="cta-row center rv"><a class="btn-c brand" href="prototipos/turno.html"><span data-lang="es">Probar el prototipo navegable</span><span data-lang="en">Try the interactive prototype</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+</section>
+
+<!-- ============================================================ 09 validación -->
+<section class="sec" id="validacion">
+  <div class="sec-head rv">
+    <div class="sec-num">09<b><span data-lang="es">Validación</span><span data-lang="en">Validation</span></b></div>
+    <div>
+      <h2><span data-lang="es">Evaluación heurística del prototipo.</span><span data-lang="en">Heuristic evaluation of the prototype.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Antes de llevarlo a usuarios, evalué el prototipo navegable con las 10 heurísticas de Nielsen y recorrí paso a paso las tareas principales: </span><span data-lang="en">Before taking it to users, I evaluated the interactive prototype against Nielsen's 10 heuristics and walked through the main tasks step by step: </span><span data-lang="es">reservar, reprogramar, cancelar, reservar para un familiar y hacer check-in</span><span data-lang="en">booking, rescheduling, cancelling, booking for a family member and checking in</span>. <span data-lang="es">Cada problema lleva su severidad y corregí en el prototipo los más graves.</span><span data-lang="en">Each issue has a severity rating, and I fixed the most serious ones in the prototype.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g4 metrics">
+      <div class="card metric rv"><b>6</b><span><span data-lang="es">problemas encontrados</span><span data-lang="en">issues found</span></span></div>
+      <div class="card metric rv"><b>5</b><span><span data-lang="es">corregidos en el prototipo</span><span data-lang="en">fixed in the prototype</span></span></div>
+      <div class="card metric rv"><b>2</b><span><span data-lang="es">de severidad alta (3)</span><span data-lang="en">high severity (3)</span></span></div>
+      <div class="card metric rv"><b>10</b><span><span data-lang="es">heurísticas revisadas</span><span data-lang="en">heuristics reviewed</span></span></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Hallazgos</span><span data-lang="en">Findings</span></h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr><th scope="col">#</th><th scope="col"><span data-lang="es">Problema y solución</span><span data-lang="en">Issue and fix</span></th><th scope="col"><span data-lang="es">Heurística</span><span data-lang="en">Heuristic</span></th><th scope="col">Sev.</th><th scope="col"><span data-lang="es">Estado</span><span data-lang="en">Status</span></th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span data-lang="es">Se podían reservar dos turnos para la misma persona a la misma hora, con profesionales distintos.</span><span data-lang="en">You could book two appointments for the same person at the same time with different doctors.</span><small><span data-lang="es">Los horarios que ya tenés ocupados aparecen marcados como "Otro turno" y no se pueden elegir.</span><span data-lang="en">Times you already have booked are marked "Otro turno" and can't be picked.</span></small></td><td>H5 · <span data-lang="es">Prevención de errores</span><span data-lang="en">Error prevention</span></td><td><span class="sev s3">3</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>2</td><td><span data-lang="es">Al reprogramar no se veía cuál era el horario actual: había que recordarlo.</span><span data-lang="en">When rescheduling, the current time wasn't shown: you had to remember it.</span><small><span data-lang="es">Arriba aparece "Tu turno actual" y en la grilla el horario actual queda marcado.</span><span data-lang="en">"Your current appointment" now appears on top and the current slot is marked in the grid.</span></small></td><td>H6 · <span data-lang="es">Reconocer antes que recordar</span><span data-lang="en">Recognition rather than recall</span></td><td><span class="sev s3">3</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>3</td><td><span data-lang="es">El check-in se podía hacer a cualquier hora del día del turno, incluso horas antes o después.</span><span data-lang="en">Check-in was available at any time on the day, even hours before or after.</span><small><span data-lang="es">Se habilita desde 60 min antes hasta 30 min después; fuera de eso, indica desde qué hora.</span><span data-lang="en">It opens 60 min before and closes 30 min after; otherwise it shows when it opens.</span></small></td><td>H5 · <span data-lang="es">Prevención de errores</span><span data-lang="en">Error prevention</span></td><td><span class="sev s2">2</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>4</td><td><span data-lang="es">La explicación de los días en gris desaparecía, porque la app ya elegía el primer día libre.</span><span data-lang="en">The note about grey days disappeared because the app pre-selected the first free day.</span><small><span data-lang="es">La explicación queda siempre debajo del calendario.</span><span data-lang="en">The note now always sits below the calendar.</span></small></td><td>H10 · <span data-lang="es">Ayuda y documentación</span><span data-lang="en">Help and documentation</span></td><td><span class="sev s2">2</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>5</td><td><span data-lang="es">"Texto más grande" agrandaba el contenido, pero no la barra inferior.</span><span data-lang="en">"Larger text" enlarged the content but not the bottom bar.</span><small><span data-lang="es">Ahora también agranda la barra inferior.</span><span data-lang="en">It now enlarges the bottom bar too.</span></small></td><td>H4 · <span data-lang="es">Consistencia y estándares</span><span data-lang="en">Consistency and standards</span></td><td><span class="sev s1">1</span></td><td><span class="estado ok"><span data-lang="es">Corregido</span><span data-lang="en">Fixed</span></span></td></tr>
+          <tr><td>6</td><td><span data-lang="es">Cancelar un turno no se puede deshacer (aunque pide confirmación antes).</span><span data-lang="en">Cancelling can't be undone (though it asks for confirmation first).</span><small><span data-lang="es">Pendiente: sumar "Deshacer" mientras el horario siga libre.</span><span data-lang="en">Pending: add "Undo" while the slot is still free.</span></small></td><td>H3 · <span data-lang="es">Control y libertad</span><span data-lang="en">User control and freedom</span></td><td><span class="sev s1">1</span></td><td><span class="estado pend"><span data-lang="es">Pendiente</span><span data-lang="en">Pending</span></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint"><span data-lang="es">Deslizá la tabla para ver todas las columnas →</span><span data-lang="en">Swipe the table to see every column →</span></p>
+    <p class="nota"><span data-lang="es">Severidad según la escala de Nielsen: 1 cosmético, 2 menor, 3 mayor, 4 catastrófico. No encontré problemas de severidad 4.</span><span data-lang="en">Severity on Nielsen's scale: 1 cosmetic, 2 minor, 3 major, 4 catastrophic. I found no severity-4 issues.</span></p>
+    <h3 class="sub rv"><span data-lang="es">Antes y después</span><span data-lang="en">Before and after</span></h3>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><p><span data-lang="es">Se podían reservar dos turnos para la misma persona a la misma hora, con profesionales distintos.</span><span data-lang="en">You could book two appointments for the same person at the same time with different doctors.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><p><span data-lang="es">Los horarios que ya tenés ocupados aparecen marcados como "Otro turno" y no se pueden elegir.</span><span data-lang="en">Times you already have booked are marked "Otro turno" and can't be picked.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><p><span data-lang="es">Al reprogramar no se veía cuál era el horario actual: había que recordarlo.</span><span data-lang="en">When rescheduling, the current time wasn't shown: you had to remember it.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><p><span data-lang="es">Arriba aparece "Tu turno actual" y en la grilla el horario actual queda marcado.</span><span data-lang="en">"Your current appointment" now appears on top and the current slot is marked in the grid.</span></p></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Próximo paso: test con usuarios</span><span data-lang="en">Next step: user testing</span></h3>
+    <p class="body rv"><span data-lang="es">Una evaluación experta encuentra problemas de usabilidad conocidos, pero no mide cómo se comportan las personas reales. El siguiente paso es un test moderado con el prototipo ya corregido, con estas metas y tareas:</span><span data-lang="en">An expert review finds known usability issues, but it doesn't measure how real people behave. The next step is a moderated test with the fixed prototype, using these targets and tasks:</span></p>
+    <div class="grid g4 metrics">
+      <div class="card metric rv"><b>&lt; 60 s</b><span><span data-lang="es">para reservar un turno de punta a punta</span><span data-lang="en">to book an appointment end to end</span></span></div>
+      <div class="card metric rv"><b>≥ 90 %</b><span><span data-lang="es">de tareas completadas sin ayuda</span><span data-lang="en">of tasks completed unaided</span></span></div>
+      <div class="card metric rv"><b>SUS ≥ 80</b><span><span data-lang="es">en la escala de usabilidad del sistema</span><span data-lang="en">on the System Usability Scale</span></span></div>
+      <div class="card metric rv"><b>−30 %</b><span><span data-lang="es">de ausentismo, a medir con el consultorio</span><span data-lang="en">no-shows, to be measured with the practice</span></span></div>
+    </div>
+    <h3 class="sub rv"><span data-lang="es">Tareas del test con usuarios</span><span data-lang="en">User test tasks</span></h3>
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr><th scope="col">#</th><th scope="col"><span data-lang="es">Tarea</span><span data-lang="en">Task</span></th><th scope="col"><span data-lang="es">Éxito si…</span><span data-lang="en">Success if…</span></th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span data-lang="es">Sacá un turno de clínica médica para el jueves a la mañana.</span><span data-lang="en">Book a GP appointment for Thursday morning.</span></td><td><span data-lang="es">Llega a la pantalla de éxito sin volver atrás más de una vez.</span><span data-lang="en">Reaches the success screen without going back more than once.</span></td></tr>
+          <tr><td>2</td><td><span data-lang="es">Pasá ese turno al viernes.</span><span data-lang="en">Move that appointment to Friday.</span></td><td><span data-lang="es">Encuentra "Reprogramar" en menos de 20 s.</span><span data-lang="en">Finds "Reschedule" in under 20 s.</span></td></tr>
+          <tr><td>3</td><td><span data-lang="es">Reservá un turno para tu mamá.</span><span data-lang="en">Book an appointment for your mother.</span></td><td><span data-lang="es">Elige el familiar correcto antes del paso 1.</span><span data-lang="en">Picks the right family member before step 1.</span></td></tr>
+          <tr><td>4</td><td><span data-lang="es">Llegaste al consultorio: avisá que estás.</span><span data-lang="en">You've arrived: let them know you're here.</span></td><td><span data-lang="es">Hace check-in desde el inicio.</span><span data-lang="en">Checks in from the home screen.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="body rv" style="margin-top:18px"><span data-lang="es"><b>Participantes:</b> 5 personas, 3 de entre 25 y 45 años y 2 de más de 65, que hayan sacado al menos un turno médico en el último año.</span><span data-lang="en"><b>Participants:</b> 5 people, 3 aged 25–45 and 2 over 65, who booked at least one medical appointment in the past year.</span></p>
+  </div>
+</section>
+
+<!-- ============================================================ 10 aprendizajes -->
+<section class="sec" id="aprendizajes">
+  <div class="sec-head rv">
+    <div class="sec-num">10<b><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></b></div>
+    <div><h2><span data-lang="es">Lo que me llevo.</span><span data-lang="en">What I'm taking away.</span></h2></div>
+  </div>
+  <div class="indent grid g2">
+    <div class="card rv"><span class="k"><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Diseñar para el usuario más exigente (Roberto) mejoró la experiencia de todos.</span><span data-lang="en">Designing for the most demanding user (Roberto) improved the experience for everyone.</span></li>
+        <li><span data-lang="es">La confirmación es parte del producto, no un detalle de cierre.</span><span data-lang="en">Confirmation is part of the product, not a finishing touch.</span></li>
+        <li><span data-lang="es">Mostrar lo que no está disponible ahorra más pasos que esconderlo.</span><span data-lang="en">Showing what's unavailable saves more steps than hiding it.</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Próximos pasos</span><span data-lang="en">Next steps</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Correr el test con adultos mayores reales e iterar.</span><span data-lang="en">Run the test with real older adults and iterate.</span></li>
+        <li><span data-lang="es">Lista de espera: aviso cuando se libera un horario.</span><span data-lang="en">Waiting list: alert when a slot frees up.</span></li>
+        <li><span data-lang="es">Panel web para que recepción vea check-ins y huecos.</span><span data-lang="en">Web panel so the front desk can see check-ins and gaps.</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<a class="next rv" href="ruta-del-vino.html">
+  <div class="next-bg" aria-hidden="true"></div>
+  <span class="eyebrow"><span data-lang="es">Siguiente caso</span><span data-lang="en">Next case</span></span>
+  <h2>Ruta del Vino <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></h2>
+  <p><span data-lang="es">Visitas a bodegas de Mendoza: descubrir, reservar y armar el recorrido del día en un solo lugar.</span><span data-lang="en">Mendoza winery visits: discover, book and plan the day's route in one place.</span></p>
+</a>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Lucía Miranda · <span data-lang="es">Diseño y desarrollo</span><span data-lang="en">Design &amp; development</span></span>
+    <a href="../index.html#contact" data-href-lang="../index.html#contact"><span data-lang="es">Contacto →</span><span data-lang="en">Contact →</span></a>
+  </div>
+</footer>
+
+<script src="caso.js"></script>
+</body>
+</html>
