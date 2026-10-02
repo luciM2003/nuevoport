@@ -192,26 +192,10 @@
   .concept-grid .work-media { aspect-ratio: 4 / 3; }
   .badge-concept { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: rgba(255, 255, 255, 0.7); margin-left: 8px; vertical-align: middle; }
 
-  /* Caso de estudio dentro del modal. */
-  .case-study { grid-column: 1 / -1; margin-top: 18px; border-top: 1px solid var(--line); }
-  .cs-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--line); }
-  .cs-facts span { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--soft); }
-  .cs-facts b { display: block; margin-top: 6px; font-size: 14px; font-weight: 600; }
-  .cs-block { display: grid; grid-template-columns: 160px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line); }
-  .cs-block:last-child { border-bottom: 0; }
-  .cs-block h4 { margin: 0; font-family: var(--display); font-size: 17px; letter-spacing: -0.02em; }
-  .cs-block p { margin: 0 !important; color: var(--ink-2) !important; grid-column: auto !important; }
-  .cs-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; counter-reset: paso; }
-  .cs-list li { position: relative; padding-left: 34px; color: var(--ink-2); }
-  .cs-list li::before { counter-increment: paso; content: counter(paso, decimal-leading-zero); position: absolute; left: 0; top: 1px; font-family: var(--display); font-size: 13px; font-weight: 600; color: var(--accent-ink); }
-  .cs-list.check li::before { content: ""; top: 8px; width: 14px; height: 8px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
-  .cs-note { margin-top: 6px; font-size: 13px; color: var(--soft); }
+  .concept-steps { margin: 10px 0 0; font-size: 13px; color: var(--soft); }
+  .concept-links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 14px; }
   @media (max-width: 900px) { .concept-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 640px) {
-    .concept-grid { grid-template-columns: 1fr; }
-    .cs-facts { grid-template-columns: 1fr 1fr; }
-    .cs-block { grid-template-columns: 1fr; gap: 10px; }
-  }
+  @media (max-width: 640px) { .concept-grid { grid-template-columns: 1fr; } }
 
   /* ---------------------------------------------------------------- sobre mí */
   .statement { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4.2vw, 60px); line-height: 1.12; letter-spacing: -0.035em; margin: 26px 0 0; max-width: 1100px; }
@@ -275,7 +259,7 @@
   @media (hover: none), (pointer: coarse) { .cursor { display: none; } .case-media, .work-media { cursor: pointer; } }
 
   /* ---------------------------------------------------------------- modales */
-  .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(13, 14, 16, 0.5); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); overflow-y: auto; overscroll-behavior: contain; }
+  .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(13, 14, 16, 0.5); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
   .modal.open { display: flex; animation: fade 0.3s ease; }
   @keyframes fade { from { opacity: 0; } }
   .modal-box { position: relative; width: 100%; max-width: 820px; background: var(--surface); border-radius: 28px; padding: 12px; box-shadow: 0 50px 120px -40px rgba(0, 0, 0, 0.5); margin: auto; animation: rise 0.5s var(--ease); }
@@ -283,15 +267,18 @@
   .modal-close { position: absolute; top: 24px; right: 24px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, 0.92); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); display: grid; place-items: center; transition: transform 0.4s var(--ease); }
   .modal-close:hover { transform: rotate(90deg); }
   .modal-close svg { width: 18px; height: 18px; }
-  .modal-media { aspect-ratio: 16 / 10; border-radius: 20px; overflow: hidden; background: #e4e7e2; }
-  .modal-media img, .modal-media video { width: 100%; height: 100%; object-fit: cover; }
+  /* La imagen se muestra entera, con su proporción: antes se recortaba a 16:10. */
+  .modal-media { border-radius: 20px; overflow: hidden; background: #e4e7e2; }
+  .modal-media img, .modal-media video { width: 100%; height: auto; max-height: 72vh; object-fit: contain; margin-inline: auto; }
   .modal-body { padding: 28px 22px 18px; display: grid; grid-template-columns: 1fr auto; gap: 8px 28px; align-items: end; }
   .modal-body h2 { font-family: var(--display); font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.045em; margin: 0; line-height: 1; }
   .modal-body .tags { margin: 6px 0 0; grid-column: 1 / -1; }
   .modal-body p { grid-column: 1 / -1; color: var(--muted); margin: 14px 0 6px; }
   .modal-body .btn { grid-row: 1; grid-column: 2; }
-  .cert-box { max-width: 980px; height: 86vh; padding: 0; overflow: hidden; }
-  .cert-box iframe { width: 100%; height: 100%; border: 0; }
+  .cert-box { max-width: 980px; height: 86vh; height: 86dvh; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .cert-box iframe { width: 100%; flex: 1; border: 0; }
+  .cert-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 76px 14px 20px; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+  .cert-bar a { white-space: nowrap; }
 
   /* ---------------------------------------------------------------- responsive */
   @media (max-width: 1080px) {
@@ -321,8 +308,16 @@
     .hero-cv { margin: 6px 0 0; width: 100%; justify-content: center; }
     .stats { grid-template-columns: 1fr 1fr; }
     .stat:nth-child(even) { padding-left: 18px; }
-    .modal-body { grid-template-columns: 1fr; }
+    /* En el celular el modal ocupa toda la pantalla y se desplaza entero;
+       la cruz queda fija arriba para poder cerrar desde cualquier punto. */
+    .modal { padding: 0; align-items: flex-start; }
+    .modal-box { min-height: 100%; border-radius: 0; padding: 10px 10px 28px; margin: 0; }
+    .modal-close { position: fixed; top: 16px; right: 16px; }
+    .modal-media { border-radius: 16px; }
+    .modal-body { grid-template-columns: 1fr; padding: 22px 8px 8px; }
     .modal-body .btn { grid-row: auto; grid-column: 1; justify-content: center; margin-top: 8px; }
+    .cert-box { min-height: 0; height: 100%; padding: 0; }
+    .cert-bar { padding-right: 72px; }
     .work-meta { flex-direction: column; gap: 4px; }
     .work-tags { text-align: left; }
   }
@@ -440,7 +435,7 @@
     <div id="cases"></div>
     <div class="more-head" data-reveal>
       <h3><span data-lang="es">Casos de estudio UX</span><span data-lang="en">UX case studies</span></h3>
-      <p class="lead"><span data-lang="es">Proyectos conceptuales de punta a punta: problema, investigación, proceso y solución.</span><span data-lang="en">End-to-end concept projects: problem, research, process and solution.</span></p>
+      <p class="lead"><span data-lang="es">Proyectos propios de punta a punta: investigación, wireframes, UI y un prototipo navegable que podés probar.</span><span data-lang="en">End-to-end self-initiated projects: research, wireframes, UI and an interactive prototype you can try.</span></p>
     </div>
     <div class="concept-grid" id="conceptGrid"></div>
     <div class="more-head" data-reveal>
@@ -566,7 +561,9 @@
 <div class="toast" id="toast" role="status"></div>
 
 <!-- ================================================================ modales -->
-<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+<!-- data-lenis-prevent: el scroll suave se pausa con el modal abierto y, sin esto,
+     bloquea el desplazamiento dentro del modal (en el celular se veía cortado). -->
+<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle" data-lenis-prevent>
   <div class="modal-box">
     <button type="button" class="modal-close" data-close aria-label="Cerrar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -580,17 +577,20 @@
       </a>
       <ul class="tags" id="pmTags"></ul>
       <p id="pmDesc"></p>
-      <div class="case-study" id="pmCase" hidden></div>
     </div>
   </div>
 </div>
 
-<div class="modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificado">
+<div class="modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificado" data-lenis-prevent>
   <div class="modal-box cert-box">
     <button type="button" class="modal-close" data-close aria-label="Cerrar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <div id="certContent" style="height:100%"></div>
+    <!-- Muchos celulares no muestran PDFs dentro de un iframe: el enlace lo abre aparte. -->
+    <div class="cert-bar"><span><span data-lang="es">Certificado</span><span data-lang="en">Certificate</span></span>
+      <a class="text-link" id="certOpen" href="#" target="_blank" rel="noopener"><span data-lang="es">Abrir PDF</span><span data-lang="en">Open PDF</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+    <div id="certContent" style="flex:1;display:flex"></div>
   </div>
 </div>
 
@@ -627,111 +627,27 @@
       link: 'https://stitchpadelhubmendoza.vercel.app'
     },
     // Casos conceptuales: proyectos propios, sin cliente. Se muestran como tales
-    // y no llevan métricas de resultado, sólo lo que se mediría.
+    // Cada uno tiene su página en casos/ con el proceso completo y un prototipo navegable.
     {
       id: 'turno', concepto: true, titulo: 'Turno',
       tags: ['Mobile app', { es: 'Salud', en: 'Healthcare' }, 'Figma'],
       sub: { es: 'App para sacar turnos médicos en tres toques', en: 'An app to book medical appointments in three taps' },
-      desc: {
-        es: 'Turno es una app conceptual para reservar turnos médicos sin llamadas ni esperas. Diseñé el recorrido completo, desde encontrar al profesional hasta el recordatorio y el check-in, priorizando la claridad para todas las edades.',
-        en: 'Turno is a concept app to book medical appointments without phone calls or waiting. I designed the full journey, from finding a professional to the reminder and check-in, prioritizing clarity for every age group.'
-      },
-      media: 'images/concepto-turno.jpg', tipo: 'image', link: null,
-      caso: {
-        rol: { es: 'Diseño UX/UI', en: 'UX/UI design' },
-        duracion: { es: '4 semanas', en: '4 weeks' },
-        herramientas: 'Figma · FigJam',
-        desafio: {
-          es: 'Sacar un turno médico suele implicar llamar en horario de oficina, esperar en línea y anotar a mano día y hora. Muchas personas se olvidan del turno y la agenda del consultorio queda con huecos.',
-          en: 'Booking a medical appointment usually means calling during office hours, waiting on hold and writing the date down by hand. Many people forget their appointment and the practice ends up with gaps in its schedule.'
-        },
-        investigacion: {
-          es: 'Benchmark de apps de salud y de reservas, dos proto-personas (una paciente que trabaja todo el día y un adulto mayor que gestiona los turnos de su familia) y un journey map del proceso actual, desde que surge la necesidad hasta la consulta.',
-          en: 'Benchmark of healthcare and booking apps, two proto-personas (a patient who works full-time and an older adult who manages the family appointments) and a journey map of the current process, from the moment the need appears to the visit itself.'
-        },
-        proceso: {
-          es: ['Definición del problema y objetivos', 'Arquitectura de información y flujos de reserva', 'Wireframes de baja fidelidad', 'Sistema de diseño y UI en alta fidelidad', 'Prototipo navegable listo para test de usabilidad'],
-          en: ['Problem definition and goals', 'Information architecture and booking flows', 'Low-fidelity wireframes', 'Design system and high-fidelity UI', 'Clickable prototype ready for usability testing']
-        },
-        solucion: {
-          es: ['Reserva en 3 pasos con barra de progreso', 'Horarios disponibles a la vista y los ocupados atenuados', 'Recordatorio por WhatsApp 24 h antes y check-in desde la app', 'El próximo turno siempre visible en el inicio', 'Textos grandes y contraste AA pensando en adultos mayores'],
-          en: ['3-step booking with a progress bar', 'Available slots at a glance, taken ones dimmed', 'WhatsApp reminder 24 h before and in-app check-in', 'Next appointment always visible on the home screen', 'Large type and AA contrast with older adults in mind']
-        },
-        medir: {
-          es: 'Tiempo para reservar un turno, porcentaje de reservas completadas sin ayuda, tasa de ausentismo y puntaje SUS.',
-          en: 'Time to book an appointment, share of bookings completed without help, no-show rate and SUS score.'
-        }
-      }
+      media: 'images/concepto-turno.jpg', tipo: 'image',
+      pagina: 'casos/turno.html', prototipo: 'casos/prototipos/turno.html'
     },
     {
       id: 'ruta-vino', concepto: true, titulo: 'Ruta del Vino',
       tags: ['Mobile app', { es: 'Turismo', en: 'Tourism' }, 'Figma'],
       sub: { es: 'Visitas a bodegas de Mendoza en un solo lugar', en: 'Mendoza winery visits in one place' },
-      desc: {
-        es: 'Ruta del Vino es una app conceptual para descubrir bodegas de Mendoza, reservar experiencias y armar el recorrido del día con traslado incluido. El foco fue que planificar una salida lleve minutos y no horas.',
-        en: 'Ruta del Vino is a concept app to discover Mendoza wineries, book experiences and plan the day\'s route with transport included. The focus was making a day out take minutes to plan instead of hours.'
-      },
-      media: 'images/concepto-vino.jpg', tipo: 'image', link: null,
-      caso: {
-        rol: { es: 'Diseño UX/UI', en: 'UX/UI design' },
-        duracion: { es: '3 semanas', en: '3 weeks' },
-        herramientas: 'Figma · FigJam',
-        desafio: {
-          es: 'Quien visita Mendoza tiene que buscar bodegas en varias webs, escribir por WhatsApp para reservar y coordinar el traslado por su cuenta. Armar un día de visitas lleva horas y muchas experiencias se agotan sin aviso.',
-          en: 'Visitors to Mendoza have to search wineries across several websites, message each one on WhatsApp to book and arrange transport on their own. Planning a day takes hours and many experiences sell out without notice.'
-        },
-        investigacion: {
-          es: 'Análisis de cómo se reservan hoy las experiencias (webs de bodegas, agencias y redes), proto-personas de turista nacional y extranjero, y un mapa de empatía para entender qué genera dudas antes de reservar.',
-          en: 'Analysis of how experiences are booked today (winery sites, agencies and social media), proto-personas for domestic and international tourists, and an empathy map to understand what causes doubt before booking.'
-        },
-        proceso: {
-          es: ['Mapeo del recorrido actual del turista', 'Arquitectura de información por zona y tipo de experiencia', 'Flujos de búsqueda, reserva y armado del día', 'UI en alta fidelidad con identidad cálida y local', 'Prototipo navegable en español e inglés'],
-          en: ['Mapping the tourist\'s current journey', 'Information architecture by area and experience type', 'Search, booking and day-planning flows', 'High-fidelity UI with a warm, local identity', 'Clickable prototype in Spanish and English']
-        },
-        solucion: {
-          es: ['Exploración por zona: Luján de Cuyo, Valle de Uco y Maipú', 'Precio y próximo horario visibles antes de entrar al detalle', 'Recorrido del día en una línea de tiempo con distancias', 'Traslado opcional dentro del mismo flujo de reserva', 'Interfaz bilingüe para turismo extranjero'],
-          en: ['Browse by area: Luján de Cuyo, Valle de Uco and Maipú', 'Price and next slot visible before opening the detail', 'Day route on a timeline with distances', 'Optional transport within the same booking flow', 'Bilingual interface for international visitors']
-        },
-        medir: {
-          es: 'Conversión de búsqueda a reserva, bodegas por recorrido y tiempo para armar un día completo.',
-          en: 'Search-to-booking conversion, wineries per route and time to plan a full day.'
-        }
-      }
+      media: 'images/concepto-vino.jpg', tipo: 'image',
+      pagina: 'casos/ruta-del-vino.html', prototipo: 'casos/prototipos/ruta-del-vino.html'
     },
     {
       id: 'alcancia', concepto: true, titulo: 'Alcancía',
       tags: ['Mobile app', 'Fintech', 'Figma'],
       sub: { es: 'Finanzas personales sin planillas', en: 'Personal finance without spreadsheets' },
-      desc: {
-        es: 'Alcancía es una app conceptual de finanzas personales para gente joven: muestra cuánto queda disponible en el mes, organiza el presupuesto por categoría y acompaña metas de ahorro con consejos concretos.',
-        en: 'Alcancía is a concept personal finance app for young people: it shows how much is left for the month, organizes the budget by category and supports savings goals with concrete tips.'
-      },
-      media: 'images/concepto-alcancia.jpg', tipo: 'image', link: null,
-      caso: {
-        rol: { es: 'Diseño UX/UI', en: 'UX/UI design' },
-        duracion: { es: '4 semanas', en: '4 weeks' },
-        herramientas: 'Figma · FigJam',
-        desafio: {
-          es: 'Mucha gente joven lleva sus gastos en planillas o directamente no los registra. Las apps bancarias muestran movimientos, pero no ayudan a entender en qué se va la plata ni a ahorrar para una meta.',
-          en: 'Many young people track expenses in spreadsheets or not at all. Banking apps list transactions, but they don\'t help people understand where the money goes or save towards a goal.'
-        },
-        investigacion: {
-          es: 'Benchmark de apps de finanzas personales y billeteras virtuales, una proto-persona (primer trabajo, ahorra para un viaje) y principios de economía del comportamiento para diseñar avisos que motiven sin culpa.',
-          en: 'Benchmark of personal finance apps and digital wallets, a proto-persona (first job, saving for a trip) and behavioral economics principles to design nudges that motivate without guilt.'
-        },
-        proceso: {
-          es: ['Definición de la propuesta de valor', 'Jerarquía de información: un número clave por pantalla', 'Wireframes y flujo de carga de gastos', 'Sistema de diseño con colores de estado', 'Prototipo navegable listo para test de usabilidad'],
-          en: ['Defining the value proposition', 'Information hierarchy: one key number per screen', 'Wireframes and expense entry flow', 'Design system with status colors', 'Clickable prototype ready for usability testing']
-        },
-        solucion: {
-          es: ['Inicio con un solo dato clave: cuánto queda disponible este mes', 'Metas de ahorro con progreso visual', 'Presupuesto por categoría con alerta de color al pasarse', 'Consejos basados en el comportamiento real, no genéricos', 'Carga de un gasto en dos toques con categoría automática'],
-          en: ['Home with one key figure: what\'s left this month', 'Savings goals with visual progress', 'Category budgets with a color alert when exceeded', 'Tips based on real behavior, not generic advice', 'Two-tap expense entry with automatic categories']
-        },
-        medir: {
-          es: 'Personas que crean una meta en la primera semana, retención a 30 días y metas cumplidas.',
-          en: 'People who create a goal in their first week, 30-day retention and goals reached.'
-        }
-      }
+      media: 'images/concepto-alcancia.jpg', tipo: 'image',
+      pagina: 'casos/alcancia.html', prototipo: 'casos/prototipos/alcancia.html'
     },
     {
       id: 'lithium', titulo: 'Lithium',
@@ -885,7 +801,22 @@
       </div>
       <p class="work-sub">${bi(p.sub)}</p>
     </article>`;
-  document.getElementById('conceptGrid').innerHTML = PROYECTOS.filter((p) => p.concepto).map(tarjetaChica).join('');
+  // Los casos conceptuales tienen página propia con todo el proceso, en lugar del modal.
+  const tarjetaCaso = (p) => `
+    <article class="work" data-reveal>
+      <a class="work-media" href="${esc(p.pagina)}" aria-label="${esc(p.titulo)}"><div class="zoom">${media(p)}</div></a>
+      <div class="work-meta">
+        <h4 class="work-title"><a href="${esc(p.pagina)}">${esc(p.titulo)}</a><span class="badge-concept">${bi({ es: 'Concepto', en: 'Concept' })}</span></h4>
+        <span class="work-tags">${p.tags.map(bi).join(' · ')}</span>
+      </div>
+      <p class="work-sub">${bi(p.sub)}</p>
+      <p class="concept-steps">${bi({ es: 'Investigación · Wireframes · Sistema de diseño · UI · Validación', en: 'Research · Wireframes · Design system · UI · Validation' })}</p>
+      <div class="concept-links">
+        <a class="text-link" href="${esc(p.pagina)}">${bi({ es: 'Ver caso completo', en: 'View full case' })}${ARROW}</a>
+        <a class="text-link" href="${esc(p.prototipo)}">${bi({ es: 'Probar prototipo', en: 'Try prototype' })}${ARROW}</a>
+      </div>
+    </article>`;
+  document.getElementById('conceptGrid').innerHTML = PROYECTOS.filter((p) => p.concepto).map(tarjetaCaso).join('');
   document.getElementById('workGrid').innerHTML = PROYECTOS.filter((p) => !p.destacado && !p.concepto).map(tarjetaChica).join('');
 
   document.getElementById('expRows').innerHTML = EXPERIENCIA.map((e) => `
@@ -932,29 +863,6 @@
     const link = document.getElementById('pmLink');
     link.hidden = !p.link;
     if (p.link) link.href = p.link;
-    const caso = document.getElementById('pmCase');
-    caso.hidden = !p.caso;
-    caso.innerHTML = p.caso ? casoHtml(p.caso) : '';
-  }
-
-  // Caso de estudio completo de los proyectos conceptuales.
-  function casoHtml(c) {
-    const t = (x) => esc(typeof x === 'string' ? x : x[idioma]);
-    const L = (es, en) => (idioma === 'es' ? es : en);
-    const lista = (items, cls = '') => `<ul class="cs-list ${cls}">${items[idioma].map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
-    return `
-      <div class="cs-facts">
-        <div><span>${L('Tipo', 'Type')}</span><b>${L('Proyecto conceptual', 'Concept project')}</b></div>
-        <div><span>${L('Rol', 'Role')}</span><b>${t(c.rol)}</b></div>
-        <div><span>${L('Duración', 'Timeline')}</span><b>${t(c.duracion)}</b></div>
-        <div><span>${L('Herramientas', 'Tools')}</span><b>${t(c.herramientas)}</b></div>
-      </div>
-      <div class="cs-block"><h4>${L('El desafío', 'The challenge')}</h4><p>${t(c.desafio)}</p></div>
-      <div class="cs-block"><h4>${L('Investigación', 'Research')}</h4><p>${t(c.investigacion)}</p></div>
-      <div class="cs-block"><h4>${L('Proceso', 'Process')}</h4>${lista(c.proceso)}</div>
-      <div class="cs-block"><h4>${L('La solución', 'The solution')}</h4>${lista(c.solucion, 'check')}</div>
-      <div class="cs-block"><h4>${L('Qué mediría', "What I'd measure")}</h4><div><p>${t(c.medir)}</p>
-        <div class="cs-note">${L('Proyecto propio, sin cliente: son las métricas que usaría para validar el diseño.', 'Self-initiated project with no client: these are the metrics I would use to validate the design.')}</div></div></div>`;
   }
   function abrir(modal) {
     modal.classList.add('open');
@@ -983,6 +891,7 @@
     const cert = e.target.closest('[data-cert]');
     if (cert) {
       document.getElementById('certContent').innerHTML = `<iframe src="${encodeURI(cert.dataset.cert)}" title="Certificado"></iframe>`;
+      document.getElementById('certOpen').href = encodeURI(cert.dataset.cert);
       abrir(modalCert);
       return;
     }

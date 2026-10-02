@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Ruta del Vino · Prototipo navegable</title>
+<meta name="title-es" content="Ruta del Vino · Prototipo navegable"/>
+<meta name="title-en" content="Ruta del Vino · Interactive prototype"/>
+<meta name="description" content="Prototipo navegable de Ruta del Vino: explorá bodegas, armá el recorrido del día y reservá todo junto."/>
+<meta name="theme-color" content="#0d0e10"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="proto.css"/>
+<style>
+  :root { --brand: #8a1c3a; --brand-ink: #8a1c3a; --brand-soft: #f8e6ea; }
+  /* Fotos de viñedo dibujadas: cielo de atardecer e hileras de vides. */
+  .vine { position: relative; background: linear-gradient(180deg, #f6c79f 0, #f2a98a 34%, transparent 34%), repeating-linear-gradient(100deg, #5f7d36 0 9px, #4b6627 9px 19px); }
+  .vine.v1 { background: linear-gradient(180deg, #e9b3a4 0, #d98c86 30%, transparent 30%), repeating-linear-gradient(80deg, #6b8740 0 8px, #546f2f 8px 17px); }
+  .vine.v2 { background: linear-gradient(180deg, #f3d3a7 0, #eab27c 38%, transparent 38%), repeating-linear-gradient(95deg, #586f31 0 10px, #465a26 10px 20px); }
+  .vine.v3 { background: linear-gradient(180deg, #c9d7ef 0, #f0c3a8 40%, transparent 40%), repeating-linear-gradient(105deg, #6f8a3c 0 8px, #56702c 8px 18px); }
+  .vine .rate { position: absolute; top: 10px; left: 10px; background: #fff; border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; display: inline-flex; gap: 4px; align-items: center; }
+  .vine .rate svg { width: 12px; height: 12px; color: #c9785a; }
+  .bod { width: 100%; text-align: left; }
+  .bod .vine { height: 130px; }
+  .exp { width: 100%; text-align: left; padding: 14px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--line); }
+  .exp[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--brand); background: var(--brand-soft); }
+  .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .slot { min-height: 48px; border-radius: 14px; background: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 3px 10px -6px rgba(13, 14, 16, .3); }
+  .slot[aria-pressed="true"] { background: var(--brand); color: #fff; }
+  .slot:disabled { background: #efefec; color: #b2b5b9; text-decoration: line-through; box-shadow: none; cursor: not-allowed; }
+  .slot.lejos:disabled { background: var(--bad-soft); color: #a3291f; text-decoration: none; line-height: 1.1; }
+  .slot small { display: block; font-size: 10px; font-weight: 600; }
+  .tl { display: grid; gap: 0; position: relative; padding-left: 26px; }
+  .tl::before { content: ""; position: absolute; left: 8px; top: 22px; bottom: 22px; border-left: 2px dashed var(--brand); opacity: .5; }
+  .stop { position: relative; }
+  .stop::before { content: ""; position: absolute; left: -24px; top: 20px; width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid var(--brand); background: var(--bg); }
+  .stop:first-child::before { background: var(--brand); }
+  .viaje { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); padding: 10px 0; }
+  .viaje svg { width: 16px; height: 16px; }
+  .viaje.mal { color: var(--bad); font-weight: 600; }
+  .qr { width: 180px; height: 180px; padding: 12px; background: #fff; border-radius: 18px; box-shadow: 0 10px 26px -16px rgba(13, 14, 16, .4); }
+  .dias { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -20px; padding: 2px 20px 6px; flex: none; }
+  .dias::-webkit-scrollbar { display: none; }
+  .dia { flex: none; width: 58px; padding: 8px 0; border-radius: 16px; background: #fff; text-align: center; box-shadow: 0 3px 10px -6px rgba(13, 14, 16, .3); }
+  .dia small { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; font-weight: 600; }
+  .dia b { font-size: 18px; }
+  .dia[aria-pressed="true"] { background: var(--brand); color: #fff; }
+  .dia[aria-pressed="true"] small { color: rgba(255, 255, 255, .8); }
+  .cargando { width: 22px; height: 22px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .35); border-top-color: #fff; animation: gira .8s linear infinite; }
+  @keyframes gira { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="stage">
+  <aside class="side">
+    <a class="back" href="../ruta-del-vino.html#ui" data-href-lang="../ruta-del-vino.html#ui">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span data-lang="es">Volver al caso</span><span data-lang="en">Back to the case</span>
+    </a>
+    <span class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-set-lang="es" aria-pressed="true">ES</button><button type="button" data-set-lang="en" aria-pressed="false">EN</button></span>
+    <span class="eyebrow"><span data-lang="es">Prototipo navegable</span><span data-lang="en">Interactive prototype</span></span>
+    <h1>Ruta del Vino</h1>
+    <p><span data-lang="es">Funciona de verdad: el recorrido y las reservas quedan guardados en este navegador. Bodegas y precios son ficticios y el pago es simulado.</span><span data-lang="en">It really works: your route and bookings are saved in this browser. Wineries and prices are fictional and payment is simulated.</span></p>
+    <h2><span data-lang="es">Probá estas tareas</span><span data-lang="en">Try these tasks</span></h2>
+    <ol>
+      <li><span data-lang="es">Armá un sábado con tres bodegas de Luján de Cuyo.</span><span data-lang="en">Plan a Saturday with three Luján de Cuyo wineries.</span></li>
+      <li><span data-lang="es">Sumá una de Valle de Uco y mirá qué pasa con los horarios.</span><span data-lang="en">Add one from Valle de Uco and see what happens to the times.</span></li>
+      <li><span data-lang="es">Activá el traslado y reservá.</span><span data-lang="en">Turn on transport and book.</span></li>
+      <li><span data-lang="es">Abrí el voucher desde "Reservas".</span><span data-lang="en">Open the voucher from "Reservas".</span></li>
+    </ol>
+    <button type="button" class="reset" data-reset><span data-lang="es">Reiniciar la demo</span><span data-lang="en">Reset the demo</span></button>
+  </aside>
+
+  <div class="device">
+    <div class="app" id="app">
+      <div class="mbar"><a href="../ruta-del-vino.html#ui"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Caso de estudio</a><span>Prototipo · Ruta del Vino</span></div>
+      <div class="status"></div>
+      <div id="screen" style="display:contents"></div>
+      <div class="toast" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+
+<script src="../caso.js"></script>
+<script src="proto.js"></script>
+<script>
+(() => {
+  const { esc, toast, sheet, cerrarSheet, ymd, sumarDias, hoy, fmt, plata, hash, I } = P;
+
+  // ---------------------------------------------------------------- datos de ejemplo (ficticios)
+  const BODEGAS = [
+    { id: 'alamos', nombre: 'Bodega Los Álamos', zona: 'Luján de Cuyo', rating: '4,8', resenas: 320, img: '', dir: 'Ruta 15 km 23, Perdriel',
+      exps: [{ id: 'prem', nombre: 'Degustación premium', det: '5 vinos de alta gama', dur: 90, precio: 28000, horas: ['10:00', '11:30', '15:00', '17:00'] },
+             { id: 'alm', nombre: 'Degustación + almuerzo', det: 'Menú de 3 pasos con maridaje', dur: 180, precio: 45000, horas: ['12:00', '13:00'] }] },
+    { id: 'fincasur', nombre: 'Finca Sur', zona: 'Luján de Cuyo', rating: '4,7', resenas: 210, img: 'v1', dir: 'Calle Cobos 4400, Agrelo',
+      exps: [{ id: 'pasos', nombre: 'Almuerzo de pasos', det: '6 pasos y 4 vinos', dur: 150, precio: 52000, horas: ['12:30', '13:30'] },
+             { id: 'clasica', nombre: 'Visita clásica', det: 'Recorrido por la cava y 3 vinos', dur: 60, precio: 18000, horas: ['10:00', '11:00', '16:00', '17:30'] }] },
+    { id: 'este', nombre: 'Viñedos del Este', zona: 'Luján de Cuyo', rating: '4,6', resenas: 145, img: 'v2', dir: 'Roque Sáenz Peña 2900, Vistalba',
+      exps: [{ id: 'atard', nombre: 'Recorrido + atardecer', det: 'Caminata entre viñedos y 4 vinos', dur: 90, precio: 30000, horas: ['16:30', '18:00'] },
+             { id: 'bici', nombre: 'Viñedos en bici', det: 'Paseo guiado y 2 vinos', dur: 120, precio: 24000, horas: ['09:30', '11:00'] }] },
+    { id: 'piedra', nombre: 'Casa de Piedra', zona: 'Valle de Uco', rating: '4,9', resenas: 410, img: 'v3', dir: 'Ruta 89 km 5, Tupungato',
+      exps: [{ id: 'alta', nombre: 'Degustación de altura', det: '5 vinos con vista a la cordillera', dur: 90, precio: 38000, horas: ['10:30', '12:00', '15:30'] },
+             { id: 'parrilla', nombre: 'Almuerzo a la parrilla', det: 'Asado y 4 vinos', dur: 180, precio: 62000, horas: ['12:30'] }] },
+    { id: 'aguas', nombre: 'Aguas Claras', zona: 'Valle de Uco', rating: '4,7', resenas: 188, img: '', dir: 'Calle Los Indios s/n, Tunuyán',
+      exps: [{ id: 'barricas', nombre: 'Degustación de barricas', det: '4 vinos directo de la barrica', dur: 75, precio: 33000, horas: ['11:00', '14:30', '16:30'] }] },
+    { id: 'olivos', nombre: 'Los Olivos', zona: 'Maipú', rating: '4,5', resenas: 260, img: 'v1', dir: 'Ozamis 1040, Coquimbito',
+      exps: [{ id: 'aceite', nombre: 'Vino y aceite de oliva', det: 'Cata de 3 vinos y 3 aceites', dur: 60, precio: 16000, horas: ['10:00', '11:30', '15:00', '16:30'] }] },
+    { id: 'tradicion', nombre: 'Bodega Tradición', zona: 'Maipú', rating: '4,6', resenas: 302, img: 'v2', dir: 'Urquiza 8136, Russell',
+      exps: [{ id: 'historica', nombre: 'Visita histórica', det: 'Museo, cava de 1890 y 3 vinos', dur: 75, precio: 20000, horas: ['10:30', '12:00', '15:30', '17:00'] }] }
+  ];
+  const ZONAS = ['Todas', 'Luján de Cuyo', 'Valle de Uco', 'Maipú'];
+  const TRASLADO = 30000;
+  const bod = (id) => BODEGAS.find((b) => b.id === id);
+  const exp = (b, id) => b.exps.find((e) => e.id === id);
+
+  // Primer sábado a partir de hoy: el día que la mayoría planea.
+  const sabado = () => { const h = hoy(); return ymd(sumarDias(h, (6 - h.getDay() + 7) % 7)); };
+  const INICIAL = { dia: sabado(), paradas: [], traslado: false, reservas: [] };
+  const guardado = P.store('proto-vino', INICIAL);
+  let S = guardado.get();
+  if (S.dia < ymd(hoy())) S.dia = sabado();
+  const guardar = () => guardado.set(S);
+
+  const min = (h) => { const [a, b] = h.split(':').map(Number); return a * 60 + b; };
+  const hm = (m) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+  // Minutos de viaje: dentro de la misma zona son cortos; entre zonas, más de una hora.
+  const viaje = (a, b) => (a.zona === b.zona ? 15 + (hash(a.id + b.id) % 3) * 5 : a.zona === 'Valle de Uco' || b.zona === 'Valle de Uco' ? 80 : 40);
+  const agotado = (b, e, h) => hash(b.id + e.id + S.dia + h) % 4 === 0;
+  const desde = (b) => Math.min(...b.exps.map((e) => e.precio));
+  const proxima = (b) => b.exps.flatMap((e) => e.horas.filter((h) => !agotado(b, e, h))).sort()[0];
+  const ordenar = (lista) => [...lista].sort((a, b) => min(a.hora) - min(b.hora));
+  const ordenadas = () => ordenar(S.paradas);
+  const subtotal = () => S.paradas.reduce((s, p) => s + exp(bod(p.bodegaId), p.expId).precio, 0);
+  const total = () => subtotal() + (S.traslado && S.paradas.length ? TRASLADO : 0);
+  const diaLargo = (f) => { const t = fmt(f, { weekday: 'long', day: 'numeric', month: 'long' }); return t[0].toUpperCase() + t.slice(1); };
+
+  // Revisa si se llega a cada parada: fin de la anterior + viaje no puede pasar la hora de inicio.
+  function conflictos(lista = S.paradas) {
+    const o = ordenar(lista);
+    return o.map((p, i) => {
+      if (!i) return null;
+      const a = o[i - 1], ba = bod(a.bodegaId), bb = bod(p.bodegaId);
+      const fin = min(a.hora) + exp(ba, a.expId).dur;
+      const v = viaje(ba, bb);
+      return fin + v > min(p.hora) ? { fin: hm(fin), viaje: v } : null;
+    });
+  }
+  // ¿Sumar esta experiencia en este horario rompe el recorrido? (no cuenta los choques que ya había)
+  function noEncaja(bodegaId, expId, hora) {
+    const resto = S.paradas.filter((p) => p.bodegaId !== bodegaId);
+    const antes = conflictos(resto).filter(Boolean).length;
+    return conflictos(resto.concat({ bodegaId, expId, hora })).filter(Boolean).length > antes;
+  }
+  const diaCorto = () => { const t = fmt(S.dia, { weekday: 'short' }).replace('.', ''); return t[0].toUpperCase() + t.slice(1); };
+
+  // ---------------------------------------------------------------- navegación
+  let pantalla = 'explorar', pila = [];
+  let filtro = { zona: 'Todas', q: '' };
+  let sel = null; // selección en el detalle de bodega
+  let vista = null; // reserva abierta en el voucher
+  const go = (p) => { pila.push(pantalla); pantalla = p; render(); };
+  const back = () => { pantalla = pila.pop() || 'explorar'; render(); };
+  const raiz = (p) => { pila = []; pantalla = p; render(); };
+  const head = (t, extra = '') => `<div class="head"><button class="icon-btn" data-back aria-label="Volver">${I.back}</button><div class="grow"></div>${extra}</div>${t ? `<h1 class="t1">${t}</h1>` : ''}`;
+  const tabbar = () => `
+    <nav class="tabbar" aria-label="Secciones">
+      ${[['explorar', 'Explorar', I.search], ['recorrido', 'Recorrido', I.map], ['reservas', 'Reservas', I.ticket], ['perfil', 'Perfil', I.user]].map(([id, n, ic]) =>
+        `<button class="tab" data-tab="${id}" ${pantalla === id ? 'aria-current="page"' : ''}>${ic}${n}${id === 'recorrido' && S.paradas.length ? `<span class="badge">${S.paradas.length}</span>` : ''}</button>`).join('')}
+    </nav>`;
+
+  // ---------------------------------------------------------------- pantallas
+  const V = {};
+
+  const listaBodegas = () => {
+    const q = filtro.q.trim().toLowerCase();
+    const bs = BODEGAS.filter((b) => (filtro.zona === 'Todas' || b.zona === filtro.zona) && (!q || (b.nombre + ' ' + b.zona + ' ' + b.exps.map((e) => e.nombre).join(' ')).toLowerCase().includes(q)));
+    if (!bs.length) return `<div class="empty">${I.search}<span>No hay bodegas con "${esc(filtro.q)}".</span><button class="link" data-act="limpiar">Ver todas</button></div>`;
+    return bs.map((b) => {
+      const en = S.paradas.some((p) => p.bodegaId === b.id);
+      const px = proxima(b);
+      return `
+        <button class="card pad0 bod" data-bodega="${b.id}">
+          <div class="vine ${b.img}" role="img" aria-label="Viñedo de ${esc(b.nombre)}"><span class="rate">${I.star}${b.rating}</span></div>
+          <div style="padding:14px 16px 16px">
+            <div class="row"><span class="grow"><b style="font-family:var(--display);font-size:18px;letter-spacing:-.02em">${esc(b.nombre)}</b><small>${esc(b.zona)} · ${b.exps.length} ${b.exps.length > 1 ? 'experiencias' : 'experiencia'}</small></span>${en ? '<span class="pill ok">En tu recorrido</span>' : ''}</div>
+            <div class="row" style="margin-top:10px"><b class="grow" style="font-size:16px">desde ${plata(desde(b))}</b>${px ? `<span class="pill soft">${diaCorto()} ${px}</span>` : '<span class="pill bad">Agotado</span>'}</div>
+          </div>
+        </button>`;
+    }).join('');
+  };
+  V.explorar = () => {
+    const dias = Array.from({ length: 10 }, (_, i) => sumarDias(hoy(), i));
+    return `
+      <span class="muted">Mendoza, Argentina</span>
+      <h1 class="t1">Descubrí bodegas cerca tuyo</h1>
+      <div class="dias" role="group" aria-label="Día de la visita">${dias.map((d) => `<button class="dia" data-dia="${ymd(d)}" aria-pressed="${S.dia === ymd(d)}"><small>${fmt(d, { weekday: 'short' }).replace('.', '')}</small><b>${d.getDate()}</b></button>`).join('')}</div>
+      <label class="search">${I.search}<input type="search" id="q" placeholder="Bodega o experiencia" value="${esc(filtro.q)}" autocomplete="off" aria-label="Buscar bodega o experiencia"/></label>
+      <div class="chips" role="group" aria-label="Zonas">${ZONAS.map((z) => `<button class="chip" data-zona="${z}" aria-pressed="${filtro.zona === z}">${z}</button>`).join('')}</div>
+      <div id="lista" style="display:grid;gap:14px">${listaBodegas()}</div>`;
+  };
+
+  V.bodega = () => {
+    const b = bod(sel.bodegaId);
+    const e = sel.expId ? exp(b, sel.expId) : null;
+    const yaEsta = S.paradas.find((p) => p.bodegaId === b.id);
+    return `
+      <div class="vine ${b.img}" style="height:200px;margin:-10px -20px 0;flex:none" role="img" aria-label="Viñedo de ${esc(b.nombre)}">
+        <button class="icon-btn" data-back aria-label="Volver" style="position:absolute;top:12px;left:16px">${I.back}</button>
+      </div>
+      <div><h1 class="t1" style="font-size:26px">${esc(b.nombre)}</h1><span class="muted">${esc(b.zona)} · ${b.rating} ★ (${b.resenas} reseñas)</span></div>
+      <h2 class="t2">Elegí la experiencia</h2>
+      <div style="display:grid;gap:10px">${b.exps.map((x) => `
+        <button class="exp row" data-exp="${x.id}" aria-pressed="${sel.expId === x.id}"><span class="grow"><b>${esc(x.nombre)}</b><small>${esc(x.det)} · ${x.dur >= 60 ? Math.floor(x.dur / 60) + ' h' + (x.dur % 60 ? ' ' + (x.dur % 60) : '') : x.dur + ' min'}</small></span><b>${plata(x.precio)}</b></button>`).join('')}</div>
+      ${e ? (() => {
+        let lejos = false;
+        const html = e.horas.map((h) => {
+          if (agotado(b, e, h)) return `<button class="slot" disabled aria-label="${h}, agotado">${h}</button>`;
+          if (noEncaja(b.id, e.id, h)) { lejos = true; return `<button class="slot lejos" disabled aria-label="${h}, no llegás con tu recorrido">${h}<small>No llegás</small></button>`; }
+          return `<button class="slot" data-hora="${h}" aria-pressed="${sel.hora === h}">${h}</button>`;
+        }).join('');
+        return `<h2 class="t2">${diaLargo(S.dia)}</h2><div class="slots">${html}</div>${lejos ? '<p class="small" style="margin:0">"No llegás": por la distancia, ese horario choca con otra parada de tu recorrido.</p>' : ''}`;
+      })() : '<p class="muted" style="margin:0">Elegí una experiencia para ver los horarios.</p>'}
+      ${yaEsta ? '<div class="card tip"><span class="small" style="color:#5b4310">Esta bodega ya está en tu recorrido: si elegís otra opción, la reemplazamos.</span></div>' : ''}
+      <div class="spacer"></div>
+      <button class="btn brand" data-act="sumar" ${e && sel.hora ? '' : 'disabled'}>${e && sel.hora ? `Sumar al recorrido · ${plata(e.precio)}` : 'Sumar al recorrido'}</button>`;
+  };
+
+  V.recorrido = () => {
+    if (!S.paradas.length) return `
+      <h1 class="t1">Tu recorrido</h1>
+      <div class="empty">${I.map}<span>Todavía no sumaste bodegas.<br/>Elegí experiencias y armamos el día.</span><button class="btn brand" data-tab="explorar" style="width:auto">Explorar bodegas</button></div>`;
+    const o = ordenadas();
+    const c = conflictos();
+    let km = 0;
+    o.forEach((p, i) => { if (i) km += viaje(bod(o[i - 1].bodegaId), bod(p.bodegaId)) * 0.8; });
+    return `
+      <h1 class="t1">Tu recorrido</h1>
+      <span class="muted">${diaLargo(S.dia)} · ${o.length} ${o.length > 1 ? 'bodegas' : 'bodega'}${km ? ' · ' + Math.round(km) + ' km' : ''}</span>
+      <div class="tl">
+        ${o.map((p, i) => {
+          const b = bod(p.bodegaId), e = exp(b, p.expId);
+          const v = i ? viaje(bod(o[i - 1].bodegaId), b) : 0;
+          return `
+            ${i ? `<div class="viaje ${c[i] ? 'mal' : ''}">${I.car}${v} min de viaje${c[i] ? ` · no llegás: la parada anterior termina ${c[i].fin}` : ''}</div>` : ''}
+            <div class="card stop">
+              <div class="row"><span class="grow"><small>${p.hora} – ${hm(min(p.hora) + e.dur)}</small><b>${esc(b.nombre)}</b><small>${esc(e.nombre)} · ${plata(e.precio)}</small></span>
+              <button class="icon-btn" data-quitar="${b.id}" aria-label="Quitar ${esc(b.nombre)}" style="box-shadow:none;background:var(--bg)">${I.trash}</button></div>
+              ${c[i] ? `<button class="link" data-bodega="${b.id}" style="margin-top:8px">Cambiar horario</button>` : ''}
+            </div>`;
+        }).join('')}
+      </div>
+      <button class="btn ghost" data-tab="explorar">${I.plus} Sumar otra bodega</button>
+      <div class="card soft"><div class="row"><span class="grow"><b>Traslado incluido</b><small style="color:var(--brand-ink)">Ida y vuelta desde tu hotel · ${plata(TRASLADO)}</small></span><button class="toggle" role="switch" aria-checked="${S.traslado}" aria-label="Traslado incluido" data-act="traslado"></button></div></div>
+      ${c.some(Boolean) ? '<div class="card warn"><b style="font-size:15px">Hay horarios que no encajan</b><p class="small" style="color:#8f2a22;margin:4px 0 0">Cambiá el horario de la parada marcada o quitala para poder reservar.</p></div>' : ''}
+      <div class="spacer"></div>
+      <button class="btn brand" data-act="pagar" ${c.some(Boolean) ? 'disabled' : ''}>Reservar · ${plata(total())}</button>`;
+  };
+
+  V.pago = () => {
+    const o = ordenadas();
+    return `
+      ${head('Confirmá y pagá')}
+      <span class="muted">Todo el día en un solo pago</span>
+      <div class="card"><dl class="dl" style="margin:0">
+        ${o.map((p) => { const b = bod(p.bodegaId), e = exp(b, p.expId); return `<div><dt>${esc(b.nombre)} · ${p.hora}</dt><dd>${plata(e.precio)}</dd></div>`; }).join('')}
+        ${S.traslado ? `<div><dt>Traslado</dt><dd>${plata(TRASLADO)}</dd></div>` : ''}
+        <div><dt><b style="color:var(--ink)">Total</b></dt><dd style="font-size:16px">${plata(total())} ARS</dd></div>
+      </dl></div>
+      <div class="card"><div class="row"><span class="ico" style="background:var(--ink)">${I.card}</span><span class="grow"><b>Visa ···· 4821</b><small>Tarjeta de prueba: no se cobra nada</small></span></div></div>
+      <div class="card tip"><span class="small" style="color:#5b4310">Cancelación sin cargo hasta 48 h antes. Confirmación inmediata.</span></div>
+      <div class="spacer"></div>
+      <button class="btn brand" data-act="confirmar">Pagar ${plata(total())}</button>`;
+  };
+
+  // Código QR de muestra: patrón estable a partir del código de la reserva (no es un QR legible).
+  function qr(codigo) {
+    const n = 25, m = [];
+    const finder = (x, y) => [[x, y, 7, 7, 1], [x + 1, y + 1, 5, 5, 0], [x + 2, y + 2, 3, 3, 1]];
+    let r = '';
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const enFinder = (x < 8 && y < 8) || (x > n - 9 && y < 8) || (x < 8 && y > n - 9);
+      if (!enFinder && hash(codigo + x + ',' + y) % 2) r += `M${x} ${y}h1v1h-1z`;
+    }
+    const f = [...finder(0, 0), ...finder(n - 7, 0), ...finder(0, n - 7)].map(([x, y, w, h, c]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c ? '#111' : '#fff'}"/>`).join('');
+    return `<svg class="qr" viewBox="0 0 ${n} ${n}" shape-rendering="crispEdges" role="img" aria-label="Código del voucher ${codigo}"><path d="${r}" fill="#111"/>${f}</svg>`;
+  }
+  V.voucher = () => {
+    const r = S.reservas.find((x) => x.codigo === vista);
+    return `
+      ${pila.length ? head('') : ''}
+      <h1 class="t1">${r.dia >= ymd(hoy()) ? '¡Tu día está listo!' : 'Recorrido realizado'}</h1>
+      <span class="pill ok" style="align-self:flex-start">${I.wifi.replace('<svg', '<svg width="14" height="14"')} Disponible sin conexión</span>
+      <div class="center" style="padding:6px 0">${qr(r.codigo)}<span class="small">Mostralo en cada bodega · <b style="display:inline;color:var(--ink)">${r.codigo}</b></span></div>
+      <div class="card"><div class="list">
+        ${r.paradas.map((p) => { const b = bod(p.bodegaId), e = exp(b, p.expId); return `<div class="row"><span class="ico" style="font-size:13px">${p.hora}</span><span class="grow"><b>${esc(b.nombre)}</b><small>${esc(e.nombre)} · ${esc(b.dir)}</small></span></div>`; }).join('')}
+      </div></div>
+      ${r.traslado ? `<div class="card soft"><div class="row"><span class="ico">${I.car}</span><span class="grow"><b>Traslado confirmado</b><small style="color:var(--brand-ink)">Te buscamos por tu hotel 30 min antes de la primera parada.</small></span></div></div>` : ''}
+      <p class="small" style="margin:0;text-align:center">${diaLargo(r.dia)} · Total pagado ${plata(r.total)}</p>`;
+  };
+
+  V.reservas = () => `
+    <h1 class="t1">Reservas</h1>
+    ${S.reservas.length ? S.reservas.slice().reverse().map((r) => `
+      <button class="card row" data-voucher="${r.codigo}" style="width:100%;text-align:left"><span class="ico">${I.ticket}</span><span class="grow"><b>${diaLargo(r.dia)}</b><small>${r.paradas.length} ${r.paradas.length > 1 ? 'bodegas' : 'bodega'} · ${r.codigo}</small></span><span class="pill ok">Confirmada</span></button>`).join('')
+    : `<div class="empty">${I.ticket}<span>Cuando reserves un recorrido, el voucher aparece acá y funciona sin señal.</span></div>`}`;
+
+  V.perfil = () => `
+    <h1 class="t1">Perfil</h1>
+    <div class="card"><div class="row"><span class="ico round">S</span><span class="grow"><b>Sofía López</b><small>Viaja desde Buenos Aires</small></span></div></div>
+    <div class="card"><dl class="dl" style="margin:0"><div><dt>Idioma</dt><dd>Español</dd></div><div><dt>Moneda</dt><dd>Pesos (ARS)</dd></div><div><dt>Medio de pago</dt><dd>Visa ···· 4821</dd></div></dl></div>
+    <button class="btn ghost" data-reset>Reiniciar la demo</button>`;
+
+  // ---------------------------------------------------------------- render y eventos
+  const conTab = ['explorar', 'recorrido', 'reservas', 'perfil', 'voucher'];
+  const scr = document.getElementById('screen');
+  function render() {
+    cerrarSheet();
+    scr.innerHTML = `<main class="view screen-in">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`;
+    const q = document.getElementById('q');
+    if (q) q.addEventListener('input', () => { filtro.q = q.value; document.getElementById('lista').innerHTML = listaBodegas(); });
+  }
+
+  document.addEventListener('click', (ev) => {
+    const el = ev.target.closest('button');
+    if (!el) return;
+    const ds = el.dataset;
+    if ('reset' in ds) { guardado.clear(); S = JSON.parse(JSON.stringify(INICIAL)); filtro = { zona: 'Todas', q: '' }; raiz('explorar'); toast('Demo reiniciada'); return; }
+    if (!el.closest('.app')) return;
+    if ('back' in ds) return back();
+    if ('cerrar' in ds) return cerrarSheet();
+    if (ds.tab) return raiz(ds.tab);
+    if (ds.zona) { filtro.zona = ds.zona; return render(); }
+    if (ds.dia) {
+      if (S.paradas.length && ds.dia !== S.dia) {
+        sheet(`<h3>¿Cambiar de día?</h3><p>Tu recorrido tiene ${S.paradas.length} ${S.paradas.length > 1 ? 'paradas' : 'parada'} para el ${diaLargo(S.dia).toLowerCase()}. Si cambiás de día, lo vaciamos.</p><button class="btn brand" data-ok-dia="${ds.dia}">Cambiar y empezar de nuevo</button><button class="btn ghost" data-cerrar>Mantener el día</button>`);
+        return;
+      }
+      S.dia = ds.dia; guardar(); return render();
+    }
+    if (ds.okDia) { S.dia = ds.okDia; S.paradas = []; guardar(); return render(); }
+    if (ds.bodega) {
+      const ya = S.paradas.find((p) => p.bodegaId === ds.bodega);
+      const b = bod(ds.bodega);
+      // Si el horario elegido ya no encaja (por ejemplo, al tocar "Cambiar horario"), se arranca sin horario.
+      sel = { bodegaId: ds.bodega, expId: ya ? ya.expId : b.exps.length === 1 ? b.exps[0].id : null, hora: ya && !noEncaja(ya.bodegaId, ya.expId, ya.hora) ? ya.hora : null };
+      return go('bodega');
+    }
+    if (ds.exp) { sel.expId = ds.exp; sel.hora = null; return render(); }
+    if (ds.hora) { sel.hora = ds.hora; return render(); }
+    if (ds.quitar) {
+      const quitada = S.paradas.find((p) => p.bodegaId === ds.quitar);
+      S.paradas = S.paradas.filter((p) => p !== quitada); guardar(); render();
+      return toast(`Quitamos ${bod(quitada.bodegaId).nombre}`, { label: 'Deshacer', fn: () => { S.paradas.push(quitada); guardar(); render(); } });
+    }
+    if (ds.voucher) { vista = ds.voucher; return go('voucher'); }
+    switch (ds.act) {
+      case 'limpiar': filtro = { zona: 'Todas', q: '' }; return render();
+      case 'sumar': {
+        S.paradas = S.paradas.filter((p) => p.bodegaId !== sel.bodegaId).concat({ bodegaId: sel.bodegaId, expId: sel.expId, hora: sel.hora });
+        guardar();
+        const n = S.paradas.length;
+        sheet(`<h3>Sumado a tu recorrido</h3><p>${esc(bod(sel.bodegaId).nombre)} a las ${sel.hora}. Llevás ${n} ${n > 1 ? 'paradas' : 'parada'} · ${plata(total())}.</p><button class="btn brand" data-tab="recorrido">Ver mi recorrido</button><button class="btn ghost" data-tab="explorar">Seguir explorando</button>`);
+        return;
+      }
+      case 'traslado': S.traslado = !S.traslado; guardar(); return render();
+      case 'pagar': return go('pago');
+      case 'confirmar': {
+        el.disabled = true;
+        el.innerHTML = '<span class="cargando" aria-hidden="true"></span> Procesando';
+        setTimeout(() => {
+          const r = { codigo: 'RV-' + String(1000 + (hash(String(Date.now())) % 9000)), dia: S.dia, paradas: ordenadas(), traslado: S.traslado && S.paradas.length > 0, total: total() };
+          S.reservas.push(r); S.paradas = []; S.traslado = false; guardar();
+          vista = r.codigo; pila = []; pantalla = 'voucher'; render();
+          toast('Reserva confirmada');
+        }, 1100);
+        return;
+      }
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
