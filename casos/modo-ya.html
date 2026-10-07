@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>MODO YA · Caso de estudio · Lucía Miranda</title>
+<meta name="title-es" content="MODO YA · Caso de estudio · Lucía Miranda"/>
+<meta name="title-en" content="MODO YA · Case study · Lucía Miranda"/>
+<meta name="description" content="Caso de estudio de MODO YA: plataforma de delivery para Malargüe con app para clientes y locales, app para riders y landing de lanzamiento."/>
+<meta name="theme-color" content="#0b0b0b"/>
+<meta property="og:title" content="MODO YA · Caso de estudio"/>
+<meta property="og:image" content="https://lucim2003.github.io/nuevoport/images/modo-ya.jpg"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,800;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="caso.css"/>
+<style>
+  :root {
+    --brand: #f5c518; --brand-ink: #7a5a00; --brand-soft: #fff4c2; --brand-on-dark: #f5c518;
+    --mesh: radial-gradient(45% 60% at 80% 20%, rgba(245, 197, 24, 0.45) 0, transparent 70%), #0b0b0b;
+    --next-mesh: radial-gradient(40% 55% at 20% 30%, #9cc6ff 0, transparent 70%), radial-gradient(45% 60% at 80% 25%, #c9dcff 0, transparent 70%), #e8f0fb;
+  }
+  /* Hero en negro y amarillo, como la marca */
+  .hero { background: #0b0b0b; color: #fff; }
+  .hero-bg { opacity: 1; filter: blur(40px); }
+  .hero .eyebrow { color: rgba(255, 255, 255, 0.6); }
+  .hero h1 { font-style: italic; font-weight: 900; letter-spacing: -0.04em; }
+  .hero h1 em { color: var(--brand); font-weight: 900; }
+  .hero-sub { color: rgba(255, 255, 255, 0.78); }
+  .hero .tags li { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.14); color: #fff; }
+  .hero .btn-c { background: var(--brand); color: #0b0b0b; }
+  .hero .btn-c:hover { background: #ffd43b; }
+  .hero .btn-c.ghost { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); }
+  .hero .btn-c.ghost:hover { background: rgba(255, 255, 255, 0.08); }
+  .hero .cover { background: #0b0b0b; box-shadow: 0 40px 90px -40px rgba(245, 197, 24, 0.35); }
+  .hero .facts { border-color: rgba(255, 255, 255, 0.14); }
+  .hero .facts span { color: rgba(255, 255, 255, 0.5); }
+  .hero .disclaimer { color: rgba(255, 255, 255, 0.6); }
+  .hero .toc a { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.14); color: #fff; }
+  .hero .toc a span.n { color: var(--brand); }
+  .hero .toc a:hover { background: var(--brand); color: #0b0b0b; }
+  .hero .toc a:hover span.n { color: #0b0b0b; }
+  .top .progress { background: var(--brand); }
+
+  /* Capturas: escritorio a lo ancho, flujo de pantallas sobre fondo oscuro, celular */
+  .wide { margin: 0 0 clamp(36px, 5vw, 56px); }
+  .wide img { display: block; width: 100%; height: auto; border-radius: clamp(14px, 2vw, 22px); border: 1px solid var(--line); box-shadow: 0 30px 70px -45px rgba(13, 14, 16, 0.5); background: #0b0b0b; }
+  .wide figcaption, .split figcaption { margin-top: 14px; max-width: 760px; }
+  .wide figcaption b, .split figcaption b { display: block; font-family: var(--display); font-size: 17px; letter-spacing: -0.02em; }
+  .wide figcaption span, .split figcaption span { display: block; font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 260px); gap: clamp(20px, 3vw, 40px); align-items: center; margin: 0 0 clamp(36px, 5vw, 56px); }
+  .split .movil { width: 100%; height: auto; border-radius: 30px; border: 7px solid #111; box-shadow: 0 30px 70px -45px rgba(13, 14, 16, 0.6); }
+  @media (max-width: 720px) { .split { grid-template-columns: 1fr; } .split .movil { max-width: 260px; margin-inline: auto; } }
+
+  /* Destacado amarillo para la idea de la landing */
+  .ruta { background: #0b0b0b; color: #fff; border-radius: var(--radius); padding: clamp(24px, 4vw, 40px); display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: clamp(28px, 4vw, 44px); }
+  .ruta div { border-top: 3px dashed var(--brand); padding-top: 14px; }
+  .ruta small { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand); }
+  .ruta b { display: block; font-family: var(--display); font-size: 17px; letter-spacing: -0.02em; margin-top: 4px; line-height: 1.25; }
+  @media (max-width: 720px) { .ruta { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="back" href="../index.html#work" data-href-lang="../index.html#work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span data-lang="es">Portfolio</span><span data-lang="en">Portfolio</span>
+    </a>
+    <span class="top-title">MODO YA · <span data-lang="es">Caso de estudio</span><span data-lang="en">Case study</span></span>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+<!-- ============================================================ hero -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span data-lang="es">Caso de estudio · Producto lanzado</span><span data-lang="en">Case study · Launched product</span></span>
+    <h1><span data-lang="es">Malargüe, <em>YA.</em></span><span data-lang="en">Malargüe, <em>YA.</em></span></h1>
+    <p class="hero-sub"><span data-lang="es">Diseñamos y desarrollamos MODO YA, la plataforma de delivery de Malargüe: una app para clientes, locales y administración, una app para riders y la landing de lanzamiento. De punta a punta, en equipo con Álvaro González.</span><span data-lang="en">We designed and built MODO YA, Malargüe's delivery platform: one app for customers, restaurants and admins, one app for riders, and the launch landing page. End to end, together with Álvaro González.</span></p>
+    <ul class="tags"><li>Mobile app</li><li>Delivery</li><li>UX/UI</li><li>Flutter</li><li>Supabase</li><li>Mercado Pago</li><li>Landing</li></ul>
+    <div class="cta-row"><a class="btn-c" href="https://modoya-landing.vercel.app/" target="_blank" rel="noopener"><span data-lang="es">Ver la landing</span><span data-lang="en">View the landing</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a><a class="btn-c ghost" href="#contexto"><span data-lang="es">Leer el caso</span><span data-lang="en">Read the case</span></a></div>
+    <figure class="cover"><img src="../images/modo-ya.jpg" alt="Logo de MODO YA y tres pantallas de la app: inicio, menú de un local y seguimiento del pedido" width="1600" height="1067" fetchpriority="high"/></figure>
+    <div class="facts">
+      <div><span data-lang="es">Rol</span><span data-lang="en">Role</span><b><span data-lang="es">Diseño y desarrollo, en equipo</span><span data-lang="en">Design and development, as a team</span></b></div>
+      <div><span data-lang="es">Duración</span><span data-lang="en">Timeline</span><b><span data-lang="es">Septiembre – octubre 2026</span><span data-lang="en">September – October 2026</span></b></div>
+      <div><span data-lang="es">Usuarios</span><span data-lang="en">Users</span><b><span data-lang="es">Clientes, locales, riders y administración</span><span data-lang="en">Customers, restaurants, riders and admins</span></b></div>
+      <div><span data-lang="es">Plataformas</span><span data-lang="en">Platforms</span><b><span data-lang="es">Android, Windows y web</span><span data-lang="en">Android, Windows and web</span></b></div>
+    </div>
+    <p class="disclaimer"><span data-lang="es">Proyecto de Codea Desarrollos para una clienta de Malargüe. Las pantallas del rediseño y los locales de la landing usan datos de ejemplo.</span><span data-lang="en">A Codea Desarrollos project for a client in Malargüe. Redesign screens and landing restaurants use sample data.</span></p>
+    <nav class="toc" aria-label="Índice del caso">
+      <a href="#contexto"><span class="n">01</span><span data-lang="es">Contexto</span><span data-lang="en">Context</span></a>
+      <a href="#usuarios"><span class="n">02</span><span data-lang="es">Usuarios</span><span data-lang="en">Users</span></a>
+      <a href="#definicion"><span class="n">03</span><span data-lang="es">Definición</span><span data-lang="en">Definition</span></a>
+      <a href="#decisiones"><span class="n">04</span><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></a>
+      <a href="#proceso"><span class="n">05</span><span data-lang="es">Proceso</span><span data-lang="en">Process</span></a>
+      <a href="#app"><span class="n">06</span>App</a>
+      <a href="#landing"><span class="n">07</span>Landing</a>
+      <a href="#resultados"><span class="n">08</span><span data-lang="es">Resultados</span><span data-lang="en">Outcomes</span></a>
+      <a href="#aprendizajes"><span class="n">09</span><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></a>
+    </nav>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ============================================================ 01 contexto -->
+<section class="sec" id="contexto">
+  <div class="sec-head rv">
+    <div class="sec-num">01<b><span data-lang="es">Contexto</span><span data-lang="en">Context</span></b></div>
+    <div>
+      <h2><span data-lang="es">Un pueblo con ganas de pedir, y sin app para hacerlo.</span><span data-lang="en">A town ready to order, with no app to do it.</span></h2>
+      <p class="sec-lead"><span data-lang="es">En Malargüe, en el sur de Mendoza, los locales venden por WhatsApp o por teléfono y cada uno resuelve el envío como puede. La clienta quería una plataforma local que sirviera para dos cosas: que los vecinos pidan desde una app, y que los locales usen una flota de riders para los pedidos que ya reciben.</span><span data-lang="en">In Malargüe, in southern Mendoza, restaurants sell over WhatsApp or the phone and each one handles delivery however it can. The client wanted a local platform for two things: letting neighbors order from an app, and letting restaurants use a rider fleet for the orders they already get.</span></p>
+    </div>
+  </div>
+  <div class="grid g3 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Para el cliente</span><span data-lang="en">For customers</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Ver qué está abierto, con menú y precios</span><span data-lang="en">See what's open, with menu and prices</span></li>
+        <li><span data-lang="es">Pagar sin efectivo</span><span data-lang="en">Pay without cash</span></li>
+        <li><span data-lang="es">Saber dónde está su pedido</span><span data-lang="en">Know where their order is</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Para el local</span><span data-lang="en">For restaurants</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Vender por la app sin dejar de vender por WhatsApp</span><span data-lang="en">Sell in the app without giving up WhatsApp</span></li>
+        <li><span data-lang="es">No depender de tener delivery propio</span><span data-lang="en">Not depend on having their own delivery</span></li>
+        <li><span data-lang="es">Actualizar menú y precios en un minuto</span><span data-lang="en">Update menu and prices in a minute</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Restricciones</span><span data-lang="en">Constraints</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Un equipo de dos personas</span><span data-lang="en">A two-person team</span></li>
+        <li><span data-lang="es">Ubicación del rider en segundo plano: el permiso que más revisan las tiendas</span><span data-lang="en">Background rider location: the permission app stores scrutinize most</span></li>
+        <li><span data-lang="es">Reglas de negocio todavía abiertas al empezar</span><span data-lang="en">Business rules still open when we started</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 usuarios -->
+<section class="sec" id="usuarios">
+  <div class="sec-head rv">
+    <div class="sec-num">02<b><span data-lang="es">Usuarios</span><span data-lang="en">Users</span></b></div>
+    <div>
+      <h2><span data-lang="es">Cuatro personas en cada pedido.</span><span data-lang="en">Four people in every order.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Cada pedido pasa por un cliente, un local, un rider y la administración. El rol de la cuenta decide qué pantallas ve cada uno.</span><span data-lang="en">Every order goes through a customer, a restaurant, a rider and the admin team. The account's role decides which screens each one sees.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr><th><span data-lang="es">Rol</span><span data-lang="en">Role</span></th><th><span data-lang="es">Qué necesita</span><span data-lang="en">What they need</span></th><th>App</th><th><span data-lang="es">Cómo entra</span><span data-lang="en">How they join</span></th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><span data-lang="es">Cliente</span><span data-lang="en">Customer</span></th><td><span data-lang="es">Pedir comida o un mandado y seguirlo en vivo</span><span data-lang="en">Order food or an errand and track it live</span></td><td>MODO YA</td><td><span data-lang="es">Se registra solo</span><span data-lang="en">Signs up on their own</span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Local</span><span data-lang="en">Restaurant</span></th><td><span data-lang="es">Recibir pedidos o pedir un rider para los suyos</span><span data-lang="en">Receive orders, or request a rider for their own</span></td><td>MODO YA</td><td><span data-lang="es">Lo da de alta la administración</span><span data-lang="en">Created by the admin team</span></td></tr>
+          <tr><th scope="row">Rider</th><td><span data-lang="es">Aceptar envíos cerca y saber cuánto cobrar</span><span data-lang="en">Accept nearby deliveries and know what to collect</span></td><td>MODO YA Rider</td><td><span data-lang="es">Lo da de alta la administración</span><span data-lang="en">Created by the admin team</span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Administración</span><span data-lang="en">Admin</span></th><td><span data-lang="es">Aprobar cuentas, fijar tarifas y ver la operación</span><span data-lang="en">Approve accounts, set fees and oversee operations</span></td><td>MODO YA</td><td><span data-lang="es">Se crea a mano</span><span data-lang="en">Created manually</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 definición -->
+<section class="sec" id="definicion">
+  <div class="sec-head rv">
+    <div class="sec-num">03<b><span data-lang="es">Definición</span><span data-lang="en">Definition</span></b></div>
+    <div><h2><span data-lang="es">El problema, en una pregunta.</span><span data-lang="en">The problem, in one question.</span></h2></div>
+  </div>
+  <div class="indent">
+    <p class="hmw rv"><small><span data-lang="es">¿Cómo podríamos…?</span><span data-lang="en">How might we…?</span></small><span data-lang="es">¿Cómo podríamos lograr que un vecino de Malargüe <em>pida en minutos y sepa siempre dónde está su pedido</em>, y que cualquier local <em>pueda vender y enviar</em>, tenga delivery propio o no?</span><span data-lang="en">How might we let a Malargüe neighbor <em>order in minutes and always know where their order is</em>, and let any restaurant <em>sell and deliver</em>, whether or not it has its own delivery?</span></p>
+
+    <h3 class="sub rv"><span data-lang="es">Principios de diseño</span><span data-lang="en">Design principles</span></h3>
+    <div class="grid g3">
+      <div class="card rv"><span class="k">01</span><h4><span data-lang="es">Local primero</span><span data-lang="en">Local first</span></h4><p><span data-lang="es">Tono, horarios y ejemplos de Malargüe. El día lo decide Malargüe, no el reloj del servidor.</span><span data-lang="en">Malargüe's voice, hours and examples. The day is set by Malargüe, not the server clock.</span></p></div>
+      <div class="card rv"><span class="k">02</span><h4><span data-lang="es">Siempre sé dónde está</span><span data-lang="en">Always know where it is</span></h4><p><span data-lang="es">Estados claros del pedido, el rider en el mapa y un código para confirmar la entrega.</span><span data-lang="en">Clear order states, the rider on the map and a code to confirm delivery.</span></p></div>
+      <div class="card rv"><span class="k">03</span><h4><span data-lang="es">No prometer lo que no pasa</span><span data-lang="en">Don't promise what won't happen</span></h4><p><span data-lang="es">Cada texto de la app tiene que tener un flujo detrás que lo cumpla.</span><span data-lang="en">Every line of copy in the app needs a flow behind it that delivers.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 decisiones -->
+<section class="sec" id="decisiones">
+  <div class="sec-head rv">
+    <div class="sec-num">04<b><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></b></div>
+    <div>
+      <h2><span data-lang="es">Las decisiones que le dieron forma.</span><span data-lang="en">The decisions that shaped it.</span></h2>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">El rider necesita ubicación en segundo plano</span><span data-lang="en">Riders need background location</span></h4><p><span data-lang="es">Es el permiso que más revisan Apple y Google. Dentro de una app de clientes, lo más probable es que rechacen la publicación.</span><span data-lang="en">It's the permission Apple and Google scrutinize most. Inside a customer app, publication would most likely be rejected.</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">Dos apps, no una</span><span data-lang="en">Two apps, not one</span></h4><p><span data-lang="es">MODO YA para clientes, locales y administración, y MODO YA Rider aparte. Comparten el sistema de diseño y la lógica en paquetes comunes.</span><span data-lang="en">MODO YA for customers, restaurants and admins, and a separate MODO YA Rider. They share the design system and logic through common packages.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">Los locales ya venden por WhatsApp</span><span data-lang="en">Restaurants already sell on WhatsApp</span></h4><p><span data-lang="es">Pedirles que dejen sus canales para usar solo la app era perderlos.</span><span data-lang="en">Asking them to drop their channels for the app alone meant losing them.</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">Marketplace y cadetería en un mismo motor</span><span data-lang="en">Marketplace and courier on one engine</span></h4><p><span data-lang="es">El local puede recibir pedidos por la app o pedir un rider para un pedido que le llegó por otro lado. Los dos usan el mismo motor de envíos y la misma asignación por cercanía.</span><span data-lang="en">A restaurant can receive in-app orders or request a rider for an order that came in elsewhere. Both run on the same delivery engine and proximity-based assignment.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">¿Quién confirma que llegó?</span><span data-lang="en">Who confirms it arrived?</span></h4><p><span data-lang="es">Sin una prueba de entrega, un pedido "entregado" que no llegó termina en discusión.</span><span data-lang="en">Without proof of delivery, a "delivered" order that never arrived turns into an argument.</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">Código de entrega de 4 dígitos</span><span data-lang="en">4-digit delivery code</span></h4><p><span data-lang="es">El cliente ve un código y se lo dice al rider para cerrar la entrega. El local entrega al rider con un código de retiro.</span><span data-lang="en">The customer sees a code and tells the rider to close the delivery. The restaurant hands over to the rider with a pickup code.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">Elegir el propio rol</span><span data-lang="en">Picking your own role</span></h4><p><span data-lang="es">Si el usuario pudiera decir que es local o administración al registrarse, podría ver y tocar lo que no le corresponde.</span><span data-lang="en">If users could claim to be a restaurant or admin at sign-up, they could see and change what isn't theirs.</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">El rol lo asigna el servidor</span><span data-lang="en">The server assigns the role</span></h4><p><span data-lang="es">Los clientes se registran solos. Locales y riders los da de alta la administración con usuario y contraseña generados. La base lee el rol solo de datos que escribe el servidor.</span><span data-lang="en">Customers sign up on their own. Restaurants and riders are created by the admin team with generated credentials. The database only reads the role from data the server writes.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">Reglas sin definir</span><span data-lang="en">Undefined rules</span></h4><p><span data-lang="es">Tarifa por kilómetro, radio de búsqueda o tiempo para aceptar un envío: números que la clienta todavía no había decidido.</span><span data-lang="en">Per-kilometer fee, search radius or time to accept a delivery: numbers the client hadn't decided yet.</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">Todo configurable, nada inventado</span><span data-lang="en">Everything configurable, nothing invented</span></h4><p><span data-lang="es">Esos valores se cambian desde el panel sin publicar otra versión. El kilómetro adicional arrancó en $0 a propósito, para no inventar un cobro que nadie había definido.</span><span data-lang="en">Those values change from the admin panel without shipping a new version. The extra-kilometer fee started at $0 on purpose, to avoid inventing a charge nobody had defined.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 proceso -->
+<section class="sec" id="proceso">
+  <div class="sec-head rv">
+    <div class="sec-num">05<b><span data-lang="es">Proceso</span><span data-lang="en">Process</span></b></div>
+    <div>
+      <h2><span data-lang="es">Preguntar antes de construir. Revisar antes de lanzar.</span><span data-lang="en">Ask before building. Review before launching.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Dos documentos ordenaron el trabajo con la clienta y dentro del equipo.</span><span data-lang="en">Two documents organized the work with the client and within the team.</span></p>
+    </div>
+  </div>
+  <div class="grid g2 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Preguntas para la clienta</span><span data-lang="en">Questions for the client</span></span>
+      <h4><span data-lang="es">Ordenadas por cuánto bloquean</span><span data-lang="en">Ranked by how much they block</span></h4>
+      <p><span data-lang="es">Primero las que cambian cómo se construye: ¿el envío se paga en efectivo o digital?, ¿qué documentación se le pide a un rider?, ¿qué pasa con un pedido cancelado? Después, los números que se pueden ajustar más adelante desde el panel. Cada pregunta explica por qué importa y compara las opciones.</span><span data-lang="en">First, the ones that change how it's built: is delivery paid in cash or digitally? What documents does a rider need? What happens to a cancelled order? Then, the numbers that can be tuned later from the panel. Each question explains why it matters and compares the options.</span></p></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Revisión de pantallas y flujos</span><span data-lang="en">Screen and flow review</span></span>
+      <h4><span data-lang="es">15 hallazgos antes de lanzar</span><span data-lang="en">15 findings before launch</span></h4>
+      <p><span data-lang="es">Recorrimos toda la app buscando huecos entre lo que dicen las pantallas y lo que el sistema puede cumplir, y los ordenamos por gravedad.</span><span data-lang="en">We went through the whole app looking for gaps between what the screens say and what the system can actually do, and ranked them by severity.</span></p></div>
+  </div>
+  <div class="indent">
+    <h3 class="sub rv"><span data-lang="es">Algunos hallazgos</span><span data-lang="en">Some findings</span></h3>
+    <div class="grid g3">
+      <div class="card insight rv"><i>1</i><div><h4><span data-lang="es">Una promesa sin flujo</span><span data-lang="en">A promise with no flow</span></h4><p><span data-lang="es">Al elegir "Transferencia", la app decía "te pasamos el alias al confirmar", pero ninguna pantalla lo mostraba.</span><span data-lang="en">Choosing "Bank transfer", the app said "we'll send you the alias on confirmation", but no screen ever showed it.</span></p></div></div>
+      <div class="card insight rv"><i>2</i><div><h4><span data-lang="es">"Todo en orden" cuando falla</span><span data-lang="en">"All good" when it fails</span></h4><p><span data-lang="es">Si se cortaba la red, el panel de administración mostraba ceros y un cartel verde, sin ningún aviso de error.</span><span data-lang="en">With no connection, the admin dashboard showed zeros and a green banner, with no error at all.</span></p></div></div>
+      <div class="card insight rv"><i>3</i><div><h4><span data-lang="es">Un botón que no hace nada</span><span data-lang="en">A button that does nothing</span></h4><p><span data-lang="es">"Confirmar" en el código de entrega se veía activo con 1 a 3 dígitos, y al tocarlo no pasaba nada ni explicaba por qué.</span><span data-lang="en">"Confirm" on the delivery code looked active with 1 to 3 digits, and tapping it did nothing without explaining why.</span></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 06 app -->
+<section class="sec" id="app">
+  <div class="sec-head rv">
+    <div class="sec-num">06<b>App</b></div>
+    <div>
+      <h2><span data-lang="es">Negro, amarillo y un pedido a la vista.</span><span data-lang="en">Black, yellow and an order in plain sight.</span></h2>
+      <p class="sec-lead"><span data-lang="es">El rediseño llevó la identidad de la marca a los tokens del sistema de diseño y recorrió el flujo completo del cliente, de abrir la app a calificar la entrega.</span><span data-lang="en">The redesign carried the brand identity into the design system tokens and covered the full customer flow, from opening the app to rating the delivery.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <figure class="wide rv">
+      <img src="../images/casos/modoya-flujo-a.jpg" alt="Pantallas de bienvenida, inicio, menú de un local y carrito" loading="lazy" width="1965" height="900"/>
+      <figcaption><b><span data-lang="es">Elegir y armar el pedido</span><span data-lang="en">Choosing and building the order</span></b><span><span data-lang="es">Bienvenida, inicio con rubros y locales destacados, menú del local y carrito. Tiempo y costo de envío visibles desde el primer listado.</span><span data-lang="en">Welcome, home with categories and featured restaurants, restaurant menu and cart. Delivery time and fee visible from the very first list.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/modoya-flujo-b.jpg" alt="Pantallas de dirección y pago, pedido confirmado, seguimiento y entrega" loading="lazy" width="1965" height="900"/>
+      <figcaption><b><span data-lang="es">Pagar y seguirlo hasta la puerta</span><span data-lang="en">Paying and tracking it to the door</span></b><span><span data-lang="es">Dirección y medio de pago en una sola pantalla, confirmación, seguimiento con los estados del pedido y el rider en el mapa, y calificación al final.</span><span data-lang="en">Address and payment method on one screen, confirmation, tracking with order states and the rider on the map, and a rating at the end.</span></span></figcaption>
+    </figure>
+    <div class="grid g4">
+      <div class="card rv"><span class="k"><span data-lang="es">Pagos</span><span data-lang="en">Payments</span></span><p><span data-lang="es">Tarjeta dentro de la app con Mercado Pago, transferencia o efectivo.</span><span data-lang="en">In-app card payments via Mercado Pago, bank transfer or cash.</span></p></div>
+      <div class="card rv"><span class="k">MODO YA Plus</span><p><span data-lang="es">Suscripción mensual con envío gratis, que se renueva sola y se da de baja de un toque.</span><span data-lang="en">Monthly subscription with free delivery that renews itself and cancels in one tap.</span></p></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Avisos</span><span data-lang="en">Notifications</span></span><p><span data-lang="es">Notificaciones push, sonidos propios por rol y recordatorios de carrito abandonado.</span><span data-lang="en">Push notifications, role-specific sounds and abandoned-cart reminders.</span></p></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Mandados</span><span data-lang="en">Errands</span></span><p><span data-lang="es">El cliente también puede pedir un rider para llevar o buscar lo que necesite.</span><span data-lang="en">Customers can also request a rider to drop off or pick up whatever they need.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 07 landing -->
+<section class="sec" id="landing">
+  <div class="sec-head rv">
+    <div class="sec-num">07<b>Landing</b></div>
+    <div>
+      <h2><span data-lang="es">Una landing que se recorre como un envío.</span><span data-lang="en">A landing page you travel like a delivery.</span></h2>
+      <p class="sec-lead"><span data-lang="es">La landing de lanzamiento tenía tres públicos: vecinos que bajan la app, locales que se suman y personas con moto que quieren ser riders. La organizamos como la ruta de un rider: una línea punteada a la izquierda acompaña el scroll y cada sección es una parada.</span><span data-lang="en">The launch landing page had three audiences: neighbors downloading the app, restaurants joining and people with a motorbike who want to ride. We organized it as a rider's route: a dashed line on the left follows the scroll and each section is a stop.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="ruta rv">
+      <div><small><span data-lang="es">Parada 1</span><span data-lang="en">Stop 1</span></small><b><span data-lang="es">Mucho más que delivery</span><span data-lang="en">Much more than delivery</span></b></div>
+      <div><small><span data-lang="es">Parada 2</span><span data-lang="en">Stop 2</span></small><b><span data-lang="es">¿Qué comemos?</span><span data-lang="en">What should we eat?</span></b></div>
+      <div><small><span data-lang="es">Parada 3</span><span data-lang="en">Stop 3</span></small><b><span data-lang="es">Cómo funciona</span><span data-lang="en">How it works</span></b></div>
+      <div><small><span data-lang="es">Parada 4</span><span data-lang="en">Stop 4</span></small><b><span data-lang="es">Sumate</span><span data-lang="en">Join</span></b></div>
+      <div><small><span data-lang="es">Parada 5</span><span data-lang="en">Stop 5</span></small><b><span data-lang="es">Descargá la app</span><span data-lang="en">Download the app</span></b></div>
+    </div>
+    <div class="split rv">
+      <figure class="wide" style="margin:0">
+        <img src="../images/casos/modoya-landing-inicio.jpg" alt="Inicio de la landing: El mejor sabor, en tu casa. YA." loading="lazy" width="2160" height="1350"/>
+      </figure>
+      <img class="movil" src="../images/casos/modoya-landing-movil.jpg" alt="Inicio de la landing en el celular" loading="lazy" width="780" height="1688"/>
+      <figcaption style="grid-column:1/-1"><b><span data-lang="es">Inicio, en escritorio y celular</span><span data-lang="en">Hero, on desktop and mobile</span></b><span><span data-lang="es">Un titular que se lee de un vistazo, comida real alrededor del teléfono y tres accesos claros: descargar, soy un local o sumarme como rider.</span><span data-lang="en">A headline you get at a glance, real food around the phone and three clear paths: download, I'm a restaurant, or join as a rider.</span></span></figcaption>
+    </div>
+    <figure class="wide rv">
+      <img src="../images/casos/modoya-landing-servicios.jpg" alt="Sección Mucho más que delivery, con servicios para clientes y para locales" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Parada 1 · Para vos y para tu local</span><span data-lang="en">Stop 1 · For you and for your restaurant</span></b><span><span data-lang="es">Los servicios separados por público, y una franja amarilla para quien tiene moto. Cada tarjeta termina en una acción.</span><span data-lang="en">Services split by audience, plus a yellow band for people with a motorbike. Every card ends in an action.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/modoya-landing-pasos.jpg" alt="Sección Cómo funciona en tres pasos" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Parada 3 · Cómo funciona</span><span data-lang="en">Stop 3 · How it works</span></b><span><span data-lang="es">Tres pasos y un "paso cero": bajarse la app.</span><span data-lang="en">Three steps and a "step zero": download the app.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/modoya-landing-locales.jpg" alt="Sección Sumate con beneficios para locales y formulario de pre-inscripción" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Parada 4 · Pre-inscripción de locales y riders</span><span data-lang="en">Stop 4 · Restaurant and rider pre-registration</span></b><span><span data-lang="es">Un selector entre "Tengo un local" y "Quiero ser rider", los beneficios a la izquierda y un formulario corto a la derecha. El contacto sigue por WhatsApp, el canal que ya usan.</span><span data-lang="en">A toggle between "I have a restaurant" and "I want to ride", benefits on the left and a short form on the right. Follow-up happens on WhatsApp, the channel they already use.</span></span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ 08 resultados -->
+<section class="sec" id="resultados">
+  <div class="sec-head rv">
+    <div class="sec-num">08<b><span data-lang="es">Resultados</span><span data-lang="en">Outcomes</span></b></div>
+    <div><h2><span data-lang="es">De cero a lanzado en semanas.</span><span data-lang="en">From zero to launched in weeks.</span></h2></div>
+  </div>
+  <div class="indent">
+    <div class="grid g4">
+      <div class="card metric rv"><b>2 + 1</b><span><span data-lang="es">apps y una landing, con un solo sistema de diseño</span><span data-lang="en">apps and a landing page, on one design system</span></span></div>
+      <div class="card metric rv"><b>15</b><span><span data-lang="es">versiones publicadas entre septiembre y octubre</span><span data-lang="en">releases shipped between September and October</span></span></div>
+      <div class="card metric rv"><b>55</b><span><span data-lang="es">migraciones de base de datos, con permisos por rol</span><span data-lang="en">database migrations, with role permissions</span></span></div>
+      <div class="card metric rv"><b>15</b><span><span data-lang="es">hallazgos de la revisión, ordenados por gravedad</span><span data-lang="en">review findings, ranked by severity</span></span></div>
+    </div>
+    <p class="nota rv"><span data-lang="es">Las apps se instalan en Android y Windows y se actualizan solas: cada versión nueva se publica automáticamente desde el repositorio.</span><span data-lang="en">The apps install on Android and Windows and update themselves: every new version is published automatically from the repository.</span></p>
+  </div>
+</section>
+
+<!-- ============================================================ 09 aprendizajes -->
+<section class="sec" id="aprendizajes">
+  <div class="sec-head rv">
+    <div class="sec-num">09<b><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></b></div>
+    <div><h2><span data-lang="es">Lo que me llevo.</span><span data-lang="en">What I'm taking away.</span></h2></div>
+  </div>
+  <div class="indent grid g2">
+    <div class="card rv"><span class="k"><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Un marketplace tiene cuatro usuarios, no uno: cada decisión se mira desde el cliente, el local, el rider y la administración.</span><span data-lang="en">A marketplace has four users, not one: every decision is checked from the customer's, restaurant's, rider's and admin's side.</span></li>
+        <li><span data-lang="es">Lo incompleto casi nunca está en el código a medio escribir, sino en los huecos entre lo que la pantalla promete y lo que el sistema hace.</span><span data-lang="en">What's unfinished is rarely half-written code; it's the gap between what a screen promises and what the system does.</span></li>
+        <li><span data-lang="es">Ordenar las preguntas por cuánto bloquean hizo que la clienta decidiera primero lo que más caro salía cambiar.</span><span data-lang="en">Ranking questions by how much they block got the client deciding first on what was most expensive to change.</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Próximos pasos</span><span data-lang="en">Next steps</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Cerrar los hallazgos pendientes de la revisión, empezando por los de gravedad alta.</span><span data-lang="en">Close the remaining review findings, starting with the high-severity ones.</span></li>
+        <li><span data-lang="es">Medir con datos reales cuánto tarda un rider en aceptar y ajustar el radio de búsqueda.</span><span data-lang="en">Measure with real data how long riders take to accept, and tune the search radius.</span></li>
+        <li><span data-lang="es">Sumar pantallas para reclamos y para que riders y locales vean sus liquidaciones.</span><span data-lang="en">Add screens for complaints and for riders and restaurants to see their payouts.</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<a class="next rv" href="turno.html">
+  <div class="next-bg" aria-hidden="true"></div>
+  <span class="eyebrow"><span data-lang="es">Siguiente caso</span><span data-lang="en">Next case</span></span>
+  <h2>Turno <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></h2>
+  <p><span data-lang="es">Una app para sacar turnos médicos en tres toques, pensada para cualquier edad.</span><span data-lang="en">An app to book medical appointments in three taps, designed for any age.</span></p>
+</a>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Lucía Miranda · <span data-lang="es">Diseño y desarrollo</span><span data-lang="en">Design &amp; development</span></span>
+    <a href="../index.html#contact" data-href-lang="../index.html#contact"><span data-lang="es">Contacto →</span><span data-lang="en">Contact →</span></a>
+  </div>
+</footer>
+
+<script src="caso.js"></script>
+</body>
+</html>
