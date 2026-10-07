@@ -160,11 +160,12 @@
   @keyframes marquee { to { transform: translateX(-50%); } }
 
   /* ---------------------------------------------------------------- casos destacados */
-  .case { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: clamp(28px, 4vw, 64px); align-items: center; padding: clamp(28px, 4vw, 48px) 0; border-top: 1px solid var(--line); }
+  /* Card destacada: la portada a lo ancho, sin recortes, y el texto debajo en dos columnas. */
+  .case { display: grid; gap: clamp(24px, 3vw, 40px); padding: clamp(36px, 5vw, 64px) 0; border-top: 1px solid var(--line); }
   .case:last-child { border-bottom: 1px solid var(--line); }
-  .case.flip { grid-template-columns: 0.65fr 1.35fr; }
-  .case.flip .case-media { order: 2; }
-  .case-media { display: block; width: 100%; border-radius: var(--radius); overflow: hidden; background: #e4e7e2; aspect-ratio: 3 / 2; cursor: none; }
+  .case-media { display: block; width: 100%; border-radius: var(--radius); overflow: hidden; background: #e4e7e2; aspect-ratio: 3 / 2; cursor: none; box-shadow: 0 40px 80px -50px rgba(13, 14, 16, 0.45); }
+  .case-copy { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(20px, 4vw, 72px); align-items: start; }
+  .case-body .case-sub { margin-top: 4px; }
   .zoom { width: 100%; height: 100%; transition: transform 1.1s var(--ease); }
   .case-media:hover .zoom, .work-media:hover .zoom { transform: scale(1.035); }
   .zoom img, .zoom video { width: 100%; height: 100%; object-fit: cover; }
@@ -175,7 +176,7 @@
   .case-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
   .case-top .new { margin: 0; }
   .case-pill { font-size: 12px; font-weight: 600; line-height: 1; padding: 8px 12px; border-radius: 999px; background: var(--ink); color: #fff; }
-  .case-copy .case-title { font-size: clamp(30px, 3.2vw, 46px); letter-spacing: -0.03em; line-height: 1.04; margin: 18px 0 16px; }
+  .case-copy .case-title { font-size: clamp(30px, 4vw, 54px); letter-spacing: -0.03em; line-height: 1.04; margin: 18px 0 16px; }
   .case-impact { margin: 0 0 22px; padding: 12px 16px; border-left: 3px solid var(--accent); background: rgba(27, 154, 90, 0.07); border-radius: 0 12px 12px 0; font-size: 14px; font-weight: 600; color: var(--accent-ink); }
   .case-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0 0 22px; padding: 16px 0; border-block: 1px solid var(--line); }
   .case-facts dt { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 4px; }
@@ -309,8 +310,7 @@
     .portrait { justify-self: center; max-width: 420px; margin-top: 30px; }
     .chip-a { left: -10px; } .chip-b { right: -8px; }
     .scroll-hint { display: none; }
-    .case, .case.flip { grid-template-columns: 1fr; }
-    .case.flip .case-media { order: 0; }
+    .case-copy { grid-template-columns: 1fr; gap: 0; }
     .about-grid, .split { grid-template-columns: 1fr; }
     .split .head { position: static; margin-bottom: 40px; }
     .service { grid-template-columns: 50px 1fr; }
@@ -685,12 +685,12 @@
       producto: { es: 'Delivery · Malargüe, Mendoza', en: 'Delivery · Malargüe, Mendoza' },
       titular: { es: 'Todo Malargüe en una app de delivery.', en: 'All of Malargüe in one delivery app.' },
       relato: {
-        es: 'Los locales vendían por WhatsApp y cada uno resolvía su envío. Con Álvaro diseñamos y desarrollamos la plataforma completa: la app para pedir, la app para los riders y la landing de lanzamiento, con pagos y seguimiento en vivo.',
-        en: 'Restaurants sold over WhatsApp and each handled its own delivery. With Álvaro we designed and built the whole platform: the ordering app, the rider app and the launch landing page, with payments and live tracking.'
+        es: 'Los locales vendían por WhatsApp y cada uno resolvía su envío. Creé MODO YA y lo llevé de la idea al lanzamiento: la app para pedir, la app para los riders y la landing, con pagos y seguimiento en vivo. Lo desarrollé en equipo con Álvaro González.',
+        en: 'Restaurants sold over WhatsApp and each handled its own delivery. I created MODO YA and took it from idea to launch: the ordering app, the rider app and the landing page, with payments and live tracking. Built together with Álvaro González.'
       },
       impacto: { es: 'Lanzado · 2 apps + landing · 15 versiones publicadas en semanas', en: 'Launched · 2 apps + landing · 15 releases shipped in weeks' },
       ficha: [
-        [{ es: 'Rol', en: 'Role' }, { es: 'Diseño y desarrollo, en equipo', en: 'Design & development, as a team' }],
+        [{ es: 'Rol', en: 'Role' }, { es: 'Producto, diseño y desarrollo', en: 'Product, design & development' }],
         [{ es: 'Dispositivos', en: 'Devices' }, { es: 'Android, Windows y web', en: 'Android, Windows & web' }]
       ],
       pagina: 'casos/modo-ya.html',
@@ -857,15 +857,18 @@
     : `<button type="button" class="${clase}" data-proyecto="${p.id}"`;
   const cierraCard = (p) => p.pagina ? '</a>' : '</button>';
   document.getElementById('cases').innerHTML = destacados.map((p, i) => `
-    <article class="case${i % 2 ? ' flip' : ''}">
+    <article class="case">
       ${abreCard(p, 'case-media')} aria-label="${esc(p.titulo)}"><div class="zoom">${media(p)}</div>${cierraCard(p)}
       <div class="case-copy" data-reveal>
+        <div class="case-head">
         <div class="case-top">
           <span class="case-num">0${i + 1} / 0${destacados.length}</span>
           <span class="case-pill">${bi(p.producto || { es: p.titulo, en: p.titulo })}</span>
           ${p.nuevo ? `<span class="new">${bi({ es: 'Nuevo', en: 'New' })}</span>` : ''}
         </div>
         <h3 class="case-title">${bi(p.titular || { es: p.titulo, en: p.titulo })}</h3>
+        </div>
+        <div class="case-body">
         <p class="case-sub">${bi(p.relato || p.sub)}</p>
         ${p.impacto ? `<p class="case-impact">${bi(p.impacto)}</p>` : ''}
         ${p.ficha ? `<dl class="case-facts">${p.ficha.map(([k, v]) => `<div><dt>${bi(k)}</dt><dd>${bi(v)}</dd></div>`).join('')}</dl>` : ''}
@@ -874,6 +877,7 @@
           <span class="case-cta-label">${bi({ es: 'Ver caso completo', en: 'View full case' })}</span>
           <span class="case-cta-arrow">${ARROW}</span>
         ${cierraCard(p)}
+        </div>
       </div>
     </article>`).join('');
 
@@ -1104,7 +1108,7 @@
     const escritorio = window.matchMedia('(hover: hover) and (min-width: 761px)').matches;
     gsap.utils.toArray('.case-media, .work-media').forEach((box) => {
       gsap.from(box, { clipPath: 'inset(12% 6% 12% 6% round 24px)', duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: box, start: 'top 85%' } });
-      if (!escritorio) return;
+      if (!escritorio || box.classList.contains('case-media')) return;
       const m = box.querySelector('img, video');
       gsap.fromTo(m, { scale: 1.18 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
