@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Padel Hub Mendoza · Caso de estudio · Lucía Miranda</title>
+<meta name="title-es" content="Padel Hub Mendoza · Caso de estudio · Lucía Miranda"/>
+<meta name="title-en" content="Padel Hub Mendoza · Case study · Lucía Miranda"/>
+<meta name="description" content="Caso de estudio de Padel Hub Mendoza: reservas con seña, partidos abiertos por nivel y torneos, con una app para el jugador y un panel para el club."/>
+<meta name="theme-color" content="#f3f4f1"/>
+<meta property="og:title" content="Padel Hub Mendoza · Caso de estudio"/>
+<meta property="og:image" content="https://lucim2003.github.io/nuevoport/images/padel-hub.jpg"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="caso.css"/>
+<style>
+  :root {
+    --brand: #8fb31a; --brand-ink: #4b5e0b; --brand-soft: #f1f8d8; --brand-on-dark: #d4f04a;
+    --mesh: radial-gradient(40% 55% at 20% 30%, #e4f59a 0, transparent 70%), radial-gradient(45% 60% at 80% 20%, #d9f0c4 0, transparent 70%), radial-gradient(40% 50% at 70% 85%, #c9e7d6 0, transparent 70%), #eef5e0;
+    --next-mesh: radial-gradient(40% 55% at 20% 30%, #9cc6ff 0, transparent 70%), radial-gradient(45% 60% at 80% 25%, #c9dcff 0, transparent 70%), #e8f0fb;
+  }
+  /* Pantallas del prototipo, recortadas de la propuesta */
+  .wide { margin: 0 0 clamp(36px, 5vw, 56px); }
+  .wide img { display: block; width: 100%; height: auto; border-radius: clamp(14px, 2vw, 22px); background: #fff; border: 1px solid var(--line); box-shadow: 0 30px 70px -45px rgba(13, 14, 16, 0.4); }
+  .wide.narrow img { max-width: 760px; margin-inline: auto; }
+  .wide figcaption { margin-top: 14px; max-width: 760px; }
+  .wide figcaption b { display: block; font-family: var(--display); font-size: 17px; letter-spacing: -0.02em; }
+  .wide figcaption span { display: block; font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .flow.row { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .flow.row .f-arrow { transform: none; }
+  @media (max-width: 720px) { .flow.row { flex-direction: column; align-items: stretch; } .flow.row .f-arrow { transform: rotate(90deg); } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="back" href="../index.html#work" data-href-lang="../index.html#work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span data-lang="es">Portfolio</span><span data-lang="en">Portfolio</span>
+    </a>
+    <span class="top-title">Padel Hub · <span data-lang="es">Caso de estudio</span><span data-lang="en">Case study</span></span>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+<!-- ============================================================ hero -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span data-lang="es">Caso de estudio · Diseño y desarrollo</span><span data-lang="en">Case study · Design and development</span></span>
+    <h1><span data-lang="es">Del mensaje al club a la cancha reservada<em>.</em></span><span data-lang="en">From messaging the club to a booked court<em>.</em></span></h1>
+    <p class="hero-sub"><span data-lang="es">Una plataforma de pádel para Mendoza con dos experiencias: la app donde el jugador reserva, se suma a partidos y sigue su nivel, y el panel donde el club organiza torneos, cobra y administra.</span><span data-lang="en">A padel platform for Mendoza with two experiences: the app where players book, join matches and track their level, and the dashboard where clubs run tournaments, take payments and manage operations.</span></p>
+    <ul class="tags"><li>Mobile first</li><li><span data-lang="es">Reservas</span><span data-lang="en">Bookings</span></li><li>UX/UI</li><li>React</li><li>Tailwind CSS</li><li>Supabase</li></ul>
+    <div class="cta-row"><a class="btn-c" href="https://stitchpadelhubmendoza.vercel.app/" target="_blank" rel="noopener"><span data-lang="es">Probar la demo</span><span data-lang="en">Try the demo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a><a class="btn-c ghost" href="#contexto"><span data-lang="es">Leer el caso</span><span data-lang="en">Read the case</span></a></div>
+    <figure class="cover"><img src="../images/padel-hub.jpg" alt="Padel Hub Mendoza en una notebook y un celular" width="1600" height="1067" fetchpriority="high"/></figure>
+    <div class="facts">
+      <div><span data-lang="es">Rol</span><span data-lang="en">Role</span><b><span data-lang="es">UX/UI y desarrollo front-end</span><span data-lang="en">UX/UI and front-end development</span></b></div>
+      <div><span data-lang="es">Fecha</span><span data-lang="en">Date</span><b><span data-lang="es">Agosto – octubre 2026</span><span data-lang="en">August – October 2026</span></b></div>
+      <div><span data-lang="es">Usuarios</span><span data-lang="en">Users</span><b><span data-lang="es">Jugadores y clubes</span><span data-lang="en">Players and clubs</span></b></div>
+      <div><span data-lang="es">Plataforma</span><span data-lang="en">Platform</span><b><span data-lang="es">Celular primero · claro y oscuro</span><span data-lang="en">Mobile first · light and dark</span></b></div>
+    </div>
+    <p class="disclaimer"><span data-lang="es">La app del jugador y el panel del club están desarrollados con React y Supabase. La demo pública corre con datos de ejemplo y se entra sin cuenta. El cobro con Mercado Pago todavía está simulado.</span><span data-lang="en">The player app and the club dashboard are built with React and Supabase. The public demo runs on sample data and needs no account. Mercado Pago checkout is still simulated.</span></p>
+    <nav class="toc" aria-label="Índice del caso">
+      <a href="#contexto"><span class="n">01</span><span data-lang="es">Contexto</span><span data-lang="en">Context</span></a>
+      <a href="#usuarios"><span class="n">02</span><span data-lang="es">Usuarios</span><span data-lang="en">Users</span></a>
+      <a href="#definicion"><span class="n">03</span><span data-lang="es">Definición</span><span data-lang="en">Definition</span></a>
+      <a href="#flujo"><span class="n">04</span><span data-lang="es">Flujo</span><span data-lang="en">Flow</span></a>
+      <a href="#decisiones"><span class="n">05</span><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></a>
+      <a href="#ui"><span class="n">06</span><span data-lang="es">UI</span><span data-lang="en">UI</span></a>
+      <a href="#alcance"><span class="n">07</span><span data-lang="es">Alcance</span><span data-lang="en">Scope</span></a>
+      <a href="#aprendizajes"><span class="n">08</span><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></a>
+    </nav>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ============================================================ 01 contexto -->
+<section class="sec" id="contexto">
+  <div class="sec-head rv">
+    <div class="sec-num">01<b><span data-lang="es">Contexto</span><span data-lang="en">Context</span></b></div>
+    <div>
+      <h2><span data-lang="es">El pádel en Mendoza se organiza por WhatsApp.</span><span data-lang="en">Padel in Mendoza runs on WhatsApp.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Los sistemas de torneos que se usan hoy fallan justo en lo que pasa en una cancha real. El club con dos sedes carga todo dos veces, la cancha del fondo no tiene señal y cada demora se avisa uno por uno.</span><span data-lang="en">The tournament systems used today fail at exactly what happens on a real court. A club with two venues enters everything twice, the back court has no signal, and every delay is announced one person at a time.</span></p>
+    </div>
+  </div>
+  <div class="grid g3 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Para el jugador</span><span data-lang="en">For players</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Preguntar por mensaje si quedó inscripto</span><span data-lang="en">Messaging to ask if they're registered</span></li>
+        <li><span data-lang="es">No encontrar con quién jugar si va solo</span><span data-lang="en">No one to play with when going solo</span></li>
+        <li><span data-lang="es">Fotos del torneo en carpetas compartidas por chat</span><span data-lang="en">Tournament photos in folders shared over chat</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Para el club</span><span data-lang="en">For clubs</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Fixture armado a mano en una planilla</span><span data-lang="en">Fixtures built by hand in a spreadsheet</span></li>
+        <li><span data-lang="es">Datos duplicados entre sedes</span><span data-lang="en">Data duplicated across venues</span></li>
+        <li><span data-lang="es">Avisos de horario uno por uno</span><span data-lang="en">Schedule updates sent one by one</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Restricciones</span><span data-lang="en">Constraints</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Se usa en la cancha: mala señal, de noche</span><span data-lang="en">Used courtside: poor signal, at night</span></li>
+        <li><span data-lang="es">Clubes chicos y clubes con varias sedes</span><span data-lang="en">Small clubs and multi-venue clubs</span></li>
+        <li><span data-lang="es">Pagos con Mercado Pago y transferencia</span><span data-lang="en">Payments via Mercado Pago and bank transfer</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 usuarios -->
+<section class="sec" id="usuarios">
+  <div class="sec-head rv">
+    <div class="sec-num">02<b><span data-lang="es">Usuarios</span><span data-lang="en">Users</span></b></div>
+    <div>
+      <h2><span data-lang="es">Dos experiencias en un producto.</span><span data-lang="en">Two experiences in one product.</span></h2>
+      <p class="sec-lead"><span data-lang="es">El jugador quiere jugar con el menor esfuerzo posible. El club quiere llenar canchas y organizar sin perseguir a nadie. Lo que hace uno alimenta al otro.</span><span data-lang="en">Players want to play with as little effort as possible. Clubs want full courts and to organize without chasing anyone. What one does feeds the other.</span></p>
+    </div>
+  </div>
+  <div class="grid g2 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Jugador · app</span><span data-lang="en">Player · app</span></span><h4><span data-lang="es">"¿Cuándo juego y con quién?"</span><span data-lang="en">"When do I play, and with whom?"</span></h4>
+      <ul class="list">
+        <li><span data-lang="es">Reservar una cancha en pocos pasos</span><span data-lang="en">Book a court in a few steps</span></li>
+        <li><span data-lang="es">Sumarse a un partido de su nivel</span><span data-lang="en">Join a match at their level</span></li>
+        <li><span data-lang="es">Ver su nivel, partidos y victorias</span><span data-lang="en">See their level, matches and wins</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Club · panel</span><span data-lang="en">Club · dashboard</span></span><h4><span data-lang="es">"¿Cómo organizo sin el ida y vuelta?"</span><span data-lang="en">"How do I organize without the back-and-forth?"</span></h4>
+      <ul class="list">
+        <li><span data-lang="es">Armar zonas y llaves automáticamente</span><span data-lang="en">Generate groups and brackets automatically</span></li>
+        <li><span data-lang="es">Cobrar inscripciones y señas</span><span data-lang="en">Collect entry fees and deposits</span></li>
+        <li><span data-lang="es">Administrar varias sedes desde un lugar</span><span data-lang="en">Manage several venues from one place</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 definición -->
+<section class="sec" id="definicion">
+  <div class="sec-head rv">
+    <div class="sec-num">03<b><span data-lang="es">Definición</span><span data-lang="en">Definition</span></b></div>
+    <div><h2><span data-lang="es">El problema, en una pregunta.</span><span data-lang="en">The problem, in one question.</span></h2></div>
+  </div>
+  <div class="indent">
+    <p class="hmw rv"><small><span data-lang="es">¿Cómo podríamos…?</span><span data-lang="en">How might we…?</span></small><span data-lang="es">¿Cómo podríamos lograr que un jugador <em>reserve o se sume a un partido sin escribirle a nadie</em>, y que el club <em>organice y cobre sin perseguir a nadie</em>?</span><span data-lang="en">How might we let a player <em>book or join a match without messaging anyone</em>, and let the club <em>organize and get paid without chasing anyone</em>?</span></p>
+
+    <h3 class="sub rv"><span data-lang="es">Principios de diseño</span><span data-lang="en">Design principles</span></h3>
+    <div class="grid g3">
+      <div class="card rv"><span class="k">01</span><h4><span data-lang="es">Lo próximo, primero</span><span data-lang="en">What's next comes first</span></h4><p><span data-lang="es">Del login a ver la próxima reserva, sin menús intermedios.</span><span data-lang="en">From login straight to the next booking, no menus in between.</span></p></div>
+      <div class="card rv"><span class="k">02</span><h4><span data-lang="es">Nivel parejo</span><span data-lang="en">Even matches</span></h4><p><span data-lang="es">Cada partido abierto pide un rango de nivel, para que el juego valga la pena para todos.</span><span data-lang="en">Every open match asks for a level range, so the game is worth it for everyone.</span></p></div>
+      <div class="card rv"><span class="k">03</span><h4><span data-lang="es">Pensado para la cancha</span><span data-lang="en">Built for the court</span></h4><p><span data-lang="es">Modo oscuro para jugar de noche y carga de resultados que funciona sin señal.</span><span data-lang="en">Dark mode for night games and score entry that works without signal.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 flujo -->
+<section class="sec" id="flujo">
+  <div class="sec-head rv">
+    <div class="sec-num">04<b><span data-lang="es">Flujo</span><span data-lang="en">Flow</span></b></div>
+    <div>
+      <h2><span data-lang="es">Reservar una cancha en cuatro pasos.</span><span data-lang="en">Booking a court in four steps.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Cada paso pide una sola decisión. El último es el que más pesa para el club: la seña.</span><span data-lang="en">Each step asks for a single decision. The last one matters most to the club: the deposit.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="flow row rv">
+      <div class="f-step start"><small><span data-lang="es">Paso 1</span><span data-lang="en">Step 1</span></small><b><span data-lang="es">Día y cancha</span><span data-lang="en">Day and court</span></b></div>
+      <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="f-step"><small><span data-lang="es">Paso 2</span><span data-lang="en">Step 2</span></small><b><span data-lang="es">Turno libre</span><span data-lang="en">Free slot</span></b></div>
+      <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="f-step"><small><span data-lang="es">Paso 3</span><span data-lang="en">Step 3</span></small><b><span data-lang="es">Extras</span><span data-lang="en">Extras</span></b></div>
+      <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="f-step dec"><small><span data-lang="es">Paso 4 · Decisión</span><span data-lang="en">Step 4 · Decision</span></small><b><span data-lang="es">Seña del 30%</span><span data-lang="en">30% deposit</span></b></div>
+      <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <div class="f-step end"><small><span data-lang="es">Listo</span><span data-lang="en">Done</span></small><b><span data-lang="es">Turno confirmado</span><span data-lang="en">Booking confirmed</span></b></div>
+    </div>
+    <figure class="wide narrow rv" style="margin-top:clamp(28px,4vw,44px)">
+      <img src="../images/casos/padel-reserva.jpg" alt="Pantallas de horarios y resumen con extras y seña del 30%" loading="lazy" width="1140" height="1000"/>
+      <figcaption><b><span data-lang="es">Horarios y resumen</span><span data-lang="en">Times and summary</span></b><span><span data-lang="es">Los turnos ocupados se ven atenuados en lugar de ocultarse, así el jugador entiende la disponibilidad real. El resumen separa el total de la seña y aclara cuánto se paga en el club.</span><span data-lang="en">Taken slots are dimmed instead of hidden, so players understand real availability. The summary separates the total from the deposit and states what's paid at the club.</span></span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ 05 decisiones -->
+<section class="sec" id="decisiones">
+  <div class="sec-head rv">
+    <div class="sec-num">05<b><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></b></div>
+    <div>
+      <h2><span data-lang="es">Por qué se ve así.</span><span data-lang="en">Why it looks this way.</span></h2>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">Reservas que no se presentan</span><span data-lang="en">No-show bookings</span></h4><p><span data-lang="es">Pedir el pago completo frena la reserva; no pedir nada deja canchas vacías.</span><span data-lang="en">Asking for full payment discourages booking; asking for nothing leaves courts empty.</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">Seña del 30% online</span><span data-lang="en">30% deposit online</span></h4><p><span data-lang="es">El club asegura el turno y el jugador no adelanta todo. El resto se abona en el club, y la pantalla lo dice con el monto exacto.</span><span data-lang="en">The club secures the slot and the player doesn't pay everything upfront. The rest is paid at the club, and the screen says so with the exact amount.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">Partidos desparejos</span><span data-lang="en">Uneven matches</span></h4><p><span data-lang="es">Sumarse a un partido con gente de otro nivel arruina el juego para los cuatro.</span><span data-lang="en">Joining a match with players at a different level ruins the game for all four.</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">Nivel requerido en cada tarjeta</span><span data-lang="en">Required level on every card</span></h4><p><span data-lang="es">Cada partido abierto muestra el rango de nivel, el precio por jugador y cuántos faltan, con filtros por "Mi nivel", hoy y mañana.</span><span data-lang="en">Every open match shows the level range, price per player and spots left, with filters for "My level", today and tomorrow.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">Abrir la app para recordar</span><span data-lang="en">Opening the app just to remember</span></h4><p><span data-lang="es">La pregunta más frecuente del jugador es "¿cuándo juego?".</span><span data-lang="en">The player's most common question is "when do I play?".</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">La próxima reserva como protagonista</span><span data-lang="en">The next booking takes center stage</span></h4><p><span data-lang="es">El inicio abre con la próxima reserva (sede, cancha y hora) y dos accesos grandes: reservar o sumarse a un partido.</span><span data-lang="en">Home opens with the next booking (venue, court and time) and two large shortcuts: book or join a match.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Problema</span><span data-lang="en">Problem</span></span><h4><span data-lang="es">Cada club ordena distinto</span><span data-lang="en">Every club ranks differently</span></h4><p><span data-lang="es">En la práctica, cada club aplica sus propios criterios para armar categorías.</span><span data-lang="en">In practice, every club applies its own criteria to set categories.</span></p></div>
+      <div><span class="k"><span data-lang="es">Decisión</span><span data-lang="en">Decision</span></span><h4><span data-lang="es">Doble ranking</span><span data-lang="en">Dual ranking</span></h4><p><span data-lang="es">El club elige si usa el ranking oficial o el propio, y los ascensos y descensos se actualizan solos al cerrar cada torneo.</span><span data-lang="en">The club picks the official ranking or its own, and promotions and relegations update automatically when each tournament ends.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 06 UI -->
+<section class="sec" id="ui">
+  <div class="sec-head rv">
+    <div class="sec-num">06<b>UI</b></div>
+    <div>
+      <h2><span data-lang="es">La app del jugador.</span><span data-lang="en">The player app.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Primero, la app del jugador en el celular. Después, el panel del club en la computadora.</span><span data-lang="en">First, the player app on mobile. Then, the club dashboard on desktop.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <figure class="wide rv">
+      <img src="../images/casos/padel-pantallas.jpg" alt="Inicio, horarios y perfil del jugador" loading="lazy" width="1360" height="762"/>
+      <figcaption><b><span data-lang="es">Inicio, horarios y perfil</span><span data-lang="en">Home, times and profile</span></b><span><span data-lang="es">El verde lima marca la acción principal de cada pantalla; el resto queda en grises y negro para no competir.</span><span data-lang="en">Lime green marks each screen's main action; everything else stays in greys and black so nothing competes.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/padel-partidos.jpg" alt="Mis reservas, partidos abiertos y detalle del partido" loading="lazy" width="1360" height="770"/>
+      <figcaption><b><span data-lang="es">Mis reservas y partidos abiertos</span><span data-lang="en">My bookings and open matches</span></b><span><span data-lang="es">Dos formas de jugar: con tu grupo o sumándote a un partido al que le falta gente.</span><span data-lang="en">Two ways to play: with your group, or by joining a match that's short of players.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/padel-acceso-sena.jpg" alt="Acceso, partidos abiertos y pago de la seña" loading="lazy" width="1360" height="748"/>
+      <figcaption><b><span data-lang="es">Acceso y pago</span><span data-lang="en">Sign-in and payment</span></b><span><span data-lang="es">Ingreso con email o Google en una sola pantalla, y el pago de la seña con el total siempre a la vista.</span><span data-lang="en">Email or Google sign-in on a single screen, and deposit payment with the total always in view.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/padel-admin-timeline-de-canchas.jpg" alt="Panel del club: timeline de canchas con reservas, señas y canchas en mantenimiento" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Panel del club · Timeline de canchas</span><span data-lang="en">Club dashboard · Court timeline</span></b><span><span data-lang="es">Todas las canchas del día en una grilla: quién juega, su nivel, si pagó la seña o el total, y qué canchas están bloqueadas o en mantenimiento.</span><span data-lang="en">Every court for the day in one grid: who's playing, their level, whether they paid the deposit or in full, and which courts are blocked or under maintenance.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/padel-admin-dashboard-administrador.jpg" alt="Panel del club: ocupación, ingresos del día, reservas y próximos turnos" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Panel del club · Resumen del día</span><span data-lang="en">Club dashboard · Daily overview</span></b><span><span data-lang="es">Ocupación, ingresos, reservas activas y próximos turnos con su estado de pago: lo que el encargado mira al llegar al club.</span><span data-lang="en">Occupancy, revenue, active bookings and upcoming slots with payment status: what the manager checks on arrival.</span></span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ 07 alcance -->
+<section class="sec" id="alcance">
+  <div class="sec-head rv">
+    <div class="sec-num">07<b><span data-lang="es">Alcance</span><span data-lang="en">Scope</span></b></div>
+    <div>
+      <h2><span data-lang="es">Qué está construido y qué sigue.</span><span data-lang="en">What's built and what's next.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Diseñé las pantallas y las llevé a código con React, Tailwind y Supabase (cuentas, base de datos y permisos por rol). Lo pendiente está separado y a la vista.</span><span data-lang="en">I designed the screens and took them to code with React, Tailwind and Supabase (accounts, database and role permissions). What's pending is listed separately and in the open.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="grid g4">
+      <div class="card metric rv"><b>2</b><span><span data-lang="es">experiencias: jugador y club</span><span data-lang="en">experiences: player and club</span></span></div>
+      <div class="card metric rv"><b>25</b><span><span data-lang="es">pantallas desarrolladas</span><span data-lang="en">screens built</span></span></div>
+      <div class="card metric rv"><b>4</b><span><span data-lang="es">pasos para reservar una cancha</span><span data-lang="en">steps to book a court</span></span></div>
+      <div class="card metric rv"><b>5</b><span><span data-lang="es">migraciones de base de datos: clubes, canchas, torneos, pagos y fixture</span><span data-lang="en">database migrations: clubs, courts, tournaments, payments and fixtures</span></span></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card rv"><span class="k"><span data-lang="es">Construido</span><span data-lang="en">Built</span></span>
+        <ul class="list">
+          <li><span data-lang="es">Jugador: reservas con seña, partidos abiertos por nivel, chat del partido y perfil</span><span data-lang="en">Player: bookings with deposit, open matches by level, match chat and profile</span></li>
+          <li><span data-lang="es">Torneos: calendario, inscripción, fixture, galería y ranking</span><span data-lang="en">Tournaments: calendar, registration, fixtures, gallery and ranking</span></li>
+          <li><span data-lang="es">Club: resumen del día, timeline de canchas, clientes y caja</span><span data-lang="en">Club: daily overview, court timeline, clients and cash register</span></li>
+          <li><span data-lang="es">Club: gestión de torneos, participantes y aprobación de pagos</span><span data-lang="en">Club: tournament management, participants and payment approval</span></li>
+          <li><span data-lang="es">Sponsors, sanciones y reglamento</span><span data-lang="en">Sponsors, penalties and rules</span></li>
+          <li><span data-lang="es">Demoras: reprograma los turnos siguientes y avisa a los jugadores</span><span data-lang="en">Delays: reschedules the following slots and notifies players</span></li>
+          <li><span data-lang="es">Modo claro y oscuro</span><span data-lang="en">Light and dark mode</span></li>
+        </ul></div>
+      <div class="card rv"><span class="k"><span data-lang="es">Lo que sigue</span><span data-lang="en">What's next</span></span>
+        <ul class="list">
+          <li><span data-lang="es">Cobro real con Mercado Pago (hoy está simulado)</span><span data-lang="en">Real Mercado Pago checkout (currently simulated)</span></li>
+          <li><span data-lang="es">Carga de resultados sin conexión</span><span data-lang="en">Offline score entry</span></li>
+          <li><span data-lang="es">Avisos por WhatsApp</span><span data-lang="en">WhatsApp notifications</span></li>
+          <li><span data-lang="es">Piloto con un club real</span><span data-lang="en">Pilot with a real club</span></li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 08 aprendizajes -->
+<section class="sec" id="aprendizajes">
+  <div class="sec-head rv">
+    <div class="sec-num">08<b><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></b></div>
+    <div><h2><span data-lang="es">Lo que me llevo.</span><span data-lang="en">What I'm taking away.</span></h2></div>
+  </div>
+  <div class="indent grid g2">
+    <div class="card rv"><span class="k"><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Dejar un modo demo con datos de ejemplo hace que cualquiera pueda probar el producto sin cuenta ni backend.</span><span data-lang="en">A demo mode with sample data lets anyone try the product with no account or backend.</span></li>
+        <li><span data-lang="es">Los problemas que hacen fracasar estas plataformas (señal, demoras, varias sedes) no aparecen en una pantalla: hay que pensar en la cancha.</span><span data-lang="en">The issues that make these platforms fail (signal, delays, multiple venues) don't show up on a screen: you have to think about the court.</span></li>
+        <li><span data-lang="es">Ser explícita sobre qué está hecho y qué no genera confianza con el cliente.</span><span data-lang="en">Being explicit about what's done and what isn't builds trust with the client.</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Próximos pasos</span><span data-lang="en">Next steps</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Probar la plataforma en un torneo real con un club antes de abrirla.</span><span data-lang="en">Test the platform in a real tournament with a club before launch.</span></li>
+        <li><span data-lang="es">Testear el flujo de reserva con jugadores y medir cuánto tardan.</span><span data-lang="en">Test the booking flow with players and measure how long it takes.</span></li>
+        <li><span data-lang="es">Revisar el panel del club junto a los organizadores, con datos reales.</span><span data-lang="en">Review the club dashboard with organizers, using real data.</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<a class="next rv" href="turno.html">
+  <div class="next-bg" aria-hidden="true"></div>
+  <span class="eyebrow"><span data-lang="es">Siguiente caso</span><span data-lang="en">Next case</span></span>
+  <h2>Turno <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></h2>
+  <p><span data-lang="es">Una app para sacar turnos médicos en tres toques, pensada para cualquier edad.</span><span data-lang="en">An app to book medical appointments in three taps, designed for any age.</span></p>
+</a>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Lucía Miranda · <span data-lang="es">Diseño y desarrollo</span><span data-lang="en">Design &amp; development</span></span>
+    <a href="../index.html#contact" data-href-lang="../index.html#contact"><span data-lang="es">Contacto →</span><span data-lang="en">Contact →</span></a>
+  </div>
+</footer>
+
+<script src="caso.js"></script>
+</body>
+</html>
