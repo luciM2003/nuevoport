@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Portal de Calidad BYD · Caso de estudio · Lucía Miranda</title>
+<meta name="title-es" content="Portal de Calidad BYD · Caso de estudio · Lucía Miranda"/>
+<meta name="title-en" content="BYD Quality Portal · Case study · Lucía Miranda"/>
+<meta name="description" content="Caso de estudio del Portal de Calidad de BYD Yacopini: cuatro tableros de Power BI y seis planillas de Excel reemplazados por un portal que se actualiza solo."/>
+<meta name="theme-color" content="#f3f4f1"/>
+<meta property="og:title" content="Portal de Calidad BYD · Caso de estudio"/>
+<meta property="og:image" content="https://lucim2003.github.io/nuevoport/images/byd-calidad.jpg"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="caso.css"/>
+<style>
+  :root {
+    --brand: #1668c7; --brand-ink: #0f4f9c; --brand-soft: #e6f0fb; --brand-on-dark: #9fc2ff;
+    --mesh: radial-gradient(40% 55% at 20% 30%, #9cc6ff 0, transparent 70%), radial-gradient(45% 60% at 80% 20%, #c9dcff 0, transparent 70%), radial-gradient(40% 50% at 70% 85%, #d6e4f5 0, transparent 70%), #e8f0fb;
+    --next-mesh: radial-gradient(40% 55% at 20% 30%, #e4f59a 0, transparent 70%), radial-gradient(45% 60% at 80% 25%, #d9f0c4 0, transparent 70%), #eef5e0;
+  }
+  /* Capturas reales del producto: escritorio a lo ancho y celular de a dos */
+  .wide { margin: 0 0 clamp(36px, 5vw, 56px); }
+  .wide img { display: block; width: 100%; height: auto; border-radius: clamp(14px, 2vw, 22px); border: 1px solid var(--line); box-shadow: 0 30px 70px -45px rgba(13, 14, 16, 0.45); background: #fff; }
+  .wide figcaption, .duo figcaption { margin-top: 14px; max-width: 760px; }
+  .wide figcaption b, .duo figcaption b { display: block; font-family: var(--display); font-size: 17px; letter-spacing: -0.02em; }
+  .wide figcaption span, .duo figcaption span { display: block; font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: clamp(16px, 3vw, 32px); justify-content: center; margin: 0 0 clamp(36px, 5vw, 56px); }
+  .duo img { display: block; width: 100%; height: auto; border-radius: 28px; border: 6px solid #111; box-shadow: 0 30px 70px -45px rgba(13, 14, 16, 0.6); }
+  .duo .cap { grid-column: 1 / -1; text-align: center; margin-inline: auto; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="back" href="../index.html#work" data-href-lang="../index.html#work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      <span data-lang="es">Portfolio</span><span data-lang="en">Portfolio</span>
+    </a>
+    <span class="top-title">Portal de Calidad BYD · <span data-lang="es">Caso de estudio</span><span data-lang="en">Case study</span></span>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<main>
+<!-- ============================================================ hero -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span data-lang="es">Caso de estudio · Producto real en uso</span><span data-lang="en">Case study · Real product in use</span></span>
+    <h1><span data-lang="es">Calidad sin planillas<em>.</em></span><span data-lang="en">Quality without spreadsheets<em>.</em></span></h1>
+    <p class="hero-sub"><span data-lang="es">Diseñé y desarrollé el Portal de Calidad de BYD Yacopini, concesionario oficial en Mendoza: todo lo que había en cuatro tableros de Power BI, en un solo lugar, al día solo y pensado para cada persona del equipo.</span><span data-lang="en">I designed and built the Quality Portal for BYD Yacopini, an official dealership in Mendoza: everything that lived in four Power BI dashboards, now in one place, always up to date and designed around each person on the team.</span></p>
+    <ul class="tags"><li>Web app</li><li>Dashboard</li><li>UX/UI</li><li>React</li><li>TypeScript</li><li>Supabase</li></ul>
+    <div class="cta-row"><a class="btn-c" href="https://lucim2003.github.io/byd-calidad-demo/" target="_blank" rel="noopener"><span data-lang="es">Ver la demo</span><span data-lang="en">View the demo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a><a class="btn-c ghost" href="#contexto"><span data-lang="es">Leer el caso</span><span data-lang="en">Read the case</span></a></div>
+    <figure class="cover"><img src="../images/byd-calidad.jpg" alt="Portal de Calidad BYD en una notebook y un celular" width="1600" height="1067" fetchpriority="high"/></figure>
+    <div class="facts">
+      <div><span data-lang="es">Rol</span><span data-lang="en">Role</span><b><span data-lang="es">UX/UI y desarrollo, de punta a punta</span><span data-lang="en">End-to-end UX/UI and development</span></b></div>
+      <div><span data-lang="es">Cliente</span><span data-lang="en">Client</span><b>BYD Yacopini · Mendoza</b></div>
+      <div><span data-lang="es">Usuarios</span><span data-lang="en">Users</span><b><span data-lang="es">Calidad, auditores, vendedores y gerencia</span><span data-lang="en">Quality, auditors, sales and management</span></b></div>
+      <div><span data-lang="es">Dispositivos</span><span data-lang="en">Devices</span><b><span data-lang="es">Escritorio y celular (se instala como app)</span><span data-lang="en">Desktop and mobile (installable app)</span></b></div>
+    </div>
+    <p class="disclaimer"><span data-lang="es">Las capturas son de la demo pública, con datos de ejemplo. Los nombres, teléfonos y cifras que aparecen no son reales.</span><span data-lang="en">Screenshots come from the public demo, with sample data. Names, phone numbers and figures shown are not real.</span></p>
+    <nav class="toc" aria-label="Índice del caso">
+      <a href="#contexto"><span class="n">01</span><span data-lang="es">Contexto</span><span data-lang="en">Context</span></a>
+      <a href="#usuarios"><span class="n">02</span><span data-lang="es">Usuarios</span><span data-lang="en">Users</span></a>
+      <a href="#definicion"><span class="n">03</span><span data-lang="es">Definición</span><span data-lang="en">Definition</span></a>
+      <a href="#decisiones"><span class="n">04</span><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></a>
+      <a href="#ui"><span class="n">05</span><span data-lang="es">Producto</span><span data-lang="en">Product</span></a>
+      <a href="#adopcion"><span class="n">06</span><span data-lang="es">Adopción</span><span data-lang="en">Adoption</span></a>
+      <a href="#resultados"><span class="n">07</span><span data-lang="es">Resultados</span><span data-lang="en">Outcomes</span></a>
+      <a href="#aprendizajes"><span class="n">08</span><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></a>
+    </nav>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ============================================================ 01 contexto -->
+<section class="sec" id="contexto">
+  <div class="sec-head rv">
+    <div class="sec-num">01<b><span data-lang="es">Contexto</span><span data-lang="en">Context</span></b></div>
+    <div>
+      <h2><span data-lang="es">Cuatro tableros, seis planillas y nadie mirando lo mismo.</span><span data-lang="en">Four dashboards, six spreadsheets and nobody looking at the same thing.</span></h2>
+      <p class="sec-lead"><span data-lang="es">El equipo de Calidad sigue el NPS que mide fábrica, el NPS del taller, las llamadas del call center, las visitas del Mystery Shopper, las entregas y las auditorías. Cada fuente vivía en su propio Excel y los números se veían en cuatro tableros de Power BI que había que mantener al día a mano.</span><span data-lang="en">The Quality team tracks the factory NPS, the service NPS, call-center follow-ups, Mystery Shopper visits, deliveries and audits. Each source lived in its own Excel file, and the numbers were shown across four Power BI dashboards that had to be kept up to date by hand.</span></p>
+    </div>
+  </div>
+  <div class="grid g3 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Datos dispersos</span><span data-lang="en">Scattered data</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Seis planillas de Excel distintas</span><span data-lang="en">Six separate Excel files</span></li>
+        <li><span data-lang="es">Cuatro tableros de Power BI</span><span data-lang="en">Four Power BI dashboards</span></li>
+        <li><span data-lang="es">Actualizar dependía de una persona</span><span data-lang="en">Updating depended on one person</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Reclamos tardíos</span><span data-lang="en">Late complaints</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Un cliente disconforme aparecía en la encuesta semanas después de la entrega</span><span data-lang="en">An unhappy customer showed up in the survey weeks after delivery</span></li>
+        <li><span data-lang="es">Para entonces, el problema ya era más difícil de resolver</span><span data-lang="en">By then, the issue was harder to fix</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Restricciones</span><span data-lang="en">Constraints</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Las planillas siguen siendo la fuente: no se podía cambiar cómo se cargan</span><span data-lang="en">Spreadsheets remain the source: how they're filled couldn't change</span></li>
+        <li><span data-lang="es">Usuarios con poco tiempo y desde el celular</span><span data-lang="en">Busy users, often on their phones</span></li>
+        <li><span data-lang="es">Cada rol debe ver solo lo que le corresponde</span><span data-lang="en">Each role must only see what's theirs</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 02 usuarios -->
+<section class="sec" id="usuarios">
+  <div class="sec-head rv">
+    <div class="sec-num">02<b><span data-lang="es">Usuarios</span><span data-lang="en">Users</span></b></div>
+    <div>
+      <h2><span data-lang="es">Un mismo portal, cinco maneras de usarlo.</span><span data-lang="en">One portal, five ways to use it.</span></h2>
+      <p class="sec-lead"><span data-lang="es">No es lo mismo la persona de Calidad que revisa todo cada mañana que el vendedor que se entera de un problema en el salón. Diseñé los permisos y las pantallas a partir de qué necesita hacer cada uno.</span><span data-lang="en">The Quality lead who reviews everything each morning is not the salesperson who hears about a problem on the showroom floor. I designed permissions and screens around what each person needs to do.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="scroll-x rv">
+      <table class="tbl">
+        <thead><tr><th><span data-lang="es">Rol</span><span data-lang="en">Role</span></th><th><span data-lang="es">Qué necesita</span><span data-lang="en">What they need</span></th><th><span data-lang="es">Qué puede hacer</span><span data-lang="en">What they can do</span></th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><span data-lang="es">Calidad</span><span data-lang="en">Quality</span></th><td><span data-lang="es">Ver todos los indicadores y actuar rápido sobre los clientes disconformes</span><span data-lang="en">See every metric and act fast on unhappy customers</span></td><td><span data-lang="es">Todo lo operativo; ve todos los sectores</span><span data-lang="en">All operations; sees every area</span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Vendedor</span><span data-lang="en">Salesperson</span></th><td><span data-lang="es">Avisar de un problema en el momento y seguir su propio desempeño</span><span data-lang="en">Flag a problem on the spot and follow their own performance</span></td><td><span data-lang="es">Solo lo suyo: entregas, NPS y detecciones que cargó</span><span data-lang="en">Only their own: deliveries, NPS and reports they filed</span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Auditor</span><span data-lang="en">Auditor</span></th><td><span data-lang="es">Registrar auditorías y Mystery Shopper</span><span data-lang="en">Record audits and Mystery Shopper visits</span></td><td><span data-lang="es">Carga y ve resultados</span><span data-lang="en">Enters data and sees results</span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Gerencia</span><span data-lang="en">Management</span></th><td><span data-lang="es">Entender cómo viene el mes sin pedir un informe</span><span data-lang="en">Understand how the month is going without asking for a report</span></td><td><span data-lang="es">Ve todo, no modifica nada</span><span data-lang="en">Sees everything, changes nothing</span></td></tr>
+          <tr><th scope="row"><span data-lang="es">Administrador</span><span data-lang="en">Admin</span></th><td><span data-lang="es">Dar de alta a la gente y asignar roles</span><span data-lang="en">Onboard people and assign roles</span></td><td><span data-lang="es">Todo, incluida la gestión de usuarios</span><span data-lang="en">Everything, including user management</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 03 definición -->
+<section class="sec" id="definicion">
+  <div class="sec-head rv">
+    <div class="sec-num">03<b><span data-lang="es">Definición</span><span data-lang="en">Definition</span></b></div>
+    <div><h2><span data-lang="es">El problema, en una pregunta.</span><span data-lang="en">The problem, in one question.</span></h2></div>
+  </div>
+  <div class="indent">
+    <p class="hmw rv"><small><span data-lang="es">¿Cómo podríamos…?</span><span data-lang="en">How might we…?</span></small><span data-lang="es">¿Cómo podríamos lograr que todo el equipo vea <em>los mismos números, siempre al día</em>, sin que nadie cargue nada a mano, y que un cliente disconforme <em>se atienda antes</em> de que aparezca en una encuesta?</span><span data-lang="en">How might we get the whole team looking at <em>the same numbers, always up to date</em>, with nobody entering data by hand, and have an unhappy customer <em>handled before</em> they show up in a survey?</span></p>
+
+    <h3 class="sub rv"><span data-lang="es">Principios de diseño</span><span data-lang="en">Design principles</span></h3>
+    <div class="grid g3">
+      <div class="card rv"><span class="k">01</span><h4><span data-lang="es">Nadie carga dos veces</span><span data-lang="en">Nobody enters data twice</span></h4><p><span data-lang="es">Las planillas que ya se usan son la fuente. El portal se adapta a ellas, no al revés.</span><span data-lang="en">The spreadsheets already in use are the source. The portal adapts to them, not the other way around.</span></p></div>
+      <div class="card rv"><span class="k">02</span><h4><span data-lang="es">Cada número, con contexto</span><span data-lang="en">Every number in context</span></h4><p><span data-lang="es">Cada indicador dice sobre cuántos casos se calcula y cómo viene contra el mes anterior.</span><span data-lang="en">Every metric states how many cases it's based on and how it compares with last month.</span></p></div>
+      <div class="card rv"><span class="k">03</span><h4><span data-lang="es">Lo urgente, primero</span><span data-lang="en">Urgent things first</span></h4><p><span data-lang="es">Un cliente disconforme sin atender se ve antes que cualquier gráfico.</span><span data-lang="en">An unhappy customer nobody has called yet is seen before any chart.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 04 decisiones -->
+<section class="sec" id="decisiones">
+  <div class="sec-head rv">
+    <div class="sec-num">04<b><span data-lang="es">Decisiones</span><span data-lang="en">Decisions</span></b></div>
+    <div>
+      <h2><span data-lang="es">Cinco decisiones que cambiaron el día a día.</span><span data-lang="en">Five decisions that changed the day-to-day.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Cada una sale de una fricción concreta del equipo.</span><span data-lang="en">Each one comes from a concrete point of friction for the team.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Actualizar era una tarea</span><span data-lang="en">Updating was a chore</span></h4><p><span data-lang="es">Alguien tenía que exportar las planillas y refrescar los tableros. Si no lo hacía, los números quedaban viejos.</span><span data-lang="en">Someone had to export the spreadsheets and refresh the dashboards. If they didn't, the numbers went stale.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Se actualiza solo al guardar el Excel</span><span data-lang="en">It updates itself when the Excel is saved</span></h4><p><span data-lang="es">Un proceso vigila la carpeta de las planillas y sube los cambios en segundos. Volver a subir un archivo no duplica nada: las ventas se reconocen por VIN y las encuestas por su ID.</span><span data-lang="en">A background process watches the spreadsheet folder and uploads changes within seconds. Re-uploading a file never duplicates anything: sales are matched by VIN and surveys by their ID.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Un módulo de reclamos</span><span data-lang="en">A complaints module</span></h4><p><span data-lang="es">El reclamo se registraba cuando el cliente ya lo había dicho en una encuesta, semanas después.</span><span data-lang="en">A complaint was logged once the customer had already said so in a survey, weeks later.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Detección temprana, desde el celular</span><span data-lang="en">Early detection, from the phone</span></h4><p><span data-lang="es">El vendedor que nota a un cliente disconforme lo carga en el momento con nombre y teléfono. Calidad lo ve arriba de todo, lo llama con un toque y lo mueve por estados: sin atender, en gestión, resuelta.</span><span data-lang="en">The salesperson who notices an unhappy customer logs it on the spot with name and phone. Quality sees it at the top, calls with one tap and moves it through statuses: unattended, in progress, resolved.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Filtrar en cada tablero</span><span data-lang="en">Filtering on every dashboard</span></h4><p><span data-lang="es">Mirar septiembre en ventas y después en encuestas implicaba volver a elegir el mes.</span><span data-lang="en">Looking at September in sales and then in surveys meant picking the month again.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Filtros que te siguen</span><span data-lang="en">Filters that follow you</span></h4><p><span data-lang="es">Mes y vendedor se mantienen al cambiar de pantalla. Se pueden marcar varios meses y los números se suman. El informe en PDF pide un mes solo, porque con varios no queda claro contra qué comparar.</span><span data-lang="en">Month and salesperson persist across screens. Several months can be selected and the numbers add up. The PDF report asks for a single month, because with several it's unclear what to compare against.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Todos veían todo</span><span data-lang="en">Everyone saw everything</span></h4><p><span data-lang="es">Compartir un tablero era compartirlo entero, con los resultados de todos los vendedores.</span><span data-lang="en">Sharing a dashboard meant sharing all of it, including every salesperson's results.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">Permisos por rol, en la base de datos</span><span data-lang="en">Role permissions, in the database</span></h4><p><span data-lang="es">Un vendedor ve solo lo suyo. Cada cuenta nueva no ve nada hasta que Calidad la activa y le asigna un rol. Las reglas viven en la base, no solo en qué botones se muestran.</span><span data-lang="en">A salesperson only sees their own data. A new account sees nothing until Quality activates it and assigns a role. The rules live in the database, not just in which buttons are shown.</span></p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k"><span data-lang="es">Antes</span><span data-lang="en">Before</span></span><h4><span data-lang="es">Datos sucios, números dudosos</span><span data-lang="en">Messy data, doubtful numbers</span></h4><p><span data-lang="es">Comentarios escritos en columnas numéricas o vendedores cargados como "Otros" distorsionaban los resultados sin que nadie se diera cuenta.</span><span data-lang="en">Comments typed into numeric columns, or salespeople entered as "Others", skewed results without anyone noticing.</span></p></div>
+      <div><span class="k"><span data-lang="es">Después</span><span data-lang="en">After</span></span><h4><span data-lang="es">No adivinar, explicar</span><span data-lang="en">Don't guess, explain</span></h4><p><span data-lang="es">El portal descarta lo que no entiende en lugar de inventar un valor, y cada indicador muestra sobre cuántos casos se calcula. La guía del equipo explica qué corregir en el Excel para que el número mejore solo.</span><span data-lang="en">The portal discards what it can't read instead of inventing a value, and every metric shows how many cases it's based on. The team guide explains what to fix in the Excel so the number corrects itself.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 05 producto -->
+<section class="sec" id="ui">
+  <div class="sec-head rv">
+    <div class="sec-num">05<b><span data-lang="es">Producto</span><span data-lang="en">Product</span></b></div>
+    <div>
+      <h2><span data-lang="es">Las pantallas que usa el equipo.</span><span data-lang="en">The screens the team uses.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Capturas de la demo pública, con datos de ejemplo.</span><span data-lang="en">Screenshots from the public demo, with sample data.</span></p>
+    </div>
+  </div>
+  <div class="indent">
+    <figure class="wide rv">
+      <img src="../images/casos/byd-resumen.jpg" alt="Resumen general con NPS, reclamos, Mystery Shopper, entregas y auditorías" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Resumen general</span><span data-lang="en">Overview</span></b><span><span data-lang="es">Lo que antes estaba repartido en cuatro tableros, en una sola pantalla y con los mismos filtros.</span><span data-lang="en">What used to be spread over four dashboards, on one screen with the same filters.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/byd-deteccion-temprana.jpg" alt="Detección temprana: casos reportados con estado y botón para llamar al cliente" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Detección temprana</span><span data-lang="en">Early detection</span></b><span><span data-lang="es">Los casos sin atender se destacan en rojo y el botón principal es llamar. La acción importa más que el registro.</span><span data-lang="en">Unattended cases stand out in red and the main button is to call. Acting matters more than logging.</span></span></figcaption>
+    </figure>
+    <figure class="duo rv">
+      <img src="../images/casos/byd-movil-resumen.jpg" alt="Resumen general en el celular" loading="lazy" width="780" height="1688"/>
+      <img src="../images/casos/byd-movil-deteccion-temprana.jpg" alt="Detección temprana en el celular" loading="lazy" width="780" height="1688"/>
+      <figcaption class="cap"><b><span data-lang="es">En el celular</span><span data-lang="en">On mobile</span></b><span><span data-lang="es">Los vendedores avisan desde el salón. El portal se instala en la pantalla de inicio como una app más.</span><span data-lang="en">Salespeople report from the showroom floor. The portal installs on the home screen like any other app.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/byd-encuestas-byd.jpg" alt="Encuestas de la app BYD con NPS, promotores, neutros y detractores" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Encuestas App BYD</span><span data-lang="en">BYD App surveys</span></b><span><span data-lang="es">La fórmula del NPS está escrita arriba de la pantalla, para que nadie tenga que adivinar de dónde sale el número.</span><span data-lang="en">The NPS formula is written at the top of the screen, so nobody has to guess where the number comes from.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/byd-auditorias.jpg" alt="Auditorías con cumplimiento promedio, completadas, en progreso y no conformidades" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Auditorías</span><span data-lang="en">Audits</span></b><span><span data-lang="es">Cumplimiento promedio, pendientes de firma y no conformidades, con el detalle punto por punto de cada auditoría.</span><span data-lang="en">Average compliance, audits awaiting signature and non-conformities, with point-by-point detail for each audit.</span></span></figcaption>
+    </figure>
+    <figure class="wide rv">
+      <img src="../images/casos/byd-importar.jpg" alt="Sincronización: las seis planillas que reconoce el portal" loading="lazy" width="2160" height="1350"/>
+      <figcaption><b><span data-lang="es">Sincronización</span><span data-lang="en">Sync</span></b><span><span data-lang="es">La pantalla explica primero que no hace falta usarla. Es el plan B por si el proceso automático se detiene.</span><span data-lang="en">The screen first explains that you don't need it. It's the fallback in case the automatic process stops.</span></span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ 06 adopción -->
+<section class="sec" id="adopcion">
+  <div class="sec-head rv">
+    <div class="sec-num">06<b><span data-lang="es">Adopción</span><span data-lang="en">Adoption</span></b></div>
+    <div>
+      <h2><span data-lang="es">El diseño no termina en la pantalla.</span><span data-lang="en">Design doesn't end at the screen.</span></h2>
+      <p class="sec-lead"><span data-lang="es">Para que el equipo lo use, escribí una guía corta en el mismo lenguaje del portal: cómo entrar, qué muestra cada pantalla y qué hacer si algo no anda.</span><span data-lang="en">To get the team using it, I wrote a short guide in the portal's own voice: how to get in, what each screen shows and what to do if something breaks.</span></p>
+    </div>
+  </div>
+  <div class="grid g3 indent">
+    <div class="card rv"><span class="k"><span data-lang="es">Entrar</span><span data-lang="en">Getting in</span></span><p><span data-lang="es">Un código QR abre el portal en el celular y tres pasos lo dejan instalado en la pantalla de inicio.</span><span data-lang="en">A QR code opens the portal on the phone and three steps install it on the home screen.</span></p></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Darse de alta</span><span data-lang="en">Signing up</span></span><p><span data-lang="es">Cada persona crea su cuenta y Calidad la activa con su rol. Sin planillas de usuarios ni contraseñas compartidas.</span><span data-lang="en">Each person creates their account and Quality activates it with a role. No user spreadsheets or shared passwords.</span></p></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Si algo falla</span><span data-lang="en">If something fails</span></span><p><span data-lang="es">Una tabla de "qué ves / qué es" y un archivo que con doble clic dice si la sincronización está andando.</span><span data-lang="en">A "what you see / what it means" table and a file that, with a double click, tells you whether sync is running.</span></p></div>
+  </div>
+</section>
+
+<!-- ============================================================ 07 resultados -->
+<section class="sec" id="resultados">
+  <div class="sec-head rv">
+    <div class="sec-num">07<b><span data-lang="es">Resultados</span><span data-lang="en">Outcomes</span></b></div>
+    <div><h2><span data-lang="es">Lo que cambió.</span><span data-lang="en">What changed.</span></h2></div>
+  </div>
+  <div class="indent">
+    <div class="grid g4">
+      <div class="card metric rv"><b>4 → 1</b><span><span data-lang="es">tableros de Power BI reemplazados por un portal</span><span data-lang="en">Power BI dashboards replaced by one portal</span></span></div>
+      <div class="card metric rv"><b>6</b><span><span data-lang="es">planillas que se sincronizan solas, sin carga manual</span><span data-lang="en">spreadsheets syncing on their own, no manual entry</span></span></div>
+      <div class="card metric rv"><b>5</b><span><span data-lang="es">roles con permisos propios</span><span data-lang="en">roles with their own permissions</span></span></div>
+      <div class="card metric rv"><b><span data-lang="es">Segundos</span><span data-lang="en">Seconds</span></b><span><span data-lang="es">entre guardar un Excel y verlo en el portal</span><span data-lang="en">between saving an Excel file and seeing it in the portal</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 08 aprendizajes -->
+<section class="sec" id="aprendizajes">
+  <div class="sec-head rv">
+    <div class="sec-num">08<b><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></b></div>
+    <div><h2><span data-lang="es">Lo que me llevo.</span><span data-lang="en">What I'm taking away.</span></h2></div>
+  </div>
+  <div class="indent grid g2">
+    <div class="card rv"><span class="k"><span data-lang="es">Aprendizajes</span><span data-lang="en">Learnings</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Respetar cómo ya trabaja el equipo bajó la barrera de entrada: nadie tuvo que aprender a cargar datos de otra forma.</span><span data-lang="en">Respecting how the team already works lowered the barrier: nobody had to learn a new way to enter data.</span></li>
+        <li><span data-lang="es">Un número sin contexto genera desconfianza: mostrar "sobre cuántos" es parte del diseño.</span><span data-lang="en">A number without context breeds distrust: showing "out of how many" is part of the design.</span></li>
+        <li><span data-lang="es">Diseñar los permisos es diseñar la experiencia: lo que alguien no ve también cuenta.</span><span data-lang="en">Designing permissions is designing the experience: what someone doesn't see matters too.</span></li>
+      </ul></div>
+    <div class="card rv"><span class="k"><span data-lang="es">Próximos pasos</span><span data-lang="en">Next steps</span></span>
+      <ul class="list">
+        <li><span data-lang="es">Medir cuánto tarda Calidad en llamar a un cliente desde que se reporta.</span><span data-lang="en">Measure how long Quality takes to call a customer after a report.</span></li>
+        <li><span data-lang="es">Sumar alertas cuando un indicador cae por debajo del objetivo.</span><span data-lang="en">Add alerts when a metric drops below target.</span></li>
+        <li><span data-lang="es">Corregir las planillas de origen junto al equipo para que más respuestas cuenten.</span><span data-lang="en">Clean up source spreadsheets with the team so more responses count.</span></li>
+      </ul></div>
+  </div>
+</section>
+
+<a class="next rv" href="padel-hub.html">
+  <div class="next-bg" aria-hidden="true"></div>
+  <span class="eyebrow"><span data-lang="es">Siguiente caso</span><span data-lang="en">Next case</span></span>
+  <h2>Padel Hub Mendoza <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></h2>
+  <p><span data-lang="es">Reservas, partidos abiertos y torneos para clubes de pádel: la app del jugador y el panel del club.</span><span data-lang="en">Bookings, open matches and tournaments for padel clubs: the player app and the club dashboard.</span></p>
+</a>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Lucía Miranda · <span data-lang="es">Diseño y desarrollo</span><span data-lang="en">Design &amp; development</span></span>
+    <a href="../index.html#contact" data-href-lang="../index.html#contact"><span data-lang="es">Contacto →</span><span data-lang="en">Contact →</span></a>
+  </div>
+</footer>
+
+<script src="caso.js"></script>
+</body>
+</html>

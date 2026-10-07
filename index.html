@@ -170,7 +170,25 @@
   .zoom img, .zoom video { width: 100%; height: 100%; object-fit: cover; }
   .case-num { font-family: var(--display); font-size: 14px; font-weight: 600; color: var(--soft); letter-spacing: 0.06em; }
   .case-title { font-family: var(--display); font-size: clamp(34px, 4vw, 58px); font-weight: 700; letter-spacing: -0.045em; line-height: 0.95; margin: 14px 0 14px; }
-  .case-sub { color: var(--muted); margin: 0 0 22px; font-size: 16px; }
+  .case-sub { color: var(--muted); margin: 0 0 22px; font-size: 16px; line-height: 1.55; }
+  /* Card destacada: producto → titular → problema y solución → impacto → ficha */
+  .case-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
+  .case-top .new { margin: 0; }
+  .case-pill { font-size: 12px; font-weight: 600; line-height: 1; padding: 8px 12px; border-radius: 999px; background: var(--ink); color: #fff; }
+  .case-copy .case-title { font-size: clamp(30px, 3.2vw, 46px); letter-spacing: -0.03em; line-height: 1.04; margin: 18px 0 16px; }
+  .case-impact { margin: 0 0 22px; padding: 12px 16px; border-left: 3px solid var(--accent); background: rgba(27, 154, 90, 0.07); border-radius: 0 12px 12px 0; font-size: 14px; font-weight: 600; color: var(--accent-ink); }
+  .case-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0 0 22px; padding: 16px 0; border-block: 1px solid var(--line); }
+  .case-facts dt { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 4px; }
+  .case-facts dd { margin: 0; font-size: 14px; font-weight: 500; }
+  .case-cta { display: inline-flex; align-items: center; gap: 14px; padding: 0; border: 0; background: none; color: var(--ink); font: inherit; font-size: 16px; font-weight: 500; text-decoration: none; cursor: pointer; }
+  .case-cta-arrow { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); color: #fff; transition: box-shadow 0.25s var(--ease); }
+  .case-cta-arrow svg { width: 20px; height: 20px; transition: rotate 0.3s var(--ease); }
+  @media (hover: hover) {
+    .case-cta:hover .case-cta-label { font-weight: 700; }
+    .case-cta:hover .case-cta-arrow { box-shadow: 5px 5px 0 0 var(--accent); }
+    .case-cta:hover .case-cta-arrow svg { rotate: 45deg; }
+  }
+  .case-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 999px; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
   .tags li { font-size: 12px; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.6); }
   .new { display: inline-block; margin-left: 10px; vertical-align: middle; font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; background: var(--accent); color: #fff; }
@@ -323,6 +341,14 @@
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  }
+  /* En celulares, los fondos difuminados animados se redibujan en cada cuadro y
+     traban el scroll: quedan quietos y con menos desenfoque. */
+  @media (hover: none), (max-width: 760px) {
+    .portrait-glow, .contact-bg, .name .grad { animation: none; }
+    .portrait-glow { filter: blur(40px); }
+    .contact-bg { filter: blur(36px); }
+    .nav.scrolled { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
   }
 </style>
 </head>
@@ -611,6 +637,19 @@
         es: 'Aplicación web para centralizar y simplificar el acceso a la información y los recursos de calidad de BYD Yacopini. El foco estuvo en crear una experiencia digital clara, accesible y fácil de usar, transformando documentación y procesos internos en una plataforma online organizada. Me encargué del diseño y el desarrollo de la solución, combinando principios de UX/UI con desarrollo front-end para crear una herramienta práctica para el uso diario.',
         en: 'BYD Quality Portal is a web application designed to centralize and simplify access to quality-related information and resources within BYD Yacopini. The project focuses on creating a clear, accessible and user-friendly digital experience, transforming internal documentation and processes into an organized online platform. I was responsible for the design and development of the solution, combining UX/UI principles with front-end development to create a practical tool for everyday use.'
       },
+      // Relato de la card destacada: producto → titular → problema y solución → impacto.
+      producto: { es: 'Portal de Calidad · Concesionario BYD', en: 'Quality Portal · BYD dealership' },
+      titular: { es: 'Cuatro tableros de Power BI, un solo portal.', en: 'Four Power BI dashboards, one portal.' },
+      relato: {
+        es: 'NPS, call center, Mystery Shopper, entregas y auditorías vivían en seis planillas y cuatro tableros que había que actualizar a mano. Diseñé y desarrollé un portal que se actualiza solo y les muestra a Calidad, vendedores y gerencia lo que cada uno necesita.',
+        en: 'NPS, call center, Mystery Shopper, deliveries and audits lived in six spreadsheets and four dashboards updated by hand. I designed and built a portal that updates itself and shows Quality, sales and management exactly what each of them needs.'
+      },
+      impacto: { es: 'Sin carga manual: guardar el Excel alcanza · 5 roles con permisos propios', en: 'No manual entry: saving the Excel is enough · 5 roles with their own permissions' },
+      ficha: [
+        [{ es: 'Rol', en: 'Role' }, { es: 'UX/UI y desarrollo', en: 'UX/UI & development' }],
+        [{ es: 'Dispositivos', en: 'Devices' }, { es: 'Escritorio y celular', en: 'Desktop & mobile' }]
+      ],
+      pagina: 'casos/byd-calidad.html',
       media: 'images/byd-calidad.jpg', tipo: 'image',
       link: 'https://lucim2003.github.io/byd-calidad-demo/'
     },
@@ -623,6 +662,18 @@
         es: 'Plataforma web que simplifica la reserva de canchas de pádel y la gestión de torneos para clubes de Mendoza. Conecta a los jugadores con canchas disponibles, torneos y partidos abiertos, y les da a los administradores herramientas para gestionar clientes, reservas y la operación del club. Trabajé en el UX/UI y el desarrollo front-end, creando una experiencia responsive para jugadores y administradores con React, Vite, Tailwind CSS y Supabase.',
         en: 'Padel Hub Mendoza is a web platform designed to simplify padel court bookings and tournament management for clubs in Mendoza. The platform connects players with available courts, tournaments and open matches while providing administrators with tools to manage clients, reservations and club operations. I worked on the UX/UI and front-end development, creating a responsive experience for both players and administrators using React, Vite, Tailwind CSS and Supabase.'
       },
+      producto: { es: 'Reservas y torneos · Clubes de pádel', en: 'Bookings & tournaments · Padel clubs' },
+      titular: { es: 'Del mensaje al club a la cancha reservada.', en: 'From messaging the club to a booked court.' },
+      relato: {
+        es: 'Inscripciones, reservas y avisos de horario se resolvían por WhatsApp, uno por uno. Diseñé y desarrollé una plataforma con dos experiencias: la app donde el jugador reserva y se suma a partidos de su nivel, y el panel donde el club organiza torneos y cobra.',
+        en: 'Registrations, bookings and schedule changes were handled over WhatsApp, one by one. I designed and built a platform with two experiences: the app where players book and join matches at their level, and the dashboard where clubs run tournaments and take payments.'
+      },
+      impacto: { es: 'Reserva en 4 pasos con seña del 30% · 25 pantallas entre jugador y club', en: '4-step booking with a 30% deposit · 25 screens across player and club' },
+      ficha: [
+        [{ es: 'Rol', en: 'Role' }, { es: 'UX/UI y desarrollo', en: 'UX/UI & development' }],
+        [{ es: 'Dispositivos', en: 'Devices' }, { es: 'Celular primero', en: 'Mobile first' }]
+      ],
+      pagina: 'casos/padel-hub.html',
       media: 'images/padel-hub.jpg', tipo: 'image',
       link: 'https://stitchpadelhubmendoza.vercel.app'
     },
@@ -657,7 +708,7 @@
         es: 'Plataforma Web3 basada en blockchain. El desafío era traducir conceptos técnicos complejos en una experiencia clara y confiable. Diseñé una interfaz intuitiva que reduce fricción y mejora la comprensión para usuarios no técnicos.',
         en: 'A blockchain-based Web3 platform. The challenge was translating complex technical concepts into a clear, trustworthy experience. I designed an intuitive interface that reduces friction and improves understanding for non-technical users.'
       },
-      media: 'videos/lithium.mp4', tipo: 'video', link: 'https://famous-trifle-7a5c4f.netlify.app/'
+      media: 'videos/lithium.mp4', poster: 'images/lithium-poster.jpg', tipo: 'video', link: 'https://famous-trifle-7a5c4f.netlify.app/'
     },
     {
       id: 'ucobot', titulo: 'UCoBot',
@@ -667,7 +718,7 @@
         es: 'Software de automatización y CRM para negocios. El problema era la gestión manual de clientes y la pérdida de oportunidades comerciales. Diseñé una experiencia que centraliza contactos, automatiza seguimientos y optimiza el proceso de ventas.',
         en: 'Automation and CRM software for businesses. The problem was manual client management and lost sales opportunities. I designed an experience that centralizes contacts, automates follow-ups and streamlines the sales process.'
       },
-      media: 'videos/ucobot.gif', tipo: 'image', link: 'https://chatbot-sass-eight.vercel.app/'
+      media: 'videos/ucobot.mp4', poster: 'images/ucobot-poster.jpg', tipo: 'video', link: 'https://chatbot-sass-eight.vercel.app/'
     },
     {
       id: 'codea', titulo: 'Codea',
@@ -677,7 +728,7 @@
         es: 'Mi pequeña startup de desarrollo de software, donde combino diseño y programación para crear soluciones digitales a medida. Detecté que muchas empresas necesitaban productos más humanos y centrados en el usuario, por lo que implemento procesos end-to-end alineando negocio, experiencia y tecnología.',
         en: 'My small software development startup, where I combine design and code to build custom digital solutions. I noticed many companies needed more human, user-centered products, so I run end-to-end processes that align business, experience and technology.'
       },
-      media: 'videos/codea.gif', tipo: 'image', link: 'https://codeadesarrollos.com/'
+      media: 'videos/codea.mp4', poster: 'images/codea-poster.jpg', tipo: 'video', link: 'https://codeadesarrollos.com/'
     },
     {
       id: 'move', titulo: 'Move',
@@ -687,7 +738,7 @@
         es: 'E-commerce de indumentaria deportiva. El desafío era diferenciarse en un mercado competitivo y mejorar la experiencia de compra. Diseñé navegación clara, fichas de producto optimizadas y un checkout ágil para aumentar la conversión.',
         en: 'A sportswear e-commerce. The challenge was standing out in a competitive market and improving the shopping experience. I designed clear navigation, optimized product pages and a fast checkout to increase conversion.'
       },
-      media: 'videos/move.mp4', tipo: 'video', link: 'https://kaleidoscopic-pika-577f64.netlify.app/'
+      media: 'videos/move.mp4', poster: 'images/move-poster.jpg', tipo: 'video', link: 'https://kaleidoscopic-pika-577f64.netlify.app/'
     },
     {
       id: 'aguslanding', titulo: 'AgusLanding',
@@ -707,7 +758,7 @@
         es: 'Belleza ética: sistema de tienda, fichas de producto y experiencia de marca enfocada en sostenibilidad y lujo accesible. Implementación de layout responsive y sistema de productos.',
         en: 'Ethical beauty: store system, product pages and a brand experience focused on sustainability and accessible luxury. Responsive layout and product system implementation.'
       },
-      media: 'videos/sunne.mp4', tipo: 'video', link: 'https://www.codeadesarrollos.com/proyectos/stretch/index.html'
+      media: 'videos/sunne.mp4', poster: 'images/sunne-poster.jpg', tipo: 'video', link: 'https://www.codeadesarrollos.com/proyectos/stretch/index.html'
     },
     {
       id: 'creative-studio', titulo: 'Creative Studio',
@@ -774,21 +825,35 @@
 
   function media(p, enModal) {
     const src = enModal && p.mediaModal ? p.mediaModal : p.media;
-    if (p.tipo === 'video') return `<video src="${esc(src)}" autoplay muted loop playsinline preload="metadata" aria-label="${esc(p.titulo)}"></video>`;
+    if (p.tipo === 'video') return `<video src="${esc(src)}"${p.poster ? ` poster="${esc(p.poster)}"` : ''} autoplay muted loop playsinline preload="metadata" aria-label="${esc(p.titulo)}"></video>`;
     return `<img src="${esc(src)}" alt="${esc(p.titulo)}" ${enModal ? '' : 'loading="lazy"'} decoding="async" onerror="this.onerror=null;this.src='imagen-portfolio.jpg'"/>`;
   }
   const tagList = (tags) => tags.map((t) => `<li>${bi(t)}</li>`).join('');
 
   const destacados = PROYECTOS.filter((p) => p.destacado);
+  // Con página de caso propia, la card lleva a esa página; si no, abre el modal.
+  const abreCard = (p, clase) => p.pagina
+    ? `<a class="${clase}" href="${esc(p.pagina)}"`
+    : `<button type="button" class="${clase}" data-proyecto="${p.id}"`;
+  const cierraCard = (p) => p.pagina ? '</a>' : '</button>';
   document.getElementById('cases').innerHTML = destacados.map((p, i) => `
     <article class="case${i % 2 ? ' flip' : ''}">
-      <button type="button" class="case-media" data-proyecto="${p.id}" aria-label="${esc(p.titulo)}"><div class="zoom">${media(p)}</div></button>
-      <div data-reveal>
-        <span class="case-num">0${i + 1} / 0${destacados.length}</span>
-        <h3 class="case-title">${esc(p.titulo)}${p.nuevo ? `<span class="new">${bi({ es: 'Nuevo', en: 'New' })}</span>` : ''}</h3>
-        <p class="case-sub">${bi(p.sub)}</p>
+      ${abreCard(p, 'case-media')} aria-label="${esc(p.titulo)}"><div class="zoom">${media(p)}</div>${cierraCard(p)}
+      <div class="case-copy" data-reveal>
+        <div class="case-top">
+          <span class="case-num">0${i + 1} / 0${destacados.length}</span>
+          <span class="case-pill">${bi(p.producto || { es: p.titulo, en: p.titulo })}</span>
+          ${p.nuevo ? `<span class="new">${bi({ es: 'Nuevo', en: 'New' })}</span>` : ''}
+        </div>
+        <h3 class="case-title">${bi(p.titular || { es: p.titulo, en: p.titulo })}</h3>
+        <p class="case-sub">${bi(p.relato || p.sub)}</p>
+        ${p.impacto ? `<p class="case-impact">${bi(p.impacto)}</p>` : ''}
+        ${p.ficha ? `<dl class="case-facts">${p.ficha.map(([k, v]) => `<div><dt>${bi(k)}</dt><dd>${bi(v)}</dd></div>`).join('')}</dl>` : ''}
         <ul class="tags">${tagList(p.tags)}</ul>
-        <button type="button" class="btn btn-dark magnetic" data-proyecto="${p.id}">${bi({ es: 'Ver caso', en: 'View case' })}${ARROW}</button>
+        ${abreCard(p, 'case-cta')}>
+          <span class="case-cta-label">${bi({ es: 'Ver caso completo', en: 'View full case' })}</span>
+          <span class="case-cta-arrow">${ARROW}</span>
+        ${cierraCard(p)}
       </div>
     </article>`).join('');
 
@@ -1015,8 +1080,11 @@
     });
 
     // Las imágenes de los proyectos se descubren y se acercan con el scroll.
+    // El acercamiento atado al scroll queda solo para escritorio: en celular traba.
+    const escritorio = window.matchMedia('(hover: hover) and (min-width: 761px)').matches;
     gsap.utils.toArray('.case-media, .work-media').forEach((box) => {
       gsap.from(box, { clipPath: 'inset(12% 6% 12% 6% round 24px)', duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: box, start: 'top 85%' } });
+      if (!escritorio) return;
       const m = box.querySelector('img, video');
       gsap.fromTo(m, { scale: 1.18 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
