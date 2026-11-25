@@ -8,10 +8,7 @@
 <meta name="title-en" content="Turno · Interactive prototype"/>
 <meta name="description" content="Prototipo navegable de Turno: reservá, reprogramá y cancelá turnos médicos, y hacé check-in."/>
 <meta name="theme-color" content="#0d0e10"/>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"/>
 <link rel="stylesheet" href="proto.css"/>
 <style>
   :root { --brand: #1d6ae5; --brand-ink: #1558c0; --brand-soft: #e6efff; }
@@ -22,12 +19,12 @@
   .doc { width: 100%; text-align: left; }
   .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
   .cal .h { font-size: 12px; color: var(--soft); padding: 4px 0; }
-  .cal button { aspect-ratio: 1; border-radius: 12px; font-weight: 600; font-size: 15px; display: grid; place-items: center; }
+  .cal button { text-align: center; aspect-ratio: 1; border-radius: 12px; font-weight: 600; font-size: 15px; display: grid; place-items: center; }
   .cal button:disabled { color: #c3c6c9; cursor: default; }
   .cal button[aria-pressed="true"] { background: var(--brand); color: #fff; }
   .cal button.hoy:not([aria-pressed="true"]) { box-shadow: inset 0 0 0 1.5px var(--brand); }
   .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .slot { min-height: 48px; border-radius: 14px; background: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 3px 10px -6px rgba(13, 14, 16, .3); }
+  .slot { min-height: 48px; text-align: center; border-radius: 14px; background: #fff; font-weight: 700; font-size: 15px; box-shadow: 0 3px 10px -6px rgba(13, 14, 16, .3); }
   .slot[aria-pressed="true"] { background: var(--brand); color: #fff; }
   .slot:disabled { background: #efefec; color: #b2b5b9; text-decoration: line-through; box-shadow: none; cursor: not-allowed; }
   .slot.actual:disabled { background: var(--brand-soft); color: var(--brand-ink); text-decoration: none; line-height: 1.1; }
@@ -39,7 +36,7 @@
 <body>
 <div class="stage">
   <aside class="side">
-    <a class="back" href="../turno.html#ui" data-href-lang="../turno.html#ui">
+    <a class="back" href="../../work/turno/#final-ui" data-href-en="../../work/turno/#final-ui" data-href-es="../../es/proyectos/turno/#ui">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
       <span data-lang="es">Volver al caso</span><span data-lang="en">Back to the case</span>
     </a>
@@ -60,15 +57,15 @@
 
   <div class="device">
     <div class="app" id="app">
-      <div class="mbar"><a href="../turno.html#ui"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Caso de estudio</a><span>Prototipo · Turno</span></div>
-      <div class="status"></div>
+      <header class="mbar"><a href="../../work/turno/#final-ui" data-href-en="../../work/turno/#final-ui" data-href-es="../../es/proyectos/turno/#ui"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span data-lang="es">Caso de estudio</span><span data-lang="en">Case study</span></a><span><span data-lang="es">Prototipo</span><span data-lang="en">Prototype</span> · Turno</span></header>
+      <div class="status" aria-hidden="true"></div>
       <div id="screen" style="display:contents"></div>
       <div class="toast" role="status" aria-live="polite"></div>
     </div>
   </div>
 </div>
 
-<script src="../caso.js"></script>
+<script src="idioma.js"></script>
 <script src="proto.js"></script>
 <script>
 (() => {

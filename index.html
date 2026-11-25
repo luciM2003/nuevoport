@@ -1,1149 +1,170 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en" data-alt="./es/">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Lucía Miranda · UX/UI Designer & Front-end Developer</title>
-<meta name="description" content="Lucía Miranda: diseñadora UX/UI, diseñadora de producto y desarrolladora front-end en Mendoza, Argentina."/>
-<meta name="theme-color" content="#f3f4f1"/>
+<title>Lucía Miranda | Senior UX/UI &amp; Product Designer</title>
+<meta name="description" content="Senior UX/UI &amp; Product Designer in Argentina. SaaS, marketplaces and enterprise platforms, designed end to end with front-end knowledge. Open to international roles."/>
+<meta name="author" content="Lucía Miranda"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
 <link rel="canonical" href="https://lucim2003.github.io/nuevoport/"/>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0e10'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='%23fff' text-anchor='middle'%3ELM%3C/text%3E%3C/svg%3E"/>
-<!-- Vista previa al compartir el link (WhatsApp, LinkedIn). -->
+<link rel="alternate" hreflang="en" href="https://lucim2003.github.io/nuevoport/"/>
+<link rel="alternate" hreflang="es" href="https://lucim2003.github.io/nuevoport/es/"/>
+<link rel="alternate" hreflang="x-default" href="https://lucim2003.github.io/nuevoport/"/>
 <meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Lucía Miranda"/>
+<meta property="og:title" content="Lucía Miranda | Senior UX/UI &amp; Product Designer"/>
+<meta property="og:description" content="Senior UX/UI &amp; Product Designer in Argentina. SaaS, marketplaces and enterprise platforms, designed end to end with front-end knowledge. Open to international roles."/>
 <meta property="og:url" content="https://lucim2003.github.io/nuevoport/"/>
-<meta property="og:title" content="Lucía Miranda · UX/UI Designer & Front-end Developer"/>
-<meta property="og:description" content="Diseño UX/UI, diseño de producto y desarrollo front-end. Casos, proyectos y contacto."/>
-<meta property="og:image" content="https://lucim2003.github.io/nuevoport/images/og-lucia.jpg"/>
+<meta property="og:image" content="https://lucim2003.github.io/nuevoport/assets/og/home-en.jpg"/>
+<meta property="og:image:type" content="image/jpeg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Lucía Miranda | Senior UX/UI &amp; Product Designer"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="es_AR"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --bg: #f3f4f1;
-    --surface: #ffffff;
-    --ink: #0d0e10;
-    --ink-2: #2a2d31;
-    --muted: #63676e;
-    --soft: #9a9ea4;
-    --line: rgba(13, 14, 16, 0.1);
-    --accent: #1b9a5a;
-    --accent-ink: #11733f;
-    --radius: 24px;
-    --ease: cubic-bezier(.2, .7, .1, 1);
-    --display: "Inter Tight", "Inter", system-ui, sans-serif;
-    --body: "Inter", system-ui, sans-serif;
-    --mesh:
-      radial-gradient(40% 55% at 20% 30%, #2fae6e 0, transparent 70%),
-      radial-gradient(45% 60% at 80% 25%, #94c9ff 0, transparent 70%),
-      radial-gradient(50% 55% at 55% 85%, #d3f1e1 0, transparent 70%),
-      radial-gradient(35% 45% at 10% 90%, #a9d4ff 0, transparent 70%),
-      #dcefe6;
-  }
-  * { box-sizing: border-box; }
-  [hidden] { display: none !important; }
-  .skip { position: fixed; left: 16px; top: -60px; z-index: 200; background: var(--ink, #0d0e10); color: #fff; padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; transition: top 0.3s; }
-  .skip:focus { top: 16px; }
-  html { -webkit-text-size-adjust: 100%; }
-  html.lenis, html.lenis body { height: auto; }
-  .lenis.lenis-smooth { scroll-behavior: auto !important; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body);
-    font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
-  }
-  img, video { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-  button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
-  ::selection { background: var(--ink); color: #fff; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
-
-  /* Idioma: cada texto existe en los dos idiomas y se muestra según <html lang>. */
-  html[lang="es"] [data-lang="en"], html[lang="en"] [data-lang="es"] { display: none !important; }
-
-  .wrap { width: min(1280px, 100% - 32px); margin-inline: auto; }
-  @media (min-width: 720px) { .wrap { width: min(1280px, 100% - 64px); } }
-  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); }
-  .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: 0.5; }
-  .section { padding: clamp(90px, 13vw, 170px) 0; }
-  .h2 { font-family: var(--display); font-weight: 700; font-size: clamp(40px, 6.4vw, 92px); line-height: 0.95; letter-spacing: -0.045em; margin: 18px 0 0; }
-  .h2 em { font-style: italic; font-weight: 500; color: var(--accent-ink); }
-  .head { display: flex; justify-content: space-between; align-items: end; gap: 28px; flex-wrap: wrap; margin-bottom: clamp(48px, 7vw, 90px); }
-  .lead { color: var(--muted); max-width: 400px; margin: 0; font-size: 16px; }
-
-  /* ---------------------------------------------------------------- botones */
-  .btn {
-    position: relative; display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; padding: 15px 26px;
-    font-weight: 600; font-size: 15px; transition: background 0.3s, color 0.3s, border-color 0.3s; border: 1px solid transparent; white-space: nowrap;
-  }
-  .btn svg { width: 16px; height: 16px; flex: none; transition: transform 0.4s var(--ease); }
-  .btn:hover svg { transform: translate(2px, -2px); }
-  .btn-dark { background: var(--ink); color: #fff; }
-  .btn-dark:hover { background: #24272b; }
-  .btn-ghost { border-color: var(--line); background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(8px); }
-  .btn-ghost:hover { background: #fff; }
-  .text-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: border-color 0.3s; }
-  .text-link:hover { border-color: var(--ink); }
-  .text-link svg { width: 14px; height: 14px; }
-
-  /* ---------------------------------------------------------------- nav */
-  .nav { position: fixed; inset: 0 0 auto; z-index: 60; transition: background 0.4s, box-shadow 0.4s, transform 0.5s var(--ease); }
-  .nav.scrolled { background: rgba(243, 244, 241, 0.72); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); box-shadow: 0 1px 0 var(--line); }
-  .nav.hide { transform: translateY(-100%); }
-  .nav-inner { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
-  .mono { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
-  .nav-links { display: flex; gap: 2px; }
-  .nav-links a { position: relative; font-size: 14px; font-weight: 500; padding: 8px 14px; color: var(--ink-2); }
-  .nav-links a::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: 4px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform 0.45s var(--ease); }
-  .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-  .nav-right { display: flex; align-items: center; gap: 10px; }
-  .clock { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 6px; }
-  .lang { display: flex; padding: 4px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.6); }
-  .lang button { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; padding: 6px 11px; border-radius: 999px; color: var(--soft); transition: background 0.3s, color 0.3s; }
-  .lang button[aria-pressed="true"] { background: var(--ink); color: #fff; }
-  .menu-btn { display: none; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.6); flex-direction: column; align-items: center; justify-content: center; }
-  .menu-btn span { display: block; width: 16px; height: 1.5px; background: var(--ink); transition: transform 0.4s var(--ease); }
-  .menu-btn span + span { margin-top: 5px; }
-  .menu-btn[aria-expanded="true"] span:first-child { transform: translateY(3.25px) rotate(45deg); }
-  .menu-btn[aria-expanded="true"] span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
-  .menu { position: fixed; inset: 0; z-index: 55; background: var(--bg); display: flex; flex-direction: column; justify-content: center; padding: 100px 24px 40px; clip-path: inset(0 0 100% 0); transition: clip-path 0.7s var(--ease); visibility: hidden; }
-  .menu.open { clip-path: inset(0 0 0 0); visibility: visible; }
-  .menu a { font-family: var(--display); font-size: clamp(40px, 11vw, 64px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.15; display: flex; align-items: baseline; gap: 14px; }
-  .menu a small { font-family: var(--body); font-size: 13px; color: var(--soft); font-weight: 500; letter-spacing: 0; }
-
-  /* ---------------------------------------------------------------- hero */
-  .hero { position: relative; overflow-x: clip; min-height: 100svh; padding: 120px 0 40px; display: flex; flex-direction: column; justify-content: center; }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
-  .status { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--ink-2); padding: 8px 14px 8px 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.7); border: 1px solid var(--line); }
-  .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(27, 154, 90, 0.5); animation: pulse 2.2s infinite; }
-  @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(27, 154, 90, 0); } 100% { box-shadow: 0 0 0 0 rgba(27, 154, 90, 0); } }
-  .name { font-family: var(--display); font-weight: 800; font-size: clamp(64px, 10.5vw, 168px); line-height: 0.86; letter-spacing: -0.055em; margin: 28px 0 0; }
-  .line { display: block; overflow: hidden; padding-bottom: 0.06em; margin-bottom: -0.06em; }
-  .line-in { display: block; }
-  .name .grad {
-    background: linear-gradient(100deg, #0e6a3a 0%, #1b9a5a 35%, #3f8fe0 70%, #0e6a3a 100%); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
-    animation: meshText 9s ease-in-out infinite alternate;
-  }
-  @keyframes meshText { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
-  .role { margin: 30px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
-  .role .r { font-family: var(--display); font-size: clamp(15px, 1.3vw, 17px); font-weight: 600; letter-spacing: -0.01em; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.65); color: var(--ink-2); }
-  .hero-text { margin: 18px 0 0; color: var(--muted); max-width: 520px; font-size: 17px; }
-  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; align-items: center; }
-  .hero-cv { display: flex; gap: 18px; margin-left: 8px; }
-
-  .portrait { position: relative; justify-self: end; width: 100%; max-width: 470px; }
-  .portrait-glow { position: absolute; inset: -12% -10%; background: var(--mesh); filter: blur(60px); opacity: 0.75; border-radius: 50%; animation: glow 12s ease-in-out infinite alternate; z-index: 0; }
-  @keyframes glow { from { transform: rotate(0deg) scale(1); } to { transform: rotate(25deg) scale(1.1); } }
-  .portrait-frame { position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; background: #e4e7e2; clip-path: inset(0% 0% 0% 0% round 28px); box-shadow: 0 40px 90px -40px rgba(13, 40, 25, 0.55); }
-  .portrait-frame img { width: 100%; height: 112%; object-fit: cover; object-position: center 18%; margin-top: -6%; }
-  .chip-float { position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 16px; background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(14px) saturate(1.5); -webkit-backdrop-filter: blur(14px) saturate(1.5); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 20px 40px -20px rgba(13, 14, 16, 0.35); font-size: 13px; line-height: 1.25; }
-  .chip-float b { font-family: var(--display); font-size: 22px; letter-spacing: -0.03em; }
-  .chip-float .dot { width: 34px; height: 34px; border-radius: 10px; background: var(--ink); color: #fff; display: grid; place-items: center; }
-  .chip-float .dot svg { width: 17px; height: 17px; }
-  .chip-a { left: -34px; bottom: 54px; }
-  .chip-b { right: -14px; top: 40px; }
-  .scroll-hint { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--soft); }
-  .scroll-hint i { width: 1px; height: 40px; background: linear-gradient(var(--soft), transparent); position: relative; overflow: hidden; }
-  .scroll-hint i::after { content: ""; position: absolute; inset: 0; background: var(--ink); animation: drip 2s var(--ease) infinite; }
-  @keyframes drip { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
-
-  /* ---------------------------------------------------------------- marquee */
-  .marquee { border-block: 1px solid var(--line); overflow: hidden; padding: 26px 0; background: var(--bg); }
-  .marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
-  .marquee:hover .marquee-track { animation-play-state: paused; }
-  .marquee-group { display: flex; align-items: center; gap: 48px; padding-right: 48px; }
-  .marquee-group span { font-family: var(--display); font-size: clamp(22px, 3vw, 38px); font-weight: 600; letter-spacing: -0.03em; white-space: nowrap; }
-  .marquee-group i { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; }
-  .marquee-group span:nth-of-type(3n+2) { font-style: italic; font-weight: 500; color: var(--muted); }
-  @keyframes marquee { to { transform: translateX(-50%); } }
-
-  /* ---------------------------------------------------------------- casos destacados */
-  /* Card destacada: la portada a lo ancho, sin recortes, y el texto debajo en dos columnas. */
-  .case { display: grid; gap: clamp(24px, 3vw, 40px); padding: clamp(36px, 5vw, 64px) 0; border-top: 1px solid var(--line); }
-  .case:last-child { border-bottom: 1px solid var(--line); }
-  .case-media { display: block; width: 100%; border-radius: var(--radius); overflow: hidden; background: #e4e7e2; aspect-ratio: 3 / 2; cursor: none; box-shadow: 0 40px 80px -50px rgba(13, 14, 16, 0.45); }
-  .case-copy { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(20px, 4vw, 72px); align-items: start; }
-  .case-body .case-sub { margin-top: 4px; }
-  .zoom { width: 100%; height: 100%; transition: transform 1.1s var(--ease); }
-  .case-media:hover .zoom, .work-media:hover .zoom { transform: scale(1.035); }
-  .zoom img, .zoom video { width: 100%; height: 100%; object-fit: cover; }
-  .case-num { font-family: var(--display); font-size: 14px; font-weight: 600; color: var(--soft); letter-spacing: 0.06em; }
-  .case-title { font-family: var(--display); font-size: clamp(34px, 4vw, 58px); font-weight: 700; letter-spacing: -0.045em; line-height: 0.95; margin: 14px 0 14px; }
-  .case-sub { color: var(--muted); margin: 0 0 22px; font-size: 16px; line-height: 1.55; }
-  /* Card destacada: producto → titular → problema y solución → impacto → ficha */
-  .case-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
-  .case-top .new { margin: 0; }
-  .case-pill { font-size: 12px; font-weight: 600; line-height: 1; padding: 8px 12px; border-radius: 999px; background: var(--ink); color: #fff; }
-  .case-copy .case-title { font-size: clamp(30px, 4vw, 54px); letter-spacing: -0.03em; line-height: 1.04; margin: 18px 0 16px; }
-  .case-impact { margin: 0 0 22px; padding: 12px 16px; border-left: 3px solid var(--accent); background: rgba(27, 154, 90, 0.07); border-radius: 0 12px 12px 0; font-size: 14px; font-weight: 600; color: var(--accent-ink); }
-  .case-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0 0 22px; padding: 16px 0; border-block: 1px solid var(--line); }
-  .case-facts dt { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--soft); margin-bottom: 4px; }
-  .case-facts dd { margin: 0; font-size: 14px; font-weight: 500; }
-  .case-cta { display: inline-flex; align-items: center; gap: 14px; padding: 0; border: 0; background: none; color: var(--ink); font: inherit; font-size: 16px; font-weight: 500; text-decoration: none; cursor: pointer; }
-  .case-cta-arrow { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); color: #fff; transition: box-shadow 0.25s var(--ease); }
-  .case-cta-arrow svg { width: 20px; height: 20px; transition: rotate 0.3s var(--ease); }
-  @media (hover: hover) {
-    .case-cta:hover .case-cta-label { font-weight: 700; }
-    .case-cta:hover .case-cta-arrow { box-shadow: 5px 5px 0 0 var(--accent); }
-    .case-cta:hover .case-cta-arrow svg { rotate: 45deg; }
-  }
-  .case-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 999px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
-  .tags li { font-size: 12px; font-weight: 600; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.6); }
-  .new { display: inline-block; margin-left: 10px; vertical-align: middle; font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; background: var(--accent); color: #fff; }
-
-  /* ---------------------------------------------------------------- resto de trabajos */
-  .more-head { margin: clamp(80px, 10vw, 130px) 0 40px; display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; }
-  .more-head h3 { font-family: var(--display); font-size: clamp(28px, 3.4vw, 44px); letter-spacing: -0.04em; font-weight: 700; margin: 0; }
-  .work-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(24px, 4vw, 56px); row-gap: clamp(48px, 6vw, 80px); }
-  .work-grid > :nth-child(even) { transform: translateY(clamp(40px, 8vw, 120px)); }
-  .work { display: block; text-align: left; width: 100%; }
-  .work-media { display: block; width: 100%; border-radius: var(--radius); overflow: hidden; background: #e4e7e2; aspect-ratio: 4 / 3; cursor: none; }
-  .work-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 18px; }
-  .work-title { font-family: var(--display); font-size: clamp(22px, 2.2vw, 28px); letter-spacing: -0.03em; font-weight: 700; margin: 0; }
-  .work-tags { font-size: 12px; color: var(--soft); font-weight: 500; text-align: right; }
-  .work-sub { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
-
-  /* ---------------------------------------------------------------- casos conceptuales */
-  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 32px); }
-  .concept-grid .work-media { aspect-ratio: 4 / 3; }
-  .badge-concept { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: rgba(255, 255, 255, 0.7); margin-left: 8px; vertical-align: middle; }
-
-  .concept-steps { margin: 10px 0 0; font-size: 13px; color: var(--soft); }
-  .concept-links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 14px; }
-  @media (max-width: 900px) { .concept-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 640px) { .concept-grid { grid-template-columns: 1fr; } }
-
-  /* ---------------------------------------------------------------- sobre mí */
-  .statement { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4.2vw, 60px); line-height: 1.12; letter-spacing: -0.035em; margin: 26px 0 0; max-width: 1100px; }
-  .statement .w { display: inline-block; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 100px); margin-top: clamp(60px, 8vw, 110px); align-items: start; }
-  .stats { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
-  .stat { padding: 28px 0; border-bottom: 1px solid var(--line); }
-  .stat:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--line); }
-  .stat:nth-child(even) { padding-left: 28px; }
-  .stat strong { font-family: var(--display); font-size: clamp(48px, 5vw, 72px); font-weight: 700; letter-spacing: -0.05em; line-height: 1; display: block; font-variant-numeric: tabular-nums; }
-  .stat span { display: block; margin-top: 10px; color: var(--muted); font-size: 14px; }
-  .about-copy p { margin: 0 0 18px; color: var(--ink-2); font-size: 17px; }
-  .skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
-  .skills span { font-size: 13px; font-weight: 500; padding: 9px 15px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); transition: background 0.3s, color 0.3s; }
-  .skills span:hover { background: var(--ink); color: #fff; }
-
-  /* ---------------------------------------------------------------- servicios */
-  .services { border-top: 1px solid var(--line); }
-  .service { display: grid; grid-template-columns: 90px 1fr 1fr; gap: 24px; align-items: baseline; padding: clamp(26px, 3vw, 40px) 0; border-bottom: 1px solid var(--line); position: relative; }
-  .service::before { content: ""; position: absolute; inset: 0; background: var(--surface); transform: scaleY(0); transform-origin: bottom; transition: transform 0.6s var(--ease); z-index: -1; border-radius: 18px; }
-  .service:hover::before { transform: scaleY(1); }
-  .service b { font-family: var(--display); font-weight: 600; color: var(--soft); font-size: 15px; padding-left: 12px; }
-  .service h3 { font-family: var(--display); font-size: clamp(28px, 3.6vw, 52px); font-weight: 700; letter-spacing: -0.045em; margin: 0; line-height: 1; transition: transform 0.6s var(--ease); }
-  .service:hover h3 { transform: translateX(10px); }
-  .service p { margin: 0; color: var(--muted); padding-right: 12px; }
-  .services-wrap { position: relative; z-index: 0; }
-
-  /* ---------------------------------------------------------------- experiencia y educación */
-  .rows { border-top: 1px solid var(--line); }
-  .row { display: grid; grid-template-columns: 200px 1fr auto; gap: 28px; padding: 30px 0; border-bottom: 1px solid var(--line); align-items: start; }
-  .row-when { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 6px; }
-  .row h3 { font-family: var(--display); font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.03em; font-weight: 700; margin: 0; line-height: 1.15; }
-  .row-where { color: var(--accent-ink); font-weight: 500; font-size: 15px; margin-top: 4px; }
-  .row p { margin: 12px 0 0; color: var(--muted); max-width: 640px; font-size: 15px; }
-  .row-btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 9px 16px; font-size: 13px; font-weight: 600; transition: background 0.3s, color 0.3s; white-space: nowrap; }
-  .row-btn:hover { background: var(--ink); color: #fff; }
-  .row-btn svg { width: 14px; height: 14px; }
-  .split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
-  .split .head { margin: 0; position: sticky; top: 110px; }
-
-  /* ---------------------------------------------------------------- contacto */
-  .contact { position: relative; border-radius: clamp(28px, 4vw, 48px); overflow: hidden; isolation: isolate; }
-  .contact-bg { position: absolute; inset: -20%; background: var(--mesh); filter: blur(50px); z-index: -1; animation: glow 16s ease-in-out infinite alternate; }
-  .contact-inner { padding: clamp(60px, 9vw, 130px) clamp(24px, 6vw, 90px); }
-  .contact h2 { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 9vw, 150px); line-height: 0.88; letter-spacing: -0.06em; margin: 20px 0 0; }
-  .contact h2 em { font-style: italic; font-weight: 500; }
-  .mail { display: inline-flex; align-items: center; gap: 14px; margin-top: clamp(36px, 5vw, 60px); font-family: var(--display); font-size: clamp(22px, 3.6vw, 48px); font-weight: 600; letter-spacing: -0.035em; border-bottom: 2px solid rgba(13, 14, 16, 0.25); padding-bottom: 6px; transition: border-color 0.3s; word-break: break-all; }
-  .mail:hover { border-color: var(--ink); }
-  .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; align-items: center; }
-  .toast { position: fixed; left: 50%; bottom: 30px; transform: translate(-50%, 20px); background: var(--ink); color: #fff; padding: 12px 20px; border-radius: 999px; font-size: 14px; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.4s, transform 0.4s var(--ease); z-index: 120; }
-  .toast.show { opacity: 1; transform: translate(-50%, 0); }
-
-  footer { padding: 36px 0 44px; }
-  .foot { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
-  .foot a:hover { color: var(--ink); }
-  .foot-links { display: flex; gap: 22px; }
-
-  /* ---------------------------------------------------------------- cursor */
-  .cursor { position: fixed; left: 0; top: 0; z-index: 90; width: 96px; height: 96px; margin: -48px 0 0 -48px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 600; pointer-events: none; transform: scale(0); transition: transform 0.45s var(--ease); }
-  .cursor.on { transform: scale(1); }
-  @media (hover: none), (pointer: coarse) { .cursor { display: none; } .case-media, .work-media { cursor: pointer; } }
-
-  /* ---------------------------------------------------------------- modales */
-  .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(13, 14, 16, 0.5); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
-  .modal.open { display: flex; animation: fade 0.3s ease; }
-  @keyframes fade { from { opacity: 0; } }
-  .modal-box { position: relative; width: 100%; max-width: 820px; background: var(--surface); border-radius: 28px; padding: 12px; box-shadow: 0 50px 120px -40px rgba(0, 0, 0, 0.5); margin: auto; animation: rise 0.5s var(--ease); }
-  @keyframes rise { from { transform: translateY(30px) scale(0.98); opacity: 0; } }
-  .modal-close { position: absolute; top: 24px; right: 24px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, 0.92); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); display: grid; place-items: center; transition: transform 0.4s var(--ease); }
-  .modal-close:hover { transform: rotate(90deg); }
-  .modal-close svg { width: 18px; height: 18px; }
-  /* La imagen se muestra entera, con su proporción: antes se recortaba a 16:10. */
-  .modal-media { border-radius: 20px; overflow: hidden; background: #e4e7e2; }
-  .modal-media img, .modal-media video { width: 100%; height: auto; max-height: 72vh; object-fit: contain; margin-inline: auto; }
-  .modal-body { padding: 28px 22px 18px; display: grid; grid-template-columns: 1fr auto; gap: 8px 28px; align-items: end; }
-  .modal-body h2 { font-family: var(--display); font-size: clamp(30px, 4vw, 46px); letter-spacing: -0.045em; margin: 0; line-height: 1; }
-  .modal-body .tags { margin: 6px 0 0; grid-column: 1 / -1; }
-  .modal-body p { grid-column: 1 / -1; color: var(--muted); margin: 14px 0 6px; }
-  .modal-body .btn { grid-row: 1; grid-column: 2; }
-  .cert-box { max-width: 980px; height: 86vh; height: 86dvh; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
-  .cert-box iframe { width: 100%; flex: 1; border: 0; }
-  .cert-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 76px 14px 20px; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 600; }
-  .cert-bar a { white-space: nowrap; }
-
-  /* ---------------------------------------------------------------- responsive */
-  @media (max-width: 1080px) {
-    .nav-links, .clock { display: none; }
-    .menu-btn { display: flex; }
-  }
-  @media (max-width: 900px) {
-    .hero { min-height: auto; padding-top: 110px; }
-    .hero-grid { grid-template-columns: minmax(0, 1fr); }
-    .portrait { justify-self: center; max-width: 420px; margin-top: 30px; }
-    .chip-a { left: -10px; } .chip-b { right: -8px; }
-    .scroll-hint { display: none; }
-    .case-copy { grid-template-columns: 1fr; gap: 0; }
-    .about-grid, .split { grid-template-columns: 1fr; }
-    .split .head { position: static; margin-bottom: 40px; }
-    .service { grid-template-columns: 50px 1fr; }
-    .service p { grid-column: 2; }
-    .row { grid-template-columns: 1fr; gap: 8px; }
-    .row-when { padding: 0; }
-    .row-btn { justify-self: start; margin-top: 8px; }
-  }
-  @media (max-width: 640px) {
-    .work-grid { grid-template-columns: 1fr; }
-    .work-grid > :nth-child(even) { transform: none; }
-    .hero-ctas .btn { flex: 1 1 auto; justify-content: center; }
-    .hero-cv { margin: 6px 0 0; width: 100%; justify-content: center; }
-    .stats { grid-template-columns: 1fr 1fr; }
-    .stat:nth-child(even) { padding-left: 18px; }
-    /* En el celular el modal ocupa toda la pantalla y se desplaza entero;
-       la cruz queda fija arriba para poder cerrar desde cualquier punto. */
-    .modal { padding: 0; align-items: flex-start; }
-    .modal-box { min-height: 100%; border-radius: 0; padding: 10px 10px 28px; margin: 0; }
-    .modal-close { position: fixed; top: 16px; right: 16px; }
-    .modal-media { border-radius: 16px; }
-    .modal-body { grid-template-columns: 1fr; padding: 22px 8px 8px; }
-    .modal-body .btn { grid-row: auto; grid-column: 1; justify-content: center; margin-top: 8px; }
-    .cert-box { min-height: 0; height: 100%; padding: 0; }
-    .cert-bar { padding-right: 72px; }
-    .work-meta { flex-direction: column; gap: 4px; }
-    .work-tags { text-align: left; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
-  }
-  /* En celulares, los fondos difuminados animados se redibujan en cada cuadro y
-     traban el scroll: quedan quietos y con menos desenfoque. */
-  @media (hover: none), (max-width: 760px) {
-    .portrait-glow, .contact-bg, .name .grad { animation: none; }
-    .portrait-glow { filter: blur(40px); }
-    .contact-bg { filter: blur(36px); }
-    .nav.scrolled { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-  }
-</style>
+<meta name="theme-color" content="#f3f4f1"/>
+<meta name="color-scheme" content="light"/>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png"/>
+<link rel="apple-touch-icon" href="./apple-touch-icon.png"/>
+<link rel="manifest" href="./site.webmanifest"/>
+<link rel="preload" href="./assets/fonts/chivo.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="./assets/fonts/faustina.woff2" as="font" type="font/woff2" crossorigin/>
+<script>(function(){var d=document.documentElement,q=new URLSearchParams(location.search).get('lang'),p=null;try{p=localStorage.getItem('lm-lang')}catch(e){}var w=q==='en'||q==='es'?q:p;if(w&&w!==d.lang&&d.dataset.alt)location.replace(d.dataset.alt+location.hash);d.classList.add('js')})()</script>
+<link rel="stylesheet" href="./assets/css/site.css?v=596a20c1"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://lucim2003.github.io/nuevoport/#lucia-miranda","name":"Lucía Miranda","jobTitle":"Senior UX/UI & Product Designer","url":"https://lucim2003.github.io/nuevoport/","image":"https://lucim2003.github.io/nuevoport/assets/img/portrait-960.webp","email":"mailto:luciacmiranda9@gmail.com","sameAs":["https://www.linkedin.com/in/lucia-miranda-6569841b9"],"address":{"@type":"PostalAddress","addressLocality":"Mendoza","addressCountry":"AR"},"knowsLanguage":["es","en"],"knowsAbout":["UX design","UI design","Product design","Design systems","Information architecture","Interaction design","Accessibility","SaaS","Front-end development","React","TypeScript"]},{"@type":"WebSite","@id":"https://lucim2003.github.io/nuevoport/#website","url":"https://lucim2003.github.io/nuevoport/","name":"Lucía Miranda","inLanguage":["en","es"],"author":{"@id":"https://lucim2003.github.io/nuevoport/#lucia-miranda"}},{"@type":"ProfilePage","url":"https://lucim2003.github.io/nuevoport/","name":"Lucía Miranda | Senior UX/UI & Product Designer","description":"Senior UX/UI & Product Designer in Argentina. SaaS, marketplaces and enterprise platforms, designed end to end with front-end knowledge. Open to international roles.","inLanguage":"en","mainEntity":{"@id":"https://lucim2003.github.io/nuevoport/#lucia-miranda"},"isPartOf":{"@id":"https://lucim2003.github.io/nuevoport/#website"}}]}</script>
 </head>
-<body>
-<a class="skip" href="#work"><span data-lang="es">Saltar al contenido</span><span data-lang="en">Skip to content</span></a>
-
-<!-- ================================================================ nav -->
-<header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a href="#top" class="brand" aria-label="Lucía Miranda, inicio"><span class="mono">LM</span><span>Lucía Miranda</span></a>
-    <nav class="nav-links" aria-label="Secciones">
-      <a href="#work"><span data-lang="es">Trabajos</span><span data-lang="en">Work</span></a>
-      <a href="#about"><span data-lang="es">Sobre mí</span><span data-lang="en">About</span></a>
-      <a href="#services"><span data-lang="es">Servicios</span><span data-lang="en">Services</span></a>
-      <a href="#experience"><span data-lang="es">Experiencia</span><span data-lang="en">Experience</span></a>
-      <a href="#contact"><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
-    </nav>
-    <div class="nav-right">
-      <span class="clock" id="clock" aria-label="Hora en Mendoza"></span>
-      <div class="lang" role="group" aria-label="Idioma / Language">
-        <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
-        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
-      </div>
-      <button type="button" class="menu-btn" id="menuBtn" aria-label="Menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
-    </div>
-  </div>
-</header>
-
-<div class="menu" id="menu">
-  <a href="#work"><small>01</small><span data-lang="es">Trabajos</span><span data-lang="en">Work</span></a>
-  <a href="#about"><small>02</small><span data-lang="es">Sobre mí</span><span data-lang="en">About</span></a>
-  <a href="#services"><small>03</small><span data-lang="es">Servicios</span><span data-lang="en">Services</span></a>
-  <a href="#experience"><small>04</small><span data-lang="es">Experiencia</span><span data-lang="en">Experience</span></a>
-  <a href="#contact"><small>05</small><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
+<body id="top" class="p-home">
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd"><div class="wrap hd-in">
+<a class="hd-b" href="./"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="32" fill="currentColor"/><path fill="#f3f4f1" d="M15.5 42V22h4.3v16.2h9.4V42zM32.6 42V22h5.9l5.6 13.2L49.7 22h5.9v20h-4.2V28.4L45.7 42h-3.3l-5.7-13.6V42z"/></svg><span>Lucía Miranda<span class="vh">, home</span></span></a>
+<nav class="hd-n" aria-label="Main"><ul><li><a href="./#work">Work</a></li><li><a href="./#approach">Approach</a></li><li><a href="./#about">About</a></li><li><a href="./#contact">Contact</a></li></ul></nav>
+<div class="hd-r"><div class="lang" role="group" aria-label="Language"><span class="lang-on" aria-current="true">EN<span class="vh"> English</span></span><a href="./es/" hreflang="es" lang="es" data-lang="es">ES<span class="vh"> Español</span></a></div><a class="btn btn-s hd-cv" href="./cv/Lucia-Miranda-CV-EN.pdf" download="Lucia-Miranda-UX-UI-Product-Designer-Resume.pdf" type="application/pdf">Résumé<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v13M6 12l6 6 6-6M5 21h14"/></svg></a></div>
+</div></header>
+<main id="main" tabindex="-1">
+<section class="hero"><div class="wrap">
+<h1><span class="hero-nm">Lucía Miranda<span class="vh">, </span></span><span class="hero-ro">Senior UX/UI & <br class="br-d"/>Product Designer</span></h1>
+<div class="hero-g">
+<figure class="hero-ph"><picture><source type="image/avif" srcset="./assets/img/portrait-320.avif 320w, ./assets/img/portrait-480.avif 480w, ./assets/img/portrait-720.avif 720w, ./assets/img/portrait-960.avif 960w" sizes="(min-width: 1101px) 300px, (min-width: 701px) 32vw, 92vw"/><img src="./assets/img/portrait-480.webp" srcset="./assets/img/portrait-320.webp 320w, ./assets/img/portrait-480.webp 480w, ./assets/img/portrait-720.webp 720w, ./assets/img/portrait-960.webp 960w" sizes="(min-width: 1101px) 300px, (min-width: 701px) 32vw, 92vw" width="1206" height="1425" alt="Portrait of Lucía Miranda" fetchpriority="high" decoding="async"/></picture></figure>
+<div class="hero-tx"><p class="hero-st">I design intuitive, scalable digital experiences that connect <span class="rf">user </span><span class="nb"><span class="rf">needs</span><sup><a href="#proof-1" aria-label="Proof 1">1</a></sup></span>, <span class="rf">business </span><span class="nb"><span class="rf">goals</span><sup><a href="#proof-2" aria-label="Proof 2">2</a></sup></span> and <span class="nb"><span class="rf">technology</span><sup><a href="#proof-3" aria-label="Proof 3">3</a></sup></span>.</p>
+<p class="hero-sb">Five years across product management, UX/UI and front-end. I work on products with many roles and many edge cases, from research to implementation. Writing code keeps my designs honest about what can be built.</p>
+<p class="hero-ct"><a class="btn" href="#work">Explore my work</a><a class="btn btn-o" href="./cv/Lucia-Miranda-CV-EN.pdf" download="Lucia-Miranda-UX-UI-Product-Designer-Resume.pdf" type="application/pdf">Download résumé<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v13M6 12l6 6 6-6M5 21h14"/></svg></a><a class="tl" href="#contact">Get in touch<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p></div>
+<ol class="hero-pr" aria-label="Proof for each claim"><li id="proof-1"><p>Four roles in every order: customer, restaurant, rider and admin.</p><a href="./work/modo-ya/">MODO YA</a></li><li id="proof-2"><p>Four dashboards and six spreadsheets became one portal.</p><a href="./work/byd-quality-portal/">BYD Quality Portal</a></li><li id="proof-3"><p>25 screens taken from design to React, in a team of two.</p><a href="./work/padel-hub/">Padel Hub</a></li></ol>
 </div>
-
-<main id="top">
-
-<!-- ================================================================ hero -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="status" data-intro><i></i><span data-lang="es">Disponible para nuevos proyectos · Mendoza, AR</span><span data-lang="en">Available for new projects · Mendoza, AR</span></span>
-      <h1 class="name" aria-label="Lucía Miranda">
-        <span class="line"><span class="line-in">Lucía</span></span>
-        <span class="line"><span class="line-in grad">Miranda</span></span>
-      </h1>
-      <p class="role" data-intro>
-        <span class="r"><span data-lang="es">Diseñadora UX/UI</span><span data-lang="en">UX/UI Designer</span></span>
-        <span class="r"><span data-lang="es">Diseñadora de Producto</span><span data-lang="en">Product Designer</span></span>
-        <span class="r"><span data-lang="es">Desarrolladora Front-end</span><span data-lang="en">Front-end Developer</span></span>
-      </p>
-      <p class="hero-text" data-intro>
-        <span data-lang="es">Transformo necesidades de usuarios y del negocio en experiencias digitales claras, funcionales y responsive, desde la investigación hasta el código.</span>
-        <span data-lang="en">I turn user and business needs into clear, functional and responsive digital experiences, from research all the way to code.</span>
-      </p>
-      <div class="hero-ctas" data-intro>
-        <a class="btn btn-dark magnetic" href="#work"><span data-lang="es">Ver trabajos</span><span data-lang="en">View work</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-        <a class="btn btn-ghost magnetic" href="#contact"><span data-lang="es">Hablemos</span><span data-lang="en">Let's talk</span></a>
-        <div class="hero-cv">
-          <a class="text-link" href="certifictes/cv-es.pdf" target="_blank" rel="noopener"><span data-lang="es">CV en español</span><span data-lang="en">CV in Spanish</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
-          <a class="text-link" href="certifictes/cv-en.pdf" target="_blank" rel="noopener"><span data-lang="es">CV en inglés</span><span data-lang="en">CV in English</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
-        </div>
-      </div>
-    </div>
-
-    <div class="portrait">
-      <div class="portrait-glow" aria-hidden="true"></div>
-      <div class="portrait-frame">
-        <img src="images/lucia.jpg" onerror="this.onerror=null;this.src='images/image.jpeg'" alt="Lucía Miranda" fetchpriority="high"/>
-      </div>
-      <div class="chip-float chip-b">
-        <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>
-        <span><strong style="display:block">UX/UI</strong><span data-lang="es">+ Front-end</span><span data-lang="en">+ Front-end</span></span>
-      </div>
-      <div class="chip-float chip-a">
-        <b>4+</b>
-        <span><span data-lang="es">años creando<br/>productos digitales</span><span data-lang="en">years building<br/>digital products</span></span>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-hint" aria-hidden="true"><span>Scroll</span><i></i></div>
-</section>
-
-<!-- ================================================================ marquee -->
-<div class="marquee" aria-label="Herramientas">
-  <div class="marquee-track">
-    <div class="marquee-group">
-      <span>Figma</span><i></i><span>UX Research</span><i></i><span>React</span><i></i><span>TypeScript</span><i></i><span>Design Systems</span><i></i><span>Tailwind CSS</span><i></i><span>Prototyping</span><i></i><span>Supabase</span><i></i><span>Accessibility</span><i></i><span>Next.js</span><i></i>
-    </div>
-    <div class="marquee-group" aria-hidden="true">
-      <span>Figma</span><i></i><span>UX Research</span><i></i><span>React</span><i></i><span>TypeScript</span><i></i><span>Design Systems</span><i></i><span>Tailwind CSS</span><i></i><span>Prototyping</span><i></i><span>Supabase</span><i></i><span>Accessibility</span><i></i><span>Next.js</span><i></i>
-    </div>
-  </div>
+<dl class="facts"><div><dt>Experience</dt><dd><b>5 years</b><span>across product, UX/UI and front-end</span></dd></div><div><dt>Portfolio</dt><dd><b>14 projects</b><span>seven told as full case studies</span></dd></div><div><dt>Scope</dt><dd><b>End-to-end product design</b><span>from discovery to design QA</span></dd></div><div><dt>Strengths</dt><dd><b>UX/UI, product strategy, front-end</b><span>design first, with technical depth</span></dd></div><div><dt>Availability</dt><dd><b>Open to international roles</b><span>remote, from Argentina (UTC−3)</span></dd></div></dl>
+</div></section><section class="sec" id="work" aria-labelledby="work-h"><div class="wrap">
+<header class="sh"><p class="sh-l">Selected work</p><h2 id="work-h">Products with many roles, many rules and real constraints.</h2></header>
+<ol class="feats"><li class="ft-p ft-first"><article>
+<a class="ft-cv" href="./work/modo-ya/" tabindex="-1" aria-hidden="true"><div class="cover " role="img" aria-label="MODO YA" style="background:#f5c518;view-transition-name:cover-modo-ya"><picture class="l ph" style="--x:5.5;--y:8.5;--w:19.5;--mx:5;--my:10;--mw:42;--i:0"><source type="image/avif" srcset="./assets/img/modoya-home-300.avif 300w, ./assets/img/modoya-home-403.avif 403w" sizes="(min-width: 1400px) 256px, (min-width: 701px) 20vw, 42vw"/><img src="./assets/img/modoya-home-403.webp" srcset="./assets/img/modoya-home-300.webp 300w, ./assets/img/modoya-home-403.webp 403w" sizes="(min-width: 1400px) 256px, (min-width: 701px) 20vw, 42vw" width="403" height="875" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph no-m" style="--x:29;--y:13;--w:19.5;--mx:0;--my:0;--mw:0;--i:1"><source type="image/avif" srcset="./assets/img/modoya-cart-300.avif 300w, ./assets/img/modoya-cart-403.avif 403w" sizes="(min-width: 1400px) 256px, (min-width: 701px) 20vw, 1vw"/><img src="./assets/img/modoya-cart-403.webp" srcset="./assets/img/modoya-cart-300.webp 300w, ./assets/img/modoya-cart-403.webp 403w" sizes="(min-width: 1400px) 256px, (min-width: 701px) 20vw, 1vw" width="403" height="875" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph no-m" style="--x:52;--y:6;--w:19.5;--mx:0;--my:0;--mw:0;--i:2"><source type="image/avif" srcset="./assets/img/modoya-pay-300.avif 300w, ./assets/img/modoya-pay-403.avif 403w" sizes="(min-width: 1400px) 256px, (min-width: 701px) 20vw, 1vw"/><img src="./assets/img/modoya-pay-403.webp" srcset="./assets/img/modoya-pay-300.webp 300w, ./assets/img/modoya-pay-403.webp 403w" sizes="(min-width: 1400px) 256px, (min-width: 701px) 20vw, 1vw" width="403" height="875" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:75;--y:11;--w:19.5;--mx:53;--my:22;--mw:42;--i:3"><source type="image/avif" srcset="./assets/img/modoya-track-300.avif 300w, ./assets/img/modoya-track-403.avif 403w" sizes="(min-width: 1400px) 256px, (min-width: 701px) 20vw, 42vw"/><img src="./assets/img/modoya-track-403.webp" srcset="./assets/img/modoya-track-300.webp 300w, ./assets/img/modoya-track-403.webp 403w" sizes="(min-width: 1400px) 256px, (min-width: 701px) 20vw, 42vw" width="403" height="875" alt="" loading="lazy" decoding="async"/></picture></div></a>
+<div class="ft-bd">
+<p class="ft-ty">Digital marketplace, mobile and web</p>
+<h3>MODO YA</h3>
+<p class="ft-cl">One order, four people who each need something different.</p>
+<p class="ft-tx">A local commerce ecosystem for Malargüe, Argentina. Customers, restaurants, riders and an admin team work through two apps that share one delivery engine, with checkout, live tracking and access by role.</p>
+<dl class="ft-fa"><div><dt>Role</dt><dd>Product, UX/UI and development</dd></div><div><dt>Team</dt><dd>Two people</dd></div><div><dt>Scope</dt><dd>2 apps, 4 roles, launch site</dd></div><div><dt>Status</dt><dd>Pre-launch</dd></div></dl>
+<a class="tl tl-b" href="./work/modo-ya/">Read the MODO YA case<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div></article></li><li class="ft-p"><article>
+<a class="ft-cv" href="./work/ucobot/" tabindex="-1" aria-hidden="true"><div class="cover " role="img" aria-label="UcoBot" style="background:#1c1c28;view-transition-name:cover-ucobot"><picture class="l sc" style="--x:24;--y:8.5;--w:94;--mx:42;--my:24;--mw:150;--i:0"><source type="image/avif" srcset="./assets/img/uco-dashboard-720.avif 720w, ./assets/img/uco-dashboard-1200.avif 1200w, ./assets/img/uco-dashboard-1800.avif 1800w" sizes="(min-width: 1400px) 814px, (min-width: 701px) 63vw, 150vw"/><img src="./assets/img/uco-dashboard-1200.webp" srcset="./assets/img/uco-dashboard-720.webp 720w, ./assets/img/uco-dashboard-1200.webp 1200w, ./assets/img/uco-dashboard-1800.webp 1800w" sizes="(min-width: 1400px) 814px, (min-width: 701px) 63vw, 150vw" width="2880" height="1800" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:6;--y:14;--w:22;--mx:6;--my:14;--mw:44;--i:1"><source type="image/avif" srcset="./assets/img/uco-order-320.avif 320w, ./assets/img/uco-order-640.avif 640w" sizes="(min-width: 1400px) 191px, (min-width: 701px) 15vw, 44vw"/><img src="./assets/img/uco-order-640.webp" srcset="./assets/img/uco-order-320.webp 320w, ./assets/img/uco-order-640.webp 640w" sizes="(min-width: 1400px) 191px, (min-width: 701px) 15vw, 44vw" width="655" height="1390" alt="" loading="lazy" decoding="async"/></picture></div></a>
+<div class="ft-bd">
+<p class="ft-ty">B2B SaaS, CRM and automation</p>
+<h3>UcoBot</h3>
+<p class="ft-cl">From a chat message to an order, a booking or a follow-up.</p>
+<p class="ft-tx">An AI and CRM platform for businesses that sell over chat. I designed an experience that centralizes contacts, automates follow-ups and streamlines sales, so a technical platform can be run without writing code.</p>
+<dl class="ft-fa"><div><dt>Role</dt><dd>UX/UI design</dd></div><div><dt>Team</dt><dd>Codea Desarrollos</dd></div><div><dt>Scope</dt><dd>Inbox, bots, automations, bookings, POS</dd></div><div><dt>Status</dt><dd>Live</dd></div></dl>
+<a class="tl tl-b" href="./work/ucobot/">Read the UcoBot case<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div></article></li><li class="ft-p"><article>
+<a class="ft-cv" href="./work/byd-quality-portal/" tabindex="-1" aria-hidden="true"><div class="cover " role="img" aria-label="BYD Quality Portal" style="background:#2166ab;view-transition-name:cover-byd-quality-portal"><picture class="l sc" style="--x:6;--y:8.5;--w:90;--mx:8;--my:16;--mw:150;--i:0"><source type="image/avif" srcset="./assets/img/byd-overview-720.avif 720w, ./assets/img/byd-overview-1200.avif 1200w, ./assets/img/byd-overview-1800.avif 1800w" sizes="(min-width: 1400px) 779px, (min-width: 701px) 60vw, 150vw"/><img src="./assets/img/byd-overview-1200.webp" srcset="./assets/img/byd-overview-720.webp 720w, ./assets/img/byd-overview-1200.webp 1200w, ./assets/img/byd-overview-1800.webp 1800w" sizes="(min-width: 1400px) 779px, (min-width: 701px) 60vw, 150vw" width="2880" height="1800" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:71;--y:15;--w:23;--mx:48;--my:44;--mw:44;--i:1"><source type="image/avif" srcset="./assets/img/byd-m-early-detection-320.avif 320w, ./assets/img/byd-m-early-detection-640.avif 640w" sizes="(min-width: 1400px) 199px, (min-width: 701px) 16vw, 44vw"/><img src="./assets/img/byd-m-early-detection-640.webp" srcset="./assets/img/byd-m-early-detection-320.webp 320w, ./assets/img/byd-m-early-detection-640.webp 640w" sizes="(min-width: 1400px) 199px, (min-width: 701px) 16vw, 44vw" width="1170" height="2532" alt="" loading="lazy" decoding="async"/></picture></div></a>
+<div class="ft-bd">
+<p class="ft-ty">Enterprise platform, automotive</p>
+<h3>BYD Quality Portal</h3>
+<p class="ft-cl">Four dashboards and six spreadsheets, replaced by one portal.</p>
+<p class="ft-tx">Quality data for an official BYD dealership lived in files updated by hand. The portal reads those same files, shows each role only what it needs and moves unhappy customers to the top.</p>
+<dl class="ft-fa"><div><dt>Role</dt><dd>End-to-end UX/UI and development</dd></div><div><dt>Users</dt><dd>Six roles</dd></div><div><dt>Scope</dt><dd>12 modules, desktop and mobile</dd></div><div><dt>Status</dt><dd>In use</dd></div></dl>
+<a class="tl tl-b" href="./work/byd-quality-portal/">Read the BYD Quality Portal case<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div></article></li><li class="ft-p"><article>
+<a class="ft-cv" href="./work/padel-hub/" tabindex="-1" aria-hidden="true"><div class="cover " role="img" aria-label="Padel Hub" style="background:#d4f84a;view-transition-name:cover-padel-hub"><picture class="l sc" style="--x:33;--y:8.5;--w:92;--mx:30;--my:20;--mw:150;--i:0"><source type="image/avif" srcset="./assets/img/padel-timeline-720.avif 720w, ./assets/img/padel-timeline-1200.avif 1200w, ./assets/img/padel-timeline-1800.avif 1800w" sizes="(min-width: 1400px) 797px, (min-width: 701px) 61vw, 150vw"/><img src="./assets/img/padel-timeline-1200.webp" srcset="./assets/img/padel-timeline-720.webp 720w, ./assets/img/padel-timeline-1200.webp 1200w, ./assets/img/padel-timeline-1800.webp 1800w" sizes="(min-width: 1400px) 797px, (min-width: 701px) 61vw, 150vw" width="2880" height="1800" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:5;--y:13;--w:22;--mx:6;--my:12;--mw:40;--i:1"><source type="image/avif" srcset="./assets/img/padel-m-home-320.avif 320w, ./assets/img/padel-m-home-640.avif 640w" sizes="(min-width: 1400px) 191px, (min-width: 701px) 15vw, 40vw"/><img src="./assets/img/padel-m-home-640.webp" srcset="./assets/img/padel-m-home-320.webp 320w, ./assets/img/padel-m-home-640.webp 640w" sizes="(min-width: 1400px) 191px, (min-width: 701px) 15vw, 40vw" width="1170" height="2532" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:30;--y:18;--w:22;--mx:52;--my:46;--mw:40;--i:2"><source type="image/avif" srcset="./assets/img/padel-m-slots-320.avif 320w, ./assets/img/padel-m-slots-640.avif 640w" sizes="(min-width: 1400px) 191px, (min-width: 701px) 15vw, 40vw"/><img src="./assets/img/padel-m-slots-640.webp" srcset="./assets/img/padel-m-slots-320.webp 320w, ./assets/img/padel-m-slots-640.webp 640w" sizes="(min-width: 1400px) 191px, (min-width: 701px) 15vw, 40vw" width="1170" height="2532" alt="" loading="lazy" decoding="async"/></picture></div></a>
+<div class="ft-bd">
+<p class="ft-ty">Booking platform, sports</p>
+<h3>Padel Hub</h3>
+<p class="ft-cl">From messaging the club to a booked court in four steps.</p>
+<p class="ft-tx">Two connected experiences: an app where players book courts and join matches at their level, and a dashboard where clubs manage availability, clients and payments.</p>
+<dl class="ft-fa"><div><dt>Role</dt><dd>UX/UI and front-end</dd></div><div><dt>Team</dt><dd>Two people</dd></div><div><dt>Scope</dt><dd>25 screens, 2 experiences</dd></div><div><dt>Status</dt><dd>Working demo, payment simulated</dd></div></dl>
+<a class="tl tl-b" href="./work/padel-hub/">Read the Padel Hub case<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div></article></li></ol>
+</div></section>
+<section class="sec sec-tint" id="concepts" aria-labelledby="con-h"><div class="wrap">
+<header class="sh"><p class="sh-l">Concept work</p><div><h2 id="con-h">Three concepts, each to go deeper into a skill.</h2><p class="sh-p">No client and no launch behind them. Each one goes from research to validation and ends in a prototype you can use.</p></div></header>
+<ul class="cps"><li class="cp"><article>
+<a class="cp-cv" href="./work/turno/" tabindex="-1" aria-hidden="true"><div class="cover cover-s" role="img" aria-label="Turno" style="background:#dfe9fb;view-transition-name:cover-turno"><picture class="l ph" style="--x:8;--y:8;--w:25;--mx:8;--my:12;--mw:40;--i:0"><source type="image/avif" srcset="./assets/img/turno-home-320.avif 320w, ./assets/img/turno-home-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw"/><img src="./assets/img/turno-home-640.webp" srcset="./assets/img/turno-home-320.webp 320w, ./assets/img/turno-home-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:37.5;--y:14;--w:25;--mx:53;--my:24;--mw:40;--i:1"><source type="image/avif" srcset="./assets/img/turno-slot-320.avif 320w, ./assets/img/turno-slot-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw"/><img src="./assets/img/turno-slot-640.webp" srcset="./assets/img/turno-slot-320.webp 320w, ./assets/img/turno-slot-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph no-m" style="--x:67;--y:6;--w:25;--mx:0;--my:0;--mw:0;--i:2"><source type="image/avif" srcset="./assets/img/turno-done-320.avif 320w, ./assets/img/turno-done-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 1vw"/><img src="./assets/img/turno-done-640.webp" srcset="./assets/img/turno-done-320.webp 320w, ./assets/img/turno-done-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 1vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture></div></a>
+<p class="ft-ty"><span class="tag">Concept</span> Healthcare</p>
+<h3>Turno</h3>
+<p>A medical appointment in three taps, at 25 or at 75.</p>
+<p class="cp-sk"><b>Shows:</b> accessibility, flows, heuristic evaluation</p>
+<p class="cp-ln"><a class="tl" href="./work/turno/">Read the Turno case<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="tl" href="./casos/prototipos/turno.html?lang=en">Try the prototype<span class="vh"> of Turno</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+</article></li><li class="cp"><article>
+<a class="cp-cv" href="./work/ruta-del-vino/" tabindex="-1" aria-hidden="true"><div class="cover cover-s" role="img" aria-label="Ruta del Vino" style="background:#f3dfe3;view-transition-name:cover-ruta-del-vino"><picture class="l ph" style="--x:8;--y:14;--w:25;--mx:8;--my:12;--mw:40;--i:0"><source type="image/avif" srcset="./assets/img/vino-home-320.avif 320w, ./assets/img/vino-home-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw"/><img src="./assets/img/vino-home-640.webp" srcset="./assets/img/vino-home-320.webp 320w, ./assets/img/vino-home-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:37.5;--y:6;--w:25;--mx:53;--my:24;--mw:40;--i:1"><source type="image/avif" srcset="./assets/img/vino-winery-320.avif 320w, ./assets/img/vino-winery-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw"/><img src="./assets/img/vino-winery-640.webp" srcset="./assets/img/vino-winery-320.webp 320w, ./assets/img/vino-winery-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph no-m" style="--x:67;--y:12;--w:25;--mx:0;--my:0;--mw:0;--i:2"><source type="image/avif" srcset="./assets/img/vino-route-320.avif 320w, ./assets/img/vino-route-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 1vw"/><img src="./assets/img/vino-route-640.webp" srcset="./assets/img/vino-route-320.webp 320w, ./assets/img/vino-route-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 1vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture></div></a>
+<p class="ft-ty"><span class="tag">Concept</span> Tourism</p>
+<h3>Ruta del Vino</h3>
+<p>A winery day planned as one route instead of ten tabs.</p>
+<p class="cp-sk"><b>Shows:</b> interaction design, itinerary logic, offline use</p>
+<p class="cp-ln"><a class="tl" href="./work/ruta-del-vino/">Read the Ruta del Vino case<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="tl" href="./casos/prototipos/ruta-del-vino.html?lang=en">Try the prototype<span class="vh"> of Ruta del Vino</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+</article></li><li class="cp"><article>
+<a class="cp-cv" href="./work/alcancia/" tabindex="-1" aria-hidden="true"><div class="cover cover-s" role="img" aria-label="Alcancía" style="background:#e4e1fa;view-transition-name:cover-alcancia"><picture class="l ph" style="--x:8;--y:8;--w:25;--mx:8;--my:12;--mw:40;--i:0"><source type="image/avif" srcset="./assets/img/alcancia-home-320.avif 320w, ./assets/img/alcancia-home-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw"/><img src="./assets/img/alcancia-home-640.webp" srcset="./assets/img/alcancia-home-320.webp 320w, ./assets/img/alcancia-home-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:37.5;--y:14;--w:25;--mx:53;--my:24;--mw:40;--i:1"><source type="image/avif" srcset="./assets/img/alcancia-goal-320.avif 320w, ./assets/img/alcancia-goal-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw"/><img src="./assets/img/alcancia-goal-640.webp" srcset="./assets/img/alcancia-goal-320.webp 320w, ./assets/img/alcancia-goal-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 40vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph no-m" style="--x:67;--y:6;--w:25;--mx:0;--my:0;--mw:0;--i:2"><source type="image/avif" srcset="./assets/img/alcancia-budget-320.avif 320w, ./assets/img/alcancia-budget-640.avif 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 1vw"/><img src="./assets/img/alcancia-budget-640.webp" srcset="./assets/img/alcancia-budget-320.webp 320w, ./assets/img/alcancia-budget-640.webp 640w" sizes="(min-width: 1400px) 105px, (min-width: 701px) 8vw, 1vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture></div></a>
+<p class="ft-ty"><span class="tag">Concept</span> Fintech</p>
+<h3>Alcancía</h3>
+<p>Personal finance that shows one clear number at a time.</p>
+<p class="cp-sk"><b>Shows:</b> behavioral design, data display, UX writing</p>
+<p class="cp-ln"><a class="tl" href="./work/alcancia/">Read the Alcancía case<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="tl" href="./casos/prototipos/alcancia.html?lang=en">Try the prototype<span class="vh"> of Alcancía</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></p>
+</article></li></ul>
+</div></section>
+<section class="sec" id="archive" aria-labelledby="arc-h"><div class="wrap">
+<header class="sh"><p class="sh-l">Archive</p><div><h2 id="arc-h">Interface and web work.</h2><p class="sh-p">Smaller pieces: client sites, studio work and prototypes.</p></div></header>
+<ul class="ixs"><li><details class="ix"><summary><span class="ix-n">Estudio AGV</span><span class="ix-t">Website for a law practice</span><span class="ix-s">Client, live</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="ix-b"><div class="ix-i"><picture><source type="image/avif" srcset="./assets/img/x-agv-480.avif 480w, ./assets/img/x-agv-960.avif 960w" sizes="(min-width: 900px) 460px, 92vw"/><img src="./assets/img/x-agv-960.webp" srcset="./assets/img/x-agv-480.webp 480w, ./assets/img/x-agv-960.webp 960w" sizes="(min-width: 900px) 460px, 92vw" width="1440" height="900" alt="Screenshot of Estudio AGV" loading="lazy" decoding="async"/></picture></div><div class="ix-d"><p>Design and development for a lawyer in Mendoza who had no professional presence online. Clear practice areas, quick contact and a working form, on any screen size.</p><p class="ix-k">Next.js, Tailwind CSS</p><a class="tl" href="https://www.estudioagv.com/" target="_blank" rel="noopener">Open Estudio AGV<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a></div></div></details></li><li><details class="ix"><summary><span class="ix-n">Codea</span><span class="ix-t">Website for a software studio</span><span class="ix-s">Studio, live</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="ix-b"><div class="ix-i"><picture><source type="image/avif" srcset="./assets/img/x-codea-480.avif 480w, ./assets/img/x-codea-960.avif 960w" sizes="(min-width: 900px) 460px, 92vw"/><img src="./assets/img/x-codea-960.webp" srcset="./assets/img/x-codea-480.webp 480w, ./assets/img/x-codea-960.webp 960w" sizes="(min-width: 900px) 460px, 92vw" width="1440" height="900" alt="Screenshot of Codea" loading="lazy" decoding="async"/></picture></div><div class="ix-d"><p>The studio behind MODO YA and UcoBot, where I combine design and code in digital products made to measure.</p><p class="ix-k">Figma, HTML, CSS, JavaScript</p><a class="tl" href="https://codeadesarrollos.com/" target="_blank" rel="noopener">Open Codea<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a></div></div></details></li><li><details class="ix"><summary><span class="ix-n">Move</span><span class="ix-t">Sportswear e-commerce</span><span class="ix-s">Prototype</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="ix-b"><div class="ix-i"><picture><source type="image/avif" srcset="./assets/img/x-move-480.avif 480w, ./assets/img/x-move-960.avif 960w" sizes="(min-width: 900px) 460px, 92vw"/><img src="./assets/img/x-move-960.webp" srcset="./assets/img/x-move-480.webp 480w, ./assets/img/x-move-960.webp 960w" sizes="(min-width: 900px) 460px, 92vw" width="1440" height="900" alt="Screenshot of Move" loading="lazy" decoding="async"/></picture></div><div class="ix-d"><p>An exploration of shopping for sportswear: clear navigation, product pages that answer before being asked and a short checkout.</p><p class="ix-k">Figma, wireframes, prototyping</p><a class="tl" href="https://kaleidoscopic-pika-577f64.netlify.app/" target="_blank" rel="noopener">Open Move<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a></div></div></details></li><li><details class="ix"><summary><span class="ix-n">Lithium</span><span class="ix-t">Web3 interface</span><span class="ix-s">Prototype</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="ix-b"><div class="ix-i"><picture><source type="image/avif" srcset="./assets/img/x-lithium-480.avif 480w, ./assets/img/x-lithium-960.avif 960w" sizes="(min-width: 900px) 460px, 92vw"/><img src="./assets/img/x-lithium-960.webp" srcset="./assets/img/x-lithium-480.webp 480w, ./assets/img/x-lithium-960.webp 960w" sizes="(min-width: 900px) 460px, 92vw" width="1440" height="900" alt="Screenshot of Lithium" loading="lazy" decoding="async"/></picture></div><div class="ix-d"><p>A visual prototype that tests how to present blockchain concepts to people without technical knowledge. The figures on screen are placeholders.</p><p class="ix-k">Figma, design system</p><a class="tl" href="https://famous-trifle-7a5c4f.netlify.app/" target="_blank" rel="noopener">Open Lithium<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a></div></div></details></li><li><details class="ix"><summary><span class="ix-n">Stretch</span><span class="ix-t">Natural cosmetics store</span><span class="ix-s">Studio project</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="ix-b"><div class="ix-i"><picture><source type="image/avif" srcset="./assets/img/x-stretch-480.avif 480w, ./assets/img/x-stretch-960.avif 960w" sizes="(min-width: 900px) 460px, 92vw"/><img src="./assets/img/x-stretch-960.webp" srcset="./assets/img/x-stretch-480.webp 480w, ./assets/img/x-stretch-960.webp 960w" sizes="(min-width: 900px) 460px, 92vw" width="1440" height="900" alt="Screenshot of Stretch" loading="lazy" decoding="async"/></picture></div><div class="ix-d"><p>Store system and product pages for a beauty brand built around sustainability, with a responsive layout and a reusable product pattern.</p><p class="ix-k">Branding, UI, responsive</p><a class="tl" href="https://www.codeadesarrollos.com/proyectos/stretch/index.html" target="_blank" rel="noopener">Open Stretch<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a></div></div></details></li><li><details class="ix"><summary><span class="ix-n">Creative Studio</span><span class="ix-t">Landing page for a creative collective</span><span class="ix-s">Studio project</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="ix-b"><div class="ix-i"><picture><source type="image/avif" srcset="./assets/img/x-studio-480.avif 480w, ./assets/img/x-studio-960.avif 960w" sizes="(min-width: 900px) 460px, 92vw"/><img src="./assets/img/x-studio-960.webp" srcset="./assets/img/x-studio-480.webp 480w, ./assets/img/x-studio-960.webp 960w" sizes="(min-width: 900px) 460px, 92vw" width="1440" height="900" alt="Screenshot of Creative Studio" loading="lazy" decoding="async"/></picture></div><div class="ix-d"><p>Visual system and opening screen for a creative collective: identity, campaign direction and modular blocks. The figures on screen are placeholders.</p><p class="ix-k">Branding, UI</p><a class="tl" href="https://www.codeadesarrollos.com/proyectos/creative-studio/hero-section.html" target="_blank" rel="noopener">Open Creative Studio<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a></div></div></details></li><li><details class="ix"><summary><span class="ix-n">Bakery Facilities</span><span class="ix-t">Site for bakery professionals</span><span class="ix-s">Studio project</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><div class="ix-b"><div class="ix-i"><picture><source type="image/avif" srcset="./assets/img/x-bakery-480.avif 480w, ./assets/img/x-bakery-960.avif 960w" sizes="(min-width: 900px) 460px, 92vw"/><img src="./assets/img/x-bakery-960.webp" srcset="./assets/img/x-bakery-480.webp 480w, ./assets/img/x-bakery-960.webp 960w" sizes="(min-width: 900px) 460px, 92vw" width="1440" height="900" alt="Screenshot of Bakery Facilities" loading="lazy" decoding="async"/></picture></div><div class="ix-d"><p>Visual identity and product presentation for a brand that supplies bakeries, with an appetising tone and a clear commercial path.</p><p class="ix-k">Branding, UI</p><a class="tl" href="https://www.codeadesarrollos.com/proyectos/bakery/index.html" target="_blank" rel="noopener">Open Bakery Facilities<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a></div></div></details></li></ul>
+</div></section><section class="sec" id="approach" aria-labelledby="app-h"><div class="wrap">
+<header class="sh"><p class="sh-l">How I work</p><div><h2 id="app-h">How a project moves from question to release.</h2><p class="sh-p">Six stages, each with a piece of a real deliverable.</p></div></header>
+<ol class="stg"><li><p class="stg-n" aria-hidden="true">01</p><h3>Discover</h3><p>I look at what people already use: tools, spreadsheets, messages. The output is a list of questions ranked by how much they block.</p><div class="stg-a"><ol class="ar ar-q"><li><span>Is delivery paid in cash or digitally?</span><i style="--w:100%"></i></li><li><span>Which documents does a rider need?</span><i style="--w:78%"></i></li><li><span>What happens to a canceled order?</span><i style="--w:62%"></i></li></ol></div><a class="tl" href="./work/modo-ya/#research">MODO YA, client questions<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><p class="stg-n" aria-hidden="true">02</p><h3>Define</h3><p>I reduce findings to one problem, the roles involved and the rules that can’t break. What each person must not see counts as much as what they see.</p><div class="stg-a"><table class="ar ar-m"><caption class="vh">Access per role</caption><thead><tr><td></td><th scope="col">See</th><th scope="col">Edit</th></tr></thead><tbody><tr><th scope="row">Quality</th><td>All</td><td>Operations</td></tr><tr><th scope="row">Salesperson</th><td>Own</td><td>Own</td></tr><tr><th scope="row">Management</th><td>All</td><td>None</td></tr></tbody></table></div><a class="tl" href="./work/byd-quality-portal/#flows">BYD, roles and permissions<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><p class="stg-n" aria-hidden="true">03</p><h3>Design</h3><p>Structure before style: flow, states and exceptions first, then interface and tokens. Each step asks for a single decision.</p><div class="stg-a"><ol class="ar ar-f"><li>Day</li><li>Slot</li><li>Extras</li><li class="on">Deposit</li></ol><ul class="ar ar-s" aria-label="Slot states"><li class="s1">11:00</li><li class="s2">12:30</li><li class="s3"><s>09:30</s></li></ul></div><a class="tl" href="./work/padel-hub/#flows">Padel Hub, booking flow<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><p class="stg-n" aria-hidden="true">04</p><h3>Validate</h3><p>I review against heuristics, tasks and the real system, and rate each finding by severity. What isn’t tested is written down as open.</p><div class="stg-a"><ul class="ar ar-v"><li><b>3</b><span class="d"></span><span class="d"></span></li><li><b>2</b><span class="d"></span><span class="d"></span></li><li><b>1</b><span class="d"></span><span class="d o"></span></li></ul><p class="ar-n">Severity. 6 issues found, 5 fixed, 1 open</p></div><a class="tl" href="./work/turno/#validation">Turno, heuristic evaluation<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><p class="stg-n" aria-hidden="true">05</p><h3>Deliver</h3><p>I agree components, permissions and edge cases with whoever builds them, and often build them myself. Design QA happens on the running product.</p><div class="stg-a"><ul class="ar ar-t"><li><i style="background:#d4f84a"></i><code>primary-container</code></li><li><i style="background:#536600"></i><code>primary</code></li><li><i style="background:#f9f9f9"></i><code>surface</code></li></ul></div><a class="tl" href="./work/padel-hub/#design-system">Padel Hub, tokens in code<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li><li><p class="stg-n" aria-hidden="true">06</p><h3>Iterate</h3><p>Small releases, each one closing something. I prefer knowing what is missing to announcing that it is finished.</p><div class="stg-a"><div class="ar ar-b" role="img" aria-label="15 builds in two months"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p class="ar-n">15 builds, September to October 2026</p></div><a class="tl" href="./work/modo-ya/#implementation">MODO YA, releases<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li></ol>
+</div></section><section class="sec sec-dark" id="design-and-code" aria-labelledby="br-h"><div class="wrap">
+<header class="sh"><p class="sh-l">Design and code</p><div><h2 id="br-h">Bridging the gap between design and development.</h2><p class="sh-p">Knowing how it is built changes what I draw: what happens while it loads, when it fails and when someone gets it wrong is designed before the ideal case is polished.</p></div></header>
+<ul class="brs"><li><h3>Feasible interfaces</h3><p>Two apps instead of one, because background location would most likely have been rejected by the stores.</p><a href="./work/modo-ya/#exploration">MODO YA</a></li><li><h3>Component architecture</h3><p>One design system in shared packages, used by two apps.</p><a href="./work/modo-ya/#implementation">MODO YA</a></li><li><h3>APIs and limits</h3><p>Platform rules read as interface states, such as a 24-hour reply window.</p><a href="./work/ucobot/#research">UcoBot</a></li><li><h3>Data and permissions</h3><p>Access rules that live in the database and not only in hidden buttons.</p><a href="./work/byd-quality-portal/#exploration">BYD</a></li><li><h3>Design QA</h3><p>Time-zone errors, covered menus and broken dark mode found and fixed on the running product.</p><a href="./work/padel-hub/#exploration">Padel Hub</a></li></ul>
+<div class="sd" data-demo data-start="incomplete" data-states="{&quot;empty&quot;:{&quot;hint&quot;:&quot;Ask the customer for the 4-digit code.&quot;,&quot;code&quot;:&quot;&quot;},&quot;incomplete&quot;:{&quot;hint&quot;:&quot;2 digits to go.&quot;,&quot;code&quot;:&quot;27&quot;},&quot;ready&quot;:{&quot;hint&quot;:&quot;Ready to confirm.&quot;,&quot;code&quot;:&quot;2748&quot;},&quot;checking&quot;:{&quot;hint&quot;:&quot;Checking the code…&quot;,&quot;code&quot;:&quot;2748&quot;},&quot;wrong&quot;:{&quot;hint&quot;:&quot;That code doesn’t match this order. Ask the customer to read it again.&quot;,&quot;code&quot;:&quot;1234&quot;},&quot;offline&quot;:{&quot;hint&quot;:&quot;No connection. The delivery isn’t confirmed yet. The code stays here so you can retry.&quot;,&quot;code&quot;:&quot;2748&quot;},&quot;delivered&quot;:{&quot;hint&quot;:&quot;Delivery confirmed.&quot;,&quot;code&quot;:&quot;2748&quot;}}" data-left-one="1 digit to go." data-left-many="{n} digits to go." data-l-confirm="Confirm delivery" data-l-checking="Checking" data-l-retry="Try again" data-l-done="Delivered">
+<div class="sd-hd"><h3>One component, seven states</h3><p>Rebuilt for this page from a finding in MODO YA’s pre-launch review. Type a code (2748 is the right one) or choose a state.</p></div>
+<div class="sd-g">
+<fieldset class="sd-st"><legend>State</legend><label><input type="radio" name="sd" value="empty"/><span>Empty</span></label><label><input type="radio" name="sd" value="incomplete" checked/><span>Incomplete</span></label><label><input type="radio" name="sd" value="ready"/><span>Ready</span></label><label><input type="radio" name="sd" value="checking"/><span>Checking</span></label><label><input type="radio" name="sd" value="wrong"/><span>Wrong code</span></label><label><input type="radio" name="sd" value="offline"/><span>Offline</span></label><label><input type="radio" name="sd" value="delivered"/><span>Delivered</span></label></fieldset>
+<div class="sd-ui" data-state="incomplete"><p class="sd-k">MODO YA Rider</p><p class="sd-t" id="sd-title">Delivery code</p>
+<div class="sd-f"><input id="sd-code" type="text" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]*" value="27" aria-labelledby="sd-title" aria-describedby="sd-hint"/><span aria-hidden="true"><i></i><i></i><i></i><i></i></span></div>
+<p class="sd-h" id="sd-hint" role="status">2 digits to go.</p>
+<button type="button" class="sd-b" aria-disabled="true">Confirm delivery</button></div>
+<div class="sd-in"><div data-for="empty" hidden><p class="sd-l">Decision</p><p class="sd-w">The button is visible but clearly unavailable, and the hint says what is missing.</p><p class="sd-l">In code</p><pre><code>&lt;Button disabled={code.length &lt; 4}&gt;</code></pre></div><div data-for="incomplete"><p class="sd-l">Decision</p><p class="sd-w">This was the finding: with one to three digits the button looked active and did nothing. Now the hint counts what is left.</p><p class="sd-l">In code</p><pre><code>hint = t('digitsLeft', { n: 4 - code.length })</code></pre></div><div data-for="ready" hidden><p class="sd-l">Decision</p><p class="sd-w">Only here does the action become primary. One decision per screen.</p><p class="sd-l">In code</p><pre><code>status = code.length === 4 ? 'ready' : 'incomplete'</code></pre></div><div data-for="checking" hidden><p class="sd-l">Decision</p><p class="sd-w">The field locks, so the same delivery can’t be confirmed twice.</p><p class="sd-l">In code</p><pre><code>&lt;input readOnly={status === 'checking'} /&gt;</code></pre></div><div data-for="wrong" hidden><p class="sd-l">Decision</p><p class="sd-w">It says what happened and what to do next. The digits stay, so they can be corrected.</p><p class="sd-l">In code</p><pre><code>&lt;input aria-invalid aria-describedby=&quot;hint&quot; /&gt;</code></pre></div><div data-for="offline" hidden><p class="sd-l">Decision</p><p class="sd-w">A second finding: with no network, a panel showed zeros and a green banner. An unknown result is never shown as a success.</p><p class="sd-l">In code</p><pre><code>catch { setStatus(navigator.onLine ? 'wrong' : 'offline') }</code></pre></div><div data-for="delivered" hidden><p class="sd-l">Decision</p><p class="sd-w">Only a confirmed response reaches this state.</p><p class="sd-l">In code</p><pre><code>if (res.ok) setStatus('delivered')</code></pre></div></div>
+</div></div>
+</div></section><section class="sec" id="skills" aria-labelledby="sk-h"><div class="wrap">
+<header class="sh"><p class="sh-l">Skills</p><h2 id="sk-h">Each skill, with a place to check it.</h2></header>
+<div class="sks"><section><h3>Product & UX</h3><ul><li><span>UX research</span><a href="./work/turno/#research"><span class="vh">UX research: </span>Turno</a></li><li><span>User journeys</span><a href="./work/modo-ya/#flows"><span class="vh">User journeys: </span>MODO YA</a></li><li><span>Information architecture</span><a href="./work/ucobot/#flows"><span class="vh">Information architecture: </span>UcoBot</a></li><li><span>User flows</span><a href="./work/padel-hub/#flows"><span class="vh">User flows: </span>Padel Hub</a></li><li><span>Interaction design</span><a href="./work/ruta-del-vino/#decisions"><span class="vh">Interaction design: </span>Ruta del Vino</a></li><li><span>Product strategy</span><a href="./work/modo-ya/#exploration"><span class="vh">Product strategy: </span>MODO YA</a></li><li><span>Usability</span><a href="./work/turno/#validation"><span class="vh">Usability: </span>Turno</a></li></ul></section><section><h3>UI & design systems</h3><ul><li><span>Figma</span><a href="./work/ucobot/"><span class="vh">Figma: </span>UcoBot</a></li><li><span>Prototyping</span><a href="./work/alcancia/#final-ui"><span class="vh">Prototyping: </span>Alcancía</a></li><li><span>Design systems</span><a href="./work/padel-hub/#design-system"><span class="vh">Design systems: </span>Padel Hub</a></li><li><span>Component libraries</span><a href="./work/byd-quality-portal/#design-system"><span class="vh">Component libraries: </span>BYD</a></li><li><span>Responsive design</span><a href="./work/byd-quality-portal/#solution"><span class="vh">Responsive design: </span>BYD</a></li><li><span>Accessibility</span><a href="./work/ucobot/#design-system"><span class="vh">Accessibility: </span>Contrast audits</a></li></ul></section><section><h3>Development</h3><ul><li><span>React, TypeScript</span><a href="./work/byd-quality-portal/#implementation"><span class="vh">React, TypeScript: </span>BYD</a></li><li><span>Tailwind CSS</span><a href="./work/padel-hub/#implementation"><span class="vh">Tailwind CSS: </span>Padel Hub</a></li><li><span>Next.js</span><a href="#archive"><span class="vh">Next.js: </span>Estudio AGV</a></li><li><span>JavaScript</span><a href="./casos/prototipos/turno.html?lang=en"><span class="vh">JavaScript: </span>Prototypes</a></li><li><span>HTML, CSS</span><a href="#archive"><span class="vh">HTML, CSS: </span>Estudio AGV</a></li><li><span>Supabase</span><a href="./work/modo-ya/#implementation"><span class="vh">Supabase: </span>MODO YA</a></li><li><span>REST APIs</span><a href="./cv/Lucia-Miranda-CV-EN.pdf"><span class="vh">REST APIs: </span>Résumé</a></li></ul></section><section><h3>Collaboration & delivery</h3><ul><li><span>Agile, Scrum, Kanban</span><a href="./cv/Lucia-Miranda-CV-EN.pdf"><span class="vh">Agile, Scrum, Kanban: </span>Résumé</a></li><li><span>Stakeholder management</span><a href="./work/modo-ya/#research"><span class="vh">Stakeholder management: </span>MODO YA</a></li><li><span>Product management</span><a href="#career"><span class="vh">Product management: </span>Career</a></li><li><span>Design handoff</span><a href="./work/padel-hub/#implementation"><span class="vh">Design handoff: </span>Padel Hub</a></li><li><span>Adoption and guides</span><a href="./work/byd-quality-portal/#implementation"><span class="vh">Adoption and guides: </span>BYD</a></li></ul></section></div>
+</div></section><section class="sec sec-tint" id="about" aria-labelledby="ab-h"><div class="wrap">
+<header class="sh"><p class="sh-l">About</p><h2 id="ab-h">I came to design through product.</h2></header>
+<div class="ab"><dl class="ab-dl"><div><dt>Languages</dt><dd>Spanish (native), English (intermediate)</dd></div><div><dt>Location</dt><dd>Mendoza, Argentina (UTC−3)</dd></div><div><dt>Looking for</dt><dd>Senior UX/UI, Product Designer or Design Engineer roles</dd></div></dl><div class="ab-tx">
+<p class="lede">I started in 2022 as a freelance product manager: gathering requirements, ordering priorities and keeping clients and developers talking about the same thing. In 2023 I moved into UX/UI and front-end, to decide not only what gets built but how it works.</p>
+<p>I approach a problem by looking at how people already work. In the BYD portal that meant keeping the spreadsheets the team trusted. In MODO YA, letting restaurants keep selling on WhatsApp. Several times the best decision was to change less.</p>
+<p>I like products that have to work every day for people who didn’t choose them: a quality team, whoever runs a club, a rider between two deliveries. I enjoy sitting with the different areas involved, agreeing on the rules and then seeing the interface hold up.</p>
+<p>I work from Mendoza, Argentina, and I’m looking for a product team, remote and international, where design takes part in deciding what to build.</p>
 </div>
-
-<!-- ================================================================ work -->
-<section class="section" id="work">
-  <div class="wrap">
-    <div class="head">
-      <div data-reveal>
-        <span class="eyebrow"><span data-lang="es">Trabajos seleccionados</span><span data-lang="en">Selected work</span></span>
-        <h2 class="h2"><span data-lang="es">Productos que<br/>diseñé <em>y construí.</em></span><span data-lang="en">Products I designed<br/><em>and built.</em></span></h2>
-      </div>
-      <p class="lead" data-reveal><span data-lang="es">Sistemas internos, plataformas y sitios: de la investigación al código, con foco en quien los usa todos los días.</span><span data-lang="en">Internal systems, platforms and websites: from research to code, focused on the people who use them every day.</span></p>
-    </div>
-    <div id="cases"></div>
-    <div class="more-head" data-reveal>
-      <h3><span data-lang="es">Casos de estudio UX</span><span data-lang="en">UX case studies</span></h3>
-      <p class="lead"><span data-lang="es">Proyectos propios de punta a punta: investigación, wireframes, UI y un prototipo navegable que podés probar.</span><span data-lang="en">End-to-end self-initiated projects: research, wireframes, UI and an interactive prototype you can try.</span></p>
-    </div>
-    <div class="concept-grid" id="conceptGrid"></div>
-    <div class="more-head" data-reveal>
-      <h3><span data-lang="es">Más proyectos</span><span data-lang="en">More projects</span></h3>
-      <p class="lead"><span data-lang="es">UX research, diseño de interfaces y desarrollo web.</span><span data-lang="en">UX research, interface design and web development.</span></p>
-    </div>
-    <div class="work-grid" id="workGrid"></div>
-  </div>
-</section>
-
-<!-- ================================================================ about -->
-<section class="section" id="about" style="padding-top:clamp(140px,16vw,220px)">
-  <div class="wrap">
-    <span class="eyebrow" data-reveal><span data-lang="es">Sobre mí</span><span data-lang="en">About me</span></span>
-    <p class="statement" id="statement">
-      <span data-lang="es">Diseño productos digitales que se sienten simples. Combino el pensamiento de producto, el diseño centrado en las personas y el desarrollo front-end para que cada idea llegue al usuario tal como fue pensada.</span>
-      <span data-lang="en">I design digital products that feel simple. I combine product thinking, human-centered design and front-end development so every idea reaches the user exactly as it was intended.</span>
-    </p>
-    <div class="about-grid">
-      <div class="stats" data-reveal>
-        <div class="stat"><strong data-count="4" data-suffix="+">4+</strong><span data-lang="es">años en diseño y desarrollo</span><span data-lang="en">years in design and development</span></div>
-        <div class="stat"><strong data-count="10">10</strong><span data-lang="es">proyectos publicados</span><span data-lang="en">published projects</span></div>
-        <div class="stat"><strong data-count="7">7</strong><span data-lang="es">formaciones y certificaciones</span><span data-lang="en">courses and certifications</span></div>
-        <div class="stat"><strong data-count="2">2</strong><span data-lang="es">idiomas: español nativo, inglés intermedio</span><span data-lang="en">languages: native Spanish, intermediate English</span></div>
-      </div>
-      <div class="about-copy" data-reveal>
-        <p><span data-lang="es">Vengo de la gestión de producto: sé relevar requerimientos, hablar con stakeholders y priorizar. Eso me permite diseñar con el negocio en mente y llevar las interfaces a código sin perder nada en el camino.</span><span data-lang="en">I come from product management: I know how to gather requirements, work with stakeholders and prioritize. That lets me design with the business in mind and take interfaces into code without losing anything along the way.</span></p>
-        <p><span data-lang="es">Trabajo con HTML, CSS, JavaScript, React y APIs REST, con foco en diseño responsive, accesibilidad y componentes reutilizables.</span><span data-lang="en">I work with HTML, CSS, JavaScript, React and REST APIs, with a focus on responsive design, accessibility and reusable components.</span></p>
-        <div class="skills">
-          <span>Figma</span><span>UX Research</span><span>Wireframes</span><span>Prototyping</span><span>Design Systems</span><span>UX Writing</span>
-          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>Next.js</span><span>Supabase</span><span>REST APIs</span><span>Scrum · Kanban</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================ services -->
-<section class="section" id="services" style="padding-top:0">
-  <div class="wrap">
-    <div class="head">
-      <div data-reveal>
-        <span class="eyebrow"><span data-lang="es">Servicios</span><span data-lang="en">Services</span></span>
-        <h2 class="h2"><span data-lang="es">Qué puedo<br/><em>hacer por vos.</em></span><span data-lang="en">What I can<br/><em>do for you.</em></span></h2>
-      </div>
-    </div>
-    <div class="services services-wrap">
-      <div class="service" data-reveal><b>01</b><h3><span data-lang="es">Estrategia UX</span><span data-lang="en">UX Strategy</span></h3>
-        <p><span data-lang="es">Investigación con usuarios, flujos y arquitectura de información para decidir qué construir y por qué.</span><span data-lang="en">User research, flows and information architecture to decide what to build and why.</span></p></div>
-      <div class="service" data-reveal><b>02</b><h3><span data-lang="es">Diseño UI</span><span data-lang="en">UI Design</span></h3>
-        <p><span data-lang="es">Interfaces cuidadas, prototipos y sistemas de diseño consistentes y escalables.</span><span data-lang="en">Polished interfaces, prototypes and consistent, scalable design systems.</span></p></div>
-      <div class="service" data-reveal><b>03</b><h3><span data-lang="es">Desarrollo front-end</span><span data-lang="en">Front-end Development</span></h3>
-        <p><span data-lang="es">Aplicaciones web responsive, accesibles y rápidas, con componentes reutilizables.</span><span data-lang="en">Responsive, accessible and fast web apps built with reusable components.</span></p></div>
-      <div class="service" data-reveal><b>04</b><h3><span data-lang="es">Gestión de producto</span><span data-lang="en">Product Management</span></h3>
-        <p><span data-lang="es">Requerimientos, priorización y roadmap alineados con los objetivos del negocio.</span><span data-lang="en">Requirements, prioritization and roadmaps aligned with business goals.</span></p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================ experience -->
-<section class="section" id="experience" style="padding-top:0">
-  <div class="wrap split">
-    <div class="head" data-reveal>
-      <div>
-        <span class="eyebrow"><span data-lang="es">Trayectoria</span><span data-lang="en">Career</span></span>
-        <h2 class="h2"><span data-lang="es">Experiencia.</span><span data-lang="en">Experience.</span></h2>
-      </div>
-    </div>
-    <div class="rows" id="expRows"></div>
-  </div>
-</section>
-
-<!-- ================================================================ education -->
-<section class="section" id="education" style="padding-top:0">
-  <div class="wrap split">
-    <div class="head" data-reveal>
-      <div>
-        <span class="eyebrow"><span data-lang="es">Formación</span><span data-lang="en">Education</span></span>
-        <h2 class="h2"><span data-lang="es">Educación.</span><span data-lang="en">Education.</span></h2>
-      </div>
-    </div>
-    <div class="rows" id="eduRows"></div>
-  </div>
-</section>
-
-<!-- ================================================================ contact -->
-<section class="section" id="contact" style="padding-top:0">
-  <div class="wrap">
-    <div class="contact" data-reveal>
-      <div class="contact-bg" aria-hidden="true"></div>
-      <div class="contact-inner">
-        <span class="eyebrow" style="color:var(--ink)"><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></span>
-        <h2><span data-lang="es">¿Tenés una idea?<br/><em>Construyámosla.</em></span><span data-lang="en">Have an idea?<br/><em>Let's build it.</em></span></h2>
-        <a class="mail" href="mailto:luciacmiranda9@gmail.com">luciacmiranda9@gmail.com</a>
-        <div class="contact-actions">
-          <button type="button" class="btn btn-dark magnetic" id="copyMail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span data-lang="es">Copiar mail</span><span data-lang="en">Copy email</span></button>
-          <a class="btn btn-ghost magnetic" href="https://www.linkedin.com/in/lucia-miranda-6569841b9" target="_blank" rel="noopener">LinkedIn
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-          <a class="btn btn-ghost magnetic" href="certifictes/cv-es.pdf" target="_blank" rel="noopener"><span data-lang="es">CV en español</span><span data-lang="en">CV in Spanish</span></a>
-          <a class="btn btn-ghost magnetic" href="certifictes/cv-en.pdf" target="_blank" rel="noopener"><span data-lang="es">CV en inglés</span><span data-lang="en">CV in English</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<div class="ab-cv" id="career"><h3>Experience</h3><ol class="tm"><li><p class="tm-w">2023 – Present</p><h4>UX/UI Designer & Front-End Developer</h4><p class="tm-p">Freelance, remote</p><p>Design and development of responsive web applications, from research and client requirements to wireframes, prototypes, reusable components and implemented interfaces in React, TypeScript and Tailwind CSS.</p></li><li><p class="tm-w">2022 – 2025</p><h4>Product Manager</h4><p class="tm-p">Freelance, remote</p><p>Requirements gathering with clients and development teams, roadmaps, backlog prioritization and delivery tracking with Scrum and Kanban.</p></li></ol>
+<h3>Education</h3><ul class="ed"><li><span class="ed-t">Diploma in UX/UI Design</span><span class="ed-w">Universidad Abierta Interamericana (UAI)</span><span class="ed-d">Jan – Jun 2025</span><a href="./certifictes/diplomatura%20uxui.pdf" target="_blank" rel="noopener">Certificate<span class="vh">: Diploma in UX/UI Design (PDF, opens in a new tab)</span></a></li><li><span class="ed-t">Data Science</span><span class="ed-w">UTN Buenos Aires</span><span class="ed-d">Oct 2025</span></li><li><span class="ed-t">UX Writing</span><span class="ed-w">Coderhouse</span><span class="ed-d">Feb 2025</span></li><li><span class="ed-t">UI: User Interface</span><span class="ed-w">EducaciónIT</span><span class="ed-d">Oct 2024</span><a href="./certifictes/ui%20interfaz.pdf" target="_blank" rel="noopener">Certificate<span class="vh">: UI: User Interface (PDF, opens in a new tab)</span></a></li><li><span class="ed-t">Web Development with HTML</span><span class="ed-w">EducaciónIT</span><span class="ed-d">Jun 2024</span><a href="./certifictes/desarrollo%20web%20con%20html.pdf" target="_blank" rel="noopener">Certificate<span class="vh">: Web Development with HTML (PDF, opens in a new tab)</span></a></li><li><span class="ed-t">Product Management</span><span class="ed-w">Coderhouse</span><span class="ed-d">Apr 2024</span></li><li><span class="ed-t">Web Development</span><span class="ed-w">Universidad Tecnológica Nacional (UTN)</span><span class="ed-d">Completed</span></li></ul>
+<p class="ab-dw"><a class="btn btn-o" href="./cv/Lucia-Miranda-CV-EN.pdf" download="Lucia-Miranda-UX-UI-Product-Designer-Resume.pdf" type="application/pdf">Download résumé<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v13M6 12l6 6 6-6M5 21h14"/></svg></a></p></div></div>
+</div></section><section class="sec sec-dark ctc" id="contact" aria-labelledby="ct-h"><div class="wrap">
+<header class="sh"><p class="sh-l">Contact</p><h2 id="ct-h">Let’s build meaningful digital experiences together.</h2></header>
+<div class="ctc-g"><div class="ctc-m"><a class="ctc-e" href="mailto:luciacmiranda9@gmail.com">luciacmiranda9<wbr/>@gmail.com</a>
+<p class="ctc-a"><button type="button" class="btn btn-l" data-copy="luciacmiranda9@gmail.com" data-ok="Email copied"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4H15"/></svg>Copy email</button><a class="btn btn-lo" href="https://www.linkedin.com/in/lucia-miranda-6569841b9" target="_blank" rel="noopener">LinkedIn<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="vh"> (opens in a new tab)</span></a><a class="btn btn-lo" href="./cv/Lucia-Miranda-CV-EN.pdf" download="Lucia-Miranda-UX-UI-Product-Designer-Resume.pdf" type="application/pdf">Résumé in English<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v13M6 12l6 6 6-6M5 21h14"/></svg></a><a class="btn btn-lo" href="./cv/Lucia-Miranda-CV-ES.pdf" download="Lucia-Miranda-Disenadora-UX-UI-Producto-CV.pdf" type="application/pdf" hreflang="es">Résumé in Spanish<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v13M6 12l6 6 6-6M5 21h14"/></svg></a></p></div>
+<dl class="ctc-d"><div><dt>Location</dt><dd>Mendoza, Argentina</dd></div><div><dt>Work</dt><dd>Remote, open to international opportunities</dd></div><div><dt>Time zone</dt><dd data-overlap data-one="It’s {time} in Mendoza. With your time zone we share about {h} working hours a day." data-same="It’s {time} in Mendoza, the same time as where you are.">UTC−3. Seven to eight shared working hours with New York, four to five with Central Europe.</dd></div></dl></div>
+</div></section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <span>© 2026 Lucía Miranda · <span data-lang="es">Diseño y desarrollo</span><span data-lang="en">Design &amp; development</span></span>
-    <div class="foot-links">
-      <a href="https://www.linkedin.com/in/lucia-miranda-6569841b9" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:luciacmiranda9@gmail.com">Email</a>
-      <a href="#top"><span data-lang="es">Volver arriba ↑</span><span data-lang="en">Back to top ↑</span></a>
-    </div>
-  </div>
-</footer>
-
-<div class="cursor" id="cursor" aria-hidden="true"><span data-lang="es">Ver caso</span><span data-lang="en">View case</span></div>
-<div class="toast" id="toast" role="status"></div>
-
-<!-- ================================================================ modales -->
-<!-- data-lenis-prevent: el scroll suave se pausa con el modal abierto y, sin esto,
-     bloquea el desplazamiento dentro del modal (en el celular se veía cortado). -->
-<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle" data-lenis-prevent>
-  <div class="modal-box">
-    <button type="button" class="modal-close" data-close aria-label="Cerrar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <div class="modal-media" id="pmMedia"></div>
-    <div class="modal-body">
-      <h2 id="pmTitle"></h2>
-      <a class="btn btn-dark" id="pmLink" href="#" target="_blank" rel="noopener">
-        <span data-lang="es">Ver proyecto</span><span data-lang="en">View project</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
-      </a>
-      <ul class="tags" id="pmTags"></ul>
-      <p id="pmDesc"></p>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificado" data-lenis-prevent>
-  <div class="modal-box cert-box">
-    <button type="button" class="modal-close" data-close aria-label="Cerrar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <!-- Muchos celulares no muestran PDFs dentro de un iframe: el enlace lo abre aparte. -->
-    <div class="cert-bar"><span><span data-lang="es">Certificado</span><span data-lang="en">Certificate</span></span>
-      <a class="text-link" id="certOpen" href="#" target="_blank" rel="noopener"><span data-lang="es">Abrir PDF</span><span data-lang="en">Open PDF</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
-    <div id="certContent" style="flex:1;display:flex"></div>
-  </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script>
-  // ================================================================== datos
-  // Cada texto va en los dos idiomas: el cambio de idioma alcanza a todo,
-  // también al modal de cada proyecto.
-  const PROYECTOS = [
-    {
-      id: 'byd-calidad', destacado: true, nuevo: true,
-      titulo: 'BYD Quality Portal',
-      tags: ['Figma', 'React', 'TypeScript', 'Supabase', 'UX/UI'],
-      sub: { es: 'Portal de calidad para un concesionario oficial BYD: indicadores, encuestas, auditorías y documentos en un solo lugar.', en: 'Quality portal for an official BYD dealership: KPIs, surveys, audits and documents in one place.' },
-      desc: {
-        es: 'Aplicación web para centralizar y simplificar el acceso a la información y los recursos de calidad de BYD Yacopini. El foco estuvo en crear una experiencia digital clara, accesible y fácil de usar, transformando documentación y procesos internos en una plataforma online organizada. Me encargué del diseño y el desarrollo de la solución, combinando principios de UX/UI con desarrollo front-end para crear una herramienta práctica para el uso diario.',
-        en: 'BYD Quality Portal is a web application designed to centralize and simplify access to quality-related information and resources within BYD Yacopini. The project focuses on creating a clear, accessible and user-friendly digital experience, transforming internal documentation and processes into an organized online platform. I was responsible for the design and development of the solution, combining UX/UI principles with front-end development to create a practical tool for everyday use.'
-      },
-      // Relato de la card destacada: producto → titular → problema y solución → impacto.
-      producto: { es: 'Portal de Calidad · Concesionario BYD', en: 'Quality Portal · BYD dealership' },
-      titular: { es: 'Cuatro tableros de Power BI, un solo portal.', en: 'Four Power BI dashboards, one portal.' },
-      relato: {
-        es: 'NPS, call center, Mystery Shopper, entregas y auditorías vivían en seis planillas y cuatro tableros que había que actualizar a mano. Diseñé y desarrollé un portal que se actualiza solo y les muestra a Calidad, vendedores y gerencia lo que cada uno necesita.',
-        en: 'NPS, call center, Mystery Shopper, deliveries and audits lived in six spreadsheets and four dashboards updated by hand. I designed and built a portal that updates itself and shows Quality, sales and management exactly what each of them needs.'
-      },
-      impacto: { es: 'Sin carga manual: guardar el Excel alcanza · 5 roles con permisos propios', en: 'No manual entry: saving the Excel is enough · 5 roles with their own permissions' },
-      ficha: [
-        [{ es: 'Rol', en: 'Role' }, { es: 'UX/UI y desarrollo', en: 'UX/UI & development' }],
-        [{ es: 'Dispositivos', en: 'Devices' }, { es: 'Escritorio y celular', en: 'Desktop & mobile' }]
-      ],
-      pagina: 'casos/byd-calidad.html',
-      media: 'images/byd-calidad.jpg', tipo: 'image',
-      link: 'https://lucim2003.github.io/byd-calidad-demo/'
-    },
-    {
-      id: 'padel-hub', destacado: true, nuevo: true,
-      titulo: 'Padel Hub Mendoza',
-      tags: ['React', 'Vite', 'Tailwind CSS', 'Supabase', 'UX/UI'],
-      sub: { es: 'Reservas de canchas, torneos y partidos abiertos para clubes de pádel, con panel para administradores.', en: 'Court bookings, tournaments and open matches for padel clubs, with an admin dashboard.' },
-      desc: {
-        es: 'Plataforma web que simplifica la reserva de canchas de pádel y la gestión de torneos para clubes de Mendoza. Conecta a los jugadores con canchas disponibles, torneos y partidos abiertos, y les da a los administradores herramientas para gestionar clientes, reservas y la operación del club. Trabajé en el UX/UI y el desarrollo front-end, creando una experiencia responsive para jugadores y administradores con React, Vite, Tailwind CSS y Supabase.',
-        en: 'Padel Hub Mendoza is a web platform designed to simplify padel court bookings and tournament management for clubs in Mendoza. The platform connects players with available courts, tournaments and open matches while providing administrators with tools to manage clients, reservations and club operations. I worked on the UX/UI and front-end development, creating a responsive experience for both players and administrators using React, Vite, Tailwind CSS and Supabase.'
-      },
-      producto: { es: 'Reservas y torneos · Clubes de pádel', en: 'Bookings & tournaments · Padel clubs' },
-      titular: { es: 'Del mensaje al club a la cancha reservada.', en: 'From messaging the club to a booked court.' },
-      relato: {
-        es: 'Inscripciones, reservas y avisos de horario se resolvían por WhatsApp, uno por uno. Diseñé y desarrollé una plataforma con dos experiencias: la app donde el jugador reserva y se suma a partidos de su nivel, y el panel donde el club organiza torneos y cobra.',
-        en: 'Registrations, bookings and schedule changes were handled over WhatsApp, one by one. I designed and built a platform with two experiences: the app where players book and join matches at their level, and the dashboard where clubs run tournaments and take payments.'
-      },
-      impacto: { es: 'Reserva en 4 pasos con seña del 30% · 25 pantallas entre jugador y club', en: '4-step booking with a 30% deposit · 25 screens across player and club' },
-      ficha: [
-        [{ es: 'Rol', en: 'Role' }, { es: 'UX/UI y desarrollo', en: 'UX/UI & development' }],
-        [{ es: 'Dispositivos', en: 'Devices' }, { es: 'Celular primero', en: 'Mobile first' }]
-      ],
-      pagina: 'casos/padel-hub.html',
-      media: 'images/padel-hub.jpg', tipo: 'image',
-      link: 'https://stitchpadelhubmendoza.vercel.app'
-    },
-    {
-      id: 'modo-ya', destacado: true, nuevo: true,
-      titulo: 'MODO YA',
-      tags: ['Flutter', 'Supabase', 'Mercado Pago', 'UX/UI', 'Landing'],
-      sub: { es: 'Plataforma de delivery para Malargüe: app para clientes y locales, app para riders y landing.', en: 'Delivery platform for Malargüe: an app for customers and restaurants, an app for riders and a landing page.' },
-      producto: { es: 'Delivery · Malargüe, Mendoza', en: 'Delivery · Malargüe, Mendoza' },
-      titular: { es: 'Todo Malargüe en una app de delivery.', en: 'All of Malargüe in one delivery app.' },
-      relato: {
-        es: 'Los locales vendían por WhatsApp y cada uno resolvía su envío. Creé MODO YA y lo llevé de la idea al lanzamiento: la app para pedir, la app para los riders y la landing, con pagos y seguimiento en vivo. Lo desarrollé en equipo con Álvaro González.',
-        en: 'Restaurants sold over WhatsApp and each handled its own delivery. I created MODO YA and took it from idea to launch: the ordering app, the rider app and the landing page, with payments and live tracking. Built together with Álvaro González.'
-      },
-      impacto: { es: 'Lanzado · 2 apps + landing · 15 versiones publicadas en semanas', en: 'Launched · 2 apps + landing · 15 releases shipped in weeks' },
-      ficha: [
-        [{ es: 'Rol', en: 'Role' }, { es: 'Producto, diseño y desarrollo', en: 'Product, design & development' }],
-        [{ es: 'Dispositivos', en: 'Devices' }, { es: 'Android, Windows y web', en: 'Android, Windows & web' }]
-      ],
-      pagina: 'casos/modo-ya.html',
-      media: 'images/modo-ya.jpg', tipo: 'image',
-      link: 'https://modoya-landing.vercel.app/'
-    },
-    // Casos conceptuales: proyectos propios, sin cliente. Se muestran como tales
-    // Cada uno tiene su página en casos/ con el proceso completo y un prototipo navegable.
-    {
-      id: 'turno', concepto: true, titulo: 'Turno',
-      tags: ['Mobile app', { es: 'Salud', en: 'Healthcare' }, 'Figma'],
-      sub: { es: 'App para sacar turnos médicos en tres toques', en: 'An app to book medical appointments in three taps' },
-      media: 'images/concepto-turno.jpg', tipo: 'image',
-      pagina: 'casos/turno.html', prototipo: 'casos/prototipos/turno.html'
-    },
-    {
-      id: 'ruta-vino', concepto: true, titulo: 'Ruta del Vino',
-      tags: ['Mobile app', { es: 'Turismo', en: 'Tourism' }, 'Figma'],
-      sub: { es: 'Visitas a bodegas de Mendoza en un solo lugar', en: 'Mendoza winery visits in one place' },
-      media: 'images/concepto-vino.jpg', tipo: 'image',
-      pagina: 'casos/ruta-del-vino.html', prototipo: 'casos/prototipos/ruta-del-vino.html'
-    },
-    {
-      id: 'alcancia', concepto: true, titulo: 'Alcancía',
-      tags: ['Mobile app', 'Fintech', 'Figma'],
-      sub: { es: 'Finanzas personales sin planillas', en: 'Personal finance without spreadsheets' },
-      media: 'images/concepto-alcancia.jpg', tipo: 'image',
-      pagina: 'casos/alcancia.html', prototipo: 'casos/prototipos/alcancia.html'
-    },
-    {
-      id: 'lithium', titulo: 'Lithium',
-      tags: ['Figma', 'UX Research', 'Design System'],
-      sub: { es: 'Plataforma fintech / crypto', en: 'Fintech / crypto platform' },
-      desc: {
-        es: 'Plataforma Web3 basada en blockchain. El desafío era traducir conceptos técnicos complejos en una experiencia clara y confiable. Diseñé una interfaz intuitiva que reduce fricción y mejora la comprensión para usuarios no técnicos.',
-        en: 'A blockchain-based Web3 platform. The challenge was translating complex technical concepts into a clear, trustworthy experience. I designed an intuitive interface that reduces friction and improves understanding for non-technical users.'
-      },
-      media: 'videos/lithium.mp4', poster: 'images/lithium-poster.jpg', tipo: 'video', link: 'https://famous-trifle-7a5c4f.netlify.app/'
-    },
-    {
-      id: 'ucobot', titulo: 'UCoBot',
-      tags: ['Figma', 'UX Research', 'Dashboards'],
-      sub: { es: 'Automatización y CRM para negocios', en: 'Automation and CRM for businesses' },
-      desc: {
-        es: 'Software de automatización y CRM para negocios. El problema era la gestión manual de clientes y la pérdida de oportunidades comerciales. Diseñé una experiencia que centraliza contactos, automatiza seguimientos y optimiza el proceso de ventas.',
-        en: 'Automation and CRM software for businesses. The problem was manual client management and lost sales opportunities. I designed an experience that centralizes contacts, automates follow-ups and streamlines the sales process.'
-      },
-      media: 'videos/ucobot.mp4', poster: 'images/ucobot-poster.jpg', tipo: 'video', link: 'https://chatbot-sass-eight.vercel.app/'
-    },
-    {
-      id: 'codea', titulo: 'Codea',
-      tags: ['Figma', 'HTML', 'CSS', 'JavaScript'],
-      sub: { es: 'Mi estudio de desarrollo de software', en: 'My software development studio' },
-      desc: {
-        es: 'Mi pequeña startup de desarrollo de software, donde combino diseño y programación para crear soluciones digitales a medida. Detecté que muchas empresas necesitaban productos más humanos y centrados en el usuario, por lo que implemento procesos end-to-end alineando negocio, experiencia y tecnología.',
-        en: 'My small software development startup, where I combine design and code to build custom digital solutions. I noticed many companies needed more human, user-centered products, so I run end-to-end processes that align business, experience and technology.'
-      },
-      media: 'videos/codea.mp4', poster: 'images/codea-poster.jpg', tipo: 'video', link: 'https://codeadesarrollos.com/'
-    },
-    {
-      id: 'move', titulo: 'Move',
-      tags: ['Figma', 'Wireframes', { es: 'Prototipado', en: 'Prototyping' }],
-      sub: { es: 'E-commerce de indumentaria deportiva', en: 'Sportswear e-commerce' },
-      desc: {
-        es: 'E-commerce de indumentaria deportiva. El desafío era diferenciarse en un mercado competitivo y mejorar la experiencia de compra. Diseñé navegación clara, fichas de producto optimizadas y un checkout ágil para aumentar la conversión.',
-        en: 'A sportswear e-commerce. The challenge was standing out in a competitive market and improving the shopping experience. I designed clear navigation, optimized product pages and a fast checkout to increase conversion.'
-      },
-      media: 'videos/move.mp4', poster: 'images/move-poster.jpg', tipo: 'video', link: 'https://kaleidoscopic-pika-577f64.netlify.app/'
-    },
-    {
-      id: 'aguslanding', titulo: 'AgusLanding',
-      tags: ['Next.js', 'Landing Page', 'Responsive'],
-      sub: { es: 'Landing profesional para abogada', en: 'Professional landing page for a lawyer' },
-      desc: {
-        es: 'Trabajo para una abogada. Problema: no tenía presencia online profesional y le costaba comunicar sus servicios y captar clientes. Solución: diseño y desarrollo de una landing responsive con secciones claras de servicios, contacto rápido y formulario funcional; optimicé la estructura para mejorar la conversión y la visibilidad online.',
-        en: 'Project for a lawyer. Problem: no professional online presence and difficulty communicating services and attracting clients. Solution: a responsive, professional landing page with clear service sections, quick contact and a working form; I optimized the structure to improve conversion and online visibility.'
-      },
-      media: 'images/foto_aggv.jpg', mediaModal: 'images/abogada.jpeg', tipo: 'image', link: 'https://www.estudioagv.com/'
-    },
-    {
-      id: 'stretch', titulo: 'Stretch',
-      tags: ['Branding', 'E-commerce', 'UI'],
-      sub: { es: 'Belleza ética y tienda online sostenible', en: 'Ethical beauty and a sustainable online store' },
-      desc: {
-        es: 'Belleza ética: sistema de tienda, fichas de producto y experiencia de marca enfocada en sostenibilidad y lujo accesible. Implementación de layout responsive y sistema de productos.',
-        en: 'Ethical beauty: store system, product pages and a brand experience focused on sustainability and accessible luxury. Responsive layout and product system implementation.'
-      },
-      media: 'videos/sunne.mp4', poster: 'images/sunne-poster.jpg', tipo: 'video', link: 'https://www.codeadesarrollos.com/proyectos/stretch/index.html'
-    },
-    {
-      id: 'creative-studio', titulo: 'Creative Studio',
-      tags: ['Branding', 'Hero', 'UI'],
-      sub: { es: 'Hero y sistema visual para un estudio creativo', en: 'Hero and visual system for a creative studio' },
-      desc: {
-        es: 'Hero section y sistema visual para Creative Studio: identidad de marca, dirección de campaña y bloques hero diseñados para impacto y conversión.',
-        en: 'Hero section and visual system for Creative Studio: brand identity, campaign direction and hero blocks designed for impact and conversion.'
-      },
-      media: 'https://www.codeadesarrollos.com/proyectos/creative-studio/work-1.png', tipo: 'image',
-      link: 'https://www.codeadesarrollos.com/proyectos/creative-studio/hero-section.html'
-    },
-    {
-      id: 'bakery', titulo: 'Bakery',
-      tags: ['Branding', 'E-commerce', 'UI'],
-      sub: { es: 'Panadería artesanal y tienda online', en: 'Artisan bakery and online store' },
-      desc: {
-        es: 'Panadería artesanal: identidad visual, fichas de productos y diseño de tienda online enfocado en experiencia y conversión.',
-        en: 'Artisan bakery: visual identity, product pages and an online store design focused on experience and conversion.'
-      },
-      media: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200&fit=crop&auto=format', tipo: 'image',
-      link: 'https://www.codeadesarrollos.com/proyectos/bakery/index.html'
-    }
-  ];
-
-  // Sale del CV. Las fechas van como figuran en cada versión del CV.
-  const EXPERIENCIA = [
-    {
-      cuando: { es: '2023 — Actualidad', en: '2023 — Present' },
-      rol: { es: 'Diseñadora UX/UI & Desarrolladora Front-end', en: 'UX/UI Designer & Front-end Developer' },
-      donde: { es: 'Freelance · Remoto', en: 'Freelance · Remote' },
-      texto: {
-        es: 'Diseño y desarrollo de interfaces y aplicaciones web centradas en las personas: análisis de usabilidad, interfaces responsive, componentes reutilizables, integración de APIs REST, accesibilidad y optimización de rendimiento.',
-        en: 'Design and development of user-centered interfaces and web apps: usability analysis, responsive interfaces, reusable components, REST API integration, accessibility and performance optimization.'
-      }
-    },
-    {
-      cuando: { es: '2022 — Actualidad', en: '2022 — 2025' },
-      rol: { es: 'Product Manager', en: 'Product Manager' },
-      donde: { es: 'Freelance · Remoto', en: 'Freelance · Remote' },
-      texto: {
-        es: 'Coordinación de proyectos digitales de punta a punta: relevamiento de requerimientos, priorización según objetivos del negocio, seguimiento con stakeholders y trabajo con Scrum y Kanban.',
-        en: 'End-to-end coordination of digital projects: requirements gathering, prioritization against business goals, stakeholder communication and work with Scrum and Kanban.'
-      }
-    }
-  ];
-
-  const EDUCACION = [
-    { titulo: { es: 'Diplomatura en Diseño UX/UI', en: 'Diploma in UX/UI Design' }, lugar: 'Universidad Abierta Interamericana (UAI) · Global Academy', cuando: { es: 'Ene — Jun 2025', en: 'Jan — Jun 2025' }, cert: 'certifictes/diplomatura uxui.pdf' },
-    { titulo: { es: 'Ciencia de Datos', en: 'Data Science' }, lugar: 'UTN.BA · Centro de e-Learning', cuando: { es: 'Oct 2025', en: 'Oct 2025' }, cert: 'certifictes/Curso_de_Data_Science.pdf' },
-    { titulo: { es: 'UX Writing', en: 'UX Writing' }, lugar: 'Coderhouse', cuando: { es: 'Feb 2025', en: 'Feb 2025' } },
-    { titulo: { es: 'Desarrollo Web', en: 'Web Development' }, lugar: 'Universidad Tecnológica Nacional (UTN)', cuando: { es: 'Finalizado', en: 'Completed' } },
-    { titulo: { es: 'UI: Interfaz de Usuario', en: 'UI: User Interface' }, lugar: 'EducaciónIT', cuando: { es: 'Oct 2024', en: 'Oct 2024' }, cert: 'certifictes/ui interfaz.pdf' },
-    { titulo: { es: 'Desarrollo Web con HTML', en: 'Web Development with HTML' }, lugar: 'EducaciónIT', cuando: { es: 'Jun 2024', en: 'Jun 2024' }, cert: 'certifictes/desarrollo web con html.pdf' },
-    { titulo: { es: 'Product Management', en: 'Product Management' }, lugar: 'Coderhouse', cuando: { es: 'Abr 2024', en: 'Apr 2024' } }
-  ];
-
-  // ================================================================== render
-  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const bi = (t) => typeof t === 'string' ? esc(t) : `<span data-lang="es">${esc(t.es)}</span><span data-lang="en">${esc(t.en)}</span>`;
-  const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg>';
-  const DOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>';
-  let idioma = 'es';
-
-  function media(p, enModal) {
-    const src = enModal && p.mediaModal ? p.mediaModal : p.media;
-    if (p.tipo === 'video') return `<video src="${esc(src)}"${p.poster ? ` poster="${esc(p.poster)}"` : ''} autoplay muted loop playsinline preload="metadata" aria-label="${esc(p.titulo)}"></video>`;
-    return `<img src="${esc(src)}" alt="${esc(p.titulo)}" ${enModal ? '' : 'loading="lazy"'} decoding="async" onerror="this.onerror=null;this.src='imagen-portfolio.jpg'"/>`;
-  }
-  const tagList = (tags) => tags.map((t) => `<li>${bi(t)}</li>`).join('');
-
-  const destacados = PROYECTOS.filter((p) => p.destacado);
-  // Con página de caso propia, la card lleva a esa página; si no, abre el modal.
-  const abreCard = (p, clase) => p.pagina
-    ? `<a class="${clase}" href="${esc(p.pagina)}"`
-    : `<button type="button" class="${clase}" data-proyecto="${p.id}"`;
-  const cierraCard = (p) => p.pagina ? '</a>' : '</button>';
-  document.getElementById('cases').innerHTML = destacados.map((p, i) => `
-    <article class="case">
-      ${abreCard(p, 'case-media')} aria-label="${esc(p.titulo)}"><div class="zoom">${media(p)}</div>${cierraCard(p)}
-      <div class="case-copy" data-reveal>
-        <div class="case-head">
-        <div class="case-top">
-          <span class="case-num">0${i + 1} / 0${destacados.length}</span>
-          <span class="case-pill">${bi(p.producto || { es: p.titulo, en: p.titulo })}</span>
-          ${p.nuevo ? `<span class="new">${bi({ es: 'Nuevo', en: 'New' })}</span>` : ''}
-        </div>
-        <h3 class="case-title">${bi(p.titular || { es: p.titulo, en: p.titulo })}</h3>
-        </div>
-        <div class="case-body">
-        <p class="case-sub">${bi(p.relato || p.sub)}</p>
-        ${p.impacto ? `<p class="case-impact">${bi(p.impacto)}</p>` : ''}
-        ${p.ficha ? `<dl class="case-facts">${p.ficha.map(([k, v]) => `<div><dt>${bi(k)}</dt><dd>${bi(v)}</dd></div>`).join('')}</dl>` : ''}
-        <ul class="tags">${tagList(p.tags)}</ul>
-        ${abreCard(p, 'case-cta')}>
-          <span class="case-cta-label">${bi({ es: 'Ver caso completo', en: 'View full case' })}</span>
-          <span class="case-cta-arrow">${ARROW}</span>
-        ${cierraCard(p)}
-        </div>
-      </div>
-    </article>`).join('');
-
-  const tarjetaChica = (p) => `
-    <article class="work" data-reveal>
-      <button type="button" class="work-media" data-proyecto="${p.id}" aria-label="${esc(p.titulo)}"><div class="zoom">${media(p)}</div></button>
-      <div class="work-meta">
-        <h4 class="work-title">${esc(p.titulo)}${p.concepto ? `<span class="badge-concept">${bi({ es: 'Concepto', en: 'Concept' })}</span>` : ''}</h4>
-        <span class="work-tags">${p.tags.map(bi).join(' · ')}</span>
-      </div>
-      <p class="work-sub">${bi(p.sub)}</p>
-    </article>`;
-  // Los casos conceptuales tienen página propia con todo el proceso, en lugar del modal.
-  const tarjetaCaso = (p) => `
-    <article class="work" data-reveal>
-      <a class="work-media" href="${esc(p.pagina)}" aria-label="${esc(p.titulo)}"><div class="zoom">${media(p)}</div></a>
-      <div class="work-meta">
-        <h4 class="work-title"><a href="${esc(p.pagina)}">${esc(p.titulo)}</a><span class="badge-concept">${bi({ es: 'Concepto', en: 'Concept' })}</span></h4>
-        <span class="work-tags">${p.tags.map(bi).join(' · ')}</span>
-      </div>
-      <p class="work-sub">${bi(p.sub)}</p>
-      <p class="concept-steps">${bi({ es: 'Investigación · Wireframes · Sistema de diseño · UI · Validación', en: 'Research · Wireframes · Design system · UI · Validation' })}</p>
-      <div class="concept-links">
-        <a class="text-link" href="${esc(p.pagina)}">${bi({ es: 'Ver caso completo', en: 'View full case' })}${ARROW}</a>
-        <a class="text-link" href="${esc(p.prototipo)}">${bi({ es: 'Probar prototipo', en: 'Try prototype' })}${ARROW}</a>
-      </div>
-    </article>`;
-  document.getElementById('conceptGrid').innerHTML = PROYECTOS.filter((p) => p.concepto).map(tarjetaCaso).join('');
-  document.getElementById('workGrid').innerHTML = PROYECTOS.filter((p) => !p.destacado && !p.concepto).map(tarjetaChica).join('');
-
-  document.getElementById('expRows').innerHTML = EXPERIENCIA.map((e) => `
-    <div class="row" data-reveal>
-      <span class="row-when">${bi(e.cuando)}</span>
-      <div><h3>${bi(e.rol)}</h3><div class="row-where">${bi(e.donde)}</div><p>${bi(e.texto)}</p></div>
-      <span></span>
-    </div>`).join('');
-
-  document.getElementById('eduRows').innerHTML = EDUCACION.map((e) => `
-    <div class="row" data-reveal>
-      <span class="row-when">${bi(e.cuando)}</span>
-      <div><h3>${bi(e.titulo)}</h3><div class="row-where">${esc(e.lugar)}</div></div>
-      ${e.cert ? `<button type="button" class="row-btn" data-cert="${esc(e.cert)}">${DOC}${bi({ es: 'Certificado', en: 'Certificate' })}</button>` : '<span></span>'}
-    </div>`).join('');
-
-  // ================================================================== idioma
-  const modalProyecto = document.getElementById('projectModal');
-  const modalCert = document.getElementById('certModal');
-  let abierto = null;
-
-  function setIdioma(nuevo) {
-    idioma = nuevo === 'en' ? 'en' : 'es';
-    document.documentElement.lang = idioma;
-    document.querySelectorAll('[data-set-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.setLang === idioma)));
-    try { localStorage.setItem('language', idioma); } catch (e) {}
-    if (abierto) llenarModal(abierto);
-    if (window.ScrollTrigger) ScrollTrigger.refresh();
-  }
-  document.querySelectorAll('[data-set-lang]').forEach((b) => b.addEventListener('click', () => setIdioma(b.dataset.setLang)));
-
-  let guardado = null;
-  try { guardado = localStorage.getItem('language'); } catch (e) {}
-  // ?lang=en en la dirección manda: sirve para compartir el link en inglés.
-  const pedido = new URLSearchParams(location.search).get('lang');
-  setIdioma((pedido === 'en' || pedido === 'es' ? pedido : null) || guardado || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en'));
-
-  // ================================================================== modales
-  let lenis = null;
-  function llenarModal(p) {
-    document.getElementById('pmTitle').textContent = p.titulo;
-    document.getElementById('pmTags').innerHTML = p.tags.map((t) => `<li>${esc(typeof t === 'string' ? t : t[idioma])}</li>`).join('');
-    document.getElementById('pmDesc').textContent = p.desc[idioma];
-    const link = document.getElementById('pmLink');
-    link.hidden = !p.link;
-    if (p.link) link.href = p.link;
-  }
-  function abrir(modal) {
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    if (lenis) lenis.stop();
-    modal.querySelector('[data-close]').focus({ preventScroll: true });
-  }
-  function cerrar(modal) {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-    if (lenis) lenis.start();
-    if (modal === modalProyecto) { document.getElementById('pmMedia').innerHTML = ''; abierto = null; }
-    if (modal === modalCert) document.getElementById('certContent').innerHTML = '';
-  }
-  document.addEventListener('click', (e) => {
-    const card = e.target.closest('[data-proyecto]');
-    if (card) {
-      const p = PROYECTOS.find((x) => x.id === card.dataset.proyecto);
-      abierto = p;
-      llenarModal(p);
-      document.getElementById('pmMedia').innerHTML = media(p, true);
-      cursorOff();
-      abrir(modalProyecto);
-      return;
-    }
-    const cert = e.target.closest('[data-cert]');
-    if (cert) {
-      document.getElementById('certContent').innerHTML = `<iframe src="${encodeURI(cert.dataset.cert)}" title="Certificado"></iframe>`;
-      document.getElementById('certOpen').href = encodeURI(cert.dataset.cert);
-      abrir(modalCert);
-      return;
-    }
-    if (e.target.closest('[data-close]') || e.target.classList.contains('modal')) cerrar(e.target.closest('.modal'));
-  });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(cerrar); });
-
-  // ================================================================== nav, menú, reloj, mail
-  const nav = document.getElementById('nav');
-  let ultimoY = 0;
-  function onScroll(y) {
-    nav.classList.toggle('scrolled', y > 20);
-    nav.classList.toggle('hide', y > 400 && y > ultimoY && !menu.classList.contains('open'));
-    ultimoY = y;
-  }
-  const menu = document.getElementById('menu');
-  const menuBtn = document.getElementById('menuBtn');
-  menuBtn.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-    if (lenis) open ? lenis.stop() : lenis.start();
-  });
-  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
-    menu.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-    if (lenis) lenis.start();
-  }));
-
-  const clock = document.getElementById('clock');
-  const fmt = new Intl.DateTimeFormat('es-AR', { timeZone: 'America/Argentina/Mendoza', hour: '2-digit', minute: '2-digit', hour12: false });
-  const tick = () => { clock.textContent = 'Mendoza · ' + fmt.format(new Date()); };
-  tick(); setInterval(tick, 20000);
-
-  const toast = document.getElementById('toast');
-  document.getElementById('copyMail').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText('luciacmiranda9@gmail.com'); toast.textContent = idioma === 'es' ? 'Mail copiado ✓' : 'Email copied ✓'; }
-    catch (e) { toast.textContent = 'luciacmiranda9@gmail.com'; }
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2200);
-  });
-
-  // ================================================================== cursor "Ver caso"
-  const cursor = document.getElementById('cursor');
-  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
-  function cursorOff() { cursor.classList.remove('on'); }
-  if (finePointer) {
-    let cx = 0, cy = 0, tx = 0, ty = 0;
-    window.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; }, { passive: true });
-    (function loop() {
-      cx += (tx - cx) * 0.18; cy += (ty - cy) * 0.18;
-      cursor.style.translate = `${cx}px ${cy}px`;
-      requestAnimationFrame(loop);
-    })();
-    document.addEventListener('mouseover', (e) => { if (e.target.closest('.case-media, .work-media')) cursor.classList.add('on'); });
-    document.addEventListener('mouseout', (e) => {
-      const desde = e.target.closest('.case-media, .work-media');
-      if (desde && !desde.contains(e.relatedTarget)) cursorOff();
-    });
-  }
-
-  // ================================================================== videos
-  // Sólo se reproducen los que están en pantalla: ahorra batería y datos en el celular.
-  if ('IntersectionObserver' in window) {
-    const vio = new IntersectionObserver((entradas) => {
-      entradas.forEach((en) => {
-        if (en.isIntersecting) en.target.play().catch(() => {});
-        else en.target.pause();
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.work-media video, .case-media video').forEach((v) => { v.removeAttribute('autoplay'); v.pause(); vio.observe(v); });
-  }
-
-  // ================================================================== animaciones
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const animar = window.gsap && window.ScrollTrigger && !reduce;
-
-  if (!animar) {
-    window.addEventListener('scroll', () => onScroll(window.scrollY), { passive: true });
-  } else {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Scroll suave. Si la librería no cargó, el sitio anda igual con el scroll nativo.
-    if (window.Lenis) {
-      lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
-      lenis.on('scroll', (ev) => { ScrollTrigger.update(); onScroll(ev.scroll); });
-      gsap.ticker.add((t) => lenis.raf(t * 1000));
-      gsap.ticker.lagSmoothing(0);
-      document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        const destino = id === '#top' ? 0 : document.querySelector(id);
-        if (destino === null) return;
-        e.preventDefault();
-        lenis.scrollTo(destino, { offset: -70, duration: 1.4 });
-      }));
-    } else {
-      window.addEventListener('scroll', () => onScroll(window.scrollY), { passive: true });
-    }
-
-    // Entrada del inicio.
-    const intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
-    intro
-      .from('.nav-inner > *', { y: -16, opacity: 0, duration: 0.9, stagger: 0.08 })
-      .from('.line-in', { yPercent: 115, duration: 1.3, stagger: 0.12 }, 0.1)
-      .from('.portrait-frame', { clipPath: 'inset(100% 0% 0% 0% round 28px)', duration: 1.5, ease: 'expo.out' }, 0.25)
-      .from('.portrait-frame img', { scale: 1.35, duration: 2, ease: 'expo.out' }, 0.25)
-      .from('.portrait-glow', { opacity: 0, scale: 0.6, duration: 2, ease: 'expo.out' }, 0.3)
-      .from('[data-intro]', { y: 26, opacity: 0, duration: 1, stagger: 0.09 }, 0.55)
-      .from('.chip-float', { y: 20, scale: 0.85, opacity: 0, duration: 1, stagger: 0.15, ease: 'back.out(1.6)' }, 1)
-      .from('.scroll-hint', { opacity: 0, duration: 1 }, 1.3);
-
-    // Parallax de la foto y las etiquetas.
-    gsap.to('.portrait-frame img', { yPercent: 9, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    gsap.to('.chip-a', { y: -60, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    gsap.to('.chip-b', { y: -110, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-
-    // Aparición al hacer scroll.
-    gsap.utils.toArray('[data-reveal]').forEach((el) => {
-      gsap.from(el, { y: 50, opacity: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
-    });
-
-    // Las imágenes de los proyectos se descubren y se acercan con el scroll.
-    // El acercamiento atado al scroll queda solo para escritorio: en celular traba.
-    const escritorio = window.matchMedia('(hover: hover) and (min-width: 761px)').matches;
-    gsap.utils.toArray('.case-media, .work-media').forEach((box) => {
-      gsap.from(box, { clipPath: 'inset(12% 6% 12% 6% round 24px)', duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: box, start: 'top 85%' } });
-      if (!escritorio || box.classList.contains('case-media')) return;
-      const m = box.querySelector('img, video');
-      gsap.fromTo(m, { scale: 1.18 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: box, start: 'top bottom', end: 'bottom top', scrub: true } });
-    });
-
-    // La frase de "Sobre mí" se enciende palabra por palabra.
-    document.querySelectorAll('#statement [data-lang]').forEach((span) => {
-      span.innerHTML = span.textContent.trim().split(/\s+/).map((w) => `<span class="w">${w}</span>`).join(' ');
-    });
-    gsap.fromTo('#statement .w', { opacity: 0.14 }, {
-      opacity: 1, stagger: 0.06, ease: 'none',
-      scrollTrigger: { trigger: '#statement', start: 'top 80%', end: 'bottom 45%', scrub: true }
-    });
-
-    // Contadores.
-    document.querySelectorAll('[data-count]').forEach((el) => {
-      const fin = Number(el.dataset.count);
-      const sufijo = el.dataset.suffix || '';
-      const o = { v: 0 };
-      el.textContent = '0' + sufijo;
-      gsap.to(o, { v: fin, duration: 1.8, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%' }, onUpdate: () => { el.textContent = Math.round(o.v) + sufijo; } });
-    });
-
-    // Botones magnéticos.
-    if (finePointer) {
-      document.querySelectorAll('.magnetic').forEach((b) => {
-        b.addEventListener('mousemove', (e) => {
-          const r = b.getBoundingClientRect();
-          gsap.to(b, { x: (e.clientX - r.left - r.width / 2) * 0.25, y: (e.clientY - r.top - r.height / 2) * 0.35, duration: 0.4, ease: 'power3.out' });
-        });
-        b.addEventListener('mouseleave', () => gsap.to(b, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' }));
-      });
-    }
-
-    window.addEventListener('load', () => ScrollTrigger.refresh());
-  }
-</script>
+<footer class="ft"><div class="wrap ft-in">
+<p>© 2026 Lucía Miranda</p>
+<p class="ft-c">Set in Chivo and Faustina, by Omnibus-Type, Buenos Aires.</p>
+<ul><li><a href="https://www.linkedin.com/in/lucia-miranda-6569841b9" target="_blank" rel="noopener">LinkedIn<span class="vh"> (opens in a new tab)</span></a></li><li><a href="mailto:luciacmiranda9@gmail.com">Email</a></li><li><a href="#top">Back to top</a></li></ul>
+</div></footer>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="./assets/js/site.js?v=013704ae" defer></script>
 </body>
 </html>

@@ -1,9 +1,11 @@
 /* Base de los prototipos navegables. Cada prototipo define --brand, --brand-ink y --brand-soft. */
+@font-face { font-family: "Inter"; src: url("../../assets/fonts/inter.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
+@font-face { font-family: "Inter Tight"; src: url("../../assets/fonts/inter-tight.woff2") format("woff2"); font-weight: 600 800; font-display: swap; }
 :root {
   --bg: #f6f6f4;
   --ink: #0d0e10;
   --muted: #5f636a;
-  --soft: #8b9096;
+  --soft: #5d6268;
   --line: #e7e7e3;
   --ok: #0c7a50;
   --ok-soft: #dcf3e8;
@@ -59,7 +61,7 @@ a { color: inherit; text-decoration: none; }
   .mbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex: none; padding: calc(8px + env(safe-area-inset-top)) 14px 8px; background: var(--ink); color: #fff; font-size: 13px; font-weight: 600; }
   .mbar a { display: inline-flex; align-items: center; gap: 6px; }
   .mbar svg { width: 15px; height: 15px; }
-  .mbar span { opacity: .7; font-weight: 500; }
+  .mbar > span { opacity: .8; font-weight: 500; }
 }
 
 /* ------------------------------------------------------------ estructura de pantalla */
@@ -93,19 +95,19 @@ a { color: inherit; text-decoration: none; }
 .card.tip { background: #fdf5e4; color: #5b4310; box-shadow: none; }
 .card.warn { background: var(--bad-soft); color: #8f2a22; box-shadow: none; }
 .card.pad0 { padding: 0; overflow: hidden; }
-.k { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+.k { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .big { font-family: var(--display); font-weight: 800; font-size: 40px; letter-spacing: -.05em; line-height: 1; font-variant-numeric: tabular-nums; }
 .row { display: flex; align-items: center; gap: 12px; }
 .row > .grow { flex: 1; min-width: 0; }
 .row b { display: block; font-size: 15px; }
 .row small { display: block; font-size: 13px; color: var(--muted); }
-.card.brand small, .card.brand .muted { color: rgba(255, 255, 255, .85); }
+.card.brand small, .card.brand .muted { color: #fff; }
 .list > .row, .list > button.row { width: 100%; padding: 12px 0; border-bottom: 1px solid #efefec; }
 .list > :last-child { border-bottom: 0; }
 .ico { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--brand); color: #fff; flex: none; font-weight: 700; font-size: 16px; }
 .ico svg { width: 20px; height: 20px; }
 .ico.round { border-radius: 50%; }
-.pill { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; background: rgba(255, 255, 255, .22); }
+.pill { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; background: rgba(0, 0, 0, .2); }
 .pill.soft { background: var(--brand-soft); color: var(--brand-ink); }
 .pill.ok { background: var(--ok-soft); color: #0c6a46; }
 .pill.bad { background: var(--bad-soft); color: #a3291f; }

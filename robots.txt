@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /nuevoport/src/
+Disallow: /nuevoport/scripts/
+
+Sitemap: https://lucim2003.github.io/nuevoport/sitemap.xml

@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en" data-alt="../../es/proyectos/turno/">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Turno: accessible medical booking concept | Lucía Miranda</title>
+<meta name="description" content="Concept case study: booking a medical appointment in three taps. Research, architecture, wireframes, design system, prototype and heuristic evaluation."/>
+<meta name="author" content="Lucía Miranda"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://lucim2003.github.io/nuevoport/work/turno/"/>
+<link rel="alternate" hreflang="en" href="https://lucim2003.github.io/nuevoport/work/turno/"/>
+<link rel="alternate" hreflang="es" href="https://lucim2003.github.io/nuevoport/es/proyectos/turno/"/>
+<link rel="alternate" hreflang="x-default" href="https://lucim2003.github.io/nuevoport/work/turno/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="Lucía Miranda"/>
+<meta property="og:title" content="Turno: accessible medical booking concept | Lucía Miranda"/>
+<meta property="og:description" content="Concept case study: booking a medical appointment in three taps. Research, architecture, wireframes, design system, prototype and heuristic evaluation."/>
+<meta property="og:url" content="https://lucim2003.github.io/nuevoport/work/turno/"/>
+<meta property="og:image" content="https://lucim2003.github.io/nuevoport/assets/og/turno-en.jpg"/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Three screens of the Turno prototype: home, day and time, and confirmed appointment."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="es_AR"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="theme-color" content="#f3f4f1"/>
+<meta name="color-scheme" content="light"/>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png"/>
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png"/>
+<link rel="manifest" href="../../site.webmanifest"/>
+<link rel="preload" href="../../assets/fonts/chivo.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="../../assets/fonts/faustina.woff2" as="font" type="font/woff2" crossorigin/>
+<script>(function(){var d=document.documentElement,q=new URLSearchParams(location.search).get('lang'),p=null;try{p=localStorage.getItem('lm-lang')}catch(e){}var w=q==='en'||q==='es'?q:p;if(w&&w!==d.lang&&d.dataset.alt)location.replace(d.dataset.alt+location.hash);d.classList.add('js')})()</script>
+<link rel="stylesheet" href="../../assets/css/site.css?v=596a20c1"/>
+<link rel="stylesheet" href="../../assets/css/concept.css?v=091cb033"/>
+<style>:root{--brand:#1d6ae5;--brand-ink:#1558c0;--brand-soft:#e6efff;--brand-on-dark:#9fc2ff}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://lucim2003.github.io/nuevoport/#lucia-miranda","name":"Lucía Miranda","jobTitle":"Senior UX/UI & Product Designer","url":"https://lucim2003.github.io/nuevoport/","image":"https://lucim2003.github.io/nuevoport/assets/img/portrait-960.webp","email":"mailto:luciacmiranda9@gmail.com","sameAs":["https://www.linkedin.com/in/lucia-miranda-6569841b9"],"address":{"@type":"PostalAddress","addressLocality":"Mendoza","addressCountry":"AR"},"knowsLanguage":["es","en"],"knowsAbout":["UX design","UI design","Product design","Design systems","Information architecture","Interaction design","Accessibility","SaaS","Front-end development","React","TypeScript"]},{"@type":"CreativeWork","name":"Turno","headline":"Turno: accessible medical booking concept","description":"Concept case study: booking a medical appointment in three taps. Research, architecture, wireframes, design system, prototype and heuristic evaluation.","url":"https://lucim2003.github.io/nuevoport/work/turno/","inLanguage":"en","image":"https://lucim2003.github.io/nuevoport/assets/og/turno-en.jpg","genre":"Concept case study","creativeWorkStatus":"Concept","author":{"@id":"https://lucim2003.github.io/nuevoport/#lucia-miranda"},"isPartOf":{"@id":"https://lucim2003.github.io/nuevoport/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Lucía Miranda","item":"https://lucim2003.github.io/nuevoport/"},{"@type":"ListItem","position":2,"name":"Turno","item":"https://lucim2003.github.io/nuevoport/work/turno/"}]}]}</script>
+</head>
+<body id="top" class="p-case p-turno">
+<a class="skip" href="#main">Skip to content</a>
+<header class="hd hd-static"><div class="wrap hd-in">
+<a class="hd-b" href="../../"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="32" fill="currentColor"/><path fill="#f3f4f1" d="M15.5 42V22h4.3v16.2h9.4V42zM32.6 42V22h5.9l5.6 13.2L49.7 22h5.9v20h-4.2V28.4L45.7 42h-3.3l-5.7-13.6V42z"/></svg><span>Lucía Miranda<span class="vh">, home</span></span></a>
+<nav class="hd-n" aria-label="Main"><ul><li><a href="../../#work">Work</a></li><li><a href="../../#approach">Approach</a></li><li><a href="../../#about">About</a></li><li><a href="../../#contact">Contact</a></li></ul></nav>
+<div class="hd-r"><div class="lang" role="group" aria-label="Language"><span class="lang-on" aria-current="true">EN<span class="vh"> English</span></span><a href="../../es/proyectos/turno/" hreflang="es" lang="es" data-lang="es">ES<span class="vh"> Español</span></a></div><a class="btn btn-s hd-cv" href="../../cv/Lucia-Miranda-CV-EN.pdf" download="Lucia-Miranda-UX-UI-Product-Designer-Resume.pdf" type="application/pdf">Résumé<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4v13M6 12l6 6 6-6M5 21h14"/></svg></a></div>
+</div></header>
+<main id="main" tabindex="-1">
+<article>
+<header class="ch"><div class="wrap">
+<p class="ch-bk"><a class="tl" href="../../#concepts"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All work</a></p>
+<p class="ch-ty"><span class="tag">Concept project</span> Healthcare, mobile app</p>
+<h1>Turno</h1>
+<p class="ch-tg">A medical appointment in three taps, designed for anyone, at 25 or at 75.</p>
+</div>
+<div class="wrap ch-cv"><div class="cover " role="img" aria-label="Three screens of the Turno prototype: home, day and time, and confirmed appointment." style="background:#dfe9fb;view-transition-name:cover-turno"><picture class="l ph" style="--x:8;--y:8;--w:25;--mx:8;--my:12;--mw:40;--i:0"><source type="image/avif" srcset="../../assets/img/turno-home-320.avif 320w, ../../assets/img/turno-home-640.avif 640w" sizes="(min-width: 1400px) 328px, (min-width: 701px) 25vw, 40vw"/><img src="../../assets/img/turno-home-640.webp" srcset="../../assets/img/turno-home-320.webp 320w, ../../assets/img/turno-home-640.webp 640w" sizes="(min-width: 1400px) 328px, (min-width: 701px) 25vw, 40vw" width="1170" height="2436" alt="" fetchpriority="high" decoding="async"/></picture><picture class="l ph" style="--x:37.5;--y:14;--w:25;--mx:53;--my:24;--mw:40;--i:1"><source type="image/avif" srcset="../../assets/img/turno-slot-320.avif 320w, ../../assets/img/turno-slot-640.avif 640w" sizes="(min-width: 1400px) 328px, (min-width: 701px) 25vw, 40vw"/><img src="../../assets/img/turno-slot-640.webp" srcset="../../assets/img/turno-slot-320.webp 320w, ../../assets/img/turno-slot-640.webp 640w" sizes="(min-width: 1400px) 328px, (min-width: 701px) 25vw, 40vw" width="1170" height="2436" alt="" fetchpriority="high" decoding="async"/></picture><picture class="l ph no-m" style="--x:67;--y:6;--w:25;--mx:0;--my:0;--mw:0;--i:2"><source type="image/avif" srcset="../../assets/img/turno-done-320.avif 320w, ../../assets/img/turno-done-640.avif 640w" sizes="(min-width: 1400px) 328px, (min-width: 701px) 25vw, 1vw"/><img src="../../assets/img/turno-done-640.webp" srcset="../../assets/img/turno-done-320.webp 320w, ../../assets/img/turno-done-640.webp 640w" sizes="(min-width: 1400px) 328px, (min-width: 701px) 25vw, 1vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture></div></div>
+<div class="wrap ch-ov"><section aria-labelledby="ov-h"><h2 id="ov-h" class="vh">Project overview</h2><dl class="ov"><div><dt>Industry</dt><dd>Healthcare</dd></div><div><dt>Product</dt><dd>Mobile app for patients</dd></div><div><dt>My role</dt><dd>Research, UX, UI and prototype</dd></div><div><dt>Timeline</dt><dd>4 weeks</dd></div><div><dt>Tools</dt><dd>Figma, FigJam, JavaScript</dd></div><div><dt>Status</dt><dd>Concept, with a working prototype. Not launched</dd></div></dl></section>
+<div class="ch-ln"><a class="btn" href="../../casos/prototipos/turno.html?lang=en">Try the prototype<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div><p class="ch-nt">Self-initiated, with no client. Research is secondary (benchmark, proto-personas and journey map) and figures are design targets, not measured results. The prototype was validated with a heuristic evaluation; user testing is planned. The app interface is in Spanish, the language of its market.</p></div></header>
+<nav class="cb" aria-label="Case sections"><div class="wrap cb-in"><details class="cb-d"><summary><span class="cb-n">Turno</span><span class="cb-s" data-current>Contents</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></summary><ol><li><a href="#context"><span>01</span>Context</a></li><li><a href="#research"><span>02</span>Research</a></li><li><a href="#definition"><span>03</span>Definition</a></li><li><a href="#architecture"><span>04</span>Architecture</a></li><li><a href="#wireframes"><span>05</span>Wireframes</a></li><li><a href="#decisions"><span>06</span>Decisions</a></li><li><a href="#design-system"><span>07</span>Design system</a></li><li><a href="#final-ui"><span>08</span>Final UI</a></li><li><a href="#validation"><span>09</span>Validation</a></li><li><a href="#learnings"><span>10</span>Learnings</a></li></ol></details><span class="cb-p" aria-hidden="true"><i></i></span></div></nav>
+<section class="ex" aria-labelledby="ex-h"><div class="wrap"><h2 id="ex-h" class="ex-h">In one minute</h2><div class="ex-g"><div><h3>Problem</h3><p>Booking means calling during office hours, waiting on hold and writing it down by hand. People forget, and the practice is left with gaps.</p></div><div><h3>Approach</h3><p>One decision per screen, progress always visible and the question “who is it for?” asked before starting. Accessibility set the rules, not the finishing touches.</p></div><div><h3>Outcome</h3><p>A working prototype where you can book, reschedule, cancel and check in. The review found six issues; five are fixed, one is open.</p></div></div></div></section>
+<section class="cs" id="context" aria-labelledby="context-h" data-label="Context"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>01</span>Context</p><h2 id="context-h">Booking an appointment shouldn't feel like paperwork.</h2><div class="cs-raw"><p class="lede">Today, booking a medical appointment means calling during office hours, waiting on hold and writing the date and time down by hand. Many people forget their appointment and the practice is left with gaps nobody uses.</p>
+  <div class="grid g3 indent">
+    <div class="card rv"><span class="k">For patients</span>
+      <ul class="list">
+        <li>Book outside office hours</li>
+        <li>See every free slot at a glance</li>
+        <li>Never forget an appointment</li>
+      </ul></div>
+    <div class="card rv"><span class="k">For the practice</span>
+      <ul class="list">
+        <li>Fewer calls at the front desk</li>
+        <li>Fewer no-shows</li>
+        <li>Quickly reassign cancelled slots</li>
+      </ul></div>
+    <div class="card rv"><span class="k">Constraints</span>
+      <ul class="list">
+        <li>Users of all ages, including older adults</li>
+        <li>Several health insurance plans</li>
+        <li>Booking for yourself or a family member</li>
+      </ul></div>
+  </div>
+</div></div></div></section>
+<section class="cs" id="research" aria-labelledby="research-h" data-label="Research"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>02</span>Research</p><h2 id="research-h">Understanding how appointments are booked today.</h2><div class="cs-raw"><p class="lede">I started with the channels people already use, to see what they do well and where they get stuck.</p>
+  <div class="indent">
+    <div class="grid g3">
+      <div class="card rv"><span class="big">5</span><h3 class="as-h4">Channels compared</h3><p>Phone, WhatsApp, web portal, insurer app and the proposal.</p></div>
+      <div class="card rv"><span class="big">2</span><h4 class="as-h4">Proto-personas</h4><p>A time-poor patient and an older adult who manages the family's appointments.</p></div>
+      <div class="card rv"><span class="big">5</span><h4 class="as-h4">Journey stages</h4><p>From the moment the need appears to leaving the visit.</p></div>
+    </div>
+    <h3 class="as-h3 sub rv">Channel benchmark</h3>
+    <div class="scroll-x" tabindex="0" role="region" aria-label="Table 1, scrollable">
+      <table class="tbl">
+        <thead><tr>
+          <th scope="col">Feature</th>
+          <th scope="col">Phone</th>
+          <th scope="col">WhatsApp</th>
+          <th scope="col">Web portal</th>
+          <th scope="col">Insurer app</th>
+          <th scope="col" class="me">Turno</th>
+        </tr></thead>
+        <tbody>
+          <tr><th scope="row">Book after hours</th><td><span class="no"></span></td><td><span class="mid">Delayed reply</span></td><td><span class="yes"></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row">See free slots</th><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="mid">Day by day</span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row">Automatic reminder</th><td><span class="no"></span></td><td><span class="mid">Manual</span></td><td><span class="mid">Email</span></td><td><span class="yes"></span></td><td class="me"><span class="yes">WhatsApp</span></td></tr>
+          <tr><th scope="row">Reschedule in one step</th><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="no"></span></td><td><span class="mid">Cancel and rebook</span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row">Filter by coverage</th><td><span class="mid">By asking</span></td><td><span class="mid">By asking</span></td><td><span class="no"></span></td><td><span class="yes"></span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row">Family appointments</th><td><span class="yes"></span></td><td><span class="yes"></span></td><td><span class="no"></span></td><td><span class="mid">Plan members only</span></td><td class="me"><span class="yes"></span></td></tr>
+          <tr><th scope="row">Easy for older adults</th><td><span class="yes"></span></td><td><span class="mid">Varies</span></td><td><span class="no"></span></td><td><span class="no"></span></td><td class="me"><span class="yes"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint">Swipe the table to see every column →</p>
+    <p class="body rv" style="margin-top:18px"><b>Takeaway:</b> the phone is still the simplest option for older adults, but it forces you to call during office hours. Apps solve booking, but with many screens, small type and no thought for people booking on someone else's behalf.</p>
+    <h3 class="as-h3 sub rv">Proto-personas</h3>
+    <div class="grid g2">
+      <article class="card persona rv">
+        <div class="p-head"><span class="avatar">MG</span><div><h4 class="as-h4">Martina, 32</h4><small>Accountant · works 9 to 6</small></div></div>
+        <p class="quote">"To book an appointment I have to call exactly when I'm at work."</p>
+        <div class="p-cols">
+          <div><h5 class="as-h5">Goals</h5><ul class="list"><li>Book in a spare moment, from her phone</li><li>Pick an early slot</li></ul></div>
+          <div><h5 class="as-h5">Frustrations</h5><ul class="list x"><li>Being kept on hold</li><li>Forgetting and still being charged</li></ul></div>
+        </div>
+      </article>
+      <article class="card persona rv">
+        <div class="p-head"><span class="avatar alt">RA</span><div><h4 class="as-h4">Roberto, 68</h4><small>Retired · manages his wife's appointments</small></div></div>
+        <p class="quote">"Apps have tiny text and I'm never sure the appointment went through."</p>
+        <div class="p-cols">
+          <div><h5 class="as-h5">Goals</h5><ul class="list"><li>Book for himself and his wife</li><li>A clear confirmation in plain words</li></ul></div>
+          <div><h5 class="as-h5">Frustrations</h5><ul class="list x"><li>Small buttons and jargon</li><li>Not knowing which step he's on</li></ul></div>
+        </div>
+      </article>
+    </div>
+    <h3 class="as-h3 sub rv">Current journey map · Martina</h3>
+    <div class="scroll-x" tabindex="0" role="region" aria-label="Table 2, scrollable">
+      <svg class="j-curve" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true">
+        <polyline fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linejoin="round" vector-effect="non-scaling-stroke" points="100,22 300,46 500,60 700,38 900,18"/>
+      </svg>
+      <div class="journey">
+        <div class="j-col"><div class="j-stage"><small>1</small>Need</div><p>Feels unwell and decides to see a GP.</p><div class="emo" data-n="4"><i><s></s><s></s><s></s><s></s><s></s></i>Decided</div><div class="opp">"Book" shortcut on the home screen</div></div>
+        <div class="j-col"><div class="j-stage"><small>2</small>Search</div><p>Looks for doctors who accept her insurance.</p><div class="emo" data-n="2"><i><s></s><s></s><s></s><s></s><s></s></i>Unsure</div><div class="pain">The directory is a long PDF</div></div>
+        <div class="j-col"><div class="j-stage"><small>3</small>Booking</div><p>Calls on her lunch break and waits on hold.</p><div class="emo" data-n="1"><i><s></s><s></s><s></s><s></s><s></s></i>Frustrated</div><div class="pain">She's offered a single time slot</div></div>
+        <div class="j-col"><div class="j-stage"><small>4</small>Waiting</div><p>Writes it down on paper or in a note-to-self chat.</p><div class="emo" data-n="3"><i><s></s><s></s><s></s><s></s><s></s></i>Distracted</div><div class="pain">No reminder, so she forgets</div></div>
+        <div class="j-col"><div class="j-stage"><small>5</small>Visit</div><p>Arrives, checks in at the desk and waits.</p><div class="emo" data-n="4"><i><s></s><s></s><s></s><s></s><s></s></i>Relieved</div><div class="opp">In-app check-in on arrival</div></div>
+      </div>
+    </div>
+    <p class="scroll-hint">Swipe to see all five stages →</p>
+    <h3 class="as-h3 sub rv">Key insights</h3>
+    <div class="grid g2">
+      <div class="card insight rv"><i>1</i><div><h4 class="as-h4">The issue is timing, not booking</h4><p>Booking itself is simple; the hard part is doing it when the person actually has time.</p></div></div>
+      <div class="card insight rv"><i>2</i><div><h4 class="as-h4">Choosing requires seeing options</h4><p>On the phone you get one slot at a time. Seeing the whole week changes the decision.</p></div></div>
+      <div class="card insight rv"><i>3</i><div><h4 class="as-h4">Confirmation builds trust</h4><p>Without a clear "you're booked" message, older users call again to double-check.</p></div></div>
+      <div class="card insight rv"><i>4</i><div><h4 class="as-h4">Many book for others</h4><p>Children, parents or partners manage other people's appointments: family profiles aren't an extra.</p></div></div>
+    </div>
+  </div>
+</div></div></div></section>
+<section class="cs" id="definition" aria-labelledby="definition-h" data-label="Definition"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>03</span>Definition</p><h2 id="definition-h">One problem, well framed.</h2><div class="cs-raw">
+  <div class="indent">
+    <p class="hmw rv"><small>How might we…?</small>How might we help anyone book a medical appointment <em>in under a minute</em>, without calling and <em>without forgetting to show up</em>?</p>
+    <h3 class="as-h3 sub rv">Design principles</h3>
+    <div class="grid g3">
+      <div class="card rv"><span class="k">01</span><h4 class="as-h4">One screen, one decision</h4><p>Each step asks for one thing: who, when, confirm.</p></div>
+      <div class="card rv"><span class="k">02</span><h4 class="as-h4">Always know where I am</h4><p>A progress bar and "Step 2 of 3" on every screen of the flow.</p></div>
+      <div class="card rv"><span class="k">03</span><h4 class="as-h4">Readable for everyone</h4><p>16 px minimum text, AA contrast and 48 px touch targets.</p></div>
+    </div>
+    <h3 class="as-h3 sub rv">MVP MoSCoW prioritization</h3>
+    <div class="grid g4 moscow">
+      <div class="card rv"><span class="k must">Must</span><ul class="list"><li>3-step booking</li><li>Free slots</li><li>Reminder</li><li>Cancel and reschedule</li></ul></div>
+      <div class="card rv"><span class="k should">Should</span><ul class="list"><li>Coverage filter</li><li>Family profiles</li><li>Check-in</li></ul></div>
+      <div class="card rv"><span class="k could">Could</span><ul class="list"><li>Digital prescriptions</li><li>Test results</li></ul></div>
+      <div class="card rv"><span class="k wont">Won't (v1)</span><ul class="list"><li>Video visits</li><li>In-app payments</li></ul></div>
+    </div>
+  </div>
+</div></div></div></section>
+<section class="cs" id="architecture" aria-labelledby="architecture-h" data-label="Architecture"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>04</span>Architecture</p><h2 id="architecture-h">Fewer screens, shorter paths.</h2><div class="cs-raw"><p class="lede">Four sections in the bottom bar and booking as the main action, one tap away from anywhere.</p>
+  <div class="indent">
+    <div class="grid g2">
+      <div class="card rv">
+        <h3 style="margin-bottom:14px" class="as-h4">Sitemap</h3>
+        <ul class="tree">
+          <li><span class="node">Turno</span>
+            <ul>
+              <li><span class="node">Home <small>next visit · shortcuts</small></span></li>
+              <li><span class="node key">Book</span>
+                <ul>
+                  <li><span class="node">1 · Specialty and doctor</span></li>
+                  <li><span class="node">2 · Day and time</span></li>
+                  <li><span class="node">3 · Confirmation</span></li>
+                </ul></li>
+              <li><span class="node">My appointments <small>upcoming · history</small></span></li>
+              <li><span class="node">Prescriptions & tests</span></li>
+              <li><span class="node">Profile <small>coverage · family · large text</small></span></li>
+            </ul></li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <h4 style="margin-bottom:14px" class="as-h4">Main flow: booking an appointment</h4>
+        <div class="flow">
+          <div class="f-step start"><small>Start</small><b>Taps "Book"</b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step dec"><small>Decision</small><b>Who is it for?</b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small>Step 1</small><b>Specialty or doctor</b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small>Step 2</small><b>Day and time</b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step"><small>Step 3</small><b>Reviews and confirms</b></div>
+          <svg class="f-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <div class="f-step end"><small>End</small><b>Reminder and check-in</b></div>
+        </div>
+        <div class="legend"><span><i class="e"></i>Start / end</span><span><i class="d"></i>Decision</span><span><i></i>Screen</span></div>
+      </div>
+    </div>
+  </div>
+</div></div></div></section>
+<section class="cs" id="wireframes" aria-labelledby="wireframes-h" data-label="Wireframes"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>05</span>Wireframes</p><h2 id="wireframes-h">Structure before style.</h2><div class="cs-raw"><p class="lede">Low-fidelity wireframes to validate hierarchy and flow without being distracted by color. The numbers mark the decisions on each screen.</p>
+  <p class="swipe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg>Swipe to see the screens</p>
+  <div class="screens" tabindex="0" role="region" aria-label="Screens, group 1">
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe: home"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="w-row"><div class="grow"><div class="w-l" style="width:30%"></div><div class="w-l xl" style="width:60%"></div></div><div class="w-c" style="width:34px;height:34px"></div></div>
+        <div class="w-b dark" style="height:104px"><div class="w-txt" style="color:#7b8088">Próximo turno</div><div class="w-l d" style="width:70%;background:#b9bdc3"></div><div class="w-l" style="width:55%;background:#c4c8cd"></div><div class="spacer"></div><div class="w-row"><div class="w-pill" style="width:56px;background:#c4c8cd"></div><div class="w-pill" style="width:40px;background:#c4c8cd"></div></div></div>
+        <div class="w-l d" style="width:45%;margin-top:4px"></div>
+        <div class="w-g2">
+          <div class="w-b" style="height:78px"><div class="w-sq"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+          <div class="w-b" style="height:78px"><div class="w-sq"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+          <div class="w-b" style="height:78px"><div class="w-sq"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+          <div class="w-b" style="height:78px"><div class="w-sq"></div><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div>
+        </div>
+        <div class="w-tab"><i></i><i></i><i></i><i></i></div>
+        <span class="pin" style="top:96px;right:8px">1</span>
+        <span class="pin" style="top:236px;left:6px">2</span>
+        <span class="pin" style="bottom:46px;right:30px">3</span>
+      </div></div>
+      <figcaption><b>Home</b>
+        <ol class="notes">
+          <li>The next appointment sits on top: it's what people check the most.</li>
+          <li>Four large shortcuts instead of a menu.</li>
+          <li>Bottom bar with four sections, no hamburger menu.</li>
+        </ol></figcaption>
+    </figure>
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe: doctor search"><div class="screen no-tab">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:28%"></div>
+        <div class="w-l xl" style="width:50%"></div>
+        <div class="w-pill on" style="height:6px;width:33%"></div>
+        <div class="w-pill" style="height:34px;border-radius:12px"></div>
+        <div class="w-row"><div class="w-pill on" style="width:70px"></div><div class="w-pill" style="width:56px"></div><div class="w-pill" style="width:64px"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-c"></div><div class="grow"><div class="w-l d" style="width:70%"></div><div class="w-l" style="width:50%"></div></div></div><div class="w-l" style="width:60%"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-c"></div><div class="grow"><div class="w-l d" style="width:62%"></div><div class="w-l" style="width:46%"></div></div></div><div class="w-l" style="width:55%"></div></div>
+        <div class="w-b"><div class="w-row"><div class="w-c"></div><div class="grow"><div class="w-l d" style="width:66%"></div><div class="w-l" style="width:40%"></div></div></div><div class="w-l" style="width:58%"></div></div>
+        <span class="pin" style="top:120px;right:8px">1</span>
+        <span class="pin" style="top:162px;right:8px">2</span>
+        <span class="pin" style="top:212px;left:6px">3</span>
+      </div></div>
+      <figcaption><b>Step 1 · Who with?</b>
+        <ol class="notes">
+          <li>One search box for specialty or name.</li>
+          <li>Common specialties as chips.</li>
+          <li>Each doctor shows their next free slot.</li>
+        </ol></figcaption>
+    </figure>
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe: choosing day and time"><div class="screen no-tab">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:28%"></div>
+        <div class="w-l xl" style="width:70%"></div>
+        <div class="w-pill on" style="height:6px;width:66%"></div>
+        <div class="w-b"><div class="w-l d" style="width:45%"></div><div class="w-g7"><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="w-l d" style="width:50%"></div>
+        <div class="w-g3"><div class="w-pill" style="height:30px"></div><div class="w-pill" style="height:30px"></div><div class="w-pill" style="height:30px;opacity:.4"></div><div class="w-pill on" style="height:30px"></div><div class="w-pill" style="height:30px"></div><div class="w-pill" style="height:30px;opacity:.4"></div></div>
+        <div class="spacer"></div>
+        <div class="w-btn">Continuar</div>
+        <span class="pin" style="top:74px;right:8px">1</span>
+        <span class="pin" style="top:178px;right:8px">2</span>
+        <span class="pin" style="top:290px;right:8px">3</span>
+      </div></div>
+      <figcaption><b>Step 2 · Day and time</b>
+        <ol class="notes">
+          <li>Visible progress: step 2 of 3.</li>
+          <li>Two-week calendar, no picker to open.</li>
+          <li>Taken slots dimmed, not hidden.</li>
+        </ol></figcaption>
+    </figure>
+    <figure class="shot rv">
+      <div class="phone wf" role="img" aria-label="Wireframe: confirmation"><div class="screen no-tab">
+        <div class="sb">9:41</div>
+        <div class="w-l" style="width:28%"></div>
+        <div class="w-l xl" style="width:62%"></div>
+        <div class="w-pill on" style="height:6px;width:100%"></div>
+        <div class="w-b" style="gap:10px"><div class="w-row"><div class="w-l" style="width:30%"></div><div class="spacer"></div><div class="w-l d" style="width:40%"></div></div><div class="w-row"><div class="w-l" style="width:22%"></div><div class="spacer"></div><div class="w-l d" style="width:46%"></div></div><div class="w-row"><div class="w-l" style="width:26%"></div><div class="spacer"></div><div class="w-l d" style="width:50%"></div></div><div class="w-row"><div class="w-l" style="width:30%"></div><div class="spacer"></div><div class="w-l d" style="width:36%"></div></div></div>
+        <div class="w-b"><div class="w-row"><div class="grow"><div class="w-l d" style="width:80%"></div><div class="w-l" style="width:55%"></div></div><div class="w-pill on" style="width:30px;height:18px"></div></div></div>
+        <div class="spacer"></div>
+        <div class="w-btn">Confirmar turno</div>
+        <div class="w-l" style="width:70%;align-self:center"></div>
+        <span class="pin" style="top:108px;right:8px">1</span>
+        <span class="pin" style="top:236px;right:8px">2</span>
+        <span class="pin" style="bottom:62px;right:8px">3</span>
+      </div></div>
+      <figcaption><b>Step 3 · Confirmation</b>
+        <ol class="notes">
+          <li>A full summary before confirming.</li>
+          <li>Reminder switched on by default.</li>
+          <li>A single primary button with the cancellation policy below.</li>
+        </ol></figcaption>
+    </figure>
+  </div>
+</div></div></div></section>
+<section class="cs" id="decisions" aria-labelledby="decisions-h" data-label="Decisions"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>06</span>Decisions</p><h2 id="decisions-h">From wireframe to interface.</h2><div class="cs-raw"><p class="lede">Walking the flow through the proto-personas and usability heuristics, I changed three things.</p>
+  <div class="indent">
+    <div class="decision rv">
+      <div><span class="k">Before</span><h3 class="as-h4">Native date picker</h3><p>It opened a date wheel and only then showed whether there were slots. Many days turned out empty.</p></div>
+      <div><span class="k">After</span><h4 class="as-h4">Two-week calendar in view</h4><p>Days with no slots are dimmed from the start, avoiding the back-and-forth of "nothing on this day".</p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k">Before</span><h4 class="as-h4">Confirmation via toast</h4><p>A two-second notice said "Booked". Easy to miss, especially for Roberto.</p></div>
+      <div><span class="k">After</span><h4 class="as-h4">Success screen with the summary</h4><p>A full screen with the appointment, the address and "Add to calendar". There's no doubt it went through.</p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k">Before</span><h4 class="as-h4">Family hidden in the profile</h4><p>To book for someone else you had to go to Profile, switch user and come back.</p></div>
+      <div><span class="k">After</span><h4 class="as-h4">"Who is it for?" at the start</h4><p>One question at the start of the flow, skipped when the account has no family members.</p></div>
+    </div>
+  </div>
+</div></div></div></section>
+<section class="cs" id="design-system" aria-labelledby="design-system-h" data-label="Design system"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>07</span>Design system</p><h2 id="design-system-h">Calm, clear and accessible.</h2><div class="cs-raw"><p class="lede">A trustworthy blue for actions, warm neutrals to lower anxiety and supporting colors only for categories.</p>
+  <div class="indent">
+    <h3 class="as-h3 sub rv">Color</h3>
+    <div class="swatches rv">
+      <div class="sw"><i style="background:#1d6ae5"></i><div><b>Turno blue</b><code>#1D6AE5</code><span class="aa">White 4.95:1 · AA</span></div></div>
+      <div class="sw"><i style="background:#1558c0"></i><div><b>Deep blue</b><code>#1558C0</code><span class="aa">Text 6.09:1 · AA</span></div></div>
+      <div class="sw"><i style="background:#0b7a6b"></i><div><b>Health green</b><code>#0B7A6B</code><span class="aa">White 5.24:1 · AA</span></div></div>
+      <div class="sw"><i style="background:#f5a524"></i><div><b>Amber</b><code>#F5A524</code><span class="aa">With ink 9.46:1</span></div></div>
+      <div class="sw"><i style="background:#0d0e10"></i><div><b>Ink</b><code>#0D0E10</code></div></div>
+      <div class="sw"><i style="background:#f6f6f4"></i><div><b>Background</b><code>#F6F6F4</code></div></div>
+    </div>
+    <h3 class="as-h3 sub rv">Typography</h3>
+    <div class="rv">
+      <div class="type-row"><small>Display · Inter Tight 800 · 32</small><span class="s" style="font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-0.04em;line-height:1.1">Elegí día y horario</span></div>
+      <div class="type-row"><small>Title · Inter Tight 700 · 20</small><span class="s" style="font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.02em">Dra. Paula Ríos</span></div>
+      <div class="type-row"><small>Body · Inter 400 · 16</small><span class="s" style="font-size:16px">Clínica médica · Consultorio 4</span></div>
+      <div class="type-row"><small>Label · Inter 600 · 13</small><span class="s" style="font-size:13px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase">Próximo turno</span></div>
+    </div>
+    <h3 class="as-h3 sub rv">Components</h3>
+    <div class="comp rv">
+      <span class="u-btn brand">Confirmar turno</span>
+      <span class="u-btn">Continuar</span>
+      <span class="u-btn ghost">Agregar al calendario</span>
+      <span class="u-chip on">Clínica médica</span>
+      <span class="u-chip">Pediatría</span>
+      <span class="u-slot on">10:30</span>
+      <span class="u-slot">11:00</span>
+      <span class="u-slot off">11:30</span>
+      <div class="u-card brand"><span class="u-k">Próximo turno</span><div style="font-weight:700;font-size:15px;margin-top:4px">Dra. Paula Ríos</div><small style="font-size:12px">Jue 12 nov · 10:30</small></div>
+    </div>
+    <h3 class="as-h3 sub rv">Accessibility</h3>
+    <div class="grid g2">
+      <div class="card rv"><ul class="list">
+        <li>AA contrast on every text and button</li>
+        <li>Touch targets of at least 48 × 48 px</li>
+        <li>Supports the system's large text setting</li>
+      </ul></div>
+      <div class="card rv"><ul class="list">
+        <li>Information never relies on color alone: taken slots are also struck through</li>
+        <li>Clear labels for screen readers</li>
+        <li>Plain language, no medical or admin jargon</li>
+      </ul></div>
+    </div>
+  </div>
+</div></div></div></section>
+<section class="cs" id="final-ui" aria-labelledby="final-ui-h" data-label="Final UI"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>08</span>Final UI</p><h2 id="final-ui-h">Three taps and done.</h2><div class="cs-raw"><p class="lede">The full journey in high fidelity: from home to confirmation.</p>
+  <p class="swipe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M15 8l4 4-4 4M9 8l-4 4 4 4"/></svg>Swipe to see the screens</p>
+  <div class="screens" tabindex="0" role="region" aria-label="Screens, group 2">
+    
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Home with the next appointment and four shortcuts"><div class="screen">
+        <div class="sb">9:41</div>
+        <div class="u-row"><div class="t"><span class="u-hi">Hola,</span><p class="u-h1">Martina</p></div><span style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#9cc6ff,#1d6ae5)"></span></div>
+        <div class="u-card brand" style="padding:13px">
+          <span class="u-k">Próximo turno</span>
+          <div style="font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:-0.03em;margin-top:4px">Dra. Paula Ríos</div>
+          <small class="u-sm">Clínica médica · Consultorio 4</small>
+          <div class="u-row" style="margin-top:10px"><span class="u-pill">Jue 12 nov · 10:30</span><span class="spacer"></span><span class="u-pill" style="background:#fff;color:var(--brand)">Check-in</span></div>
+        </div>
+        <p class="u-h2" style="margin-top:4px">¿Qué necesitás?</p>
+        <div class="u-g2">
+          <div class="u-tile"><span class="u-ico">+</span><div><b>Reservar</b><span class="u-sm">Nuevo turno</span></div></div>
+          <div class="u-tile"><span class="u-ico" style="background:#0b7a6b">R</span><div><b>Recetas</b><span class="u-sm">2 activas</span></div></div>
+          <div class="u-tile"><span class="u-ico" style="background:#5b4fd8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7h10M7 12h10M7 17h6"/></svg></span><div><b>Estudios</b><span class="u-sm">Resultados</span></div></div>
+          <div class="u-tile"><span class="u-ico" style="background:#f5a524;color:#0d0e10">♥</span><div><b>Cobertura</b><span class="u-sm">OSEP · Plan 2</span></div></div>
+        </div>
+        <div class="u-tab">
+          <span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Inicio</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Turnos</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/></svg>Recetas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Perfil</span>
+        </div>
+      </div></div>
+      <figcaption><b>Home</b><span>Next appointment and check-in, always in view.</span></figcaption>
+    </figure>
+    
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Step 1: search for a specialty and doctors"><div class="screen no-tab">
+        <div class="sb">9:41</div>
+        <span class="u-step">Paso 1 de 3</span>
+        <p class="u-h1">¿Con quién?</p>
+        <div class="u-prog"><i style="width:33%"></i></div>
+        <div class="u-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Especialidad o profesional</div>
+        <div class="u-chips"><span class="u-chip on">Clínica médica</span><span class="u-chip">Pediatría</span><span class="u-chip">Dermatología</span></div>
+        <div class="u-card"><div class="u-row"><span class="u-ico" style="border-radius:50%;background:#c9dcff;color:#1558c0">PR</span><div class="t"><b>Dra. Paula Ríos</b><small>Clínica médica · 4,9 ★</small></div></div><div class="u-row" style="margin-top:8px"><span class="u-pill soft">Próximo: jue 12 · 10:30</span><span class="spacer"></span><span class="u-pill ok">OSEP</span></div></div>
+        <div class="u-card"><div class="u-row"><span class="u-ico" style="border-radius:50%;background:#bfeee4;color:#0b7a6b">MS</span><div class="t"><b>Dr. Martín Sosa</b><small>Clínica médica · 4,7 ★</small></div></div><div class="u-row" style="margin-top:8px"><span class="u-pill soft">Próximo: vie 13 · 09:00</span><span class="spacer"></span><span class="u-pill ok">OSEP</span></div></div>
+        <div class="u-card"><div class="u-row"><span class="u-ico" style="border-radius:50%;background:#e8e6fb;color:#4a3fc0">LG</span><div class="t"><b>Dra. Laura Gil</b><small>Clínica médica · 4,8 ★</small></div></div><div class="u-row" style="margin-top:8px"><span class="u-pill soft">Próximo: lun 16 · 15:30</span></div></div>
+      </div></div>
+      <figcaption><b>Step 1 · Who with?</b><span>Next slot and coverage without opening the detail.</span></figcaption>
+    </figure>
+    
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Step 2: two-week calendar and available times"><div class="screen no-tab">
+        <div class="sb">9:41</div>
+        <span class="u-step">Paso 2 de 3</span>
+        <p class="u-h1">Elegí día y horario</p>
+        <div class="u-prog"><i style="width:66%"></i></div>
+        <div class="u-card">
+          <div class="u-row" style="margin-bottom:6px"><b class="t" style="font-size:12px">Noviembre 2026</b><span style="color:#8b9096">‹ ›</span></div>
+          <div class="u-cal">
+            <span class="h">L</span><span class="h">M</span><span class="h">M</span><span class="h">J</span><span class="h">V</span><span class="h">S</span><span class="h">D</span>
+            <span>9</span><span>10</span><span>11</span><span class="on">12</span><span>13</span><span class="off">14</span><span class="off">15</span>
+            <span>16</span><span>17</span><span class="off">18</span><span>19</span><span>20</span><span class="off">21</span><span class="off">22</span>
+          </div>
+        </div>
+        <p class="u-h2">Horarios disponibles</p>
+        <div class="u-g3"><span class="u-slot">09:00</span><span class="u-slot">09:30</span><span class="u-slot off">10:00</span><span class="u-slot on">10:30</span><span class="u-slot">11:00</span><span class="u-slot off">11:30</span></div>
+        <div class="spacer"></div>
+        <span class="u-btn">Continuar</span>
+      </div></div>
+      <figcaption><b>Step 2 · Day and time</b><span>Days without slots and taken times, dimmed.</span></figcaption>
+    </figure>
+    
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Step 3: appointment summary and WhatsApp reminder"><div class="screen no-tab">
+        <div class="sb">9:41</div>
+        <span class="u-step">Paso 3 de 3</span>
+        <p class="u-h1">Revisá y confirmá</p>
+        <div class="u-prog"><i style="width:100%"></i></div>
+        <div class="u-card">
+          <dl class="u-dl">
+            <div><dt>Paciente</dt><dd>Martina González</dd></div>
+            <div><dt>Profesional</dt><dd>Dra. Paula Ríos</dd></div>
+            <div><dt>Fecha</dt><dd>Jue 12 nov · 10:30</dd></div>
+            <div><dt>Lugar</dt><dd>Consultorio 4</dd></div>
+            <div><dt>Cobertura</dt><dd>OSEP · Plan 2</dd></div>
+          </dl>
+        </div>
+        <div class="u-card soft"><div class="u-row"><div class="t"><b>Recordatorio por WhatsApp</b><small style="color:var(--brand-ink)">24 h antes del turno</small></div><span class="u-toggle"></span></div></div>
+        <div class="spacer"></div>
+        <span class="u-btn brand">Confirmar turno</span>
+        <span class="u-sm" style="text-align:center">Podés cancelar sin costo hasta 12 h antes</span>
+      </div></div>
+      <figcaption><b>Step 3 · Confirmation</b><span>The whole appointment at a glance before confirming.</span></figcaption>
+    </figure>
+    
+    <figure class="shot rv">
+      <div class="phone" role="img" aria-label="Success screen: appointment booked"><div class="screen no-tab">
+        <div class="sb">9:41</div>
+        <div class="spacer"></div>
+        <div class="u-center">
+          <span class="u-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
+          <p class="u-h1" style="margin-top:6px">¡Listo, Martina!</p>
+          <span class="u-hi">Tu turno quedó reservado</span>
+        </div>
+        <div class="u-card" style="margin-top:6px"><div class="u-row"><span class="u-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div class="t"><b>Jueves 12 de noviembre, 10:30</b><small>Dra. Paula Ríos · Consultorio 4</small></div></div></div>
+        <div class="u-card soft"><b style="font-size:11px">El día del turno</b><span class="u-sm" style="color:var(--brand-ink)">Cuando llegues, hacé check-in desde el inicio. Sin fila en recepción.</span></div>
+        <div class="spacer"></div>
+        <span class="u-btn ghost">Agregar al calendario</span>
+        <span class="u-btn">Volver al inicio</span>
+      </div></div>
+      <figcaption><b>Booked</b><span>A confirmation you can't miss.</span></figcaption>
+    </figure>
+  </div>
+  <div class="cta-row center rv"><a class="btn-c brand" href="../../casos/prototipos/turno.html?lang=en">Try the interactive prototype<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+</div></div></div></section>
+<section class="cs" id="validation" aria-labelledby="validation-h" data-label="Validation"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>09</span>Validation</p><h2 id="validation-h">Heuristic evaluation of the prototype.</h2><div class="cs-raw"><p class="lede">Before taking it to users, I evaluated the interactive prototype against Nielsen's 10 heuristics and walked through the main tasks step by step: booking, rescheduling, cancelling, booking for a family member and checking in. Each issue has a severity rating, and I fixed the most serious ones in the prototype.</p>
+  <div class="indent">
+    <div class="grid g4 metrics">
+      <div class="card metric rv"><b>6</b><span>issues found</span></div>
+      <div class="card metric rv"><b>5</b><span>fixed in the prototype</span></div>
+      <div class="card metric rv"><b>2</b><span>high severity (3)</span></div>
+      <div class="card metric rv"><b>10</b><span>heuristics reviewed</span></div>
+    </div>
+    <h3 class="as-h3 sub rv">Findings</h3>
+    <div class="scroll-x" tabindex="0" role="region" aria-label="Table 3, scrollable">
+      <table class="tbl">
+        <thead><tr><th scope="col">#</th><th scope="col">Issue and fix</th><th scope="col">Heuristic</th><th scope="col">Sev.</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>You could book two appointments for the same person at the same time with different doctors.<small>Times you already have booked are marked "Otro turno" and can't be picked.</small></td><td>H5 · Error prevention</td><td><span class="sev s3">3</span></td><td><span class="estado ok">Fixed</span></td></tr>
+          <tr><td>2</td><td>When rescheduling, the current time wasn't shown: you had to remember it.<small>"Your current appointment" now appears on top and the current slot is marked in the grid.</small></td><td>H6 · Recognition rather than recall</td><td><span class="sev s3">3</span></td><td><span class="estado ok">Fixed</span></td></tr>
+          <tr><td>3</td><td>Check-in was available at any time on the day, even hours before or after.<small>It opens 60 min before and closes 30 min after; otherwise it shows when it opens.</small></td><td>H5 · Error prevention</td><td><span class="sev s2">2</span></td><td><span class="estado ok">Fixed</span></td></tr>
+          <tr><td>4</td><td>The note about grey days disappeared because the app pre-selected the first free day.<small>The note now always sits below the calendar.</small></td><td>H10 · Help and documentation</td><td><span class="sev s2">2</span></td><td><span class="estado ok">Fixed</span></td></tr>
+          <tr><td>5</td><td>"Larger text" enlarged the content but not the bottom bar.<small>It now enlarges the bottom bar too.</small></td><td>H4 · Consistency and standards</td><td><span class="sev s1">1</span></td><td><span class="estado ok">Fixed</span></td></tr>
+          <tr><td>6</td><td>Cancelling can't be undone (though it asks for confirmation first).<small>Pending: add "Undo" while the slot is still free.</small></td><td>H3 · User control and freedom</td><td><span class="sev s1">1</span></td><td><span class="estado pend">Pending</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scroll-hint">Swipe the table to see every column →</p>
+    <p class="nota">Severity on Nielsen's scale: 1 cosmetic, 2 minor, 3 major, 4 catastrophic. I found no severity-4 issues.</p>
+    <h3 class="as-h3 sub rv">Before and after</h3>
+    <div class="decision rv">
+      <div><span class="k">Before</span><p>You could book two appointments for the same person at the same time with different doctors.</p></div>
+      <div><span class="k">After</span><p>Times you already have booked are marked "Otro turno" and can't be picked.</p></div>
+    </div>
+    <div class="decision rv">
+      <div><span class="k">Before</span><p>When rescheduling, the current time wasn't shown: you had to remember it.</p></div>
+      <div><span class="k">After</span><p>"Your current appointment" now appears on top and the current slot is marked in the grid.</p></div>
+    </div>
+    <h3 class="as-h3 sub rv">Next step: user testing</h3>
+    <p class="body rv">An expert review finds known usability issues, but it doesn't measure how real people behave. The next step is a moderated test with the fixed prototype, using these targets and tasks:</p>
+    <div class="grid g4 metrics">
+      <div class="card metric rv"><b>&lt; 60 s</b><span>to book an appointment end to end</span></div>
+      <div class="card metric rv"><b>≥ 90 %</b><span>of tasks completed unaided</span></div>
+      <div class="card metric rv"><b>SUS ≥ 80</b><span>on the System Usability Scale</span></div>
+      <div class="card metric rv"><b>−30 %</b><span>no-shows, to be measured with the practice</span></div>
+    </div>
+    <h3 class="as-h3 sub rv">User test tasks</h3>
+    <div class="scroll-x" tabindex="0" role="region" aria-label="Table 4, scrollable">
+      <table class="tbl">
+        <thead><tr><th scope="col">#</th><th scope="col">Task</th><th scope="col">Success if…</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Book a GP appointment for Thursday morning.</td><td>Reaches the success screen without going back more than once.</td></tr>
+          <tr><td>2</td><td>Move that appointment to Friday.</td><td>Finds "Reschedule" in under 20 s.</td></tr>
+          <tr><td>3</td><td>Book an appointment for your mother.</td><td>Picks the right family member before step 1.</td></tr>
+          <tr><td>4</td><td>You've arrived: let them know you're here.</td><td>Checks in from the home screen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="body rv" style="margin-top:18px"><b>Participants:</b> 5 people, 3 aged 25–45 and 2 over 65, who booked at least one medical appointment in the past year.</p>
+  </div>
+</div></div></div></section>
+<section class="cs" id="learnings" aria-labelledby="learnings-h" data-label="Learnings"><div class="wrap"><div class="cs-g"><p class="cs-l"><span>10</span>Learnings</p><h2 id="learnings-h">What I'm taking away.</h2><div class="cs-raw">
+  <div class="indent grid g2">
+    <div class="card rv"><span class="k">Learnings</span>
+      <ul class="list">
+        <li>Designing for the most demanding user (Roberto) improved the experience for everyone.</li>
+        <li>Confirmation is part of the product, not a finishing touch.</li>
+        <li>Showing what's unavailable saves more steps than hiding it.</li>
+      </ul></div>
+    <div class="card rv"><span class="k">Next steps</span>
+      <ul class="list">
+        <li>Run the test with real older adults and iterate.</li>
+        <li>Waiting list: alert when a slot frees up.</li>
+        <li>Web panel so the front desk can see check-ins and gaps.</li>
+      </ul></div>
+  </div>
+</div></div></div></section>
+</article>
+<aside class="nx" aria-label="Next case"><div class="wrap"><a class="nx-a" href="../../work/ruta-del-vino/"><span class="nx-t"><span class="nx-k">Next case</span><span class="nx-n">Ruta del Vino</span><span class="nx-d">A winery day planned as one route, with price, time and transport solved before leaving the hotel.</span></span><div class="cover " aria-hidden="true" style="background:#f3dfe3;view-transition-name:cover-ruta-del-vino"><picture class="l ph" style="--x:8;--y:14;--w:25;--mx:8;--my:12;--mw:40;--i:0"><source type="image/avif" srcset="../../assets/img/vino-home-320.avif 320w, ../../assets/img/vino-home-640.avif 640w" sizes="(min-width: 1400px) 164px, (min-width: 701px) 13vw, 40vw"/><img src="../../assets/img/vino-home-640.webp" srcset="../../assets/img/vino-home-320.webp 320w, ../../assets/img/vino-home-640.webp 640w" sizes="(min-width: 1400px) 164px, (min-width: 701px) 13vw, 40vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph" style="--x:37.5;--y:6;--w:25;--mx:53;--my:24;--mw:40;--i:1"><source type="image/avif" srcset="../../assets/img/vino-winery-320.avif 320w, ../../assets/img/vino-winery-640.avif 640w" sizes="(min-width: 1400px) 164px, (min-width: 701px) 13vw, 40vw"/><img src="../../assets/img/vino-winery-640.webp" srcset="../../assets/img/vino-winery-320.webp 320w, ../../assets/img/vino-winery-640.webp 640w" sizes="(min-width: 1400px) 164px, (min-width: 701px) 13vw, 40vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture><picture class="l ph no-m" style="--x:67;--y:12;--w:25;--mx:0;--my:0;--mw:0;--i:2"><source type="image/avif" srcset="../../assets/img/vino-route-320.avif 320w, ../../assets/img/vino-route-640.avif 640w" sizes="(min-width: 1400px) 164px, (min-width: 701px) 13vw, 1vw"/><img src="../../assets/img/vino-route-640.webp" srcset="../../assets/img/vino-route-320.webp 320w, ../../assets/img/vino-route-640.webp 640w" sizes="(min-width: 1400px) 164px, (min-width: 701px) 13vw, 1vw" width="1170" height="2436" alt="" loading="lazy" decoding="async"/></picture></div></a></div></aside>
+</main>
+<footer class="ft"><div class="wrap ft-in">
+<p>© 2026 Lucía Miranda</p>
+<p class="ft-c">Set in Chivo and Faustina, by Omnibus-Type, Buenos Aires.</p>
+<ul><li><a href="https://www.linkedin.com/in/lucia-miranda-6569841b9" target="_blank" rel="noopener">LinkedIn<span class="vh"> (opens in a new tab)</span></a></li><li><a href="mailto:luciacmiranda9@gmail.com">Email</a></li><li><a href="#top">Back to top</a></li></ul>
+</div></footer>
+<div class="toast" role="status" aria-live="polite"></div>
+<script src="../../assets/js/site.js?v=013704ae" defer></script>
+</body>
+</html>
