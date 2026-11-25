@@ -29,7 +29,8 @@ const OLD = {
   'casos/alcancia.html': 'alcancia'
 };
 
-const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
+// Git en Windows entrega las fuentes con CRLF: se normalizan para que el resultado sea el mismo en cualquier equipo.
+const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8').replace(/\r\n/g, '\n');
 const write = (p, s) => {
   const f = path.join(ROOT, p);
   fs.mkdirSync(path.dirname(f), { recursive: true });
