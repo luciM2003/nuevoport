@@ -1,4 +1,5 @@
-import { figure, phones, table, evidence, decisions, swatches, contrast, metrics, ul } from '../lib/html.mjs';
+import { figure, table, evidence, decisions, swatches, contrast, metrics, ul } from '../lib/html.mjs';
+import { phones } from '../lib/phones.mjs';
 import { flow } from '../lib/diagrams.mjs';
 
 export default {
@@ -22,8 +23,8 @@ export default {
         'Cuatro tableros y seis planillas, reemplazados por un portal que se actualiza solo y le muestra a cada persona lo que necesita.'
       ),
       coverAlt: t(
-        'Overview of the quality portal on desktop and the early detection screen on a phone.',
-        'Resumen general del portal de calidad en escritorio y la pantalla de detección temprana en un celular.'
+        'The quality portal on a laptop and a phone: overview, early detection and audits.',
+        'El portal de calidad en una computadora y un teléfono: resumen general, detección temprana y auditorías.'
       ),
       overview: [
         [t('Industry', 'Industria'), t('Automotive, quality and customer experience', 'Automotriz, calidad y experiencia de cliente')],
@@ -168,15 +169,15 @@ export default {
           id: 'solution',
           label: t('Final solution', 'Solución final'),
           title: t('The screens the team uses.', 'Las pantallas que usa el equipo.'),
-          body: `${figure(ctx, 'byd-overview', { title: t('Overview', 'Resumen general'), text: t('What was spread over four dashboards, on one screen and with the same filters.', 'Lo que estaba repartido en cuatro tableros, en una sola pantalla y con los mismos filtros.'), alt: t('Overview with factory NPS, aftersales NPS, complaints, Mystery Shopper, deliveries and audits', 'Resumen con NPS de fábrica, NPS de postventa, reclamos, Mystery Shopper, entregas y auditorías') })}
-          ${figure(ctx, 'byd-early-detection', { title: t('Early detection', 'Detección temprana'), text: t('Acting matters more than logging: the main button is a call.', 'La acción importa más que el registro: el botón principal es llamar.'), alt: t('Reported cases with state, description and a button to call the customer', 'Casos reportados con estado, descripción y botón para llamar al cliente') })}
+          body: `${figure(ctx, 'byd-overview', { url: 'lucim2003.github.io/byd-calidad-demo', title: t('Overview', 'Resumen general'), text: t('What was spread over four dashboards, on one screen and with the same filters.', 'Lo que estaba repartido en cuatro tableros, en una sola pantalla y con los mismos filtros.'), alt: t('Overview with factory NPS, aftersales NPS, complaints, Mystery Shopper, deliveries and audits', 'Resumen con NPS de fábrica, NPS de postventa, reclamos, Mystery Shopper, entregas y auditorías') })}
+          ${figure(ctx, 'byd-early-detection', { url: 'lucim2003.github.io/byd-calidad-demo', title: t('Early detection', 'Detección temprana'), text: t('Acting matters more than logging: the main button is a call.', 'La acción importa más que el registro: el botón principal es llamar.'), alt: t('Reported cases with state, description and a button to call the customer', 'Casos reportados con estado, descripción y botón para llamar al cliente') })}
           ${phones(ctx, t('The portal on the phone', 'El portal en el celular'), [
             { img: 'byd-m-early-detection', title: t('From the showroom floor', 'Desde el salón'), text: t('Salespeople report without going back to a desk.', 'El vendedor avisa sin volver a un escritorio.'), alt: t('Early detection on a phone', 'Detección temprana en un celular') },
             { img: 'byd-m-overview', title: t('The same overview', 'El mismo resumen'), text: t('Installed on the home screen like any other app.', 'Instalado en la pantalla de inicio como una app más.'), alt: t('Overview on a phone', 'Resumen general en un celular') }
-          ])}
-          ${figure(ctx, 'byd-surveys', { title: t('Surveys', 'Encuestas'), text: t('The NPS formula is written at the top, so nobody has to guess where the number comes from.', 'La fórmula del NPS está escrita arriba, para que nadie adivine de dónde sale el número.'), alt: t('BYD app surveys with NPS, promoters, passives, detractors and monthly chart', 'Encuestas de la app BYD con NPS, promotores, neutros, detractores y gráfico mensual') })}
-          ${figure(ctx, 'byd-aftersales', { title: t('Aftersales', 'Postventa'), text: t('The comments sit next to the score that explains them.', 'Los comentarios están junto al puntaje que los explica.'), alt: t('Aftersales with NPS, distribution bar and comments grouped by score', 'Postventa con NPS, barra de distribución y comentarios por puntaje') })}
-          ${figure(ctx, 'byd-sync', { title: t('Sync', 'Sincronización'), text: t('It starts by saying that nobody needs to use it. It is the fallback if the automatic process stops.', 'Empieza aclarando que no hace falta usarla. Es el respaldo si el proceso automático se detiene.'), alt: t('Sync screen with the six spreadsheets the portal recognizes', 'Pantalla de sincronización con las seis planillas que reconoce el portal') })}`
+          ], { bg: 'linear-gradient(160deg,#2a6fb5 0,#1b5592 60%,#143f70 100%)', fg: '#fff' })}
+          ${figure(ctx, 'byd-surveys', { url: 'lucim2003.github.io/byd-calidad-demo', title: t('Surveys', 'Encuestas'), text: t('The NPS formula is written at the top, so nobody has to guess where the number comes from.', 'La fórmula del NPS está escrita arriba, para que nadie adivine de dónde sale el número.'), alt: t('BYD app surveys with NPS, promoters, passives, detractors and monthly chart', 'Encuestas de la app BYD con NPS, promotores, neutros, detractores y gráfico mensual') })}
+          ${figure(ctx, 'byd-aftersales', { url: 'lucim2003.github.io/byd-calidad-demo', title: t('Aftersales', 'Postventa'), text: t('The comments sit next to the score that explains them.', 'Los comentarios están junto al puntaje que los explica.'), alt: t('Aftersales with NPS, distribution bar and comments grouped by score', 'Postventa con NPS, barra de distribución y comentarios por puntaje') })}
+          ${figure(ctx, 'byd-sync', { url: 'lucim2003.github.io/byd-calidad-demo', title: t('Sync', 'Sincronización'), text: t('It starts by saying that nobody needs to use it. It is the fallback if the automatic process stops.', 'Empieza aclarando que no hace falta usarla. Es el respaldo si el proceso automático se detiene.'), alt: t('Sync screen with the six spreadsheets the portal recognizes', 'Pantalla de sincronización con las seis planillas que reconoce el portal') })}`
         },
         {
           id: 'implementation',

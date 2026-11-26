@@ -15,6 +15,108 @@
     })
   );
 
+  // ------------------------------------------------------------ menú y grupos plegables en celular
+  const menu = $('.mn');
+  if (menu) {
+    const close = (focus) => { if (menu.open) { menu.open = false; if (focus) $('summary', menu).focus(); } };
+    menu.addEventListener('click', (e) => { if (e.target.closest('a')) close(); });
+    document.addEventListener('click', (e) => { if (!menu.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(true); });
+  }
+  const groups = $$('details.sk');
+  if (groups.length) {
+    const small = matchMedia('(max-width: 700px)');
+    const fold = () => groups.forEach((d, i) => {
+      d.open = !small.matches || i === 0;
+      $('summary', d).tabIndex = small.matches ? 0 : -1;
+    });
+    fold();
+    small.addEventListener('change', fold);
+  }
+
+  // ------------------------------------------------------------ movimiento
+  // Las portadas cuentan una historia en pasos. Se reproducen sólo a la vista, se pueden pausar
+  // (la elección queda guardada) y arrancan quietas si el sistema pide menos movimiento o datos.
+  let motion = null;
+  try { motion = localStorage.getItem('lm-motion'); } catch (e) { /* sin almacenamiento */ }
+  if (!motion) motion = matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.connection && navigator.connection.saveData) ? 'off' : 'on';
+  const scenes = [];
+  const toggles = $$('button[data-motion]');
+  const setMotion = (m, keep) => {
+    motion = m;
+    root.dataset.motion = m;
+    toggles.forEach((b) => b.setAttribute('aria-label', m === 'on' ? b.dataset.lOn : b.dataset.lOff));
+    if (keep) try { localStorage.setItem('lm-motion', m); } catch (e) { /* sin almacenamiento */ }
+    scenes.forEach((sync) => sync());
+  };
+  toggles.forEach((b) => b.addEventListener('click', () => setMotion(motion === 'on' ? 'off' : 'on', true)));
+  if ('IntersectionObserver' in window)
+    $$('[data-play]').forEach((el) => {
+      const total = Number(el.dataset.play);
+      const steps = $$('.stp li', el.closest('.ft-md, .cp-md') || el);
+      let frames = null;
+      let hot = [];
+      let k = 0;
+      let seen = false;
+      let timer;
+      const prepare = () => {
+        if (frames) return;
+        $$('template[data-frames]', el).forEach((t) => t.replaceWith(t.content));
+        frames = $$('.fr[data-on]', el);
+        hot = $$('[data-hot]', el);
+      };
+      const has = (list) => list.split(' ').includes(String(k));
+      const show = (i) => {
+        k = i % total;
+        frames.forEach((x) => x.classList.toggle('on', has(x.dataset.on)));
+        hot.forEach((x) => x.classList.toggle('hot', has(x.dataset.hot)));
+        steps.forEach((x, n) => x.classList.toggle('on', n === k));
+      };
+      const sync = () => {
+        clearInterval(timer);
+        if (!seen || motion !== 'on') return;
+        prepare();
+        show(k);
+        timer = setInterval(() => show(k + 1), Number(el.dataset.ms));
+      };
+      scenes.push(sync);
+      new IntersectionObserver(([e]) => { seen = e.isIntersecting; sync(); }, { threshold: 0.35 }).observe(el);
+    });
+  setMotion(motion);
+
+  // ------------------------------------------------------------ prototipos dentro del sitio
+  // En pantallas grandes se abren en un teléfono, sin salir de la página. En el celular, a pantalla completa.
+  const lives = $$('a[data-live]');
+  if (lives.length && window.HTMLDialogElement) {
+    const roomy = matchMedia('(min-width: 821px) and (min-height: 600px)');
+    const L = $('.toast').dataset;
+    let lv;
+    const open = (a) => {
+      if (!lv) {
+        lv = document.createElement('dialog');
+        lv.className = 'lv';
+        lv.innerHTML = '<div class="lv-in"><div class="lv-a"><h2></h2><p></p><a target="_blank" rel="noopener"></a></div><span class="dv dv-ph"><span class="dv-b"><span class="dv-s"><span class="dv-f" style="--ar:390/844"><iframe></iframe></span><i class="dv-c"></i></span></span></span><button type="button" class="lv-x"><span></span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>';
+        document.body.append(lv);
+        lv.addEventListener('click', (e) => { if (e.target.closest('.lv-x') || e.target.classList.contains('lv-in') || e.target === lv) lv.close(); });
+        lv.addEventListener('close', () => { $('iframe', lv).src = 'about:blank'; });
+        $('.lv-x span', lv).textContent = L.close;
+        $('.lv-a p', lv).textContent = L.note;
+        $('.lv-a a', lv).textContent = L.full;
+      }
+      lv.setAttribute('aria-label', a.dataset.live);
+      $('h2', lv).textContent = a.dataset.live;
+      $('.lv-a a', lv).href = a.href;
+      $('iframe', lv).title = a.dataset.live;
+      $('iframe', lv).src = a.href + (a.href.includes('?') ? '&' : '?') + 'embed=1';
+      lv.showModal();
+    };
+    lives.forEach((a) => a.addEventListener('click', (e) => {
+      if (!roomy.matches || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      open(a);
+    }));
+  }
+
   // ------------------------------------------------------------ copiar correo
   const toast = $('.toast');
   let timer;

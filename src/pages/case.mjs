@@ -1,6 +1,6 @@
 import { SITE } from '../content/site.mjs';
 import { casePath, dl, esc, ext, icon, plain } from '../lib/html.mjs';
-import { cover } from '../covers.mjs';
+import { cover, coverControls } from '../covers.mjs';
 import { page, PERSON } from './layout.mjs';
 
 const pick = (ctx, o) => o[ctx.lang];
@@ -14,7 +14,7 @@ export function casePage(ctx, c, next, versions) {
   const num = (i) => String(i + 1).padStart(2, '0');
   const toc = d.sections.map((s, i) => `<li><a href="#${s.id}"><span>${num(i)}</span>${s.label}</a></li>`).join('');
   const links = (d.links || [])
-    .map((l, i) => (l.internal ? `<a class="btn${i ? ' btn-o' : ''}" href="${l.href}">${l.label}${icon('up')}</a>` : ext(ctx, l.href, l.label, `btn${i ? ' btn-o' : ''}`)))
+    .map((l, i) => (l.internal ? `<a class="btn${i ? ' btn-o' : ''}" href="${l.href}" data-live="${name}">${icon('hand')}${l.label}</a>` : ext(ctx, l.href, l.label, `btn${i ? ' btn-o' : ''}`)))
     .join('');
   const exec = `<section class="ex" aria-labelledby="ex-h"><div class="wrap"><h2 id="ex-h" class="ex-h">${t('In one minute', 'En un minuto')}</h2><div class="ex-g"><div><h3>${t('Problem', 'Problema')}</h3><p>${d.exec.problem}</p></div><div><h3>${t('Approach', 'Enfoque')}</h3><p>${d.exec.approach}</p></div><div><h3>${t('Outcome', 'Resultado')}</h3><p>${d.exec.outcome}</p></div></div></div></section>`;
   const sections = d.sections
@@ -29,7 +29,7 @@ export function casePage(ctx, c, next, versions) {
 <h1>${name}</h1>
 <p class="ch-tg">${d.tagline}</p>
 </div>
-<div class="wrap ch-cv">${cover(ctx, c.slug, { alt: d.coverAlt, eager: true })}</div>
+<div class="wrap ch-cv"><div class="ft-md">${cover(ctx, c.slug, { alt: d.coverAlt, eager: true, play: true })}${coverControls(ctx, c.slug)}</div></div>
 <div class="wrap ch-ov"><section aria-labelledby="ov-h"><h2 id="ov-h" class="vh">${t('Project overview', 'Resumen del proyecto')}</h2>${dl(d.overview, 'ov')}</section>
 <div class="ch-ln">${links}</div>${d.note ? `<p class="ch-nt">${d.note}</p>` : ''}</div></header>
 <nav class="cb" aria-label="${t('Case sections', 'Secciones del caso')}"><div class="wrap cb-in"><details class="cb-d"><summary><span class="cb-n">${name}</span><span class="cb-s" data-current>${t('Contents', 'Contenido')}</span>${icon('plus')}</summary><ol>${toc}</ol></details><span class="cb-p" aria-hidden="true"><i></i></span></div></nav>

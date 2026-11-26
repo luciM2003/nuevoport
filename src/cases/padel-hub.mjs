@@ -1,4 +1,5 @@
-import { figure, phones, table, evidence, decisions, swatches, contrast, metrics, ul } from '../lib/html.mjs';
+import { figure, table, evidence, decisions, swatches, contrast, metrics, ul } from '../lib/html.mjs';
+import { phones } from '../lib/phones.mjs';
 import { flow } from '../lib/diagrams.mjs';
 
 export default {
@@ -22,8 +23,8 @@ export default {
         'Del mensaje al club a la cancha reservada en cuatro pasos, y una sola vista del día para quien lo gestiona.'
       ),
       coverAlt: t(
-        'Player home and time slots on two phones, in front of the club’s court timeline.',
-        'Inicio y horarios del jugador en dos celulares, delante de la grilla de canchas del club.'
+        'Padel Hub on a phone and a laptop: the player books a court in four steps while the club sees its court timeline, cash and daily overview.',
+        'Padel Hub en un teléfono y una computadora: el jugador reserva en cuatro pasos y el club ve su grilla de canchas, la caja y el resumen del día.'
       ),
       overview: [
         [t('Industry', 'Industria'), t('Sports and bookings', 'Deporte y reservas')],
@@ -179,11 +180,11 @@ export default {
             { img: 'padel-m-summary', title: t('Summary', 'Resumen'), text: t('Total, deposit and what is paid at the club.', 'Total, seña y lo que se paga en el club.'), alt: t('Booking summary with extras, total and 30% deposit', 'Resumen con extras, total y seña del 30%') },
             { img: 'padel-m-matches', title: t('Open matches', 'Partidos abiertos'), text: t('Level, price and spots left.', 'Nivel, precio y lugares.'), alt: t('Open matches with required level and price per player', 'Partidos abiertos con nivel requerido y precio por jugador') },
             { img: 'padel-m-bookings', title: t('My bookings', 'Mis reservas'), text: t('Invite from the same card.', 'Invitar desde la misma tarjeta.'), alt: t('Upcoming bookings with detail and invite buttons', 'Próximas reservas con detalle e invitar') }
-          ]),
-          body: `${figure(ctx, 'padel-timeline', { title: t('Court timeline', 'Grilla de canchas'), text: t('Who plays, at what level, whether they paid and which courts are blocked.', 'Quién juega, con qué nivel, si pagó y qué canchas están bloqueadas.'), alt: t('Timeline of six courts with bookings, a blocked tournament and one under maintenance', 'Grilla de seis canchas con reservas, un torneo bloqueado y una en mantenimiento') })}
-          ${figure(ctx, 'padel-dashboard', { title: t('Daily overview', 'Resumen del día'), text: t('What the manager checks on arrival.', 'Lo que el encargado mira al llegar.'), alt: t('Occupancy, income, active bookings and upcoming slots', 'Ocupación, ingresos, reservas activas y próximos turnos') })}
-          ${figure(ctx, 'padel-cash', { title: t('Cash', 'Caja'), text: t('Income by payment method and the last movements, with a manual entry always at hand.', 'Ingresos por medio de pago y últimos movimientos, con un ingreso manual siempre a mano.'), alt: t('Daily income split by payment method and list of transactions', 'Ingresos del día por medio de pago y lista de transacciones') })}
-          ${figure(ctx, 'padel-clients', { title: t('Clients', 'Clientes'), text: t('Level, matches and account status, one tap away from a message.', 'Nivel, partidos y estado de cuenta, a un toque de un mensaje.'), alt: t('Client list with level, matches and account status', 'Lista de clientes con nivel, partidos y estado de cuenta') })}`
+          ], { bg: 'linear-gradient(160deg,#e6ff7a 0,#d0f53f 50%,#b2dc18 100%)' }),
+          body: `${figure(ctx, 'padel-timeline', { url: 'stitchpadelhubmendoza.vercel.app', title: t('Court timeline', 'Grilla de canchas'), text: t('Who plays, at what level, whether they paid and which courts are blocked.', 'Quién juega, con qué nivel, si pagó y qué canchas están bloqueadas.'), alt: t('Timeline of six courts with bookings, a blocked tournament and one under maintenance', 'Grilla de seis canchas con reservas, un torneo bloqueado y una en mantenimiento') })}
+          ${figure(ctx, 'padel-dashboard', { url: 'stitchpadelhubmendoza.vercel.app', title: t('Daily overview', 'Resumen del día'), text: t('What the manager checks on arrival.', 'Lo que el encargado mira al llegar.'), alt: t('Occupancy, income, active bookings and upcoming slots', 'Ocupación, ingresos, reservas activas y próximos turnos') })}
+          ${figure(ctx, 'padel-cash', { url: 'stitchpadelhubmendoza.vercel.app', title: t('Cash', 'Caja'), text: t('Income by payment method and the last movements, with a manual entry always at hand.', 'Ingresos por medio de pago y últimos movimientos, con un ingreso manual siempre a mano.'), alt: t('Daily income split by payment method and list of transactions', 'Ingresos del día por medio de pago y lista de transacciones') })}
+          ${figure(ctx, 'padel-clients', { url: 'stitchpadelhubmendoza.vercel.app', title: t('Clients', 'Clientes'), text: t('Level, matches and account status, one tap away from a message.', 'Nivel, partidos y estado de cuenta, a un toque de un mensaje.'), alt: t('Client list with level, matches and account status', 'Lista de clientes con nivel, partidos y estado de cuenta') })}`
         },
         {
           id: 'implementation',

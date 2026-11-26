@@ -355,5 +355,6 @@ table.tbl { width: 100%; border-collapse: collapse; min-width: 640px; font-size:
 .u-search { color: #5f646c; }
 .u-tab span, .u-cal .h, .bars-l { color: #5f646c; }
 /* Las pantallas tienen tamaño fijo: fuera de vista no hace falta calcularlas. */
-.screens .screen { content-visibility: auto; }
-@media print { .screens .screen { content-visibility: visible; } }
+/* Los wireframes llevan un contorno de línea, no un teléfono. */
+.phone.wf { background: #fff; box-shadow: inset 0 0 0 2px #bfc4bd, 0 24px 40px -34px rgba(13, 14, 16, .5); padding: 8px; }
+.phone.wf .screen::before { background: #e3e6e1; width: 58px; height: 16px; margin-left: -29px; }

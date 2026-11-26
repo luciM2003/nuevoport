@@ -69,7 +69,7 @@ for (const lang of LANGS) {
     const ink = light(bg) ? '#0d0e10' : '#ffffff';
     const name = c.name[lang];
     await shot(
-      `<div class="og" style="background:${bg};color:${ink}"><div class="tx" style="width:470px"><p class="by" style="margin:0">${c.kind === 'concept' ? t('Concept project', 'Proyecto conceptual') : t('Case study', 'Caso de estudio')}</p><h1 style="font-size:${name.length > 12 ? 68 : 90}px;margin-top:14px">${name}</h1><p style="font-size:29px;margin-top:22px">${c.type[lang]}</p><p class="by">Lucía Miranda<span>${t('Senior UX/UI & Product Designer', 'Diseñadora Senior UX/UI y de Producto')}</span></p></div><div style="position:absolute;left:${c.kind === 'concept' ? 500 : 505}px;top:${c.kind === 'concept' ? 40 : 20}px;width:${c.kind === 'concept' ? 720 : 1080}px">${cover(ctx, c.slug, { alt: '', eager: true, vt: false, scale: 1 }).replace('style="', 'style="aspect-ratio:1.2;')}</div></div>`,
+      `<div class="og" style="background:${bg};color:${ink}"><div class="tx" style="width:470px"><p class="by" style="margin:0">${c.kind === 'concept' ? t('Concept project', 'Proyecto conceptual') : t('Case study', 'Caso de estudio')}</p><h1 style="font-size:${name.length > 12 ? 68 : 90}px;margin-top:14px">${name}</h1><p style="font-size:29px;margin-top:22px">${c.type[lang]}</p><p class="by">Lucía Miranda<span>${t('Senior UX/UI & Product Designer', 'Diseñadora Senior UX/UI y de Producto')}</span></p></div><div style="position:absolute;left:${c.kind === "concept" ? 556 : 505}px;top:${c.kind === "concept" ? 40 : 20}px;width:${c.kind === "concept" ? 660 : 1080}px">${cover(ctx, c.slug, { alt: '', eager: true, vt: false, scale: 1 }).replace('style="', 'style="aspect-ratio:1.2;')}</div></div>`,
       `${c.slug}-${lang}`
     );
   }

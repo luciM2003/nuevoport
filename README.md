@@ -26,3 +26,10 @@ cv             résumé in English and Spanish
 | `npm run og` | Regenerates share images and icons (needs `sharp` and `playwright-core`) |
 
 After editing anything in `src`, run `npm run build && npm test` and commit the result.
+
+## Screens and images
+
+- Covers and case studies show real product interfaces inside devices drawn in CSS (`src/lib/device.mjs`). Covers play their story in steps only while visible, can be paused, and start still when the system asks for reduced motion or data saving.
+- MODO YA screens were captured from the real apps running with sample data and no server: restaurants, people and orders are fictional. The food photos inside them are the brand's own cut-outs.
+- Concept prototypes (`casos/prototipos`) follow the site language. Their photos come from Wikimedia Commons under open licenses; credits are listed in the side panel of each prototype and in `images/fotos/CREDITOS.md`.
+- Masters live in `images/capturas`; `npm run images` produces the AVIF and WebP versions in `assets/img`.

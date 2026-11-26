@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { esc } from '../lib/html.mjs';
+import { phones } from '../lib/phones.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -76,6 +77,55 @@ function fixHeadings(html, start) {
   });
 }
 
+// Pantallas del prototipo que reemplazan a las dibujadas en la sección de interfaz final.
+const FINAL = {
+  turno: {
+    bg: 'linear-gradient(165deg,#eaf1ff 0,#cfe0ff 52%,#a9c8ff 100%)',
+    items: (t) => [
+      ['turno-home', t('Home', 'Inicio'), t('Next appointment and check-in, always in view.', 'Próximo turno y check-in, siempre a la vista.'), t('Home with the next appointment and four shortcuts', 'Inicio con el próximo turno y cuatro accesos')],
+      ['turno-doctor', t('Step 1, who with', 'Paso 1, con quién'), t('Next slot and coverage without opening the detail.', 'Próximo horario y cobertura sin abrir el detalle.'), t('Step 1: search for a specialty and doctors', 'Paso 1: búsqueda de especialidad y profesionales')],
+      ['turno-slot', t('Step 2, day and time', 'Paso 2, día y horario'), t('Days without slots and taken times, dimmed.', 'Días sin turnos y horarios ocupados, atenuados.'), t('Step 2: two-week calendar and available times', 'Paso 2: calendario de dos semanas y horarios disponibles')],
+      ['turno-review', t('Step 3, confirmation', 'Paso 3, confirmación'), t('The whole appointment, and how to get there.', 'El turno completo y cómo llegar.'), t('Step 3: appointment summary, map and WhatsApp reminder', 'Paso 3: resumen del turno, mapa y recordatorio por WhatsApp')],
+      ['turno-done', t('Booked', 'Reservado'), t('A confirmation you can’t miss.', 'Una confirmación imposible de no ver.'), t('Success screen: appointment booked', 'Pantalla de éxito: turno reservado')]
+    ]
+  },
+  'ruta-del-vino': {
+    bg: 'linear-gradient(165deg,#fbeef0 0,#f1d3d9 55%,#dfa9b4 100%)',
+    items: (t) => [
+      ['vino-home', t('Discover', 'Descubrir'), t('Price and first free slot before opening anything.', 'Precio y primer horario libre antes de abrir nada.'), t('Wineries by area with photo, price and next slot', 'Bodegas por zona con foto, precio y próximo horario')],
+      ['vino-winery', t('Choose', 'Elegir'), t('Experience and time on the same screen.', 'Experiencia y horario en la misma pantalla.'), t('Winery detail with experiences and time slots', 'Detalle de bodega con experiencias y horarios')],
+      ['vino-route', t('Plan', 'Armar'), t('Stops, travel time and transport on one line.', 'Paradas, tiempo de viaje y traslado en una línea.'), t('Route of the day with map, stops and travel times', 'Recorrido del día con mapa, paradas y tiempos de viaje')],
+      ['vino-pay', t('Pay once', 'Pagar una vez'), t('Everything in a single payment.', 'Todo en un solo pago.'), t('Payment with the summary of the day', 'Pago con el resumen del día')],
+      ['vino-voucher', t('Go', 'Salir'), t('A voucher that works without signal.', 'Un voucher que funciona sin señal.'), t('Day voucher with a code available offline', 'Voucher del día con un código disponible sin conexión')]
+    ]
+  },
+  alcancia: {
+    bg: 'linear-gradient(165deg,#f1efff 0,#d9d4fb 50%,#b4abf3 100%)',
+    items: (t) => [
+      ['alcancia-home', t('Home', 'Inicio'), t('What is available, how it evolves and the goal.', 'Lo disponible, cómo evoluciona y la meta.'), t('Home with the available amount, its evolution and the goal', 'Inicio con el disponible, su evolución y la meta')],
+      ['alcancia-log', t('Log', 'Cargar'), t('Amount first; the category is suggested.', 'Primero el monto; la categoría se sugiere.'), t('Logging an expense with a keypad and a suggested category', 'Carga de un gasto con teclado y categoría sugerida')],
+      ['alcancia-nudge', t('Nudge', 'Aviso'), t('It explains the consequence, without scolding.', 'Explica la consecuencia, sin retar.'), t('Notice after going over a category, with a way to make up for it', 'Aviso al pasarse en una categoría, con una forma de compensarlo')],
+      ['alcancia-budget', t('Budget', 'Presupuesto'), t('Per category, with its limit in view.', 'Por categoría, con el límite a la vista.'), t('Monthly budget by category', 'Presupuesto del mes por categoría')],
+      ['alcancia-goal', t('Goal', 'Meta'), t('Progress and when you get there.', 'Avance y cuándo se llega.'), t('Savings goal with progress and projection', 'Meta de ahorro con avance y proyección')]
+    ]
+  }
+};
+
+// Cambia el primer bloque <div class="screens"…>…</div> por otro contenido.
+function swapScreens(html, next) {
+  const i = html.indexOf('<div class="screens"');
+  if (i < 0) return html;
+  const tag = /<div\b[^>]*>|<\/div>/g;
+  tag.lastIndex = i;
+  let depth = 0;
+  let k;
+  while ((k = tag.exec(html))) {
+    depth += k[0] === '</div>' ? -1 : 1;
+    if (!depth) return html.slice(0, i) + next + html.slice(k.index + k[0].length);
+  }
+  return html;
+}
+
 function parseSections(ctx, slug) {
   const { t, lang } = ctx;
   let html = onlyLang(fs.readFileSync(path.join(here, `concepts/${slug}.html`), 'utf8').replace(/\r\n/g, '\n'), lang);
@@ -116,7 +166,12 @@ function parseSections(ctx, slug) {
         break;
       }
     }
-    const rest = inner.slice(end);
+    let rest = inner.slice(end);
+    if (m[1] === 'ui') {
+      const fin = FINAL[slug];
+      rest = swapScreens(rest, phones(ctx, label, fin.items(t).map(([img, title, text, alt]) => ({ img: `${img}-${lang}`, title, text, alt })), { bg: fin.bg }));
+      rest = rest.replace(/<a class="([^"]*)" href="([^"]*casos\/prototipos\/[^"]*)"/g, '<a class="$1" href="$2" data-live="' + esc(slug === 'ruta-del-vino' ? 'Ruta del Vino' : slug === 'turno' ? 'Turno' : 'Alcancía') + '"');
+    }
     out.push({
       id: conceptId(lang, m[1]),
       label,
@@ -133,7 +188,7 @@ const common = (ctx) => ({
   status: [ctx.t('Status', 'Estado'), ctx.t('Concept, with a working prototype. Not launched', 'Concepto con prototipo funcional. No está publicado como producto')]
 });
 
-const proto = (ctx, slug) => [{ internal: true, href: `${ctx.root}casos/prototipos/${slug}.html?lang=${ctx.lang}`, label: ctx.t('Try the prototype', 'Probar el prototipo') }];
+const proto = (ctx, slug) => [{ internal: true, href: `${ctx.root}casos/prototipos/${slug}.html?lang=${ctx.lang}`, label: ctx.t('Use the prototype', 'Usar el prototipo') }];
 
 export const turno = {
   slug: 'turno',
@@ -153,11 +208,11 @@ export const turno = {
     const c = common(ctx);
     return {
       tagline: t('A medical appointment in three taps, designed for anyone, at 25 or at 75.', 'Un turno médico en tres toques, pensado para cualquier persona, a los 25 o a los 75.'),
-      coverAlt: t('Three screens of the Turno prototype: home, day and time, and confirmed appointment.', 'Tres pantallas del prototipo de Turno: inicio, día y horario, y turno confirmado.'),
+      coverAlt: t('Three screens of the Turno prototype: review, home, and day and time.', 'Tres pantallas del prototipo de Turno: confirmación, inicio, y día y horario.'),
       overview: [[t('Industry', 'Industria'), t('Healthcare', 'Salud')], [t('Product', 'Producto'), t('Mobile app for patients', 'App móvil para pacientes')], c.role, [t('Timeline', 'Duración'), t('4 weeks', '4 semanas')], c.tools, c.status],
       links: proto(ctx, 'turno'),
       note: t(
-        'Self-initiated, with no client. Research is secondary (benchmark, proto-personas and journey map) and figures are design targets, not measured results. The prototype was validated with a heuristic evaluation; user testing is planned. The app interface is in Spanish, the language of its market.',
+        'Self-initiated, with no client. Research is secondary (benchmark, proto-personas and journey map) and figures are design targets, not measured results. The prototype was validated with a heuristic evaluation; user testing is planned. The prototype follows the language of this site.',
         'Proyecto propio, sin cliente. La investigación es secundaria (benchmark, proto-personas y journey map) y las cifras son objetivos de diseño, no resultados medidos. El prototipo se validó con una evaluación heurística; el test con usuarios está planificado.'
       ),
       exec: {
@@ -188,12 +243,12 @@ export const rutaDelVino = {
     const c = common(ctx);
     return {
       tagline: t('A winery day planned as one route, with price, time and transport solved before leaving the hotel.', 'Un día de bodegas como un solo recorrido, con precio, horario y traslado resueltos antes de salir del hotel.'),
-      coverAlt: t('Three screens of the Ruta del Vino prototype: explore, winery and route of the day.', 'Tres pantallas del prototipo de Ruta del Vino: explorar, bodega y recorrido del día.'),
+      coverAlt: t('Three screens of the Ruta del Vino prototype over a vineyard at sunset: winery, explore and route of the day.', 'Tres pantallas del prototipo de Ruta del Vino sobre un viñedo al atardecer: bodega, explorar y recorrido del día.'),
       overview: [[t('Industry', 'Industria'), t('Wine tourism', 'Turismo del vino')], [t('Product', 'Producto'), t('Mobile app for visitors, bilingual', 'App móvil para visitantes, bilingüe')], c.role, [t('Timeline', 'Duración'), t('3 weeks', '3 semanas')], c.tools, c.status],
       links: proto(ctx, 'ruta-del-vino'),
       note: t(
-        'Self-initiated, with no client. Research is secondary (channel analysis, proto-personas and empathy map); wineries, prices and figures are fictional. The prototype was validated with a heuristic evaluation; user testing is planned. The prototype interface is in Spanish.',
-        'Proyecto propio, sin cliente. La investigación es secundaria (análisis de canales, proto-personas y mapa de empatía); bodegas, precios y cifras son ficticios. El prototipo se validó con una evaluación heurística; el test con usuarios está planificado.'
+        'Self-initiated, with no client. Research is secondary (channel analysis, proto-personas and empathy map); wineries, prices and figures are fictional. The prototype was validated with a heuristic evaluation; user testing is planned. Photos are illustrative, from Wikimedia Commons under open licenses; credits are in the prototype.',
+        'Proyecto propio, sin cliente. La investigación es secundaria (análisis de canales, proto-personas y mapa de empatía); bodegas, precios y cifras son ficticios. El prototipo se validó con una evaluación heurística; el test con usuarios está planificado. Las fotos son ilustrativas, de Wikimedia Commons con licencias abiertas; los créditos están en el prototipo.'
       ),
       exec: {
         problem: t('Visitors search several websites, message each winery and arrange transport on their own. The day comes together at the last minute.', 'Quien visita Mendoza busca en varios sitios, escribe a cada bodega y arregla el traslado por su cuenta. El día se arma a último momento.'),
@@ -223,12 +278,12 @@ export const alcancia = {
     const c = common(ctx);
     return {
       tagline: t('What is left for the month, budgets and one goal, with no spreadsheets and no guilt.', 'Lo que queda del mes, presupuestos y una meta, sin planillas y sin culpa.'),
-      coverAlt: t('Three screens of the Alcancía prototype: home, goal and budget.', 'Tres pantallas del prototipo de Alcancía: inicio, meta y presupuesto.'),
+      coverAlt: t('Three screens of the Alcancía prototype: budget, home and savings goal.', 'Tres pantallas del prototipo de Alcancía: presupuesto, inicio y meta de ahorro.'),
       overview: [[t('Industry', 'Industria'), t('Personal finance', 'Finanzas personales')], [t('Product', 'Producto'), t('Mobile app for young people', 'App móvil para jóvenes')], c.role, [t('Timeline', 'Duración'), t('4 weeks', '4 semanas')], c.tools, c.status],
       links: proto(ctx, 'alcancia'),
       note: t(
-        'Self-initiated, with no client. Research is secondary (benchmark, proto-persona, journey map and behavioral economics principles); amounts and targets are fictional. The prototype was validated with a heuristic evaluation; user testing is planned. The app interface is in Spanish, the language of its market.',
-        'Proyecto propio, sin cliente. La investigación es secundaria (benchmark, proto-persona, journey map y principios de economía del comportamiento); montos y objetivos son ficticios. El prototipo se validó con una evaluación heurística; el test con usuarios está planificado.'
+        'Self-initiated, with no client. Research is secondary (benchmark, proto-persona, journey map and behavioral economics principles); amounts and targets are fictional. The prototype was validated with a heuristic evaluation; user testing is planned. The Bariloche photo is from Wikimedia Commons (CC BY-SA 4.0).',
+        'Proyecto propio, sin cliente. La investigación es secundaria (benchmark, proto-persona, journey map y principios de economía del comportamiento); montos y objetivos son ficticios. La foto de Bariloche es de Wikimedia Commons (CC BY-SA 4.0). El prototipo se validó con una evaluación heurística; el test con usuarios está planificado.'
       ),
       exec: {
         problem: t('Many young people track spending in spreadsheets or not at all. Banking apps list transactions but don’t help anyone decide.', 'Mucha gente joven anota gastos en planillas o no los anota. Las apps bancarias muestran movimientos, pero no ayudan a decidir.'),

@@ -1,4 +1,5 @@
-import { figure, phones, table, evidence, decisions, swatches, contrast, metrics, ul } from '../lib/html.mjs';
+import { figure, table, evidence, decisions, swatches, contrast, metrics, ul } from '../lib/html.mjs';
+import { phones, showcase } from '../lib/phones.mjs';
 import { lanes } from '../lib/diagrams.mjs';
 
 export default {
@@ -22,8 +23,8 @@ export default {
         'Un pedido, cuatro personas que necesitan cosas distintas. El trabajo de diseño fue ponerlas de acuerdo.'
       ),
       coverAlt: t(
-        'Four MODO YA screens on yellow: home, cart, address and payment, and order tracking.',
-        'Cuatro pantallas de MODO YA sobre amarillo: inicio, carrito, dirección y pago, y seguimiento del pedido.'
+        'The same MODO YA order on four devices: the customer’s phone, the restaurant’s tablet, the rider’s phone and the admin’s live map.',
+        'El mismo pedido de MODO YA en cuatro dispositivos: el teléfono del cliente, la tableta del local, el teléfono del rider y el mapa en vivo de administración.'
       ),
       overview: [
         [t('Industry', 'Industria'), t('Local commerce and logistics', 'Comercio local y logística')],
@@ -37,8 +38,8 @@ export default {
       ],
       links: [{ href: link, label: t('Visit the launch site', 'Ver el sitio de lanzamiento') }],
       note: t(
-        'App screens use sample data. The launch site is in Spanish because its audience is local.',
-        'Las pantallas de la app usan datos de ejemplo.'
+        'Screens captured from the real apps with sample data: restaurants, people and orders are fictional. The product is in Spanish because its audience is local.',
+        'Pantallas capturadas de las apps reales con datos de ejemplo: los locales, las personas y los pedidos son ficticios.'
       ),
       exec: {
         problem: t(
@@ -210,14 +211,15 @@ export default {
             'El rediseño llevó la identidad de la marca a tokens, para que las dos apps y el sitio cambien juntos.'
           )}</p>
           <h3>${t('Color', 'Color')}</h3>
-          ${swatches([[t('Yellow', 'Amarillo'), '#F5C518'], [t('Yellow, hover', 'Amarillo, hover'), '#FFD84A'], [t('Pale yellow', 'Amarillo pálido'), '#FFF3C4'], [t('Black', 'Negro'), '#0A0A0A'], [t('Surface', 'Superficie'), '#1E1E1E'], [t('Gray', 'Gris'), '#F4F4F6'], [t('Error', 'Error'), '#D93A2B'], [t('Success', 'Éxito'), '#1E9E5A']])}
+          ${swatches([[t('Yellow', 'Amarillo'), '#FFC800'], [t('Pale yellow', 'Amarillo pálido'), '#FFF3C4'], [t('Amber, for prices', 'Ámbar, para precios'), '#8A6100'], [t('Black', 'Negro'), '#141416'], [t('Gray text', 'Texto gris'), '#5C5C66'], [t('Surface', 'Superficie'), '#F1F1F4'], [t('Error', 'Error'), '#C22C2C'], [t('Success', 'Éxito'), '#2E9E5B']])}
           <h3>${t('Contrast audit', 'Auditoría de contraste')}</h3>
           ${contrast(ctx, [
-            [t('Yellow on black', 'Amarillo sobre negro'), '#F5C518', '#0A0A0A', '12.14'],
-            [t('Black on yellow (buttons)', 'Negro sobre amarillo (botones)'), '#0A0A0A', '#F5C518', '12.14'],
-            [t('Gray text on white', 'Texto gris sobre blanco'), '#5B5B66', '#ffffff', '6.70'],
-            [t('Error on white', 'Error sobre blanco'), '#D93A2B', '#ffffff', '4.57'],
-            [t('Success on white', 'Éxito sobre blanco'), '#1E9E5A', '#ffffff', '3.45', t('To darken for text', 'A oscurecer para texto')]
+            [t('Black on yellow (buttons)', 'Negro sobre amarillo (botones)'), '#171200', '#FFC800', '12.03'],
+            [t('Yellow on black', 'Amarillo sobre negro'), '#FFC800', '#141416', '11.83'],
+            [t('Amber prices on white', 'Precios en ámbar sobre blanco'), '#8A6100', '#ffffff', '5.54'],
+            [t('Gray text on white', 'Texto gris sobre blanco'), '#5C5C66', '#ffffff', '6.60'],
+            [t('Error on white', 'Error sobre blanco'), '#C22C2C', '#ffffff', '5.69'],
+            [t('Success on white', 'Éxito sobre blanco'), '#2E9E5B', '#ffffff', '3.41', t('Text uses a darker green on a pale one', 'El texto usa un verde más oscuro sobre uno pálido')]
           ])}
           <h3>${t('Rules that keep it consistent', 'Reglas que lo mantienen consistente')}</h3>
           ${ul([
@@ -232,21 +234,35 @@ export default {
           label: t('Final solution', 'Solución final'),
           title: t('From opening the app to knowing who is at the door.', 'De abrir la app a saber quién está en la puerta.'),
           wide: phones(ctx, t('Customer flow in MODO YA', 'Flujo del cliente en MODO YA'), [
-            { img: 'modoya-home', title: t('Choose', 'Elegir'), text: t('Time and delivery cost before opening a menu.', 'Tiempo y costo de envío antes de abrir un menú.'), alt: t('Home with categories and featured restaurants, each with time and delivery cost', 'Inicio con rubros y locales destacados, cada uno con tiempo y costo de envío') },
-            { img: 'modoya-cart', title: t('Build', 'Armar'), text: t('Quantities, a note and the total in view.', 'Cantidades, una nota y el total a la vista.'), alt: t('Cart with three products, note field, subtotal, delivery and total', 'Carrito con tres productos, nota, subtotal, envío y total') },
-            { img: 'modoya-pay', title: t('Pay', 'Pagar'), text: t('Address and payment together, summary below.', 'Dirección y pago juntos, resumen abajo.'), alt: t('Delivery address, payment methods and order summary', 'Dirección de entrega, medios de pago y resumen del pedido') },
-            { img: 'modoya-confirmed', title: t('Confirm', 'Confirmar'), text: t('A full screen, not a message that disappears.', 'Una pantalla completa, no un aviso que desaparece.'), alt: t('Order confirmed with order number and total', 'Pedido confirmado con número y total') },
-            { img: 'modoya-track', title: t('Track', 'Seguir'), text: t('State, map and the rider, with a way to contact them.', 'Estado, mapa y rider, con una forma de contacto.'), alt: t('Tracking with four states, map and rider card', 'Seguimiento con cuatro estados, mapa y datos del rider') }
-          ]),
-          body: `<div class="cols2"><div><h3>${t('Payments', 'Pagos')}</h3><p>${t('Card inside the app with Mercado Pago, bank transfer or cash.', 'Tarjeta dentro de la app con Mercado Pago, transferencia o efectivo.')}</p></div><div><h3>MODO YA Plus</h3><p>${t('Monthly subscription with free delivery that renews itself and is canceled with one tap.', 'Suscripción mensual con envío gratis, que se renueva sola y se da de baja de un toque.')}</p></div><div><h3>${t('Notifications', 'Avisos')}</h3><p>${t('Push messages, a different sound per role and abandoned-cart reminders.', 'Notificaciones push, un sonido por rol y recordatorios de carrito abandonado.')}</p></div><div><h3>${t('Errands', 'Mandados')}</h3><p>${t('A customer can also request a rider to drop off or pick up something.', 'El cliente también puede pedir un rider para llevar o buscar algo.')}</p></div></div>
+            { img: 'modoya-c-home', title: t('Choose', 'Elegir'), text: t('The delivery address is always in view; today’s deals come first.', 'La dirección de entrega siempre a la vista; primero, las ofertas de hoy.'), alt: t('Customer home with address, food categories and today’s deals', 'Inicio del cliente con dirección, comidas y ofertas del día') },
+            { img: 'modoya-c-cart', title: t('Confirm', 'Confirmar'), text: t('Products, address on a map and the total with delivery, on one screen.', 'Productos, dirección en el mapa y total con envío, en una pantalla.'), alt: t('Cart with two products, delivery address on a map and total', 'Carrito con dos productos, dirección en el mapa y total') },
+            { img: 'modoya-c-kitchen', title: t('Wait', 'Esperar'), text: t('State, estimated time and map from the first minute.', 'Estado, tiempo estimado y mapa desde el primer minuto.'), alt: t('Order being prepared with map and four steps', 'Pedido en preparación con mapa y cuatro pasos') },
+            { img: 'modoya-c-way', title: t('Follow', 'Seguir'), text: t('The rider’s route and the code to hand over.', 'El recorrido del rider y el código para entregar.'), alt: t('Order on the way with route, delivery code and rider', 'Pedido en camino con recorrido, código de entrega y rider') },
+            { img: 'modoya-c-done', title: t('Close', 'Cerrar'), text: t('The receipt stays, with a way to file a claim.', 'El detalle queda, con una forma de reclamar.'), alt: t('Delivered order with receipt and claim button', 'Pedido entregado con detalle y botón para reclamar') }
+          ], { bg: 'radial-gradient(70% 120% at 30% 0,#ffe07a 0,#f7c81c 50%,#e8b000 100%)' }),
+          body: `<h3>${t('The same order, seen by the restaurant', 'El mismo pedido, visto por el local')}</h3>
+          <p>${t('Orders move through three groups: in the kitchen, ready and on the way. Each card has a single button, and it says the next step.', 'Los pedidos pasan por tres grupos: en cocina, listos y en camino. Cada tarjeta tiene un solo botón, que dice el paso siguiente.')}</p>
+          ${showcase(ctx, 'tb', 'modoya-l-kitchen', { bg: '#f2f2f4', title: t('Orders', 'Pedidos'), text: t('“Ready: call a rider” starts the delivery from the same card.', '“Listo: llamar rider” inicia el envío desde la misma tarjeta.'), alt: t('Restaurant order board with orders in the kitchen and one action per card', 'Tablero del local con pedidos en cocina y una acción por tarjeta') })}
+          ${showcase(ctx, 'tb', 'modoya-l-menu', { bg: '#f2f2f4', title: t('Menu', 'Menú'), text: t('Running out of something is one switch on the product itself.', 'Que algo se termine es un interruptor en el mismo producto.'), alt: t('Menu editor with photos, prices and an availability switch per product', 'Editor del menú con fotos, precios e interruptor de disponibilidad por producto') })}
+          <h3>${t('The rider, one action at a time', 'El rider, una acción por vez')}</h3>
+          <p>${t('Four steps: go, pick up, leave, deliver. Until a rider accepts, the customer’s details stay hidden.', 'Cuatro pasos: ir, retirar, salir, entregar. Hasta que el rider acepta, los datos del cliente no se muestran.')}</p>
+          ${phones(ctx, t('Rider app', 'App del rider'), [
+            { img: 'modoya-r-home', title: t('Connected', 'Conectado'), text: t('Location is shared only while connected.', 'La ubicación se comparte sólo mientras está conectado.'), alt: t('Rider home with the delivery in progress', 'Inicio del rider con el envío en curso') },
+            { img: 'modoya-r-pickup', title: t('Pick up', 'Retirar'), text: t('Where, what and how to get there.', 'Dónde, qué y cómo llegar.'), alt: t('Step one of four: go to the restaurant, with map', 'Paso uno de cuatro: ir al local, con mapa') },
+            { img: 'modoya-r-way', title: t('Deliver', 'Entregar'), text: t('The app says to ask for the 4 digits.', 'La app avisa que hay que pedir los 4 números.'), alt: t('Step four of four: deliver, with map and confirm button', 'Paso cuatro de cuatro: entregar, con mapa y botón de confirmar') },
+            { img: 'modoya-r-done', title: t('Done', 'Listo'), text: t('Earnings recorded on the spot.', 'La ganancia queda registrada en el momento.'), alt: t('Delivery completed with the amount earned', 'Entrega completada con lo ganado') }
+          ])}
+          <h3>${t('Admin, what is happening now', 'Administración, qué está pasando ahora')}</h3>
+          ${showcase(ctx, 'lt', 'modoya-a-live', { bg: 'radial-gradient(80% 120% at 30% 0,#3a3a40 0,#1d1d21 55%,#111114 100%)', title: t('Live map', 'Mapa en vivo'), text: t('Deliveries, open restaurants, connected riders and a list of what needs a decision.', 'Envíos, locales abiertos, riders conectados y una lista de lo que necesita una decisión.'), alt: t('Admin overview with indicators, live map of riders and attention panel', 'Resumen de administración con indicadores, mapa en vivo de riders y panel de atención') })}
+          <div class="cols2"><div><h3>${t('Payments', 'Pagos')}</h3><p>${t('Card inside the app with Mercado Pago. Bank transfer was removed after the review found a promise the flow couldn’t keep.', 'Tarjeta dentro de la app con Mercado Pago. La transferencia se sacó después de que la revisión encontró una promesa que el flujo no podía cumplir.')}</p></div><div><h3>MODO YA Plus</h3><p>${t('Monthly subscription with free delivery that renews itself and is canceled with one tap.', 'Suscripción mensual con envío gratis, que se renueva sola y se da de baja de un toque.')}</p></div><div><h3>${t('Notifications', 'Avisos')}</h3><p>${t('Push messages, a different sound per role and abandoned-cart reminders.', 'Notificaciones push, un sonido por rol y recordatorios de carrito abandonado.')}</p></div><div><h3>${t('Errands', 'Mandados')}</h3><p>${t('A customer can also request a rider to drop off or pick up something.', 'El cliente también puede pedir un rider para llevar o buscar algo.')}</p></div></div>
           <h3>${t('A launch site you travel like a delivery', 'Un sitio de lanzamiento que se recorre como un envío')}</h3>
           <p>${t(
             'The site speaks to three audiences: neighbors, restaurants and people with a motorbike. It is organized as a rider’s route: a dashed line follows the scroll and each section is a stop.',
             'El sitio le habla a tres públicos: vecinos, locales y personas con moto. Está organizado como la ruta de un rider: una línea punteada acompaña el scroll y cada sección es una parada.'
           )}</p>
-          ${figure(ctx, 'modoya-landing', { title: t('Three paths from the first screen', 'Tres caminos desde la primera pantalla'), text: t('Customer, restaurant or rider. The main button says “coming soon” because the platform is in pre-launch.', 'Cliente, local o rider. El botón principal dice “Próximamente” porque la plataforma está en prelanzamiento.'), alt: t('MODO YA launch site: headline, phone with the app and food around it', 'Sitio de MODO YA: titular, teléfono con la app y comida alrededor') })}
-          ${figure(ctx, 'modoya-landing-services', { title: t('Services split by audience', 'Servicios separados por público'), text: t('Every card ends in an action.', 'Cada tarjeta termina en una acción.'), alt: t('Services for customers and for restaurants, and a yellow band for riders', 'Servicios para clientes y locales, y una franja amarilla para riders') })}
-          ${figure(ctx, 'modoya-landing-join', { title: t('Pre-registration', 'Preinscripción'), text: t('A switch between restaurant and rider, benefits on the left, a short form on the right. Follow-up happens on WhatsApp, the channel they already use.', 'Un selector entre local y rider, beneficios a la izquierda y un formulario corto a la derecha. El contacto sigue por WhatsApp, el canal que ya usan.'), alt: t('Pre-registration form for restaurants with benefits on the left', 'Formulario de preinscripción de locales con beneficios a la izquierda') })}`
+          ${figure(ctx, 'modoya-landing', { url: 'modoya-landing.vercel.app', title: t('Three paths from the first screen', 'Tres caminos desde la primera pantalla'), text: t('Customer, restaurant or rider. The main button says “coming soon” because the platform is in pre-launch.', 'Cliente, local o rider. El botón principal dice “Próximamente” porque la plataforma está en prelanzamiento.'), alt: t('MODO YA launch site: headline, phone with the app and food around it', 'Sitio de MODO YA: titular, teléfono con la app y comida alrededor') })}
+          ${figure(ctx, 'modoya-landing-services', { url: 'modoya-landing.vercel.app', title: t('Services split by audience', 'Servicios separados por público'), text: t('Every card ends in an action.', 'Cada tarjeta termina en una acción.'), alt: t('Services for customers and for restaurants, and a yellow band for riders', 'Servicios para clientes y locales, y una franja amarilla para riders') })}
+          ${figure(ctx, 'modoya-landing-join', { url: 'modoya-landing.vercel.app', title: t('Pre-registration', 'Preinscripción'), text: t('A switch between restaurant and rider, benefits on the left, a short form on the right. Follow-up happens on WhatsApp, the channel they already use.', 'Un selector entre local y rider, beneficios a la izquierda y un formulario corto a la derecha. El contacto sigue por WhatsApp, el canal que ya usan.'), alt: t('Pre-registration form for restaurants with benefits on the left', 'Formulario de preinscripción de locales con beneficios a la izquierda') })}`
         },
         {
           id: 'implementation',

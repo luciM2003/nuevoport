@@ -1,7 +1,8 @@
 import { SITE, EXPERIENCE, EDUCATION } from '../content/site.mjs';
 import { FEATURED, CONCEPTS, ARCHIVE } from '../content/projects.mjs';
-import { picture, icon, ext, dl, homePath, esc } from '../lib/html.mjs';
-import { cover } from '../covers.mjs';
+import { IMAGES, picture, icon, ext, dl, homePath, esc } from '../lib/html.mjs';
+import { phone, laptop, browser } from '../lib/device.mjs';
+import { cover, coverControls } from '../covers.mjs';
 import { page, cvLink, PERSON } from './layout.mjs';
 import { stateDemo } from './state-demo.mjs';
 
@@ -16,9 +17,9 @@ function hero(ctx) {
     return `${head}<span class="nb"><span class="rf">${last}</span><sup><a href="#proof-${n}" aria-label="${t(`Proof ${n}`, `Prueba ${n}`)}">${n}</a></sup></span>`;
   };
   const proofs = [
-    [t('Four roles in every order: customer, restaurant, rider and admin.', 'Cuatro roles en cada pedido: cliente, local, rider y administración.'), 'MODO YA', ctx.caseUrl('modo-ya')],
-    [t('Four dashboards and six spreadsheets became one portal.', 'Cuatro tableros y seis planillas pasaron a ser un portal.'), t('BYD Quality Portal', 'Portal de Calidad BYD'), ctx.caseUrl('byd-quality-portal')],
-    [t('25 screens taken from design to React, in a team of two.', '25 pantallas llevadas del diseño a React, en un equipo de dos.'), 'Padel Hub', ctx.caseUrl('padel-hub')]
+    [t('Four roles in every order: customer, restaurant, rider and admin.', 'Cuatro roles en cada pedido: cliente, local, rider y administración.'), 'MODO YA', ctx.caseUrl('modo-ya'), 'linear-gradient(150deg,#ffe07a,#f5c518 60%,#e0a800)', phone(ctx, 'modoya-c-way', { sizes: '150px', eager: true })],
+    [t('Four dashboards and six spreadsheets became one portal.', 'Cuatro tableros y seis planillas pasaron a ser un portal.'), t('BYD Quality Portal', 'Portal de Calidad BYD'), ctx.caseUrl('byd-quality-portal'), 'linear-gradient(150deg,#6db3ee,#2a72bb 55%,#174b83)', laptop(ctx, 'byd-overview', { sizes: '260px', eager: true }), 'pf-w'],
+    [t('25 screens taken from design to React, in a team of two.', '25 pantallas llevadas del diseño a React, en un equipo de dos.'), 'Padel Hub', ctx.caseUrl('padel-hub'), 'linear-gradient(150deg,#e6ff7a,#d0f53f 55%,#a9d40f)', phone(ctx, 'padel-m-slots', { sizes: '150px', eager: true })]
   ];
   const facts = [
     [t('Experience', 'Experiencia'), t('5 years', '5 años'), t('across product, UX/UI and front-end', 'entre producto, UX/UI y front-end')],
@@ -28,9 +29,9 @@ function hero(ctx) {
     [t('Availability', 'Disponibilidad'), t('Open to international roles', 'Disponible para roles internacionales'), t('remote, from Argentina (UTC−3)', 'remoto, desde Argentina (UTC−3)')]
   ];
   return `<section class="hero"><div class="wrap">
-<h1><span class="hero-nm">Lucía Miranda<span class="vh">, </span></span><span class="hero-ro">${t('Senior UX/UI & <br class="br-d"/>Product Designer', 'Diseñadora Senior <br class="br-d"/>UX/UI y de Producto')}</span></h1>
 <div class="hero-g">
-<figure class="hero-ph">${picture(ctx, 'portrait', { alt: t('Portrait of Lucía Miranda', 'Retrato de Lucía Miranda'), sizes: '(min-width: 1101px) 300px, (min-width: 701px) 32vw, 92vw', eager: true })}</figure>
+<h1 class="hero-h"><span class="hero-nm">Lucía Miranda<span class="vh">, </span></span><span class="hero-ro">${t('Senior UX/UI & <br class="br-d"/>Product Designer', 'Diseñadora Senior <br class="br-d"/>UX/UI y de Producto')}</span></h1>
+<figure class="hero-ph">${picture(ctx, 'portrait', { alt: t('Portrait of Lucía Miranda', 'Retrato de Lucía Miranda'), sizes: '(min-width: 1101px) 420px, (min-width: 701px) 30vw, 84px', eager: true })}</figure>
 <div class="hero-tx"><p class="hero-st">${t(
     `I design intuitive, scalable digital experiences that connect ${ref(1, 'user needs')}, ${ref(2, 'business goals')} and ${ref(3, 'technology')}.`,
     `Diseño experiencias digitales intuitivas y escalables que conectan ${ref(1, 'necesidades de usuarios')}, ${ref(2, 'objetivos de negocio')} y ${ref(3, 'tecnología')}.`
@@ -40,8 +41,8 @@ function hero(ctx) {
     'Cinco años entre gestión de producto, UX/UI y front-end. Trabajo en productos con muchos roles y muchos casos límite, de la investigación a la implementación. Escribir código mantiene mis diseños honestos sobre lo que se puede construir.'
   )}</p>
 <p class="hero-ct"><a class="btn" href="#work">${t('Explore my work', 'Explorar mi trabajo')}</a>${cvLink(ctx, t('Download résumé', 'Descargar CV'), 'btn btn-o')}<a class="tl" href="#contact">${t('Get in touch', 'Contactarme')}${icon('arrow')}</a></p></div>
-<ol class="hero-pr" aria-label="${t('Proof for each claim', 'Prueba de cada afirmación')}">${proofs.map(([x, n, u], i) => `<li id="proof-${i + 1}"><p>${x}</p><a href="${u}">${n}</a></li>`).join('')}</ol>
 </div>
+<ol class="pfs" aria-label="${t('Proof for each claim', 'Prueba de cada afirmación')}">${proofs.map(([x, n, u, bg, dev, cls = ''], i) => `<li id="proof-${i + 1}" class="pf"><a href="${u}"><span class="pf-th ${cls}" aria-hidden="true" style="background:${bg}">${dev}</span><span class="pf-tx"><span class="pf-n" aria-hidden="true">${i + 1}</span><span class="pf-c">${x}</span><span class="pf-l">${n}${icon('arrow')}</span></span></a></li>`).join('')}</ol>
 <dl class="facts">${facts.map(([k, v, s]) => `<div><dt>${k}</dt><dd><b>${v}</b><span>${s}</span></dd></div>`).join('')}</dl>
 </div></section>`;
 }
@@ -51,11 +52,11 @@ function work(ctx) {
   const feats = FEATURED.map((p, i) => {
     const url = ctx.caseUrl(p.slug);
     const name = pick(ctx, p.name);
-    return `<li class="ft-p${i === 0 ? ' ft-first' : ''}"><article>
-<a class="ft-cv" href="${url}" tabindex="-1" aria-hidden="true">${cover(ctx, p.slug, { alt: name, scale: i === 0 ? 1 : 0.66 })}</a>
+    return `<li class="ft-p${i === 0 ? ' ft-first' : i % 2 ? '' : ' ft-rev'}"><article>
+<div class="ft-md"><a class="ft-cv" href="${url}" tabindex="-1" aria-hidden="true">${cover(ctx, p.slug, { alt: name, scale: i === 0 ? 1 : 0.66, play: true })}</a>${coverControls(ctx, p.slug)}</div>
 <div class="ft-bd">
 <p class="ft-ty">${pick(ctx, p.type)}</p>
-<h3>${name}</h3>
+<h3><a href="${url}">${name}</a></h3>
 <p class="ft-cl">${pick(ctx, p.claim)}</p>
 <p class="ft-tx">${pick(ctx, p.text)}</p>
 ${dl(p.facts.map(([k, v]) => [pick(ctx, k), pick(ctx, v)]), 'ft-fa')}
@@ -66,26 +67,30 @@ ${dl(p.facts.map(([k, v]) => [pick(ctx, k), pick(ctx, v)]), 'ft-fa')}
     const name = pick(ctx, p.name);
     const url = ctx.caseUrl(p.slug);
     return `<li class="cp"><article>
-<a class="cp-cv" href="${url}" tabindex="-1" aria-hidden="true">${cover(ctx, p.slug, { alt: name, scale: 0.32, cls: 'cover-s' })}</a>
+<div class="cp-md"><a class="cp-cv" href="${url}" tabindex="-1" aria-hidden="true">${cover(ctx, p.slug, { alt: name, play: true, tall: true })}</a>${coverControls(ctx, p.slug, { steps: false })}</div>
 <p class="ft-ty"><span class="tag">${t('Concept', 'Concepto')}</span> ${pick(ctx, p.sector)}</p>
-<h3>${name}</h3>
-<p>${pick(ctx, p.claim)}</p>
+<h3><a href="${url}">${name}</a></h3>
+<p class="cp-cl">${pick(ctx, p.claim)}</p>
 <p class="cp-sk"><b>${t('Shows:', 'Demuestra:')}</b> ${pick(ctx, p.skills)}</p>
-<p class="cp-ln"><a class="tl" href="${url}">${t(`Read the ${name} case`, `Leer el caso ${name}`)}${icon('arrow')}</a><a class="tl" href="${ctx.root}casos/prototipos/${p.proto}.html?lang=${ctx.lang}">${t('Try the prototype', 'Probar el prototipo')}<span class="vh"> ${t('of', 'de')} ${name}</span>${icon('up')}</a></p>
+<p class="cp-ln"><a class="btn btn-s" href="${ctx.root}casos/prototipos/${p.proto}.html?lang=${ctx.lang}" data-live="${name}">${icon('hand')}${t('Use the prototype', 'Usar el prototipo')}<span class="vh"> ${t('of', 'de')} ${name}</span></a><a class="tl" href="${url}">${t(`Read the case`, `Leer el caso`)}<span class="vh">: ${name}</span>${icon('arrow')}</a></p>
 </article></li>`;
   });
-  const archive = ARCHIVE.map((p) => `<li><details class="ix"><summary><span class="ix-n">${p.name}</span><span class="ix-t">${pick(ctx, p.what)}</span><span class="ix-s">${pick(ctx, p.kind)}</span>${icon('plus')}</summary><div class="ix-b"><div class="ix-i">${picture(ctx, p.img, { alt: t(`Screenshot of ${p.name}`, `Captura de ${p.name}`), sizes: '(min-width: 900px) 460px, 92vw' })}</div><div class="ix-d"><p>${pick(ctx, p.text)}</p><p class="ix-k">${p.tools}</p>${ext(ctx, p.url, t(`Open ${p.name}`, `Abrir ${p.name}`), 'tl')}</div></div></details></li>`);
+  const archive = ARCHIVE.map((p) => {
+    const tall = p.tall && IMAGES[p.tall];
+    const frame = tall ? { img: p.tall, scroll: `${(-(1 - 0.625 / (tall.h / tall.w)) * 100).toFixed(2)}%` } : p.img;
+    return `<li class="ar-c"><article>${browser(ctx, frame, { ratio: '16/10', url: p.host, alt: t(`Screenshot of ${p.name}`, `Captura de ${p.name}`), sizes: '(min-width: 1101px) 420px, (min-width: 701px) 46vw, 78vw' })}<h3><a href="${p.url}" target="_blank" rel="noopener">${p.name}<span class="vh"> (${t('opens in a new tab', 'se abre en otra pestaña')})</span>${icon('up')}</a></h3><p class="ar-w">${pick(ctx, p.what)}</p><p class="ar-x">${pick(ctx, p.text)}</p><p class="ar-k">${pick(ctx, p.kind)} · ${p.tools}</p></article></li>`;
+  });
   return `<section class="sec" id="work" aria-labelledby="work-h"><div class="wrap">
 <header class="sh"><p class="sh-l">${t('Selected work', 'Trabajo seleccionado')}</p><h2 id="work-h">${t('Products with many roles, many rules and real constraints.', 'Productos con muchos roles, muchas reglas y restricciones reales.')}</h2></header>
 <ol class="feats">${feats.join('')}</ol>
 </div></section>
 <section class="sec sec-tint" id="concepts" aria-labelledby="con-h"><div class="wrap">
 <header class="sh"><p class="sh-l">${t('Concept work', 'Trabajo conceptual')}</p><div><h2 id="con-h">${t('Three concepts, each to go deeper into a skill.', 'Tres conceptos para profundizar una habilidad.')}</h2><p class="sh-p">${t('No client and no launch behind them. Each one goes from research to validation and ends in a prototype you can use.', 'Sin cliente ni lanzamiento detrás. Cada uno va de la investigación a la validación y termina en un prototipo que se puede usar.')}</p></div></header>
-<ul class="cps">${concepts.join('')}</ul>
+<ul class="cps snap" role="list">${concepts.join('')}</ul>
 </div></section>
 <section class="sec" id="archive" aria-labelledby="arc-h"><div class="wrap">
 <header class="sh"><p class="sh-l">${t('Archive', 'Archivo')}</p><div><h2 id="arc-h">${t('Interface and web work.', 'Interfaces y sitios web.')}</h2><p class="sh-p">${t('Smaller pieces: client sites, studio work and prototypes.', 'Piezas más chicas: sitios para clientes, trabajos de estudio y prototipos.')}</p></div></header>
-<ul class="ixs">${archive.join('')}</ul>
+<ul class="ars snap" role="list">${archive.join('')}</ul>
 </div></section>`;
 }
 
@@ -132,7 +137,7 @@ function approach(ctx) {
   ];
   return `<section class="sec" id="approach" aria-labelledby="app-h"><div class="wrap">
 <header class="sh"><p class="sh-l">${t('How I work', 'Cómo trabajo')}</p><div><h2 id="app-h">${t('How a project moves from question to release.', 'Cómo avanza un proyecto, de la pregunta a la versión publicada.')}</h2><p class="sh-p">${t('Six stages, each with a piece of a real deliverable.', 'Seis etapas, cada una con un fragmento de un entregable real.')}</p></div></header>
-<ol class="stg">${steps.map((s) => `<li><p class="stg-n" aria-hidden="true">${s.n}</p><h3>${s.h}</h3><p>${s.p}</p><div class="stg-a">${s.a}</div><a class="tl" href="${s.l[1]}">${s.l[0]}${icon('arrow')}</a></li>`).join('')}</ol>
+<ol class="stg snap" role="list">${steps.map((s) => `<li><p class="stg-n" aria-hidden="true">${s.n}</p><h3>${s.h}</h3><p>${s.p}</p><div class="stg-a">${s.a}</div><a class="tl" href="${s.l[1]}">${s.l[0]}${icon('arrow')}</a></li>`).join('')}</ol>
 </div></section>`;
 }
 
@@ -193,7 +198,7 @@ function skills(ctx) {
   ];
   return `<section class="sec" id="skills" aria-labelledby="sk-h"><div class="wrap">
 <header class="sh"><p class="sh-l">${t('Skills', 'Habilidades')}</p><h2 id="sk-h">${t('Each skill, with a place to check it.', 'Cada habilidad, con un lugar donde comprobarla.')}</h2></header>
-<div class="sks">${groups.map(([h, list]) => `<section><h3>${h}</h3><ul>${list.map(([n, l, u]) => `<li><span>${n}</span><a href="${u}"><span class="vh">${n}: </span>${l}</a></li>`).join('')}</ul></section>`).join('')}</div>
+<div class="sks">${groups.map(([h, list]) => `<details class="sk" open><summary><h3>${h}</h3>${icon('plus')}</summary><ul>${list.map(([n, l, u]) => `<li><span>${n}</span><a href="${u}"><span class="vh">${n}: </span>${l}</a></li>`).join('')}</ul></details>`).join('')}</div>
 </div></section>`;
 }
 

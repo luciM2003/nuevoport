@@ -102,6 +102,7 @@ export const ARCHIVE = [
   {
     name: 'Estudio AGV',
     img: 'x-agv',
+    host: 'estudioagv.com',
     url: 'https://www.estudioagv.com/',
     tools: 'Next.js, Tailwind CSS',
     what: { en: 'Website for a law practice', es: 'Sitio para un estudio jurídico' },
@@ -114,6 +115,7 @@ export const ARCHIVE = [
   {
     name: 'Codea',
     img: 'x-codea',
+    host: 'codeadesarrollos.com',
     url: 'https://codeadesarrollos.com/',
     tools: 'Figma, HTML, CSS, JavaScript',
     what: { en: 'Website for a software studio', es: 'Sitio de un estudio de software' },
@@ -126,6 +128,8 @@ export const ARCHIVE = [
   {
     name: 'Move',
     img: 'x-move',
+    host: 'move',
+    tall: 'x-move-tall',
     url: 'https://kaleidoscopic-pika-577f64.netlify.app/',
     tools: 'Figma, wireframes, prototyping',
     what: { en: 'Sportswear e-commerce', es: 'E-commerce de indumentaria deportiva' },
@@ -138,6 +142,7 @@ export const ARCHIVE = [
   {
     name: 'Lithium',
     img: 'x-lithium',
+    host: 'lithium',
     url: 'https://famous-trifle-7a5c4f.netlify.app/',
     tools: 'Figma, design system',
     what: { en: 'Web3 interface', es: 'Interfaz Web3' },
@@ -150,6 +155,8 @@ export const ARCHIVE = [
   {
     name: 'Stretch',
     img: 'x-stretch',
+    host: 'stretch',
+    tall: 'x-stretch-tall',
     url: 'https://www.codeadesarrollos.com/proyectos/stretch/index.html',
     tools: 'Branding, UI, responsive',
     what: { en: 'Natural cosmetics store', es: 'Tienda de cosmética natural' },
@@ -162,6 +169,7 @@ export const ARCHIVE = [
   {
     name: 'Creative Studio',
     img: 'x-studio',
+    host: 'creative studio',
     url: 'https://www.codeadesarrollos.com/proyectos/creative-studio/hero-section.html',
     tools: 'Branding, UI',
     what: { en: 'Landing page for a creative collective', es: 'Landing de un colectivo creativo' },
@@ -174,6 +182,7 @@ export const ARCHIVE = [
   {
     name: 'Bakery Facilities',
     img: 'x-bakery',
+    host: 'bakery facilities',
     url: 'https://www.codeadesarrollos.com/proyectos/bakery/index.html',
     tools: 'Branding, UI',
     what: { en: 'Site for bakery professionals', es: 'Sitio para profesionales de la panadería' },

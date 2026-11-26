@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { SITE } from '../content/site.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const IMAGES = JSON.parse(fs.readFileSync(path.join(here, '../content/images.json'), 'utf8'));
+export const IMAGES = JSON.parse(fs.readFileSync(path.join(here, '../content/images.json'), 'utf8'));
 
 export const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 export const plain = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
@@ -34,7 +34,7 @@ export function makeCtx(lang, pagePath) {
 }
 
 // <picture> con AVIF y WebP. `sizes` es obligatorio: evita bajar una imagen más grande que la necesaria.
-export function picture(ctx, name, { alt = '', sizes, cls = '', eager = false, style = '' } = {}) {
+export function picture(ctx, name, { alt = '', sizes, cls = '', eager = false, style = '', data = '' } = {}) {
   const im = IMAGES[name];
   if (!im) throw new Error(`Imagen inexistente: ${name}`);
   if (!sizes) throw new Error(`Falta sizes en ${name}`);
@@ -42,24 +42,18 @@ export function picture(ctx, name, { alt = '', sizes, cls = '', eager = false, s
   const set = (ext) => im.widths.map((w) => `${p}-${w}.${ext} ${w}w`).join(', ');
   const mid = im.widths[Math.min(1, im.widths.length - 1)];
   const load = eager ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async"';
-  return `<picture${cls ? ` class="${cls}"` : ''}${style ? ` style="${style}"` : ''}><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"/><img src="${p}-${mid}.webp" srcset="${set('webp')}" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(alt)}" ${load}/></picture>`;
+  return `<picture${cls ? ` class="${cls}"` : ''}${data}${style ? ` style="${style}"` : ''}><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"/><img src="${p}-${mid}.webp" srcset="${set('webp')}" sizes="${sizes}" width="${im.w}" height="${im.h}" alt="${esc(alt)}" ${load}/></picture>`;
 }
 
 export const largest = (ctx, name) => `${ctx.root}assets/img/${name}-${IMAGES[name].widths.at(-1)}.webp`;
 
 // Captura con epígrafe. Se puede ampliar: sin JavaScript, el enlace abre la imagen grande.
-export function figure(ctx, name, { title, text = '', alt, cls = '', sizes = '(min-width: 1100px) 900px, 92vw' }) {
+export function figure(ctx, name, { title, text = '', alt, cls = '', url = '', sizes = '(min-width: 1100px) 900px, 92vw' }) {
   const label = ctx.t('Enlarge', 'Ampliar');
   return `<figure class="fig ${cls}">
-  <a class="fig-zoom" href="${largest(ctx, name)}" data-zoom aria-label="${esc(`${label}: ${plain(title)}`)}">${picture(ctx, name, { alt, sizes })}</a>
+  <span class="dv dv-br"><span class="dv-bar" aria-hidden="true"><i></i><i></i><i></i>${url ? `<b>${url}</b>` : ''}</span><a class="fig-zoom dv-s" href="${largest(ctx, name)}" data-zoom aria-label="${esc(`${label}: ${plain(title)}`)}">${picture(ctx, name, { alt, sizes })}<span class="fig-z" aria-hidden="true">${icon('zoom')}</span></a></span>
   <figcaption><b>${title}</b>${text ? ` <span>${text}</span>` : ''}</figcaption>
 </figure>`;
-}
-
-// Fila de pantallas de teléfono. Se puede recorrer con teclado cuando no entra en el ancho.
-export function phones(ctx, label, items) {
-  const li = items.map((i) => `<li><figure>${picture(ctx, i.img, { alt: i.alt, sizes: '(min-width: 1100px) 200px, 58vw', cls: 'ph' })}<figcaption><b>${i.title}</b> <span>${i.text}</span></figcaption></figure></li>`);
-  return `<div class="phones" role="region" aria-label="${esc(label)}" tabindex="0"><ol style="--n:${items.length}">${li.join('')}</ol></div>`;
 }
 
 const PATHS = {
@@ -69,6 +63,11 @@ const PATHS = {
   back: '<path d="M19 12H5M11 6l-6 6 6 6"/>',
   copy: '<rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M5 15V5.5A1.5 1.5 0 0 1 6.5 4H15"/>',
   plus: '<path d="M12 5v14M5 12h14"/>',
+  pause: '<path d="M9 6v12M15 6v12"/>',
+  play: '<path d="M8 5.500v13l10.500-6.500z"/>',
+  zoom: '<path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/>',
+  menu: '<path d="M4 8h16M4 16h16"/>',
+  hand: '<path d="M9 11V5.500a1.500 1.500 0 0 1 3 0V11l5.200 1.100A2.300 2.300 0 0 1 19 14.600l-.9 4A3 3 0 0 1 15.200 21h-3.100a4 4 0 0 1-3.200-1.600L5.500 15a1.600 1.600 0 0 1 2.400-2.100L9 14z"/>',
   close: '<path d="M6 6l12 12M18 6 6 18"/>'
 };
 export const icon = (name) => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${PATHS[name]}</svg>`;
@@ -81,9 +80,9 @@ export const ul = (items, cls = 'list') => `<ul class="${cls}">${items.map((i) =
 export const dl = (rows, cls = '') => `<dl${cls ? ` class="${cls}"` : ''}>${rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
 
 export function table(ctx, { caption, head, rows, cls = '' }) {
-  const th = head.map((h) => `<th scope="col">${h}</th>`).join('');
-  const tr = rows.map((r) => `<tr>${r.map((c, i) => (i === 0 ? `<th scope="row">${c}</th>` : `<td>${c}</td>`)).join('')}</tr>`).join('');
-  return `<div class="tbl-x" role="region" aria-label="${esc(plain(caption))}" tabindex="0"><table class="tbl ${cls}"><caption class="vh">${caption}</caption><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table></div>`;
+  const th = head.map((h) => `<th scope="col" role="columnheader">${h}</th>`).join('');
+  const tr = rows.map((r) => `<tr role="row">${r.map((c, i) => (i === 0 ? `<th scope="row" role="rowheader">${c}</th>` : `<td role="cell" data-th="${esc(plain(head[i]))}">${c}</td>`)).join('')}</tr>`).join('');
+  return `<div class="tbl-x" role="region" aria-label="${esc(plain(caption))}" tabindex="0"><table class="tbl ${cls}" role="table"><caption class="vh">${caption}</caption><thead role="rowgroup"><tr role="row">${th}</tr></thead><tbody role="rowgroup">${tr}</tbody></table></div>`;
 }
 
 // Evidencia, supuesto y pendiente: separa lo que se sabe de lo que todavía es hipótesis.

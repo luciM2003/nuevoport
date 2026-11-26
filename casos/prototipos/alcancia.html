@@ -15,9 +15,9 @@
   .neg { color: var(--bad); }
   .pos { color: var(--ok); }
   .ring { --p: 0; width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; flex: none; background: conic-gradient(var(--brand) calc(var(--p) * 1%), #e8e6fb 0); transition: --p .6s; }
-  .ring::before { content: attr(data-v); width: 58px; height: 58px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 16px; }
+  .ring::before { content: attr(data-v); width: 76%; height: 76%; border-radius: 50%; background: #fff; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 14px; }
   .ring.lg { width: 168px; height: 168px; }
-  .ring.lg::before { width: 132px; height: 132px; font-size: 34px; }
+  .ring.lg::before { font-size: 34px; }
   .amount { font-family: var(--display); font-weight: 800; font-size: 52px; letter-spacing: -.05em; text-align: center; line-height: 1; font-variant-numeric: tabular-nums; }
   .keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; flex: none; }
   .keys button { min-height: 54px; border-radius: 16px; background: #fff; font-family: var(--display); font-weight: 700; font-size: 22px; display: grid; place-items: center; box-shadow: 0 3px 10px -8px rgba(13, 14, 16, .3); }
@@ -30,6 +30,21 @@
   .bar.ok i { background: #12a06a; }
   .bar.bad i { background: var(--bad); }
   .mov { width: 100%; text-align: left; }
+  .chip svg { width: 17px; height: 17px; vertical-align: -3.500px; margin-right: 7px; }
+  .cat { display: flex !important; align-items: center; gap: 10px; }
+  .cat i { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; flex: none; }
+  .cat svg { width: 18px; height: 18px; }
+  .graf { margin: 4px -20px -2px; flex: none; }
+  .graf svg { display: block; width: 100%; height: 92px; }
+  .meta-foto { position: relative; height: 190px; margin: -56px -20px 0; flex: none; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 20px 18px; }
+  .meta-foto::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18, 14, 60, .35) 0, rgba(18, 14, 60, .05) 38%, rgba(18, 14, 60, .72) 100%); }
+  .meta-foto > * { position: relative; }
+  .meta-foto .t1 { color: #fff; }
+  .meta-foto .muted { color: rgba(255, 255, 255, .92); }
+  .app:has(.meta-foto) .status { position: absolute; inset: 0 0 auto; z-index: 5; color: #fff; }
+  .app:has(.meta-foto) .view { padding-top: 56px; }
+  @media (max-width: 760px) { .app:has(.meta-foto) .view { padding-top: 10px; } .meta-foto { margin-top: -10px; } .embed .app:has(.meta-foto) .view { padding-top: 56px; } .embed .meta-foto { margin-top: -56px; } }
+  .mini { width: 64px; height: 64px; border-radius: 18px; flex: none; }
   .quick { display: flex; gap: 8px; flex-wrap: wrap; }
 </style>
 </head>
@@ -49,9 +64,10 @@
       <li><span data-lang="es">Cargá un café de $ 3.200 con el botón "+".</span><span data-lang="en">Log a $3,200 coffee with the "+" button.</span></li>
       <li><span data-lang="es">Cargá $ 15.000 en salidas y mirá el aviso.</span><span data-lang="en">Log $15,000 for going out and see the nudge.</span></li>
       <li><span data-lang="es">Aportá a la meta y mirá cómo cambia la fecha estimada.</span><span data-lang="en">Contribute to the goal and watch the estimate change.</span></li>
-      <li><span data-lang="es">Ocultá los montos desde "Perfil".</span><span data-lang="en">Hide amounts from "Perfil".</span></li>
+      <li><span data-lang="es">Ocultá los montos desde "Perfil".</span><span data-lang="en">Hide amounts from "Profile".</span></li>
     </ol>
     <button type="button" class="reset" data-reset><span data-lang="es">Reiniciar la demo</span><span data-lang="en">Reset the demo</span></button>
+    <p class="cred"><span data-lang="es">Foto de Bariloche:</span><span data-lang="en">Bariloche photo:</span> <a href="https://commons.wikimedia.org/wiki/File:Llao_Llao_Peninsula.jpg" target="_blank" rel="noopener">Fernando, Wikimedia Commons</a> (CC BY-SA 4.0).</p>
   </aside>
 
   <div class="device">
@@ -68,16 +84,123 @@
 <script src="proto.js"></script>
 <script>
 (() => {
-  const { esc, toast, sheet, cerrarSheet, ymd, sumarDias, hoy, fmt, I } = P;
+  const { esc, toast, sheet, cerrarSheet, ymd, sumarDias, hoy, fmt, I, T } = P;
+  const D = {
+    "Volver": "Back",
+    "Secciones": "Sections",
+    "Inicio": "Home",
+    "Perfil": "Profile",
+    "Reiniciar la demo": "Reset the demo",
+    "Demo reiniciada": "Demo reset",
+    "Deshacer": "Undo",
+    "Entendido": "Got it",
+    "Cancelar": "Cancel",
+    "Cerrar": "Close",
+    "Total": "Total",
+    "Café": "Coffee",
+    "Comida": "Food",
+    "Supermercado": "Groceries",
+    "Transporte": "Transport",
+    "Salidas": "Going out",
+    "Servicios": "Utilities",
+    "Sueldo": "Salary",
+    "Aporte a Viaje a Bariloche": "Saved to Trip to Bariloche",
+    "Luz, gas e internet": "Power, gas and internet",
+    "Cumple de Juli": "Juli’s birthday",
+    "Carga SUBE": "Transit card",
+    "Viaje a Bariloche": "Trip to Bariloche",
+    "Hoy": "Today",
+    "Ayer": "Yesterday",
+    "Disponible este mes": "Available this month",
+    "Meta": "Goal",
+    "Movimientos": "Transactions",
+    "Ver todo": "See all",
+    "Nuevo gasto": "New expense",
+    "Nuevo ingreso": "New income",
+    "Tipo de movimiento": "Type",
+    "Gasto": "Expense",
+    "Ingreso": "Income",
+    "Hoy · Billetera virtual": "Today · Digital wallet",
+    "Categoría": "Category",
+    "Sugerimos": "Suggested:",
+    "por tus gastos anteriores": "from your past expenses",
+    "Nota (opcional): ej. café con Lu": "Note (optional): coffee with Lu",
+    "Nota (opcional): ej. trabajo freelance": "Note (optional): freelance work",
+    "Nota": "Note",
+    "Borrar": "Delete",
+    "Guardar": "Save",
+    "Presupuesto": "Budget",
+    "Gastaste": "Spent",
+    "Tip:": "Tip:",
+    "Vas bien:": "On track:",
+    "ninguna categoría está pasada. Si te sobra a fin de mes, sumalo a tu meta.": "no category is over. If anything is left at month end, add it to your goal.",
+    "¡Meta cumplida!": "Goal reached!",
+    "Seguí así: vas muy bien.": "Keep going: you’re doing great.",
+    "¡Lo lograste! 🎉": "You did it! 🎉",
+    "Juntaste todo lo que necesitabas para el viaje.": "You saved all you needed for the trip.",
+    "Aportes": "Contributions",
+    "Aporte": "Contribution",
+    "Meses anteriores": "Previous months",
+    "Antes de usar Alcancía": "Before using Alcancía",
+    "Aportar a la meta": "Add to goal",
+    "Ocultar montos": "Hide amounts",
+    "Para mirar la app en el colectivo o en la oficina": "To check the app on the bus or at work",
+    "Recordatorio el día de cobro": "Payday reminder",
+    "Te proponemos aportar a la meta apenas cobrás": "We suggest adding to your goal as soon as you get paid",
+    "Metas": "Goals",
+    "Cargar gasto": "Log expense",
+    "Ver presupuesto": "See budget",
+    "Escribí un monto para aportar": "Type an amount to add",
+    "No te alcanza el disponible para ese aporte": "Not enough available for that",
+    "Monto": "Amount",
+    "Tipo": "Type",
+    "Aporte a la meta": "Goal contribution",
+    "Fecha": "Date",
+    "Borrar movimiento": "Delete transaction",
+    "Movimiento borrado": "Transaction deleted",
+    "En este prototipo el recordatorio queda siempre activo": "In this prototype the reminder is always on",
+    "Disponible este mes:": "Available this month:",
+    ". Elegí cuánto separar.": ". Choose how much to set aside.",
+    "Otro monto": "Other amount",
+    "Ej.: 35000": "E.g. 35000",
+    "Aportar este monto": "Add this amount",
+    "Ahora no": "Not now",
+    "más adelante": "later on",
+    "Evolución del disponible en el mes": "Available amount through the month"
+  };
+  const cat = (x) => (D[x[0].toUpperCase() + x.slice(1)] || x).toLowerCase();
+  P.textos(D, [
+    [/^(▲|▼) (\d+) % vs\. (.+)$/, '$1 $2% vs. $3'],
+    [/^(\$[\d.,•\s]+) de (\$[\d.,•\s]+)$/, '$1 of $2'],
+    [/^(.+) · tocá uno para ver el detalle o borrarlo$/, '$1 · tap one to see or delete it'],
+    [/^(.+) · quedan (\d+) días$/, '$1 · $2 days left'],
+    [/^(.+) · queda 1 día$/, '$1 · 1 day left'],
+    [/^(\d+) % de (.+)$/, '$1% of $2'],
+    [/^Te pasaste en (.+)$/, (m, c) => 'You went over in ' + cat(c)],
+    [/^Te pasaste (.+)$/, 'Over by $1'],
+    [/^bajando (.+) un 15 % \((.+) por mes\) y sumándolo a tu meta, llegás en (.+?)(?: en lugar de (.+))?\.$/, (m, c, q, a, b) => 'cut ' + cat(c) + ' by 15% (' + q + ' a month), add it to your goal and you get there in ' + a + (b ? ' instead of ' + b : '') + '.'],
+    [/^Te faltan (.+)$/, '$1 to go'],
+    [/^A este ritmo llegás en (.+)$/, 'At this pace you get there in $1'],
+    [/^Con (.+) más por mes, llegás en (.+)\.$/, 'With $1 more a month, you get there in $2.'],
+    [/^Ingreso mensual: (.+)$/, 'Monthly income: $1'],
+    [/^Vas (.+) por encima de lo que planeaste\. No pasa nada: si el mes que viene bajás (.+) un 15 % \((.+)\), llegás a tu meta en (.+)\.$/, (m, a, c, q, d) => 'You’re ' + a + ' over plan. That’s fine: cut ' + cat(c) + ' by 15% next month (' + q + ') and you reach your goal in ' + d + '.'],
+    [/^(Gasto|Ingreso) guardado · disponible (.+)$/, (m, t, v) => (t === 'Gasto' ? 'Expense' : 'Income') + ' saved · available ' + v],
+    [/^Para la meta te faltan (.+): no hace falta aportar más$/, 'Your goal is $1 away: no need to add more'],
+    [/^Sumaste (.+) · llegás en (.+)$/, 'Added $1 · you get there in $2'],
+    [/^Aportar a (.+)$/, (m, x) => 'Add to ' + (D[x] || x)],
+    [/^Todo lo que falta · (.+)$/, 'All that’s left · $1'],
+    [/^(.+?) · (.+)$/, (m, a, b) => (D[a] || a) + ' · ' + (D[b] || b)]
+  ]);
+  const fondo = (n) => `background-image:image-set(url('../../assets/fotos/${n}.avif') type('image/avif'),url('../../assets/fotos/${n}.webp') type('image/webp'))`;
 
   // ---------------------------------------------------------------- datos de ejemplo
   const CATS = {
-    cafe: { n: 'Café', c: '#f5a524', t: '#0d0e10', ic: '☕' },
-    comida: { n: 'Comida', c: '#e8743b', t: '#fff', ic: '🍝' },
-    super: { n: 'Supermercado', c: '#5b4fd8', t: '#fff', ic: '🛒' },
-    transporte: { n: 'Transporte', c: '#0c7a50', t: '#fff', ic: '🚌' },
-    salidas: { n: 'Salidas', c: '#c8362b', t: '#fff', ic: '🎉' },
-    servicios: { n: 'Servicios', c: '#2a2d31', t: '#fff', ic: '💡' }
+    cafe: { n: 'Café', c: '#f5a524', t: '#0d0e10', ic: I.cup },
+    comida: { n: 'Comida', c: '#e8743b', t: '#fff', ic: I.fork },
+    super: { n: 'Supermercado', c: '#5b4fd8', t: '#fff', ic: I.cart },
+    transporte: { n: 'Transporte', c: '#0c7a50', t: '#fff', ic: I.bus },
+    salidas: { n: 'Salidas', c: '#c8362b', t: '#fff', ic: I.spark },
+    servicios: { n: 'Servicios', c: '#2a2d31', t: '#fff', ic: I.bulb }
   };
   const mesAct = () => ymd(hoy()).slice(0, 7);
   // Fechas de ejemplo dentro del mes actual, sin pasarse del día de hoy.
@@ -89,13 +212,13 @@
     movs: [
       { id: 'm1', tipo: 'ingreso', monto: 850000, cat: null, nota: 'Sueldo', fecha: diaMes(1) },
       { id: 'm2', tipo: 'aporte', monto: 120000, cat: null, nota: 'Aporte a Viaje a Bariloche', fecha: diaMes(1) },
-      { id: 'm3', tipo: 'gasto', monto: 78000, cat: 'servicios', nota: 'Luz, gas e internet', fecha: diaMes(3) },
-      { id: 'm4', tipo: 'gasto', monto: 41900, cat: 'super', nota: 'Supermercado', fecha: diaMes(4) },
-      { id: 'm5', tipo: 'gasto', monto: 52000, cat: 'salidas', nota: 'Cumple de Juli', fecha: diaMes(6) },
-      { id: 'm6', tipo: 'gasto', monto: 18500, cat: 'transporte', nota: 'Carga SUBE', fecha: diaMes(7) },
-      { id: 'm7', tipo: 'gasto', monto: 3200, cat: 'cafe', nota: 'Café', fecha: diaMes(8) },
-      { id: 'm8', tipo: 'gasto', monto: 26800, cat: 'comida', nota: 'Delivery', fecha: diaMes(9) },
-      { id: 'm9', tipo: 'gasto', monto: 2900, cat: 'cafe', nota: 'Café', fecha: diaMes(10) }
+      { id: 'm3', tipo: 'gasto', monto: 78000, cat: 'servicios', nota: 'Luz, gas e internet', fecha: diaMes(4) },
+      { id: 'm4', tipo: 'gasto', monto: 41900, cat: 'super', nota: 'Supermercado', fecha: diaMes(7) },
+      { id: 'm5', tipo: 'gasto', monto: 52000, cat: 'salidas', nota: 'Cumple de Juli', fecha: diaMes(11) },
+      { id: 'm6', tipo: 'gasto', monto: 18500, cat: 'transporte', nota: 'Carga SUBE', fecha: diaMes(14) },
+      { id: 'm7', tipo: 'gasto', monto: 3200, cat: 'cafe', nota: 'Café', fecha: diaMes(17) },
+      { id: 'm8', tipo: 'gasto', monto: 26800, cat: 'comida', nota: 'Delivery', fecha: diaMes(20) },
+      { id: 'm9', tipo: 'gasto', monto: 2900, cat: 'cafe', nota: 'Café', fecha: diaMes(23) }
     ],
     meta: { nombre: 'Viaje a Bariloche', objetivo: 1000000, previo: 560000, aportesPrevios: [110000, 100000] },
     oculto: false
@@ -156,11 +279,31 @@
   const icoMov = (m) => m.tipo === 'ingreso' ? `<span class="ico" style="background:var(--ok)">$</span>`
     : m.tipo === 'aporte' ? `<span class="ico">${I.target}</span>`
     : `<span class="ico" style="background:${CATS[m.cat].c};color:${CATS[m.cat].t}" aria-hidden="true">${CATS[m.cat].ic}</span>`;
-  const cuando = (f) => f === ymd(hoy()) ? 'Hoy' : f === ymd(sumarDias(hoy(), -1)) ? 'Ayer' : fmt(f, { weekday: 'short', day: 'numeric' });
+  const cuando = (f) => f === ymd(hoy()) ? 'Hoy' : f === ymd(sumarDias(hoy(), -1)) ? 'Ayer' : fmt(f, P.en() ? { weekday: 'short', month: 'short', day: 'numeric' } : { weekday: 'short', day: 'numeric' });
   const filaMov = (m) => `
     <button class="row mov" data-mov="${m.id}">${icoMov(m)}<span class="grow"><b>${esc(m.nota || CATS[m.cat].n)}</b><small>${cuando(m.fecha)}${m.cat ? ' · ' + CATS[m.cat].n : ''}</small></span>
     <b class="${m.tipo === 'ingreso' ? 'pos' : 'neg'}" style="font-size:15px;white-space:nowrap">${m.tipo === 'ingreso' ? '+ ' : '− '}${S.oculto ? '$ •••••' : P.plata(m.monto)}</b></button>`;
   const ordenMovs = () => delMes().slice().sort((a, b) => b.fecha.localeCompare(a.fecha) || b.id.localeCompare(a.id));
+
+  // Evolución del disponible: un punto por día del mes, con los movimientos reales de la demo.
+  function grafico() {
+    const dias = hoy().getDate();
+    let acum = 0;
+    const serie = [];
+    for (let d = 1; d <= Math.max(dias, 2); d++) {
+      const f = ymd(new Date(hoy().getFullYear(), hoy().getMonth(), d));
+      delMes().filter((m) => m.fecha === f).forEach((m) => { acum += m.tipo === 'ingreso' ? m.monto : -m.monto; });
+      serie.push(acum);
+    }
+    const max = Math.max(...serie) * 1.08 || 1;
+    const min = Math.min(...serie) * 0.86;
+    const X = (i) => 20 + (i / (serie.length - 1)) * 350;
+    const Y = (v) => 82 - ((v - min) / (max - min || 1)) * 66;
+    let d = `M${X(0)} ${Y(serie[0])}`;
+    for (let i = 1; i < serie.length; i++) { const mx = (X(i - 1) + X(i)) / 2; d += `C${mx} ${Y(serie[i - 1])} ${mx} ${Y(serie[i])} ${X(i)} ${Y(serie[i])}`; }
+    const u = serie.length - 1;
+    return `<svg viewBox="0 0 390 92" preserveAspectRatio="none" role="img" aria-label="Evolución del disponible en el mes"><defs><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b4fd8" stop-opacity=".26"/><stop offset="1" stop-color="#5b4fd8" stop-opacity="0"/></linearGradient></defs><path d="${d}L${X(u)} 92L${X(0)} 92Z" fill="url(#gr)"/><path d="${d}" fill="none" stroke="#5b4fd8" stroke-width="3" stroke-linecap="round"/><circle cx="${X(u)}" cy="${Y(serie[u])}" r="6" fill="#fff"/><circle cx="${X(u)}" cy="${Y(serie[u])}" r="4" fill="#5b4fd8"/></svg>`;
+  }
 
   // ---------------------------------------------------------------- pantallas
   const V = {};
@@ -169,10 +312,11 @@
     const v = variacion();
     const p = pct(ahorrado(), S.meta.objetivo);
     return `
-      <span class="muted" style="margin-top:6px">Disponible este mes</span>
+      <h1 class="muted" style="margin:6px 0 0;font-weight:400;font-size:14px">Disponible este mes</h1>
       <span class="big" style="font-size:48px">${$(disponible())}</span>
       <span class="pill ${v >= 0 ? 'ok' : 'bad'}" style="align-self:flex-start">${v >= 0 ? '▲' : '▼'} ${Math.abs(v)} % vs. ${fmt(new Date(hoy().getFullYear(), hoy().getMonth() - 1, 1), { month: 'long' })}</span>
-      <button class="card row" data-tab="metas" style="width:100%;text-align:left"><span class="ring" style="--p:${p}" data-v="${p}%"></span><span class="grow"><span class="k" style="color:var(--muted)">Meta</span><b style="font-family:var(--display);font-size:18px;letter-spacing:-.02em">${esc(S.meta.nombre)}</b><small>${$(ahorrado())} de ${$(S.meta.objetivo)}</small></span></button>
+      <div class="graf">${grafico()}</div>
+      <button class="card row" data-tab="metas" style="width:100%;text-align:left"><span class="foto mini" style="${fondo('bariloche')}" aria-hidden="true"></span><span class="grow"><span class="k" style="color:var(--muted)">Meta</span><b style="font-family:var(--display);font-size:18px;letter-spacing:-.02em">${esc(S.meta.nombre)}</b><small>${$(ahorrado())} de ${$(S.meta.objetivo)}</small></span><span class="ring" style="--p:${p};width:58px;height:58px" data-v="${p}%"></span></button>
       <div class="row"><h2 class="t2 grow" style="margin:0">Movimientos</h2><button class="link" data-go="movs">Ver todo</button></div>
       <div class="card" style="padding:4px 16px"><div class="list">${ordenMovs().slice(0, 4).map(filaMov).join('')}</div></div>`;
   };
@@ -216,7 +360,7 @@
       <div class="card brand"><span class="k">Gastaste</span><div class="big" style="margin-top:6px">${$(g)}</div><div class="bar"><i style="width:${pct(g, t)}%"></i></div><small style="display:block;margin-top:8px">${pct(g, t)} % de ${$(t)}</small></div>
       ${Object.entries(CATS).map(([k, c]) => {
         const gc = gastoCat(k), lim = S.presupuestos[k], pc = pct(gc, lim), pasada = gc > lim;
-        return `<div class="card"><div class="row"><span class="grow"><b>${c.ic} ${c.n}</b></span><span class="${pasada ? 'neg' : 'small'}" style="${pasada ? 'font-weight:700;font-size:14px' : ''}">${$(gc)} / ${S.oculto ? '•••' : P.plata(lim).replace('$ ', '')}</span></div>
+        return `<div class="card"><div class="row"><span class="grow"><b class="cat"><i style="background:${c.c};color:${c.t}">${c.ic}</i><span>${c.n}</span></b></span><span class="${pasada ? 'neg' : 'small'}" style="${pasada ? 'font-weight:700;font-size:14px' : ''}">${$(gc)} / ${S.oculto ? '•••' : P.plata(lim).replace(/^\$\s?/, '')}</span></div>
           <div class="bar ${pasada ? 'bad' : pc >= 75 ? 'warn' : 'ok'}"><i style="width:${pc}%"></i></div>
           ${pasada ? `<small class="neg" style="display:block;margin-top:6px;font-weight:600">Te pasaste ${$(gc - lim)}</small>` : ''}</div>`;
       }).join('')}
@@ -227,8 +371,7 @@
     const a = ahorrado(), p = pct(a, S.meta.objetivo), falta = S.meta.objetivo - a;
     const m = proyeccion(), m2 = proyeccion(40000);
     return `
-      <span class="muted" style="margin-top:6px">Meta</span>
-      <h1 class="t1">${esc(S.meta.nombre)}</h1>
+      <div class="meta-foto foto" style="${fondo('bariloche')}"><span class="muted">Meta</span><h1 class="t1">${esc(S.meta.nombre)}</h1></div>
       <div class="center" style="margin:10px 0"><span class="ring lg" style="--p:${p}" data-v="${p}%"></span><b style="font-size:18px;margin-top:6px">${$(a)} de ${$(S.meta.objetivo)}</b><span class="muted">${falta > 0 ? `Te faltan ${$(falta)}` : '¡Meta cumplida!'}</span></div>
       ${falta > 0 ? `<div class="card soft"><b style="font-size:15px">A este ritmo llegás en ${mesNombre(m)}</b><p class="small" style="color:var(--brand-ink);margin:4px 0 0">${m2 < m ? `Con ${P.plata(40000)} más por mes, llegás en ${mesNombre(m2)}.` : 'Seguí así: vas muy bien.'}</p></div>` : `<div class="card soft"><b style="font-size:15px">¡Lo lograste! 🎉</b><p class="small" style="color:var(--brand-ink);margin:4px 0 0">Juntaste todo lo que necesitabas para el viaje.</p></div>`}
       <h2 class="t2">Aportes</h2>
@@ -241,7 +384,7 @@
 
   V.perfil = () => `
     <h1 class="t1">Perfil</h1>
-    <div class="card"><div class="row"><span class="ico round">L</span><span class="grow"><b>Lucas Romero</b><small>Ingreso mensual: ${$(S.ingreso)}</small></span></div></div>
+    <div class="card"><div class="row">${P.avatar('Lucas', { bata: false, fondo: '#e4e1fa', corte: 1 })}<span class="grow"><b>Lucas Romero</b><small>Ingreso mensual: ${$(S.ingreso)}</small></span></div></div>
     <div class="card"><div class="row"><span class="grow"><b>Ocultar montos</b><small>Para mirar la app en el colectivo o en la oficina</small></span><button class="toggle" role="switch" aria-checked="${S.oculto}" aria-label="Ocultar montos" data-act="ocultar"></button></div></div>
     <div class="card"><div class="row"><span class="grow"><b>Recordatorio el día de cobro</b><small>Te proponemos aportar a la meta apenas cobrás</small></span><button class="toggle" role="switch" aria-checked="true" aria-label="Recordatorio el día de cobro" data-act="noop"></button></div></div>
     <button class="btn ghost" data-reset>Reiniciar la demo</button>`;
@@ -251,7 +394,7 @@
   const scr = document.getElementById('screen');
   function render() {
     cerrarSheet();
-    scr.innerHTML = `<main class="view screen-in">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`;
+    scr.innerHTML = T(`<main class="view screen-in">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`);
     const nota = document.getElementById('nota');
     if (nota) nota.addEventListener('input', () => { C.nota = nota.value; });
     // La categoría elegida o sugerida siempre queda a la vista, aunque esté al final de la fila.
@@ -313,7 +456,7 @@
     if (ds.cat) { C.cat = ds.cat; C.elegida = true; return render(); }
     if (ds.mov) {
       const m = S.movs.find((x) => x.id === ds.mov);
-      sheet(`<h3>${esc(m.nota)}</h3><dl class="dl" style="margin:0"><div><dt>Monto</dt><dd>${$(m.monto)}</dd></div><div><dt>Tipo</dt><dd>${{ gasto: 'Gasto', ingreso: 'Ingreso', aporte: 'Aporte a la meta' }[m.tipo]}</dd></div>${m.cat ? `<div><dt>Categoría</dt><dd>${CATS[m.cat].ic} ${CATS[m.cat].n}</dd></div>` : ''}<div><dt>Fecha</dt><dd>${fmt(m.fecha, { day: 'numeric', month: 'long' })}</dd></div></dl><button class="btn danger" data-borrar="${m.id}">${I.trash} Borrar movimiento</button><button class="btn ghost" data-cerrar>Cerrar</button>`);
+      sheet(`<h3>${esc(m.nota)}</h3><dl class="dl" style="margin:0"><div><dt>Monto</dt><dd>${$(m.monto)}</dd></div><div><dt>Tipo</dt><dd>${{ gasto: 'Gasto', ingreso: 'Ingreso', aporte: 'Aporte a la meta' }[m.tipo]}</dd></div>${m.cat ? `<div><dt>Categoría</dt><dd>${CATS[m.cat].n}</dd></div>` : ''}<div><dt>Fecha</dt><dd>${fmt(m.fecha, { day: 'numeric', month: 'long' })}</dd></div></dl><button class="btn danger" data-borrar="${m.id}">${I.trash} Borrar movimiento</button><button class="btn ghost" data-cerrar>Cerrar</button>`);
       return;
     }
     if (ds.borrar) {
@@ -339,6 +482,7 @@
     }
   });
 
+  window.addEventListener('idioma', () => render());
   render();
 })();
 </script>

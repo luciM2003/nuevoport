@@ -1,23 +1,79 @@
 {
-  "alcancia-budget": {
+  "alcancia-budget-en": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
     "widths": [
       320,
       640
     ]
   },
-  "alcancia-goal": {
+  "alcancia-budget-es": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
     "widths": [
       320,
       640
     ]
   },
-  "alcancia-home": {
+  "alcancia-goal-en": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "alcancia-goal-es": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "alcancia-home-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "alcancia-home-es": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "alcancia-log-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "alcancia-log-es": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "alcancia-nudge-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "alcancia-nudge-es": {
+    "w": 1170,
+    "h": 2532,
     "widths": [
       320,
       640
@@ -102,28 +158,85 @@
       1800
     ]
   },
-  "modoya-cart": {
-    "w": 403,
-    "h": 875,
+  "modoya-a-live": {
+    "w": 2880,
+    "h": 1800,
     "widths": [
-      300,
-      403
+      720,
+      1200,
+      1800
     ]
   },
-  "modoya-confirmed": {
-    "w": 403,
-    "h": 875,
+  "modoya-c-cart": {
+    "w": 1236,
+    "h": 2676,
     "widths": [
-      300,
-      403
+      320,
+      640
     ]
   },
-  "modoya-home": {
-    "w": 403,
-    "h": 875,
+  "modoya-c-done": {
+    "w": 1236,
+    "h": 2676,
     "widths": [
-      300,
-      403
+      320,
+      640
+    ]
+  },
+  "modoya-c-home": {
+    "w": 1236,
+    "h": 2676,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "modoya-c-kitchen": {
+    "w": 1236,
+    "h": 2676,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "modoya-c-way": {
+    "w": 1236,
+    "h": 2676,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "modoya-l-kitchen": {
+    "w": 2360,
+    "h": 1640,
+    "widths": [
+      640,
+      1200
+    ]
+  },
+  "modoya-l-menu": {
+    "w": 2360,
+    "h": 1640,
+    "widths": [
+      640,
+      1200
+    ]
+  },
+  "modoya-l-ready": {
+    "w": 2360,
+    "h": 1640,
+    "widths": [
+      640,
+      1200
+    ]
+  },
+  "modoya-l-sent": {
+    "w": 2360,
+    "h": 1640,
+    "widths": [
+      640,
+      1200
     ]
   },
   "modoya-landing": {
@@ -162,20 +275,44 @@
       1800
     ]
   },
-  "modoya-pay": {
-    "w": 403,
-    "h": 875,
+  "modoya-landing-tall": {
+    "w": 1440,
+    "h": 3800,
     "widths": [
-      300,
-      403
+      720,
+      1200
     ]
   },
-  "modoya-track": {
-    "w": 403,
-    "h": 875,
+  "modoya-r-done": {
+    "w": 1236,
+    "h": 2676,
     "widths": [
-      300,
-      403
+      320,
+      640
+    ]
+  },
+  "modoya-r-home": {
+    "w": 1236,
+    "h": 2676,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "modoya-r-pickup": {
+    "w": 1236,
+    "h": 2676,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "modoya-r-way": {
+    "w": 1236,
+    "h": 2676,
+    "widths": [
+      320,
+      640
     ]
   },
   "padel-cash": {
@@ -264,33 +401,81 @@
       960
     ]
   },
-  "turno-done": {
+  "turno-doctor-en": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
     "widths": [
       320,
       640
     ]
   },
-  "turno-home": {
+  "turno-doctor-es": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
     "widths": [
       320,
       640
     ]
   },
-  "turno-review": {
+  "turno-done-en": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
     "widths": [
       320,
       640
     ]
   },
-  "turno-slot": {
+  "turno-done-es": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "turno-home-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "turno-home-es": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "turno-review-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "turno-review-es": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "turno-slot-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "turno-slot-es": {
+    "w": 1170,
+    "h": 2532,
     "widths": [
       320,
       640
@@ -331,16 +516,16 @@
     ]
   },
   "uco-inbox": {
-    "w": 655,
-    "h": 1390,
+    "w": 645,
+    "h": 1380,
     "widths": [
       320,
       640
     ]
   },
   "uco-order": {
-    "w": 655,
-    "h": 1390,
+    "w": 645,
+    "h": 1380,
     "widths": [
       320,
       640
@@ -364,84 +549,163 @@
       1800
     ]
   },
-  "vino-home": {
+  "vino-home-en": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
     "widths": [
       320,
       640
     ]
   },
-  "vino-route": {
+  "vino-home-es": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
     "widths": [
       320,
       640
     ]
   },
-  "vino-winery": {
+  "vino-pay-en": {
     "w": 1170,
-    "h": 2436,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "vino-pay-es": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "vino-route-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "vino-route-es": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "vino-voucher-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "vino-voucher-es": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "vino-winery-en": {
+    "w": 1170,
+    "h": 2532,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "vino-winery-es": {
+    "w": 1170,
+    "h": 2532,
     "widths": [
       320,
       640
     ]
   },
   "x-agv": {
-    "w": 1440,
-    "h": 900,
+    "w": 2560,
+    "h": 1600,
     "widths": [
       480,
-      960
+      960,
+      1440
     ]
   },
   "x-bakery": {
-    "w": 1440,
-    "h": 900,
+    "w": 2560,
+    "h": 1600,
     "widths": [
       480,
-      960
+      960,
+      1440
     ]
   },
   "x-codea": {
-    "w": 1440,
-    "h": 900,
+    "w": 2560,
+    "h": 1600,
     "widths": [
       480,
-      960
+      960,
+      1440
     ]
   },
   "x-lithium": {
-    "w": 1440,
-    "h": 900,
+    "w": 2560,
+    "h": 1600,
     "widths": [
       480,
-      960
+      960,
+      1440
     ]
   },
   "x-move": {
+    "w": 2560,
+    "h": 1600,
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "x-move-tall": {
     "w": 1440,
-    "h": 900,
+    "h": 2523,
     "widths": [
       480,
       960
     ]
   },
   "x-stretch": {
+    "w": 2560,
+    "h": 1600,
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  "x-stretch-tall": {
     "w": 1440,
-    "h": 900,
+    "h": 2870,
     "widths": [
       480,
       960
     ]
   },
   "x-studio": {
-    "w": 1440,
-    "h": 900,
+    "w": 2560,
+    "h": 1600,
     "widths": [
       480,
-      960
+      960,
+      1440
     ]
   }
 }

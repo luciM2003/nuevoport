@@ -1,4 +1,5 @@
-import { figure, phones, table, evidence, swatches, contrast, metrics, ul } from '../lib/html.mjs';
+import { figure, table, evidence, swatches, contrast, metrics, ul } from '../lib/html.mjs';
+import { phones } from '../lib/phones.mjs';
 import { flow } from '../lib/diagrams.mjs';
 
 export default {
@@ -22,8 +23,8 @@ export default {
         'De un mensaje de chat a un pedido, una reserva o un seguimiento, para personas que nunca configuraron un bot.'
       ),
       coverAlt: t(
-        'UcoBot dashboard with metrics, assistants and automations, next to a WhatsApp conversation that ends in a confirmed order.',
-        'Panel de UcoBot con métricas, asistentes y automatizaciones, junto a una conversación de WhatsApp que termina en un pedido confirmado.'
+        'UcoBot on a laptop and a phone: the inbox with every chat, a conversation that ends in a confirmed order and the dashboard, bookings and point of sale.',
+        'UcoBot en una computadora y un teléfono: la bandeja con todos los chats, una conversación que termina en un pedido confirmado y el panel, las reservas y el punto de venta.'
       ),
       overview: [
         [t('Industry', 'Industria'), t('SaaS for food, retail and services', 'SaaS para gastronomía, comercio y servicios')],
@@ -197,14 +198,14 @@ export default {
           id: 'solution',
           label: t('Final solution', 'Solución final'),
           title: t('The same grammar in every module.', 'La misma gramática en todos los módulos.'),
-          body: `${figure(ctx, 'uco-dashboard', { title: t('Overview', 'Resumen'), text: t('Each figure comes with a recommendation in plain words: what changed and what to look at.', 'Cada cifra viene con una recomendación en palabras simples: qué cambió y qué mirar.'), alt: t('Dashboard with leads, interactions, sales, AI performance and critical automations', 'Panel con leads, interacciones, ventas, rendimiento de la IA y automatizaciones críticas') })}
-          ${figure(ctx, 'uco-bookings', { title: t('Bookings', 'Reservas'), text: t('Pending appointments carry the solid button; confirmed ones step back.', 'Las citas pendientes llevan el botón lleno; las confirmadas quedan en segundo plano.'), alt: t('Calendar, branch filter and list of appointments with pending and confirmed states', 'Calendario, filtro por sucursal y lista de citas pendientes y confirmadas') })}
-          ${figure(ctx, 'uco-pos', { title: t('Point of sale', 'Punto de venta'), text: t('Stock on every product, customer and total always in the same place.', 'Stock en cada producto; cliente y total, siempre en el mismo lugar.'), alt: t('Point of sale with product grid, customer, payment methods and total', 'Punto de venta con productos, cliente, medios de pago y total') })}
-          ${figure(ctx, 'uco-promotions', { title: t('Promotions', 'Promociones'), text: t('Use limit, expiry and state on one line, readable without opening anything.', 'Límite de uso, vencimiento y estado en una línea, sin abrir nada.'), alt: t('Promotions with usage progress, expiry and switch', 'Promociones con avance de uso, vencimiento e interruptor') })}
+          body: `${figure(ctx, 'uco-dashboard', { url: 'chatbot-sass-eight.vercel.app', title: t('Overview', 'Resumen'), text: t('Each figure comes with a recommendation in plain words: what changed and what to look at.', 'Cada cifra viene con una recomendación en palabras simples: qué cambió y qué mirar.'), alt: t('Dashboard with leads, interactions, sales, AI performance and critical automations', 'Panel con leads, interacciones, ventas, rendimiento de la IA y automatizaciones críticas') })}
+          ${figure(ctx, 'uco-bookings', { url: 'chatbot-sass-eight.vercel.app', title: t('Bookings', 'Reservas'), text: t('Pending appointments carry the solid button; confirmed ones step back.', 'Las citas pendientes llevan el botón lleno; las confirmadas quedan en segundo plano.'), alt: t('Calendar, branch filter and list of appointments with pending and confirmed states', 'Calendario, filtro por sucursal y lista de citas pendientes y confirmadas') })}
+          ${figure(ctx, 'uco-pos', { url: 'chatbot-sass-eight.vercel.app', title: t('Point of sale', 'Punto de venta'), text: t('Stock on every product, customer and total always in the same place.', 'Stock en cada producto; cliente y total, siempre en el mismo lugar.'), alt: t('Point of sale with product grid, customer, payment methods and total', 'Punto de venta con productos, cliente, medios de pago y total') })}
+          ${figure(ctx, 'uco-promotions', { url: 'chatbot-sass-eight.vercel.app', title: t('Promotions', 'Promociones'), text: t('Use limit, expiry and state on one line, readable without opening anything.', 'Límite de uso, vencimiento y estado en una línea, sin abrir nada.'), alt: t('Promotions with usage progress, expiry and switch', 'Promociones con avance de uso, vencimiento e interruptor') })}
           ${phones(ctx, t('Conversations on the phone', 'Conversaciones en el celular'), [
             { img: 'uco-inbox', title: t('One inbox', 'Una sola bandeja'), text: t('WhatsApp and Instagram together, with the channel on each contact.', 'WhatsApp e Instagram juntos, con el canal en cada contacto.'), alt: t('Inbox with five conversations and channel filters', 'Bandeja con cinco conversaciones y filtros por canal') },
             { img: 'uco-order', title: t('The order, inside the chat', 'El pedido, dentro del chat'), text: t('It says who is answering and closes with a summary that can be checked.', 'Dice quién atiende y cierra con un resumen que se puede revisar.'), alt: t('Conversation that ends in an order card with the total', 'Conversación que termina en una tarjeta de pedido con el total') }
-          ])}`
+          ], { bg: 'radial-gradient(90% 120% at 84% 0,#33334a 0,#22222f 44%,#14141c 100%)', fg: '#fff' })}`
         },
         {
           id: 'implementation',

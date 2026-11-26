@@ -12,15 +12,14 @@
 <link rel="stylesheet" href="proto.css"/>
 <style>
   :root { --brand: #8a1c3a; --brand-ink: #8a1c3a; --brand-soft: #f8e6ea; }
-  /* Fotos de viñedo dibujadas: cielo de atardecer e hileras de vides. */
-  .vine { position: relative; background: linear-gradient(180deg, #f6c79f 0, #f2a98a 34%, transparent 34%), repeating-linear-gradient(100deg, #5f7d36 0 9px, #4b6627 9px 19px); }
-  .vine.v1 { background: linear-gradient(180deg, #e9b3a4 0, #d98c86 30%, transparent 30%), repeating-linear-gradient(80deg, #6b8740 0 8px, #546f2f 8px 17px); }
-  .vine.v2 { background: linear-gradient(180deg, #f3d3a7 0, #eab27c 38%, transparent 38%), repeating-linear-gradient(95deg, #586f31 0 10px, #465a26 10px 20px); }
-  .vine.v3 { background: linear-gradient(180deg, #c9d7ef 0, #f0c3a8 40%, transparent 40%), repeating-linear-gradient(105deg, #6f8a3c 0 8px, #56702c 8px 18px); }
+  /* Fotos con licencia abierta: la atribución está en el panel lateral. */
+  .vine { position: relative; background: #cdbfae center / cover no-repeat; }
+  .vine::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 8, 12, .22) 0, rgba(20, 8, 12, 0) 34%, rgba(20, 8, 12, 0) 66%, rgba(20, 8, 12, .28) 100%); pointer-events: none; }
+  .vine > * { z-index: 1; }
   .vine .rate { position: absolute; top: 10px; left: 10px; background: #fff; border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; display: inline-flex; gap: 4px; align-items: center; }
   .vine .rate svg { width: 12px; height: 12px; color: #c9785a; }
   .bod { width: 100%; text-align: left; }
-  .bod .vine { height: 130px; }
+  .bod .vine { height: 158px; }
   .exp { width: 100%; text-align: left; padding: 14px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--line); }
   .exp[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--brand); background: var(--brand-soft); }
   .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -45,6 +44,12 @@
   .dia b { font-size: 18px; }
   .dia[aria-pressed="true"] { background: var(--brand); color: #fff; }
   .dia[aria-pressed="true"] small { color: rgba(255, 255, 255, .8); }
+  .app:has([data-detalle]) .status { position: absolute; inset: 0 0 auto; z-index: 5; color: #fff; }
+  .app:has([data-detalle]) .view { padding-top: 46px; }
+  @media (max-width: 760px) { .app:has([data-detalle]) .view { padding-top: 10px; } .vine[data-detalle] { margin-top: -10px !important; } .vine[data-detalle] .icon-btn { top: 14px !important; } }
+  .embed .app:has([data-detalle]) .view { padding-top: 46px; }
+  .embed .vine[data-detalle] { margin-top: -56px !important; }
+  .embed .vine[data-detalle] .icon-btn { top: 60px !important; }
   .cargando { width: 22px; height: 22px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .35); border-top-color: #fff; animation: gira .8s linear infinite; }
   @keyframes gira { to { transform: rotate(360deg); } }
 </style>
@@ -65,9 +70,10 @@
       <li><span data-lang="es">Armá un sábado con tres bodegas de Luján de Cuyo.</span><span data-lang="en">Plan a Saturday with three Luján de Cuyo wineries.</span></li>
       <li><span data-lang="es">Sumá una de Valle de Uco y mirá qué pasa con los horarios.</span><span data-lang="en">Add one from Valle de Uco and see what happens to the times.</span></li>
       <li><span data-lang="es">Activá el traslado y reservá.</span><span data-lang="en">Turn on transport and book.</span></li>
-      <li><span data-lang="es">Abrí el voucher desde "Reservas".</span><span data-lang="en">Open the voucher from "Reservas".</span></li>
+      <li><span data-lang="es">Abrí el voucher desde "Reservas".</span><span data-lang="en">Open the voucher from "Bookings".</span></li>
     </ol>
     <button type="button" class="reset" data-reset><span data-lang="es">Reiniciar la demo</span><span data-lang="en">Reset the demo</span></button>
+    <p class="cred"><span data-lang="es">Fotos ilustrativas recortadas de Wikimedia Commons:</span><span data-lang="en">Illustrative photos, cropped, from Wikimedia Commons:</span> <a href="https://commons.wikimedia.org/wiki/File:Vineyard_in_Mendoza,_Argentina.jpg" target="_blank" rel="noopener">David</a> (CC BY 2.0), <a href="https://commons.wikimedia.org/wiki/File:Bodega_chakana_vi%C3%B1edo_camino.jpg" target="_blank" rel="noopener">Juan Pelizzatti</a> (CC BY 3.0), <a href="https://commons.wikimedia.org/wiki/File:Los_Pioneros_Vineyard_2.jpg" target="_blank" rel="noopener">PP2025</a> (CC0), <a href="https://commons.wikimedia.org/wiki/File:Ma%C3%B1anas_mendocinas.JPG" target="_blank" rel="noopener">Analía Fiocca Solimei</a> (CC BY-SA 4.0), <a href="https://commons.wikimedia.org/wiki/File:Wine_Cellar_at_Chateau_Kirwan.jpg" target="_blank" rel="noopener">Jon</a> (CC BY 2.0), MendozaGuide: <a href="https://commons.wikimedia.org/wiki/File:Bicycle_among_olive_trees_and_vineyards,_Maipu,_Mendoza.jpg" target="_blank" rel="noopener">1</a>, <a href="https://commons.wikimedia.org/wiki/File:Vineyards_and_the_Andes,_Maipu,_Mendoza.jpg" target="_blank" rel="noopener">2</a> (CC BY 4.0).</p>
   </aside>
 
   <div class="device">
@@ -84,27 +90,150 @@
 <script src="proto.js"></script>
 <script>
 (() => {
-  const { esc, toast, sheet, cerrarSheet, ymd, sumarDias, hoy, fmt, plata, hash, I } = P;
+  const { esc, toast, sheet, cerrarSheet, ymd, sumarDias, hoy, fmt, plata, hash, I, T } = P;
+  const D = {
+    "Volver": "Back",
+    "Secciones": "Sections",
+    "Inicio": "Home",
+    "Perfil": "Profile",
+    "Reiniciar la demo": "Reset the demo",
+    "Demo reiniciada": "Demo reset",
+    "Deshacer": "Undo",
+    "Entendido": "Got it",
+    "Cancelar": "Cancel",
+    "Cerrar": "Close",
+    "Total": "Total",
+    "Explorar": "Explore",
+    "Recorrido": "Route",
+    "Reservas": "Bookings",
+    "Descubrí bodegas cerca tuyo": "Discover wineries near you",
+    "Día de la visita": "Visit day",
+    "Bodega o experiencia": "Winery or experience",
+    "Buscar bodega o experiencia": "Search winery or experience",
+    "Zonas": "Areas",
+    "Todas": "All",
+    "Ver todas": "See all",
+    "En tu recorrido": "In your route",
+    "Agotado": "Sold out",
+    "Elegí la experiencia": "Choose an experience",
+    "Degustación premium": "Premium tasting",
+    "Degustación + almuerzo": "Tasting + lunch",
+    "Almuerzo de pasos": "Multi-course lunch",
+    "Visita clásica": "Classic visit",
+    "Recorrido + atardecer": "Walk + sunset",
+    "Viñedos en bici": "Vineyards by bike",
+    "Degustación de altura": "High-altitude tasting",
+    "Almuerzo a la parrilla": "Grill lunch",
+    "Degustación de barricas": "Barrel tasting",
+    "Vino y aceite de oliva": "Wine and olive oil",
+    "Visita histórica": "Historic visit",
+    "5 vinos de alta gama": "5 premium wines",
+    "Menú de 3 pasos con maridaje": "3-course menu with pairing",
+    "6 pasos y 4 vinos": "6 courses and 4 wines",
+    "Recorrido por la cava y 3 vinos": "Cellar tour and 3 wines",
+    "Caminata entre viñedos y 4 vinos": "Vineyard walk and 4 wines",
+    "Paseo guiado y 2 vinos": "Guided ride and 2 wines",
+    "5 vinos con vista a la cordillera": "5 wines with Andes views",
+    "Asado y 4 vinos": "Asado and 4 wines",
+    "4 vinos directo de la barrica": "4 wines straight from the barrel",
+    "Cata de 3 vinos y 3 aceites": "3 wines and 3 oils",
+    "Museo, cava de 1890 y 3 vinos": "Museum, 1890 cellar and 3 wines",
+    "No llegás": "Too far",
+    "\"No llegás\": por la distancia, ese horario choca con otra parada de tu recorrido.": "\"Too far\": because of the distance, that time clashes with another stop on your route.",
+    "Elegí una experiencia para ver los horarios.": "Choose an experience to see its times.",
+    "Esta bodega ya está en tu recorrido: si elegís otra opción, la reemplazamos.": "This winery is already on your route: choosing another option replaces it.",
+    "Sumar al recorrido": "Add to route",
+    "Tu recorrido": "Your route",
+    "Todavía no sumaste bodegas.": "No wineries yet.",
+    "Elegí experiencias y armamos el día.": "Pick experiences and we’ll plan the day.",
+    "Explorar bodegas": "Explore wineries",
+    "Cambiar horario": "Change time",
+    "Sumar otra bodega": "Add another winery",
+    "Traslado incluido": "Transport included",
+    "Hay horarios que no encajan": "Some times don’t fit",
+    "Cambiá el horario de la parada marcada o quitala para poder reservar.": "Change the marked stop’s time or remove it to book.",
+    "Confirmá y pagá": "Confirm and pay",
+    "Todo el día en un solo pago": "The whole day in one payment",
+    "Traslado": "Transport",
+    "Tarjeta de prueba: no se cobra nada": "Test card: nothing is charged",
+    "Cancelación sin cargo hasta 48 h antes. Confirmación inmediata.": "Free cancellation up to 48 h before. Instant confirmation.",
+    "Procesando": "Processing",
+    "¡Tu día está listo!": "Your day is ready!",
+    "Recorrido realizado": "Route completed",
+    "Disponible sin conexión": "Available offline",
+    "Mostralo en cada bodega ·": "Show it at each winery ·",
+    "Traslado confirmado": "Transport confirmed",
+    "Te buscamos por tu hotel 30 min antes de la primera parada.": "We pick you up at your hotel 30 min before the first stop.",
+    "Confirmada": "Confirmed",
+    "Cuando reserves un recorrido, el voucher aparece acá y funciona sin señal.": "When you book a route, the voucher shows up here and works without signal.",
+    "Viaja desde Buenos Aires": "Traveling from Buenos Aires",
+    "Idioma": "Language",
+    "Español": "English",
+    "Moneda": "Currency",
+    "Medio de pago": "Payment method",
+    "¿Cambiar de día?": "Change day?",
+    "Cambiar y empezar de nuevo": "Change and start over",
+    "Mantener el día": "Keep the day",
+    "Sumado a tu recorrido": "Added to your route",
+    "Ver mi recorrido": "See my route",
+    "Seguir explorando": "Keep exploring",
+    "Reserva confirmada": "Booking confirmed",
+    "Mapa del recorrido": "Route map"
+  };
+  const paradas = (n) => n + (n === '1' ? ' stop' : ' stops');
+  P.textos(D, [
+    [/^No hay bodegas con "(.*)"\.$/, 'No wineries match "$1".'],
+    [/^Viñedo de (.+)$/, 'Vineyard at $1'],
+    [/^(.+) · (\d) experiencias?$/, (m, z, n) => z + ' · ' + n + (n === '1' ? ' experience' : ' experiences')],
+    [/^desde (.+)$/, 'from $1'],
+    [/^(.+) · (\d),(\d) ★ \((\d+) reseñas\)$/, '$1 · $2.$3 ★ ($4 reviews)'],
+    [/^(\d),(\d)$/, '$1.$2'],
+    [/^(\d\d:\d\d), agotado$/, '$1, sold out'],
+    [/^(\d\d:\d\d), no llegás con tu recorrido$/, '$1, you can’t make it'],
+    [/^Sumar al recorrido · (.+)$/, 'Add to route · $1'],
+    [/^(.+) · (\d) bodegas?(?: · (\d+) km)?$/, (m, d, n, km) => d + ' · ' + n + (n === '1' ? ' winery' : ' wineries') + (km ? ' · ' + km + ' km' : '')],
+    [/^(\d+) min de viaje · no llegás: la parada anterior termina (.+)$/, '$1 min drive · you won’t make it: the previous stop ends at $2'],
+    [/^(\d+) min de viaje$/, '$1 min drive'],
+    [/^Quitar (.+)$/, 'Remove $1'],
+    [/^Ida y vuelta desde tu hotel · (.+)$/, 'Round trip from your hotel · $1'],
+    [/^Reservar · (.+)$/, 'Book · $1'],
+    [/^Pagar (.+)$/, 'Pay $1'],
+    [/^Código del voucher (.+)$/, 'Voucher code $1'],
+    [/^(.+) · Total pagado (.+)$/, '$1 · Total paid $2'],
+    [/^(\d) bodegas? · (RV-\d+)$/, (m, n, c) => n + (n === '1' ? ' winery · ' : ' wineries · ') + c],
+    [/^Tu recorrido tiene (\d) paradas? para el (.+)\. Si cambiás de día, lo vaciamos\.$/, (m, n, d) => 'Your route has ' + paradas(n) + ' for ' + d + '. Changing the day clears it.'],
+    [/^(.+) a las (\d\d:\d\d)\. Llevás (\d) paradas? · (.+)\.$/, (m, b, h, n, t) => b + ' at ' + h + '. ' + paradas(n) + ' · ' + t + '.'],
+    [/^Quitamos (.+)$/, 'Removed $1'],
+    [/^(.+?) · (.+)$/, (m, a, b) => (D[a] || a) + ' · ' + (D[b] || b)]
+  ]);
+  const fondo = (n) => `background-image:image-set(url('../../assets/fotos/${n}.avif') type('image/avif'),url('../../assets/fotos/${n}.webp') type('image/webp'))`;
+  // Mapa esquemático del día: los puntos siguen el orden de las paradas.
+  const PUNTOS = { alamos: [86, 92], fincasur: [150, 128], este: [196, 70], piedra: [60, 150], aguas: [108, 162], olivos: [262, 84], tradicion: [296, 126] };
+  function mapaRuta(o) {
+    const pts = o.map((p) => PUNTOS[p.bodegaId]);
+    const linea = [[322, 34], ...pts].map((p, i) => (i ? 'L' : 'M') + p.join(' ')).join('');
+    return `<div class="mapa" style="height:172px" role="img" aria-label="Mapa del recorrido"><svg viewBox="0 0 350 180" preserveAspectRatio="xMidYMid slice"><rect width="350" height="180" fill="#ece7dc"/><path d="M0 0h74c-6 34-30 52-26 92 3 30 22 52 12 88H0z" fill="#dcd5c6"/><path d="M8 20l22-14 20 20-16 22zM4 78l26-16 14 30-30 18zM10 132l24-8 16 30-34 16z" fill="#d0c7b4"/><g stroke="#b9c79a" stroke-width="5"><path d="M108 24l52-8M106 34l58-9M106 44l64-10M108 54l58-9M214 104l56-6M214 114l60-7M216 124l60-7M122 142l46 4M120 152l50 4" /></g><path d="M236 0c-10 44-4 84 10 124 6 18 8 38 4 56" fill="none" stroke="#b8d5e6" stroke-width="6"/><path d="M350 58C250 40 170 62 92 96 60 110 52 150 60 180M350 130c-70-14-130-10-206 4M206 0c-4 60-30 110-36 180" fill="none" stroke="#fff" stroke-width="8"/><path d="M350 58C250 40 170 62 92 96 60 110 52 150 60 180" fill="none" stroke="#f1cf88" stroke-width="4"/><path d="${linea}" fill="none" stroke="#8a1c3a" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray=".1 7"/><circle cx="322" cy="34" r="8" fill="#fff"/><circle cx="322" cy="34" r="5" fill="#2a2d31"/>${pts.map(([x, y], i) => `<g transform="translate(${x} ${y})"><path d="M0 4S-13-8-13-17a13 13 0 0 1 26 0C13-8 0 4 0 4z" fill="#8a1c3a"/><circle cy="-17" r="8.500" fill="#fff"/><text y="-13" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.500" font-weight="700" fill="#8a1c3a">${i + 1}</text></g>`).join('')}</svg></div>`;
+  }
 
   // ---------------------------------------------------------------- datos de ejemplo (ficticios)
   const BODEGAS = [
-    { id: 'alamos', nombre: 'Bodega Los Álamos', zona: 'Luján de Cuyo', rating: '4,8', resenas: 320, img: '', dir: 'Ruta 15 km 23, Perdriel',
+    { id: 'alamos', nombre: 'Bodega Los Álamos', zona: 'Luján de Cuyo', rating: '4,8', resenas: 320, img: 'vinedo-andes', dir: 'Ruta 15 km 23, Perdriel',
       exps: [{ id: 'prem', nombre: 'Degustación premium', det: '5 vinos de alta gama', dur: 90, precio: 28000, horas: ['10:00', '11:30', '15:00', '17:00'] },
              { id: 'alm', nombre: 'Degustación + almuerzo', det: 'Menú de 3 pasos con maridaje', dur: 180, precio: 45000, horas: ['12:00', '13:00'] }] },
-    { id: 'fincasur', nombre: 'Finca Sur', zona: 'Luján de Cuyo', rating: '4,7', resenas: 210, img: 'v1', dir: 'Calle Cobos 4400, Agrelo',
+    { id: 'fincasur', nombre: 'Finca Sur', zona: 'Luján de Cuyo', rating: '4,7', resenas: 210, img: 'hileras', dir: 'Calle Cobos 4400, Agrelo',
       exps: [{ id: 'pasos', nombre: 'Almuerzo de pasos', det: '6 pasos y 4 vinos', dur: 150, precio: 52000, horas: ['12:30', '13:30'] },
              { id: 'clasica', nombre: 'Visita clásica', det: 'Recorrido por la cava y 3 vinos', dur: 60, precio: 18000, horas: ['10:00', '11:00', '16:00', '17:30'] }] },
-    { id: 'este', nombre: 'Viñedos del Este', zona: 'Luján de Cuyo', rating: '4,6', resenas: 145, img: 'v2', dir: 'Roque Sáenz Peña 2900, Vistalba',
+    { id: 'este', nombre: 'Viñedos del Este', zona: 'Luján de Cuyo', rating: '4,6', resenas: 145, img: 'atardecer', dir: 'Roque Sáenz Peña 2900, Vistalba',
       exps: [{ id: 'atard', nombre: 'Recorrido + atardecer', det: 'Caminata entre viñedos y 4 vinos', dur: 90, precio: 30000, horas: ['16:30', '18:00'] },
              { id: 'bici', nombre: 'Viñedos en bici', det: 'Paseo guiado y 2 vinos', dur: 120, precio: 24000, horas: ['09:30', '11:00'] }] },
-    { id: 'piedra', nombre: 'Casa de Piedra', zona: 'Valle de Uco', rating: '4,9', resenas: 410, img: 'v3', dir: 'Ruta 89 km 5, Tupungato',
+    { id: 'piedra', nombre: 'Casa de Piedra', zona: 'Valle de Uco', rating: '4,9', resenas: 410, img: 'cordillera', dir: 'Ruta 89 km 5, Tupungato',
       exps: [{ id: 'alta', nombre: 'Degustación de altura', det: '5 vinos con vista a la cordillera', dur: 90, precio: 38000, horas: ['10:30', '12:00', '15:30'] },
              { id: 'parrilla', nombre: 'Almuerzo a la parrilla', det: 'Asado y 4 vinos', dur: 180, precio: 62000, horas: ['12:30'] }] },
-    { id: 'aguas', nombre: 'Aguas Claras', zona: 'Valle de Uco', rating: '4,7', resenas: 188, img: '', dir: 'Calle Los Indios s/n, Tunuyán',
+    { id: 'aguas', nombre: 'Aguas Claras', zona: 'Valle de Uco', rating: '4,7', resenas: 188, img: 'barricas', dir: 'Calle Los Indios s/n, Tunuyán',
       exps: [{ id: 'barricas', nombre: 'Degustación de barricas', det: '4 vinos directo de la barrica', dur: 75, precio: 33000, horas: ['11:00', '14:30', '16:30'] }] },
-    { id: 'olivos', nombre: 'Los Olivos', zona: 'Maipú', rating: '4,5', resenas: 260, img: 'v1', dir: 'Ozamis 1040, Coquimbito',
+    { id: 'olivos', nombre: 'Los Olivos', zona: 'Maipú', rating: '4,5', resenas: 260, img: 'olivos-bici', dir: 'Ozamis 1040, Coquimbito',
       exps: [{ id: 'aceite', nombre: 'Vino y aceite de oliva', det: 'Cata de 3 vinos y 3 aceites', dur: 60, precio: 16000, horas: ['10:00', '11:30', '15:00', '16:30'] }] },
-    { id: 'tradicion', nombre: 'Bodega Tradición', zona: 'Maipú', rating: '4,6', resenas: 302, img: 'v2', dir: 'Urquiza 8136, Russell',
+    { id: 'tradicion', nombre: 'Bodega Tradición', zona: 'Maipú', rating: '4,6', resenas: 302, img: 'parras', dir: 'Urquiza 8136, Russell',
       exps: [{ id: 'historica', nombre: 'Visita histórica', det: 'Museo, cava de 1890 y 3 vinos', dur: 75, precio: 20000, horas: ['10:30', '12:00', '15:30', '17:00'] }] }
   ];
   const ZONAS = ['Todas', 'Luján de Cuyo', 'Valle de Uco', 'Maipú'];
@@ -179,7 +308,7 @@
       const px = proxima(b);
       return `
         <button class="card pad0 bod" data-bodega="${b.id}">
-          <div class="vine ${b.img}" role="img" aria-label="Viñedo de ${esc(b.nombre)}"><span class="rate">${I.star}${b.rating}</span></div>
+          <div class="vine" style="${fondo(b.img)}" role="img" aria-label="Viñedo de ${esc(b.nombre)}"><span class="rate">${I.star}${b.rating}</span></div>
           <div style="padding:14px 16px 16px">
             <div class="row"><span class="grow"><b style="font-family:var(--display);font-size:18px;letter-spacing:-.02em">${esc(b.nombre)}</b><small>${esc(b.zona)} · ${b.exps.length} ${b.exps.length > 1 ? 'experiencias' : 'experiencia'}</small></span>${en ? '<span class="pill ok">En tu recorrido</span>' : ''}</div>
             <div class="row" style="margin-top:10px"><b class="grow" style="font-size:16px">desde ${plata(desde(b))}</b>${px ? `<span class="pill soft">${diaCorto()} ${px}</span>` : '<span class="pill bad">Agotado</span>'}</div>
@@ -203,8 +332,8 @@
     const e = sel.expId ? exp(b, sel.expId) : null;
     const yaEsta = S.paradas.find((p) => p.bodegaId === b.id);
     return `
-      <div class="vine ${b.img}" style="height:200px;margin:-10px -20px 0;flex:none" role="img" aria-label="Viñedo de ${esc(b.nombre)}">
-        <button class="icon-btn" data-back aria-label="Volver" style="position:absolute;top:12px;left:16px">${I.back}</button>
+      <div class="vine" style="${fondo(b.img)};height:236px;margin:-56px -20px 0;flex:none" data-detalle role="img" aria-label="Viñedo de ${esc(b.nombre)}">
+        <button class="icon-btn" data-back aria-label="Volver" style="position:absolute;top:60px;left:16px">${I.back}</button>
       </div>
       <div><h1 class="t1" style="font-size:26px">${esc(b.nombre)}</h1><span class="muted">${esc(b.zona)} · ${b.rating} ★ (${b.resenas} reseñas)</span></div>
       <h2 class="t2">Elegí la experiencia</h2>
@@ -235,6 +364,7 @@
     return `
       <h1 class="t1">Tu recorrido</h1>
       <span class="muted">${diaLargo(S.dia)} · ${o.length} ${o.length > 1 ? 'bodegas' : 'bodega'}${km ? ' · ' + Math.round(km) + ' km' : ''}</span>
+      ${mapaRuta(o)}
       <div class="tl">
         ${o.map((p, i) => {
           const b = bod(p.bodegaId), e = exp(b, p.expId);
@@ -242,7 +372,7 @@
           return `
             ${i ? `<div class="viaje ${c[i] ? 'mal' : ''}">${I.car}${v} min de viaje${c[i] ? ` · no llegás: la parada anterior termina ${c[i].fin}` : ''}</div>` : ''}
             <div class="card stop">
-              <div class="row"><span class="grow"><small>${p.hora} – ${hm(min(p.hora) + e.dur)}</small><b>${esc(b.nombre)}</b><small>${esc(e.nombre)} · ${plata(e.precio)}</small></span>
+              <div class="row"><span class="foto" style="${fondo(b.img)};width:58px;height:58px;border-radius:14px;flex:none" aria-hidden="true"></span><span class="grow"><small>${p.hora} – ${hm(min(p.hora) + e.dur)}</small><b>${esc(b.nombre)}</b><small>${esc(e.nombre)} · ${plata(e.precio)}</small></span>
               <button class="icon-btn" data-quitar="${b.id}" aria-label="Quitar ${esc(b.nombre)}" style="box-shadow:none;background:var(--bg)">${I.trash}</button></div>
               ${c[i] ? `<button class="link" data-bodega="${b.id}" style="margin-top:8px">Cambiar horario</button>` : ''}
             </div>`;
@@ -305,7 +435,7 @@
 
   V.perfil = () => `
     <h1 class="t1">Perfil</h1>
-    <div class="card"><div class="row"><span class="ico round">S</span><span class="grow"><b>Sofía López</b><small>Viaja desde Buenos Aires</small></span></div></div>
+    <div class="card"><div class="row">${P.avatar('Sofía', { bata: false, fondo: '#f3dfe3', corte: 2 })}<span class="grow"><b>Sofía López</b><small>Viaja desde Buenos Aires</small></span></div></div>
     <div class="card"><dl class="dl" style="margin:0"><div><dt>Idioma</dt><dd>Español</dd></div><div><dt>Moneda</dt><dd>Pesos (ARS)</dd></div><div><dt>Medio de pago</dt><dd>Visa ···· 4821</dd></div></dl></div>
     <button class="btn ghost" data-reset>Reiniciar la demo</button>`;
 
@@ -314,9 +444,9 @@
   const scr = document.getElementById('screen');
   function render() {
     cerrarSheet();
-    scr.innerHTML = `<main class="view screen-in">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`;
+    scr.innerHTML = T(`<main class="view screen-in">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`);
     const q = document.getElementById('q');
-    if (q) q.addEventListener('input', () => { filtro.q = q.value; document.getElementById('lista').innerHTML = listaBodegas(); });
+    if (q) q.addEventListener('input', () => { filtro.q = q.value; document.getElementById('lista').innerHTML = T(listaBodegas()); });
   }
 
   document.addEventListener('click', (ev) => {
@@ -365,7 +495,7 @@
       case 'pagar': return go('pago');
       case 'confirmar': {
         el.disabled = true;
-        el.innerHTML = '<span class="cargando" aria-hidden="true"></span> Procesando';
+        el.innerHTML = '<span class="cargando" aria-hidden="true"></span> ' + P.tr('Procesando');
         setTimeout(() => {
           const r = { codigo: 'RV-' + String(1000 + (hash(String(Date.now())) % 9000)), dia: S.dia, paradas: ordenadas(), traslado: S.traslado && S.paradas.length > 0, total: total() };
           S.reservas.push(r); S.paradas = []; S.traslado = false; guardar();
@@ -377,6 +507,7 @@
     }
   });
 
+  window.addEventListener('idioma', () => render());
   render();
 })();
 </script>

@@ -24,7 +24,7 @@ function header(ctx, altUrl, current) {
 <header class="hd${current === 'case' ? ' hd-static' : ''}"><div class="wrap hd-in">
 <a class="hd-b" href="${ctx.home()}">${MARK}<span>Lucía Miranda<span class="vh">, ${t('home', 'inicio')}</span></span></a>
 <nav class="hd-n" aria-label="${t('Main', 'Principal')}"><ul>${items.map(([id, n]) => `<li><a href="${ctx.home('#' + id)}">${n}</a></li>`).join('')}</ul></nav>
-<div class="hd-r"><div class="lang" role="group" aria-label="${t('Language', 'Idioma')}">${langs}</div>${cvLink(ctx, t('Résumé', 'CV'), 'btn btn-s hd-cv')}</div>
+<div class="hd-r"><div class="lang" role="group" aria-label="${t('Language', 'Idioma')}">${langs}</div>${cvLink(ctx, t('Résumé', 'CV'), 'btn btn-s hd-cv')}<details class="mn"><summary><span>${t('Menu', 'Menú')}</span>${icon('menu')}</summary><div class="mn-p"><nav aria-label="${t('Main', 'Principal')}"><ul>${items.map(([id, n]) => `<li><a href="${ctx.home('#' + id)}">${n}${icon('arrow')}</a></li>`).join('')}</ul></nav><p class="mn-a">${cvLink(ctx, t('Download résumé', 'Descargar CV'), 'btn')}<a class="btn btn-o" href="mailto:${SITE.email}">${t('Email', 'Correo')}</a></p></div></details></div>
 </div></header>`;
 }
 
@@ -94,7 +94,7 @@ ${header(ctx, altUrl, o.current)}
 ${o.body}
 </main>
 ${footer(ctx)}
-<div class="toast" role="status" aria-live="polite"></div>
+<div class="toast" role="status" aria-live="polite" data-close="${t('Close', 'Cerrar')}" data-full="${t('Open full screen', 'Abrir en pantalla completa')}" data-note="${t('Working prototype. Nothing leaves this browser.', 'Prototipo funcional. Nada sale de este navegador.')}"></div>
 <script src="${root}assets/js/site.js?v=${v.js}" defer></script>
 </body>
 </html>

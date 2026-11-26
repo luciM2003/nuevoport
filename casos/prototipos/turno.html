@@ -43,14 +43,14 @@
     <span class="lang" role="group" aria-label="Idioma / Language"><button type="button" data-set-lang="es" aria-pressed="true">ES</button><button type="button" data-set-lang="en" aria-pressed="false">EN</button></span>
     <span class="eyebrow"><span data-lang="es">Prototipo navegable</span><span data-lang="en">Interactive prototype</span></span>
     <h1>Turno.</h1>
-    <p><span data-lang="es">Funciona de verdad: los turnos que reserves quedan guardados en este navegador. La interfaz de la app está en español.</span><span data-lang="en">It really works: the appointments you book are saved in this browser. The app interface is in Spanish.</span></p>
+    <p><span data-lang="es">Funciona de verdad: los turnos que reserves quedan guardados en este navegador.</span><span data-lang="en">It really works: the appointments you book are saved in this browser.</span></p>
     <h2><span data-lang="es">Probá estas tareas</span><span data-lang="en">Try these tasks</span></h2>
     <ol>
       <li><span data-lang="es">Sacá un turno de clínica médica.</span><span data-lang="en">Book a GP appointment.</span></li>
-      <li><span data-lang="es">Pasalo a otro día desde "Turnos".</span><span data-lang="en">Move it to another day from "Turnos".</span></li>
+      <li><span data-lang="es">Pasalo a otro día desde "Turnos".</span><span data-lang="en">Move it to another day from "Visits".</span></li>
       <li><span data-lang="es">Reservá un turno para Ana, la mamá.</span><span data-lang="en">Book an appointment for Ana, the mother.</span></li>
       <li><span data-lang="es">Hacé check-in del turno de hoy.</span><span data-lang="en">Check in for today's appointment.</span></li>
-      <li><span data-lang="es">Activá el texto grande en "Perfil".</span><span data-lang="en">Turn on large text in "Perfil".</span></li>
+      <li><span data-lang="es">Activá el texto grande en "Perfil".</span><span data-lang="en">Turn on large text in "Profile".</span></li>
     </ol>
     <button type="button" class="reset" data-reset><span data-lang="es">Reiniciar la demo</span><span data-lang="en">Reset the demo</span></button>
   </aside>
@@ -69,7 +69,136 @@
 <script src="proto.js"></script>
 <script>
 (() => {
-  const { esc, toast, sheet, cerrarSheet, ymd, desdeYmd, sumarDias, hoy, fmt, hash, I } = P;
+  const { esc, toast, sheet, cerrarSheet, ymd, desdeYmd, sumarDias, hoy, fmt, hash, I, T } = P;
+  const ESP = { 'Clínica médica': 'General practice', 'Pediatría': 'Pediatrics', 'Dermatología': 'Dermatology', 'Cardiología': 'Cardiology', 'Ginecología': 'Gynecology' };
+  const cuando = (x) => ({ Hoy: 'Today', 'Mañana': 'Tomorrow', hoy: 'today', 'mañana': 'tomorrow' }[x] || x);
+  P.textos({
+    "Volver": "Back",
+    "Secciones": "Sections",
+    "Inicio": "Home",
+    "Perfil": "Profile",
+    "Reiniciar la demo": "Reset the demo",
+    "Demo reiniciada": "Demo reset",
+    "Deshacer": "Undo",
+    "Entendido": "Got it",
+    "Cancelar": "Cancel",
+    "Cerrar": "Close",
+    "Total": "Total",
+    "Turnos": "Visits",
+    "Recetas": "Prescriptions",
+    "No tenés turnos próximos": "No upcoming appointments",
+    "Reservá uno en menos de un minuto.": "Book one in under a minute.",
+    "Check-in hecho": "Checked in",
+    "Hacer check-in": "Check in",
+    "Check-in cerrado": "Check-in closed",
+    "Próximo turno": "Next appointment",
+    "Ya avisamos en recepción. Te llaman por nombre.": "Reception knows you’re here. They’ll call your name.",
+    "Hola,": "Hi,",
+    "¿Qué necesitás?": "What do you need?",
+    "Reservar": "Book",
+    "Nuevo turno": "New appointment",
+    "Mis turnos": "My visits",
+    "2 activas": "2 active",
+    "Cobertura": "Coverage",
+    "Todas": "All",
+    "¿Para quién es el turno?": "Who is it for?",
+    "Antes de empezar": "Before you start",
+    "Ana González (mamá)": "Ana González (mom)",
+    "Vos · OSEP": "You · OSEP",
+    "Familiar a cargo · OSEP": "Family member · OSEP",
+    "Ver todos": "See all",
+    "Sin turnos por 3 semanas": "No slots for 3 weeks",
+    "Acepta OSEP": "Accepts OSEP",
+    "¿Con quién?": "Who with?",
+    "Especialidad o profesional": "Specialty or doctor",
+    "Buscar especialidad o profesional": "Search specialty or doctor",
+    "Especialidades": "Specialties",
+    "Actual": "Current",
+    "Otro turno": "Other visit",
+    "Elegí el nuevo horario": "Pick the new time",
+    "Elegí día y horario": "Pick a day and time",
+    "Reprogramar": "Reschedule",
+    "Tu turno actual": "Your current appointment",
+    "Si no confirmás el cambio, se mantiene.": "It stays unless you confirm the change.",
+    "Los días en gris no tienen turnos libres.": "Grayed-out days have no free slots.",
+    "Tocá un día para ver los horarios.": "Tap a day to see its times.",
+    "Los horarios marcados como \"Otro turno\" ya los tenés ocupados.": "You already have a visit at times marked \"Other visit\".",
+    "Continuar": "Continue",
+    "Revisá y confirmá": "Review and confirm",
+    "Paciente": "Patient",
+    "Profesional": "Doctor",
+    "Especialidad": "Specialty",
+    "Fecha": "Date",
+    "Lugar": "Place",
+    "Recordatorio por WhatsApp": "WhatsApp reminder",
+    "24 h antes del turno": "24 h before",
+    "Confirmar cambio": "Confirm change",
+    "Confirmar turno": "Confirm appointment",
+    "Podés cancelar sin costo hasta 12 h antes.": "Free cancellation up to 12 h before.",
+    "A 8 minutos caminando": "8 minutes on foot",
+    "¡Turno cambiado!": "Appointment moved!",
+    "¡Listo, Martina!": "You’re set, Martina!",
+    "¡Listo!": "All set!",
+    "Te esperamos en el nuevo horario.": "See you at the new time.",
+    "Tu turno quedó reservado.": "Your appointment is booked.",
+    "El turno de Ana quedó reservado.": "Ana’s appointment is booked.",
+    "El día del turno": "On the day",
+    "Cuando llegues, hacé check-in desde el inicio. Sin fila en recepción.": "When you arrive, check in from the home screen. No front-desk line.",
+    "Cuando llegues, hacé check-in desde el inicio. Sin fila en recepción. Te escribimos por WhatsApp 24 h antes.": "When you arrive, check in from the home screen. No front-desk line. We’ll message you on WhatsApp 24 h before.",
+    "Agregar al calendario": "Add to calendar",
+    "Volver al inicio": "Back to home",
+    "Reservar turno": "Book an appointment",
+    "Recordatorio activo": "Reminder on",
+    "No tenés turnos próximos.": "No upcoming appointments.",
+    "Reservar un turno": "Book an appointment",
+    "Mostrá el código en la farmacia. No hace falta imprimir.": "Show the code at the pharmacy. No need to print.",
+    "Amoxicilina 500 mg": "Amoxicillin 500 mg",
+    "Ibuprofeno 400 mg": "Ibuprofen 400 mg",
+    "Mostrar en la farmacia": "Show at the pharmacy",
+    "Afiliada 4821-00 · OSEP Plan 2": "Member 4821-00 · OSEP Plan 2",
+    "Familiares a cargo": "Family members",
+    "Mamá · OSEP": "Mom · OSEP",
+    "Accesibilidad": "Accessibility",
+    "Texto más grande": "Larger text",
+    "Agranda textos y botones en toda la app": "Makes text and buttons bigger across the app",
+    "¿Llegaste al consultorio?": "Have you arrived?",
+    "Avisamos en recepción que estás. No hace falta hacer fila.": "We’ll tell reception you’re here. No need to line up.",
+    "Sí, ya llegué": "Yes, I’m here",
+    "Todavía no": "Not yet",
+    "Check-in hecho. Te llaman por nombre.": "Checked in. They’ll call your name.",
+    "¿Cancelar el turno?": "Cancel this appointment?",
+    "Sí, cancelar": "Yes, cancel",
+    "No, mantenerlo": "No, keep it",
+    "Turno cancelado": "Appointment canceled",
+    "Código de receta": "Prescription code",
+    "Mostralo en el mostrador de cualquier farmacia adherida.": "Show it at the counter of any participating pharmacy.",
+    "Listo": "Done",
+    "Afiliada 4821-00. Consultas sin copago con los profesionales de la cartilla. Estudios con orden médica.": "Member 4821-00. No copay with listed doctors. Tests with a medical order.",
+    "Descargamos el turno para tu calendario": "Appointment downloaded for your calendar"
+  }, [
+    [/^Check-in desde las (.+)$/, 'Check-in from $1'],
+    [/^Próximo turno · (.+)$/, 'Next appointment · $1'],
+    [/^(\d+) próximos?$/, '$1 upcoming'],
+    [/^Paso (\d) de (\d)$/, 'Step $1 of $2'],
+    [/^(Clínica médica|Pediatría|Dermatología|Cardiología|Ginecología)$/, (m, e) => ESP[e]],
+    [/^(Clínica médica|Pediatría|Dermatología|Cardiología|Ginecología) · Consultorio (\d)$/, (m, e, n) => ESP[e] + ' · Room ' + n],
+    [/^(Clínica médica|Pediatría|Dermatología|Cardiología|Ginecología) · (\d),(\d) ★$/, (m, e, a, b) => ESP[e] + ' · ' + a + '.' + b + ' ★'],
+    [/^(Clínica médica|Pediatría|Dermatología|Cardiología|Ginecología) · para Ana$/, (m, e) => ESP[e] + ' · for Ana'],
+    [/^(.+) · atiende (.+)$/, (m, e, d) => (ESP[e] || e) + ' · ' + d.split(', ').map((x) => ({ dom: 'Sun', lun: 'Mon', mar: 'Tue', 'mié': 'Wed', jue: 'Thu', vie: 'Fri', 'sáb': 'Sat' }[x])).join(', ')],
+    [/^No encontramos profesionales con "(.*)"\.$/, 'No doctors match "$1".'],
+    [/^Próximo: (.+) · (\d\d:\d\d)$/, (m, d, h) => 'Next: ' + cuando(d) + ' · ' + h],
+    [/^(Hoy|Mañana) · (\d\d:\d\d)$/, (m, d, h) => cuando(d) + ' · ' + h],
+    [/^(\d\d:\d\d), tu horario actual$/, '$1, your current time'],
+    [/^(\d\d:\d\d), ya tenés otro turno$/, '$1, you already have another visit'],
+    [/^(\d\d:\d\d), ocupado$/, '$1, taken'],
+    [/^(.+), sin turnos$/, '$1, no slots'],
+    [/^Consultorio (\d) · (.+)$/, 'Room $1 · $2'],
+    [/^(.+) · Consultorio (\d)$/, '$1 · Room $2'],
+    [/^(.+) · vence en (\d+) días$/, '$1 · expires in $2 days'],
+    [/^(.+?), (.+) a las (\d\d:\d\d)\. Liberamos el horario para otra persona\.$/, (m, a, b, c) => a + ', ' + cuando(b) + ' at ' + c + '. The slot will be freed for someone else.']
+  ]);
+  // Plano simple de la zona del consultorio.
+  const MAPA = `<div class="mapa" style="height:112px" aria-hidden="true"><svg viewBox="0 0 350 112" preserveAspectRatio="xMidYMid slice"><rect width="350" height="112" fill="#e8edf2"/><path d="M60 0v40h62V0zM136 0v40h70V0zM222 0v40h62V0zM300 0v42h60V0zM0 0v38h46V0zM0 72v50h46V74zM60 76v40h62V78zM136 78v40h70V82zM222 82v40h62V86zM300 86v40h60V90z" fill="#f6f8fa"/><path d="M136 0h70v40h-70z" fill="#d7e8d4"/><path d="M-6 52 360 66" stroke="#fff" stroke-width="16"/><path d="M-6 52 360 66" stroke="#f3d48f" stroke-width="9"/><path d="M53-6v124M129-6v124M214-6v124M292-6v124" stroke="#fff" stroke-width="10"/><path d="M53 102V56l124 5" fill="none" stroke="#1d6ae5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray=".1 8"/><circle cx="53" cy="102" r="7" fill="#fff"/><circle cx="53" cy="102" r="4.500" fill="#1d6ae5"/><g transform="translate(180 30)"><path d="M0 31S-12 20.500-12 11.500a12 12 0 0 1 24 0C12 20.500 0 31 0 31z" fill="#1d6ae5"/><path d="M-1.600 6h3.200v3.900h3.900v3.200H1.600V17h-3.200v-3.900h-3.900V9.900h3.900z" fill="#fff"/></g></svg></div>`;
 
   // ---------------------------------------------------------------- datos de ejemplo
   const PROFESIONALES = [
@@ -164,14 +293,13 @@
       tarjeta = `
         <div class="card brand">
           <span class="k">Próximo turno${p.para !== 'yo' ? ' · ' + esc(PERSONAS[p.para].split(' ')[0]) : ''}</span>
-          <div style="font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.03em;margin-top:6px">${esc(d.nombre)}</div>
-          <small class="muted" style="display:block">${esc(d.esp)} · ${esc(d.lugar)}</small>
+          <div class="row" style="margin-top:10px">${P.avatar(d.nombre, { fondo: 'rgba(255,255,255,.28)', cls: 'lg' })}<span class="grow"><b style="font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.03em">${esc(d.nombre)}</b><small class="muted" style="display:block">${esc(d.esp)} · ${esc(d.lugar)}</small></span></div>
           <div class="row" style="margin-top:14px;flex-wrap:wrap;gap:8px"><span class="pill">${fechaCorta(p.fecha)} · ${p.hora}</span><span class="spacer"></span>${accion}</div>
           ${p.checkin ? '<small class="muted" style="display:block;margin-top:10px">Ya avisamos en recepción. Te llaman por nombre.</small>' : ''}
         </div>`;
     }
     return `
-      <div class="head"><div class="grow"><span class="muted">Hola,</span><h1 class="t1">Martina</h1></div><span style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#9cc6ff,#1d6ae5)" aria-hidden="true"></span></div>
+      <div class="head"><div class="grow"><span class="muted">Hola,</span><h1 class="t1">Martina</h1></div>${P.avatar('Martina', { bata: false, fondo: '#cfe0ff', cls: 'lg', corte: 2 })}</div>
       ${tarjeta}
       <h2 class="t2">¿Qué necesitás?</h2>
       <div class="tiles">
@@ -186,7 +314,7 @@
     ${head('¿Para quién es el turno?', 'Antes de empezar')}
     <div style="display:grid;gap:10px">
       ${Object.entries(PERSONAS).map(([id, n]) => `
-        <button class="opt row" data-para="${id}"><span class="ico round" style="background:${id === 'yo' ? 'var(--brand)' : '#2a2d31'}">${n[0]}</span><span class="grow"><b>${esc(n)}</b><small>${id === 'yo' ? 'Vos' : 'Familiar a cargo'} · OSEP</small></span>${I.back.replace('<svg', '<svg style="transform:rotate(180deg);width:18px;color:var(--soft)"')}</button>`).join('')}
+        <button class="opt row" data-para="${id}">${P.avatar(id === 'yo' ? 'Martina' : 'Ana mamá', { bata: false, fondo: id === 'yo' ? '#cfe0ff' : '#e9e2d6', corte: id === 'yo' ? 2 : 3 })}<span class="grow"><b>${esc(n)}</b><small>${id === 'yo' ? 'Vos' : 'Familiar a cargo'} · OSEP</small></span>${I.back.replace('<svg', '<svg style="transform:rotate(180deg);width:18px;color:var(--soft)"')}</button>`).join('')}
     </div>`;
 
   const listaDocs = () => {
@@ -197,7 +325,7 @@
       const pl = proximoLibre(d);
       return `
         <button class="card doc" data-doc="${d.id}">
-          <div class="row"><span class="ico round" style="background:${d.color};color:${d.tinta}">${d.ini}</span><span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)} · ${d.rating} ★</small></span></div>
+          <div class="row">${P.avatar(d.nombre, { fondo: d.color })}<span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)} · ${d.rating} ★</small></span></div>
           <div class="row" style="margin-top:12px;gap:8px;flex-wrap:wrap">${pl ? `<span class="pill soft">Próximo: ${fechaCorta(pl.fecha)} · ${pl.hora}</span>` : '<span class="pill bad">Sin turnos por 3 semanas</span>'}<span class="spacer"></span><span class="pill ok">Acepta OSEP</span></div>
         </button>`;
     }).join('');
@@ -223,12 +351,12 @@
     return `
       ${head(B.reprograma ? 'Elegí el nuevo horario' : 'Elegí día y horario', B.reprograma ? 'Reprogramar' : 'Paso 2 de 3')}
       ${prog(B.reprograma ? 50 : 66)}
-      <div class="row"><span class="ico round" style="background:${d.color};color:${d.tinta}">${d.ini}</span><span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)} · atiende ${d.dias.map((x) => ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'][x]).join(', ')}</small></span></div>
+      <div class="row">${P.avatar(d.nombre, { fondo: d.color })}<span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)} · atiende ${d.dias.map((x) => ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'][x]).join(', ')}</small></span></div>
       ${B.orig ? `<div class="card soft"><span class="k">Tu turno actual</span><b style="display:block;font-size:15px;margin-top:4px">${fechaLarga(B.orig.fecha)} · ${B.orig.hora}</b><small style="color:var(--brand-ink)">Si no confirmás el cambio, se mantiene.</small></div>` : ''}
       <div class="card">
         <div class="row" style="margin-bottom:8px"><b class="grow">${(m => m[0].toUpperCase() + m.slice(1))(fmt(B.fecha || hoy(), { month: 'long', year: 'numeric' }))}</b></div>
         <div class="cal">
-          ${['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((x) => `<span class="h">${x}</span>`).join('')}
+          ${(P.en() ? ['M', 'T', 'W', 'T', 'F', 'S', 'S'] : ['L', 'M', 'M', 'J', 'V', 'S', 'D']).map((x) => `<span class="h">${x}</span>`).join('')}
           ${dias.map((x) => {
             const f = ymd(x);
             const ok = x >= hoy() && libres(d, f, B.reprograma).length > 0;
@@ -255,6 +383,7 @@
         <div><dt>Lugar</dt><dd>${esc(d.lugar)} · Av. San Martín 1200</dd></div>
         <div><dt>Cobertura</dt><dd>OSEP · Plan 2</dd></div>
       </dl></div>
+      ${MAPA}
       <div class="card soft"><div class="row"><span class="grow"><b>Recordatorio por WhatsApp</b><small style="color:var(--brand-ink)">24 h antes del turno</small></span><button class="toggle" role="switch" aria-checked="${B.recordatorio}" aria-label="Recordatorio por WhatsApp" data-act="recordatorio"></button></div></div>
       <div class="spacer"></div>
       <button class="btn brand" data-act="confirmar">${B.reprograma ? 'Confirmar cambio' : 'Confirmar turno'}</button>
@@ -286,7 +415,7 @@
         const d = doc(t.docId);
         return `
           <div class="card">
-            <div class="row"><span class="ico round" style="background:${d.color};color:${d.tinta}">${d.ini}</span><span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)}${t.para !== 'yo' ? ' · para Ana' : ''}</small></span></div>
+            <div class="row">${P.avatar(d.nombre, { fondo: d.color })}<span class="grow"><b>${esc(d.nombre)}</b><small>${esc(d.esp)}${t.para !== 'yo' ? ' · para Ana' : ''}</small></span></div>
             <div class="row" style="margin:12px 0 14px;gap:8px;flex-wrap:wrap"><span class="pill soft">${fechaCorta(t.fecha)} · ${t.hora}</span>${t.checkin ? '<span class="pill ok">Check-in hecho</span>' : ''}${t.recordatorio ? '<span class="pill ok">Recordatorio activo</span>' : ''}</div>
             ${t.checkin ? '' : `<div class="row" style="gap:8px"><button class="btn ghost" style="min-height:46px;font-size:15px" data-reprog="${t.id}">Reprogramar</button><button class="btn ghost" style="min-height:46px;font-size:15px;color:var(--bad)" data-cancel="${t.id}">Cancelar</button></div>`}
           </div>`;
@@ -302,9 +431,9 @@
 
   V.perfil = () => `
     <h1 class="t1">Perfil</h1>
-    <div class="card"><div class="row"><span class="ico round">M</span><span class="grow"><b>Martina González</b><small>DNI 38.512.904 · OSEP Plan 2</small></span></div></div>
+    <div class="card"><div class="row">${P.avatar('Martina', { bata: false, fondo: '#cfe0ff', corte: 2 })}<span class="grow"><b>Martina González</b><small>Afiliada 4821-00 · OSEP Plan 2</small></span></div></div>
     <h2 class="t2">Familiares a cargo</h2>
-    <div class="card"><div class="row"><span class="ico round" style="background:#2a2d31">A</span><span class="grow"><b>Ana González</b><small>Mamá · OSEP</small></span></div></div>
+    <div class="card"><div class="row">${P.avatar('Ana mamá', { bata: false, fondo: '#e9e2d6', corte: 3 })}<span class="grow"><b>Ana González</b><small>Mamá · OSEP</small></span></div></div>
     <h2 class="t2">Accesibilidad</h2>
     <div class="card"><div class="row"><span class="grow"><b>Texto más grande</b><small>Agranda textos y botones en toda la app</small></span><button class="toggle" role="switch" aria-checked="${S.grande}" aria-label="Texto más grande" data-act="grande"></button></div></div>
     <button class="btn ghost" data-reset>Reiniciar la demo</button>`;
@@ -314,9 +443,9 @@
   const scr = document.getElementById('screen');
   function render() {
     cerrarSheet();
-    scr.innerHTML = `<main class="view screen-in${S.grande ? ' grande' : ''}">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`;
+    scr.innerHTML = T(`<main class="view screen-in${S.grande ? ' grande' : ''}">${V[pantalla]()}</main>${conTab.includes(pantalla) ? tabbar() : ''}`);
     const q = document.getElementById('q');
-    if (q) q.addEventListener('input', () => { filtro.q = q.value; document.getElementById('lista').innerHTML = listaDocs(); });
+    if (q) q.addEventListener('input', () => { filtro.q = q.value; document.getElementById('lista').innerHTML = T(listaDocs()); });
   }
 
   function empezar(para) {
@@ -372,7 +501,7 @@
 
     switch (ds.act) {
       case 'reservar': empezar('yo'); return go('para');
-      case 'cobertura': sheet(`<h3>OSEP · Plan 2</h3><p>Afiliada 38512904/00. Consultas sin copago con los profesionales de la cartilla. Estudios con orden médica.</p><button class="btn" data-cerrar>Entendido</button>`); return;
+      case 'cobertura': sheet(`<h3>OSEP · Plan 2</h3><p>Afiliada 4821-00. Consultas sin copago con los profesionales de la cartilla. Estudios con orden médica.</p><button class="btn" data-cerrar>Entendido</button>`); return;
       case 'limpiar': filtro = { esp: 'Todas', q: '' }; return render();
       case 'continuar': return go('confirmar');
       case 'recordatorio': B.recordatorio = !B.recordatorio; el.setAttribute('aria-checked', String(B.recordatorio)); return;
@@ -397,6 +526,7 @@
     }
   });
 
+  window.addEventListener('idioma', () => render());
   render();
 })();
 </script>
