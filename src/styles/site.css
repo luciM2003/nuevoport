@@ -90,7 +90,8 @@ main:focus { outline: none; }
 .hd-static { position: relative; }
 .hd-in { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; min-height: 72px; }
 .hd-b { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 500; text-decoration: none; justify-self: start; }
-.mark { width: 34px; height: 34px; }
+.mark { flex: none; width: 34px; height: 34px; color: var(--green); transition: color .25s; }
+.hd-b:hover .mark { color: var(--green-2); }
 .hd-n ul { display: flex; gap: clamp(18px, 2.4vw, 36px); }
 .hd-n a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; font-size: 1rem; }
 .hd-n a:hover { text-decoration: underline; }

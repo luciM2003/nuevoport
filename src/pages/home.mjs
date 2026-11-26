@@ -75,10 +75,13 @@ ${dl(p.facts.map(([k, v]) => [pick(ctx, k), pick(ctx, v)]), 'ft-fa')}
 <p class="cp-ln"><a class="btn btn-s" href="${ctx.root}casos/prototipos/${p.proto}.html?lang=${ctx.lang}" data-live="${name}">${icon('hand')}${t('Use the prototype', 'Usar el prototipo')}<span class="vh"> ${t('of', 'de')} ${name}</span></a><a class="tl" href="${url}">${t(`Read the case`, `Leer el caso`)}<span class="vh">: ${name}</span>${icon('arrow')}</a></p>
 </article></li>`;
   });
-  const archive = ARCHIVE.map((p) => {
+  // La primera pieza ocupa dos tercios del ancho (990 px en pantallas grandes); las demás, un tercio.
+  const LEAD = '(min-width: 1700px) 990px, (min-width: 1440px) 865px, (min-width: 701px) 60vw, (min-width: 415px) 340px, 82vw';
+  const CARD = '(min-width: 1700px) 480px, (min-width: 1101px) 420px, (min-width: 701px) 46vw, (min-width: 415px) 340px, 82vw';
+  const archive = ARCHIVE.map((p, i) => {
     const tall = p.tall && IMAGES[p.tall];
     const frame = tall ? { img: p.tall, scroll: `${(-(1 - 0.625 / (tall.h / tall.w)) * 100).toFixed(2)}%` } : p.img;
-    return `<li class="ar-c"><article>${browser(ctx, frame, { ratio: '16/10', url: p.host, alt: t(`Screenshot of ${p.name}`, `Captura de ${p.name}`), sizes: '(min-width: 1101px) 420px, (min-width: 701px) 46vw, 78vw' })}<h3><a href="${p.url}" target="_blank" rel="noopener">${p.name}<span class="vh"> (${t('opens in a new tab', 'se abre en otra pestaña')})</span>${icon('up')}</a></h3><p class="ar-w">${pick(ctx, p.what)}</p><p class="ar-x">${pick(ctx, p.text)}</p><p class="ar-k">${pick(ctx, p.kind)} · ${p.tools}</p></article></li>`;
+    return `<li class="ar-c"><article>${browser(ctx, frame, { ratio: '16/10', url: p.host, alt: t(`Screenshot of ${p.name}`, `Captura de ${p.name}`), sizes: i === 0 ? LEAD : CARD })}<h3><a href="${p.url}" target="_blank" rel="noopener">${p.name}<span class="vh"> (${t('opens in a new tab', 'se abre en otra pestaña')})</span>${icon('up')}</a></h3><p class="ar-w">${pick(ctx, p.what)}</p><p class="ar-x">${pick(ctx, p.text)}</p><p class="ar-k">${pick(ctx, p.kind)} · ${p.tools}</p></article></li>`;
   });
   return `<section class="sec" id="work" aria-labelledby="work-h"><div class="wrap">
 <header class="sh"><p class="sh-l">${t('Selected work', 'Trabajo seleccionado')}</p><h2 id="work-h">${t('Products with many roles, many rules and real constraints.', 'Productos con muchos roles, muchas reglas y restricciones reales.')}</h2></header>

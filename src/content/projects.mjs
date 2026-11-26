@@ -100,19 +100,6 @@ export const CONCEPTS = [
 
 export const ARCHIVE = [
   {
-    name: 'Estudio AGV',
-    img: 'x-agv',
-    host: 'estudioagv.com',
-    url: 'https://www.estudioagv.com/',
-    tools: 'Next.js, Tailwind CSS',
-    what: { en: 'Website for a law practice', es: 'Sitio para un estudio jurídico' },
-    kind: { en: 'Client, live', es: 'Cliente, publicado' },
-    text: {
-      en: 'Design and development for a lawyer in Mendoza who had no professional presence online. Clear practice areas, quick contact and a working form, on any screen size.',
-      es: 'Diseño y desarrollo para una abogada de Mendoza que no tenía presencia profesional online. Áreas de práctica claras, contacto rápido y formulario funcional, en cualquier pantalla.'
-    }
-  },
-  {
     name: 'Codea',
     img: 'x-codea',
     host: 'codeadesarrollos.com',
@@ -123,6 +110,19 @@ export const ARCHIVE = [
     text: {
       en: 'The studio behind MODO YA and UcoBot, where I combine design and code in digital products made to measure.',
       es: 'El estudio detrás de MODO YA y UcoBot, donde combino diseño y código en productos digitales a medida.'
+    }
+  },
+  {
+    name: 'Estudio AGV',
+    img: 'x-agv',
+    host: 'estudioagv.com',
+    url: 'https://www.estudioagv.com/',
+    tools: 'Next.js, Tailwind CSS',
+    what: { en: 'Website for a law practice', es: 'Sitio para un estudio jurídico' },
+    kind: { en: 'Client, live', es: 'Cliente, publicado' },
+    text: {
+      en: 'Design and development for a lawyer in Mendoza who had no professional presence online. Clear practice areas, quick contact and a working form, on any screen size.',
+      es: 'Diseño y desarrollo para una abogada de Mendoza que no tenía presencia profesional online. Áreas de práctica claras, contacto rápido y formulario funcional, en cualquier pantalla.'
     }
   },
   {

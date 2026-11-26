@@ -16,11 +16,11 @@ const { makeCtx, picture } = await import(pathToFileURL(path.join(ROOT, 'src/lib
 const { cover, coverBg } = await import(pathToFileURL(path.join(ROOT, 'src/covers.mjs')).href);
 
 // ---------------------------------------------------------------- íconos
-const mark = (bg, r) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">${bg}<circle cx="32" cy="32" r="${r}" fill="#0d0e10"/><path fill="#f3f4f1" d="M15.5 42V22h4.3v16.2h9.4V42zM32.6 42V22h5.9l5.6 13.2L49.7 22h5.9v20h-4.2V28.4L45.7 42h-3.3l-5.7-13.6V42z"/></svg>`;
+const mark = (bg, r) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">${bg}<circle cx="32" cy="32" r="${r}" fill="#0f6a3a"/><path fill="#f3f4f1" d="M9.1 42.7L9.1 40.97L11.85 40.32L11.85 23.08L9.1 22.43L9.1 20.7L18.84 20.7L18.84 22.5L15.99 23.08L15.99 40.12L18.3 40.39L22.24 40.39L23.08 36.62L25.12 36.62L25.12 42.7ZM26.45 42.7L26.45 40.97L29.03 40.36L29.03 23.01L26.85 22.57L26.85 20.7L34.73 20.7L39.45 36.05L39.86 37.98L39.99 37.98L40.43 36.05L45.08 20.7L53.23 20.7L53.23 22.6L50.75 23.04L50.75 40.36L53.5 40.93L53.5 42.7L43.9 42.7L43.9 40.93L46.61 40.36L46.61 26.98L46.71 26.06L46.34 26.06L41.08 42.7L37.68 42.7L32.22 26.06L31.84 26.06L31.91 26.95L31.91 40.36L34.63 40.97L34.63 42.7Z"/></svg>`;
 fs.writeFileSync(path.join(ROOT, 'favicon.svg'), mark('', 32) + '\n');
 const png = (svg, size, file) => sharp(Buffer.from(svg), { density: 72 * (size / 64) * 2 }).resize(size, size).png({ compressionLevel: 9 }).toFile(path.join(ROOT, file));
 await png(mark('', 32), 32, 'favicon-32.png');
-const full = mark('<rect width="64" height="64" fill="#0d0e10"/>', 32);
+const full = mark('<rect width="64" height="64" fill="#0f6a3a"/>', 32);
 await png(full, 180, 'apple-touch-icon.png');
 await png(full, 192, 'icon-192.png');
 await png(full, 512, 'icon-512.png');

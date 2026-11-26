@@ -18,6 +18,7 @@ const TABLET = [640, 1200];
 const LAPTOP = [720, 1200, 1800];
 const SCREEN = [720, 1200, 1800];
 const THUMB = [480, 960, 1440];
+const LEAD = [480, 960, 1440, 1920]; // la primera pieza del archivo se ve a 990 px
 
 
 const MANIFEST = {
@@ -106,7 +107,7 @@ const MANIFEST = {
   'alcancia-nudge-es': { src: CAP + 'alcancia-nudge-es.webp', widths: PHONE },
 
   'x-lithium': { src: CAP + 'x-lithium.webp', widths: THUMB },
-  'x-codea': { src: CAP + 'x-codea.webp', widths: THUMB },
+  'x-codea': { src: CAP + 'x-codea.webp', widths: LEAD },
   'x-move': { src: CAP + 'x-move.webp', widths: THUMB },
   'x-agv': { src: CAP + 'x-agv.webp', widths: THUMB },
   'x-stretch': { src: CAP + 'x-stretch.webp', widths: THUMB },

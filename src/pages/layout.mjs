@@ -1,7 +1,8 @@
 import { SITE } from '../content/site.mjs';
 import { esc, icon } from '../lib/html.mjs';
 
-const MARK = '<svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="32" fill="currentColor"/><path fill="#f3f4f1" d="M15.5 42V22h4.3v16.2h9.4V42zM32.6 42V22h5.9l5.6 13.2L49.7 22h5.9v20h-4.2V28.4L45.7 42h-3.3l-5.7-13.6V42z"/></svg>';
+// Monograma: "LM" en Faustina SemiBold pasado a contornos y centrado a ojo (la M pesa más que la L).
+const MARK = '<svg class="mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="32" fill="currentColor"/><path fill="#f3f4f1" d="M11.69 41.49L11.69 39.96L14.13 39.38L14.13 24.1L11.69 23.52L11.69 21.99L20.33 21.99L20.33 23.58L17.8 24.1L17.8 39.2L19.84 39.44L23.34 39.44L24.09 36.1L25.89 36.1L25.89 41.49ZM27.07 41.49L27.07 39.96L29.35 39.41L29.35 24.04L27.43 23.65L27.43 21.99L34.41 21.99L38.59 35.59L38.95 37.31L39.07 37.31L39.46 35.59L43.59 21.99L50.81 21.99L50.81 23.68L48.61 24.07L48.61 39.41L51.05 39.93L51.05 41.49L42.53 41.49L42.53 39.93L44.94 39.41L44.94 27.56L45.03 26.74L44.7 26.74L40.04 41.49L37.03 41.49L32.18 26.74L31.85 26.74L31.91 27.53L31.91 39.41L34.32 39.96L34.32 41.49Z"/></svg>';
 
 export function cvLink(ctx, label, cls) {
   const cv = SITE.cv[ctx.lang];
